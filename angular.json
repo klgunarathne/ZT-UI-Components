@@ -28,7 +28,40 @@
           "builder": "@angular/build:karma",
           "options": {
             "tsConfig": "projects/zt-ui-components/tsconfig.spec.json",
-            "polyfills": ["zone.js", "zone.js/testing"]
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "configDir": "projects/zt-ui-components/.storybook",
+            "browserTarget": "zt-ui-components:build",
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "projects/zt-ui-components"
+            ],
+            "port": 6006
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "configDir": "projects/zt-ui-components/.storybook",
+            "browserTarget": "zt-ui-components:build",
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "projects/zt-ui-components"
+            ],
+            "outputDir": "storybook-static"
           }
         }
       }
