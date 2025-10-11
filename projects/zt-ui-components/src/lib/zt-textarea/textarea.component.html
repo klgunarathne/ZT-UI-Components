@@ -1,0 +1,67 @@
+@if (inputStyle === 'zt') {
+  <div>
+    <div class="box_textarea">
+      <div class="form__group">
+        <textarea
+          [cols]="cols"
+          [rows]="rows"
+          [maxLength]="textlength"
+          id="box-textarea"
+          #textareaInput
+        ></textarea>
+        <label class="label" for="fname" id="label-fname">
+          <div class="text">{{ placeholder }} &nbsp;</div>
+        </label>
+        @if (showCharCount) {
+          <small
+            [ngClass]="currentTextLength >= textlength ? 'limit-max' : ''"
+            >{{ currentTextLength }}/{{ textlength }}</small
+            >
+          }
+        </div>
+      </div>
+    </div>
+  }
+
+  @if (inputStyle === 'material') {
+    <div>
+      <div class="material_input">
+        <div class="textarea-group">
+          <textarea
+            [cols]="cols"
+            [rows]="rows"
+            id="material-textarea"
+            #textareaInput
+          ></textarea>
+          <div class="bar"></div>
+          <label>{{ placeholder }}</label>
+          @if (showCharCount) {
+            <small
+              [ngClass]="currentTextLength >= textlength ? 'limit-max' : ''"
+              >{{ currentTextLength }}/{{ textlength }}</small
+              >
+            }
+          </div>
+        </div>
+      </div>
+    }
+    @if (inputStyle === 'bs') {
+      <div>
+        <div class="bs_textarea">
+          <textarea
+            [cols]="cols"
+            [rows]="rows"
+            class="form__field"
+            [placeholder]="placeholder"
+            id="bs_textarea"
+            #textareaInput
+          ></textarea>
+          @if (showCharCount) {
+            <small
+              [ngClass]="currentTextLength >= textlength ? 'limit-max' : ''"
+              >{{ currentTextLength }}/{{ textlength }}</small
+              >
+            }
+          </div>
+        </div>
+      }

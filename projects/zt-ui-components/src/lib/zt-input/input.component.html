@@ -1,0 +1,49 @@
+@if (inputStyle === 'zt') {
+  <div>
+    <div class="box_input">
+      <div class="form__group">
+        <input
+          [type]="inputType"
+          id="input"
+          aria-labelledby="label-fname"
+          [maxLength]="textlength"
+          #textInput
+          />
+        <label class="label" for="fname" id="label-fname">
+          <div class="text">{{ placeholder }}</div>
+        </label>
+      </div>
+    </div>
+  </div>
+}
+
+@if (inputStyle === 'material') {
+  <div>
+    <div class="material_input">
+      <div class="form__group">
+        <input
+          [type]="inputType"
+          id="input_m"
+          class="form__field"
+          [placeholder]="placeholder"
+          #textInput
+          />
+        <label for="email" class="form__label">{{ placeholder }}</label>
+      </div>
+    </div>
+  </div>
+}
+
+@if (inputStyle === 'bs') {
+  <div>
+    <div class="input_bs">
+      <input
+        type="text"
+        class="form__field"
+        [placeholder]="placeholder"
+        [type]="inputType"
+        id="input_bs"
+        />
+    </div>
+  </div>
+}

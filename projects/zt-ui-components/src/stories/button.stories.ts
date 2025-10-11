@@ -81,6 +81,7 @@ export const Round_Button: Story = {
 export const Floating_Button: Story = {
   args: {
     theme: 'light',
+    size: "zt-sm"
   },
   render: (args: ButtonComponent) => ({
     template: `

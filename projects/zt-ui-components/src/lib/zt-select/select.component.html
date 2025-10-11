@@ -1,0 +1,91 @@
+@if (inputStyle === 'zt') {
+  <div>
+    <div class="box_select">
+      <div class="form__group">
+        <select
+          id="box_select"
+          aria-labelledby="label-fname"
+          class=""
+          #select
+          [(ngModel)]="value"
+          >
+          <option value="" class="select-message" selected disabled>
+            {{ message }}
+          </option>
+          @for (obj of dataSource; track obj; let i = $index) {
+            <option
+              [id]="key ? key : i"
+              class="select-option"
+              >
+              {{ displayValue ? obj[displayValue] : obj }}
+            </option>
+          }
+        </select>
+        @if (showClearButton) {
+          <button class="close-icon" type="reset"></button>
+        }
+        <label class="label" for="fname" id="label-fname">
+          <div class="text">{{ placeholder }}</div>
+        </label>
+      </div>
+    </div>
+  </div>
+}
+
+@if (inputStyle === 'material') {
+  <div>
+    <div class="material_select">
+      <div class="select select-items">
+        <select class="select-text" required #select [(ngModel)]="value">
+          <option value="" class="select-message" selected disabled></option>
+          @for (obj of dataSource; track obj; let i = $index) {
+            <option
+              [id]="key ? key : i"
+              class="select-option"
+              >
+              {{ displayValue ? obj[displayValue] : obj }}
+            </option>
+          }
+        </select>
+        @if (showClearButton) {
+          <button class="close-icon" type="reset"></button>
+        }
+        <span class="select-highlight"></span>
+        <span class="select-bar"></span>
+        <label class="select-label">{{ placeholder }}</label>
+      </div>
+    </div>
+  </div>
+}
+@if (inputStyle === 'bs') {
+  <div>
+    <div class="bs_select">
+      <select
+        type="text"
+        class="form__field"
+        id="bs_select"
+        #select
+        [(ngModel)]="value"
+        >
+        <option value="" class="select-message" selected disabled>
+          {{ placeholder }}
+        </option>
+        @for (obj of dataSource; track obj; let i = $index) {
+          <option
+            [id]="key ? key : i"
+            class="select-option"
+            >
+            {{ displayValue ? obj[displayValue] : obj }}
+          </option>
+        }
+      </select>
+      @if (showClearButton) {
+        <button
+          class="close-icon"
+          type="button"
+          (click)="onClear()"
+        ></button>
+      }
+    </div>
+  </div>
+}

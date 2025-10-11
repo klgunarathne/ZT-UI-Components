@@ -4,3 +4,6 @@
 
 export * from './lib/zt-ui-components';
 export * from './lib/zt-button/button.component';
+export * from './lib/zt-input/input.component';
+export * from './lib/zt-select/select.component';
+export * from './lib/zt-textarea/textarea.component';
