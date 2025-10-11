@@ -16,7 +16,7 @@ import {
 export class ButtonComponent {
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
   @Input() disabled = false;
-  @Input() variant: 'default' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'dark' | 'link' = 'primary';
+  @Input() variant: 'default' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'dark' | 'link' | 'round' | 'floating' = 'primary';
   @Input() outline = false;
   @Input() size: 'zt-sm' | 'zt-md' | 'zt-lg' = 'zt-md';
   @Input() theme: 'light' | 'dark' | 'bootstrap' | 'material' = 'light';

@@ -62,3 +62,30 @@ export const Outline_Button: Story = {
     props: args,
   }),
 };
+
+export const Round_Button: Story = {
+  args: {
+    size: 'zt-md',
+    theme: 'light',
+  },
+  render: (args: ButtonComponent) => ({
+    template: `
+    <zt-button [variant]="'round'" [size]="size" [theme]="theme" style="margin-right: 1em; margin-bottom:1em;">+</zt-button>
+    <zt-button [variant]="'round'" [size]="size" [theme]="theme" style="margin-right: 1em; margin-bottom:1em;">✓</zt-button>
+    <zt-button [variant]="'round'" [size]="size" [theme]="theme" style="margin-right: 1em; margin-bottom:1em;">✕</zt-button>
+    `,
+    props: args,
+  }),
+};
+
+export const Floating_Button: Story = {
+  args: {
+    theme: 'light',
+  },
+  render: (args: ButtonComponent) => ({
+    template: `
+    <zt-button [variant]="'floating'" [theme]="theme">+</zt-button>
+    `,
+    props: args,
+  }),
+};
