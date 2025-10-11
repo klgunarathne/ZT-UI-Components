@@ -1,0 +1,66 @@
+// Light theme (default)
+:host(.theme-light) {
+  --zt-paginator-primary: #007bff;
+  --zt-paginator-text: #000000;
+  --zt-paginator-bg-active: #007bff;
+  --zt-paginator-text-active: #ffffff;
+  --zt-paginator-hover: #007bff;
+}
+
+// Dark theme
+:host(.theme-dark) {
+  --zt-paginator-primary: #4dabf7;
+  --zt-paginator-text: #6e6f70;
+  --zt-paginator-bg-active: #4dabf7;
+  --zt-paginator-text-active: #ffffff;
+  --zt-paginator-hover: #63b3f7;
+  --zt-paginator-hover-bg: rgba(77, 171, 247, 0.1);
+}
+
+// Bootstrap theme
+:host(.theme-bootstrap) {
+  --zt-paginator-primary: #007bff;
+  --zt-paginator-text: #000000;
+  --zt-paginator-bg-active: #007bff;
+  --zt-paginator-text-active: #ffffff;
+  --zt-paginator-hover: #007bff;
+}
+
+// Material theme
+:host(.theme-material) {
+  --zt-paginator-primary: #6200ee;
+  --zt-paginator-text: #000000;
+  --zt-paginator-bg-active: #6200ee;
+  --zt-paginator-text-active: #ffffff;
+  --zt-paginator-hover: #6200ee;
+}
+
+:host {
+  user-select: none;
+
+  .pagination {
+    display: inline-block;
+  }
+
+  .pagination a {
+    color: var(--zt-paginator-text);
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--zt-paginator-hover);
+      background-color: var(--zt-paginator-hover-bg);
+      cursor: pointer;
+    }
+
+    &.active {
+      color: var(--zt-paginator-text-active);
+      background: var(--zt-paginator-bg-active);
+      font-weight: 600;
+      border: 1px solid var(--zt-paginator-primary);
+      border-radius: 5px;
+      padding: 5px 10px;
+    }
+  }
+}

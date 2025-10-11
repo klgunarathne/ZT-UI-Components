@@ -1,0 +1,152 @@
+<!-- <div class="tbl-header">
+<table id="table" class="table table-hover table-mc-light-blue">
+  <caption>
+    Employee Details
+  </caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Phone</th>
+      <th>Fax</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Tom's Club</td>
+      <td>Issaquah</td>
+      <td>Washington</td>
+      <td>(800) 955-2292</td>
+      <td>(800) 955-2293</td>
+    </tr>
+    <tr>
+      <td>StereoShack</td>
+      <td>Fort Worth</td>
+      <td>Texas</td>
+      <td>(817) 820-0741</td>
+      <td>(817) 820-0742</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    &copy; Zero Technologies
+  </tfoot>
+</table>
+</div> -->
+
+<div class="tbl-header">
+  <table
+    cellpadding="0"
+    cellspacing="0"
+    border="0"
+    [ngClass]="{
+      'ztb-striped': striped,
+      'ztb-bordered': showBorders
+    }"
+    >
+    <thead>
+      <tr>
+        @for (column of columns; track column.field) {
+          @if (column.visible) {
+            <th
+              [style.width]="column.width"
+              [ngClass]="{'sortable': column.sortable, 'sorted-asc': column.sortDirection === 'asc', 'sorted-desc': column.sortDirection === 'desc'}"
+              (click)="column.sortable && onSort(column)">
+              {{ column.title || column.field }}
+              @if (column.sortable) {
+                <span class="sort-indicator">
+                  @if (column.sortDirection === 'asc') {
+                    ▲
+                  } @else if (column.sortDirection === 'desc') {
+                    ▼
+                  } @else {
+                    ⇅
+                  }
+                </span>
+              }
+            </th>
+          }
+        }
+        @if (showEdit || showDelete) {
+          <th>Actions</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of processedData; track row.key) {
+        <tr [ngClass]="{'selected': row.selected}">
+          @for (column of columns; track column.field) {
+            @if (column.visible) {
+              <td>{{ row.data[column.field] }}</td>
+            }
+          }
+          @if (showEdit || showDelete) {
+            <td>
+              <span>
+                @if (showEdit) {
+                  <zt-button
+                    class="zt-link"
+                    style="margin-right: 1em; margin-bottom: 1em"
+                    >Edit</zt-button
+                    >
+                    }</span
+                    >
+                    <span>
+                      @if (showDelete) {
+                        <zt-button
+                          class="zt-link"
+                          style="margin-right: 1em; margin-bottom: 1em"
+                          >Delete</zt-button
+                          >
+                        }
+                      </span>
+                    </td>
+                  }
+                </tr>
+              }
+            </tbody>
+          </table>
+          <div class="pagination-container">
+            <div class="page-size-options">
+              <ul>
+                @for (size of pageSizes; track size) {
+                  <li
+                    [ngClass]="size === currentPageSize ? 'active' : ''"
+                    (click)="onPageSize(size)"
+                    >
+                    {{ size }}
+                  </li>
+                }
+              </ul>
+            </div>
+            @if (paginatorStyle === 'page') {
+              <div>
+                <div class="pagination">
+                    <a (click)="goFirst()">&laquo;</a>
+                    <a (click)="goPrevious()">&lsaquo;</a>
+                  @for (p of this.pageNumbers; track p) {
+                    <a
+                      [ngClass]="p === currentPage ? 'active' : ''"
+                      (click)="getPageNo(p)"
+                      >{{ p }}</a
+                      >
+                    }
+                    <a (click)="goNext()">&rsaquo;</a>
+                    <a (click)="goLast()">&raquo;</a>
+                  </div>
+                </div>
+              }
+
+              @if (paginatorStyle === 'arrow') {
+                <div>
+                  <div class="pagination">
+                    <a (click)="goFirst()">&laquo;</a>
+                    <a (click)="goPrevious()">&lsaquo;</a>
+                    <a>{{ currentPage }} / {{ pages }}</a>
+                    <a (click)="goNext()">&rsaquo;</a>
+                    <a (click)="goLast()">&raquo;</a>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>

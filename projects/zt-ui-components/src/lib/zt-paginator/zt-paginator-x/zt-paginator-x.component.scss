@@ -1,0 +1,30 @@
+@import "./../../../../assets/pagination_variables";
+
+:host {
+  user-select: none;
+
+  .pagination {
+    display: inline-block;
+  }
+
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+
+    &:hover {
+      color: $text-greyDark;
+      cursor: pointer;
+    }
+
+    &.active {
+      color: $text-black;
+      background: $gray;
+      font-weight: 200;
+      border: 1px solid $gray;
+      border-radius: 5px;
+      padding: 5px 10px;
+    }
+  }
+}

@@ -11,6 +11,36 @@
     "miscellaneous": {
         "variables": [
             {
+                "name": "Bootstrap_Input",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'bootstrap',\r\n    inputStyle: 'bs',\r\n    placeholder: 'Bootstrap style input',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-input [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\"></zt-input>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+            },
+            {
+                "name": "Bootstrap_Select",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/select.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'bootstrap',\r\n    inputStyle: 'bs',\r\n    placeholder: 'Bootstrap style select',\r\n    dataSource: [\r\n      { id: 1, firstName: 'Eve' },\r\n      { id: 2, firstName: 'Frank' },\r\n      { id: 3, firstName: 'Grace' },\r\n    ],\r\n    key: 'id',\r\n    displayValue: 'firstName',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-select [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\" [dataSource]=\"dataSource\" [key]=\"key\" [displayValue]=\"displayValue\"></zt-select>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+            },
+            {
+                "name": "Bootstrap_Textarea",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/textarea.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'bootstrap',\r\n    inputStyle: 'bs',\r\n    placeholder: 'Bootstrap style textarea',\r\n    rows: 4,\r\n    textlength: 255,\r\n    showCharCount: true,\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-textarea [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\" [rows]=\"rows\" [textlength]=\"textlength\" [showCharCount]=\"showCharCount\"></zt-textarea>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+            },
+            {
                 "name": "Button",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -19,6 +49,56 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {\r\n    size: \"zt-sm\",\r\n    outline: false,\r\n    theme: \"light\",\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-button [variant]=\"'default'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">default</zt-button>\r\n    <zt-button [variant]=\"'primary'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">primary</zt-button>\r\n    <zt-button [variant]=\"'info'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">info</zt-button>\r\n    <zt-button [variant]=\"'success'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">success</zt-button>\r\n    <zt-button [variant]=\"'danger'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">danger</zt-button>\r\n    <zt-button [variant]=\"'warning'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">warning</zt-button>\r\n    <zt-button [variant]=\"'dark'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">dark</zt-button>\r\n    <zt-button [variant]=\"'link'\" [outline]=\"false\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">link</zt-button>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+            },
+            {
+                "name": "DataGrid",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/data-grid.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    dataSource: sampleData,\r\n    columns: sampleColumns,\r\n    striped: false,\r\n    showBorders: true,\r\n    showEdit: true,\r\n    showDelete: true,\r\n    allowSorting: true,\r\n    allowSelection: false,\r\n    selectionMode: 'none',\r\n    pages: 2,\r\n    pagesLimit: 3,\r\n    currentPageSize: 5,\r\n    paginatorStyle: 'page',\r\n    theme: 'light',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-data-grid\r\n      [dataSource]=\"dataSource\"\r\n      [columns]=\"columns\"\r\n      [striped]=\"striped\"\r\n      [showBorders]=\"showBorders\"\r\n      [showEdit]=\"showEdit\"\r\n      [showDelete]=\"showDelete\"\r\n      [allowSorting]=\"allowSorting\"\r\n      [allowSelection]=\"allowSelection\"\r\n      [selectionMode]=\"selectionMode\"\r\n      [pages]=\"pages\"\r\n      [pagesLimit]=\"pagesLimit\"\r\n      [currentPageSize]=\"currentPageSize\"\r\n      [paginatorStyle]=\"paginatorStyle\"\r\n      [theme]=\"theme\"\r\n      (onPageChange)=\"onPageChange($event)\"\r\n      (onDataGridEvent)=\"onDataGridEvent($event)\"\r\n    ></zt-data-grid>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+            },
+            {
+                "name": "DataGridArrowPaginator",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/data-grid.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    dataSource: sampleData,\r\n    columns: sampleColumns,\r\n    striped: false,\r\n    showBorders: true,\r\n    showEdit: true,\r\n    showDelete: true,\r\n    allowSorting: true,\r\n    allowSelection: false,\r\n    selectionMode: 'none',\r\n    pages: 3,\r\n    pagesLimit: 3,\r\n    currentPageSize: 4,\r\n    paginatorStyle: 'arrow',\r\n    theme: 'dark',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-data-grid\r\n      [dataSource]=\"dataSource\"\r\n      [columns]=\"columns\"\r\n      [striped]=\"striped\"\r\n      [showBorders]=\"showBorders\"\r\n      [showEdit]=\"showEdit\"\r\n      [showDelete]=\"showDelete\"\r\n      [allowSorting]=\"allowSorting\"\r\n      [allowSelection]=\"allowSelection\"\r\n      [selectionMode]=\"selectionMode\"\r\n      [pages]=\"pages\"\r\n      [pagesLimit]=\"pagesLimit\"\r\n      [currentPageSize]=\"currentPageSize\"\r\n      [paginatorStyle]=\"paginatorStyle\"\r\n      [theme]=\"theme\"\r\n      (onPageChange)=\"onPageChange($event)\"\r\n      (onDataGridEvent)=\"onDataGridEvent($event)\"\r\n    ></zt-data-grid>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+            },
+            {
+                "name": "DataGridStriped",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/data-grid.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    dataSource: sampleData,\r\n    columns: sampleColumns,\r\n    striped: true,\r\n    showBorders: true,\r\n    showEdit: false,\r\n    showDelete: false,\r\n    allowSorting: true,\r\n    allowSelection: false,\r\n    selectionMode: 'none',\r\n    pages: 3,\r\n    pagesLimit: 5,\r\n    currentPageSize: 4,\r\n    paginatorStyle: 'page',\r\n    theme: 'light',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-data-grid\r\n      [dataSource]=\"dataSource\"\r\n      [columns]=\"columns\"\r\n      [striped]=\"striped\"\r\n      [showBorders]=\"showBorders\"\r\n      [showEdit]=\"showEdit\"\r\n      [showDelete]=\"showDelete\"\r\n      [allowSorting]=\"allowSorting\"\r\n      [allowSelection]=\"allowSelection\"\r\n      [selectionMode]=\"selectionMode\"\r\n      [pages]=\"pages\"\r\n      [pagesLimit]=\"pagesLimit\"\r\n      [currentPageSize]=\"currentPageSize\"\r\n      [paginatorStyle]=\"paginatorStyle\"\r\n      [theme]=\"theme\"\r\n      (onPageChange)=\"onPageChange($event)\"\r\n      (onDataGridEvent)=\"onDataGridEvent($event)\"\r\n    ></zt-data-grid>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+            },
+            {
+                "name": "Floating_Button",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    theme: 'light',\r\n    size: \"zt-sm\"\r\n  },\r\n  render: (args: ButtonComponent) => ({\r\n    template: `\r\n    <zt-button [variant]=\"'floating'\" [theme]=\"theme\">+</zt-button>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+            },
+            {
+                "name": "Input",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'light',\r\n    inputStyle: 'zt',\r\n    placeholder: 'Enter text',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-input [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\"></zt-input>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
             },
             {
                 "name": "LoggedIn",
@@ -61,6 +141,36 @@
                 "defaultValue": "{}"
             },
             {
+                "name": "Material_Input",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'light',\r\n    inputStyle: 'material',\r\n    placeholder: 'Material style input',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-input [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\"></zt-input>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+            },
+            {
+                "name": "Material_Select",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/select.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'light',\r\n    inputStyle: 'material',\r\n    placeholder: 'Material style select',\r\n    dataSource: [\r\n      { id: 1, firstName: 'Alice' },\r\n      { id: 2, firstName: 'Charlie' },\r\n      { id: 3, firstName: 'David' },\r\n    ],\r\n    key: 'id',\r\n    displayValue: 'firstName',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-select [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\" [dataSource]=\"dataSource\" [key]=\"key\" [displayValue]=\"displayValue\"></zt-select>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+            },
+            {
+                "name": "Material_Textarea",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/textarea.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'light',\r\n    inputStyle: 'material',\r\n    placeholder: 'Material style textarea',\r\n    rows: 4,\r\n    textlength: 255,\r\n    showCharCount: true,\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-textarea [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\" [rows]=\"rows\" [textlength]=\"textlength\" [showCharCount]=\"showCharCount\"></zt-textarea>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+            },
+            {
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -69,6 +179,16 @@
                 "deprecationMessage": "",
                 "type": "Meta<ButtonComponent>",
                 "defaultValue": "{\r\n  title: 'Button',\r\n  component: ButtonComponent,\r\n  argTypes: {\r\n    size: {\r\n      options: ['zt-md', 'zt-sm', 'zt-lg'],\r\n      control: { type: 'select' },\r\n      default: 'zt-md',\r\n    },\r\n    theme: {\r\n      options: ['light', 'dark', 'bootstrap', 'material'],\r\n      control: { type: 'select' },\r\n      default: 'light',\r\n    },\r\n  },\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/data-grid.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<ZtDataGridComponent>",
+                "defaultValue": "{\r\n  title: 'Data Grid',\r\n  component: ZtDataGridComponent,\r\n  argTypes: {\r\n    dataSource: {\r\n      control: { type: 'object' },\r\n    },\r\n    columns: {\r\n      control: { type: 'object' },\r\n    },\r\n    striped: {\r\n      control: { type: 'boolean' },\r\n      default: false,\r\n    },\r\n    showBorders: {\r\n      control: { type: 'boolean' },\r\n      default: true,\r\n    },\r\n    showEdit: {\r\n      control: { type: 'boolean' },\r\n      default: false,\r\n    },\r\n    showDelete: {\r\n      control: { type: 'boolean' },\r\n      default: false,\r\n    },\r\n    allowSorting: {\r\n      control: { type: 'boolean' },\r\n      default: true,\r\n    },\r\n    allowSelection: {\r\n      control: { type: 'boolean' },\r\n      default: false,\r\n    },\r\n    selectionMode: {\r\n      options: ['none', 'single', 'multiple'],\r\n      control: { type: 'select' },\r\n      default: 'none',\r\n    },\r\n    pages: {\r\n      control: { type: 'number' },\r\n      default: 1,\r\n    },\r\n    pagesLimit: {\r\n      control: { type: 'number' },\r\n      default: 3,\r\n    },\r\n    currentPageSize: {\r\n      control: { type: 'number' },\r\n      default: 10,\r\n    },\r\n    paginatorStyle: {\r\n      options: ['page', 'arrow'],\r\n      control: { type: 'select' },\r\n      default: 'page',\r\n    },\r\n    theme: {\r\n      options: ['light', 'dark', 'bootstrap', 'material'],\r\n      control: { type: 'select' },\r\n      default: 'light',\r\n    },\r\n  },\r\n}"
             },
             {
                 "name": "meta",
@@ -84,11 +204,51 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<InputComponent>",
+                "defaultValue": "{\r\n  title: 'Input',\r\n  component: InputComponent,\r\n  argTypes: {\r\n    size: {\r\n      options: ['zt-md', 'zt-sm', 'zt-lg'],\r\n      control: { type: 'select' },\r\n      default: 'zt-md',\r\n    },\r\n    theme: {\r\n      options: ['light', 'dark', 'bootstrap', 'material'],\r\n      control: { type: 'select' },\r\n      default: 'light',\r\n    },\r\n    inputStyle: {\r\n      options: ['zt', 'material', 'bs'],\r\n      control: { type: 'select' },\r\n      default: 'zt',\r\n    },\r\n  },\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/zt-ui-components/src/stories/page.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<PageComponent>",
                 "defaultValue": "{\n  title: 'Example/Page',\n  component: PageComponent,\n  parameters: {\n    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout\n    layout: 'fullscreen',\n  },\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/paginator.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<ZtPaginatorComponent>",
+                "defaultValue": "{\r\n  title: 'Paginator',\r\n  component: ZtPaginatorComponent,\r\n  argTypes: {\r\n    pages: {\r\n      control: { type: 'number' },\r\n      default: 10,\r\n    },\r\n    theme: {\r\n      options: ['light', 'dark', 'bootstrap', 'material'],\r\n      control: { type: 'select' },\r\n      default: 'light',\r\n    },\r\n  },\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/select.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<SelectComponent>",
+                "defaultValue": "{\r\n  title: 'Select',\r\n  component: SelectComponent,\r\n  argTypes: {\r\n    size: {\r\n      options: ['zt-md', 'zt-sm', 'zt-lg'],\r\n      control: { type: 'select' },\r\n      default: 'zt-md',\r\n    },\r\n    theme: {\r\n      options: ['light', 'dark', 'bootstrap', 'material'],\r\n      control: { type: 'select' },\r\n      default: 'light',\r\n    },\r\n    inputStyle: {\r\n      options: ['zt', 'material', 'bs'],\r\n      control: { type: 'select' },\r\n      default: 'zt',\r\n    },\r\n  },\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/textarea.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<TextareaComponent>",
+                "defaultValue": "{\r\n  title: 'Textarea',\r\n  component: TextareaComponent,\r\n  argTypes: {\r\n    size: {\r\n      options: ['zt-md', 'zt-sm', 'zt-lg'],\r\n      control: { type: 'select' },\r\n      default: 'zt-md',\r\n    },\r\n    theme: {\r\n      options: ['light', 'dark', 'bootstrap', 'material'],\r\n      control: { type: 'select' },\r\n      default: 'light',\r\n    },\r\n    inputStyle: {\r\n      options: ['zt', 'material', 'bs'],\r\n      control: { type: 'select' },\r\n      default: 'zt',\r\n    },\r\n  },\r\n}"
             },
             {
                 "name": "Outline_Button",
@@ -101,6 +261,46 @@
                 "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    outline: true,\r\n    theme: 'light',\r\n  },\r\n  render: (args: ButtonComponent) => ({\r\n    template: `\r\n    <zt-button [variant]=\"'default'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">default</zt-button>\r\n    <zt-button [variant]=\"'primary'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">primary</zt-button>\r\n    <zt-button [variant]=\"'info'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">info</zt-button>\r\n    <zt-button [variant]=\"'success'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">success</zt-button>\r\n    <zt-button [variant]=\"'danger'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">danger</zt-button>\r\n    <zt-button [variant]=\"'warning'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">warning</zt-button>\r\n    <zt-button [variant]=\"'dark'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">dark</zt-button>\r\n    <zt-button [variant]=\"'link'\" [outline]=\"false\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">link</zt-button>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
             },
             {
+                "name": "Paginator",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/paginator.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    pages: 10,\r\n    theme: 'light',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-paginator [pages]=\"pages\" [theme]=\"theme\" (onPageChange)=\"onPageChange($event)\"></zt-paginator>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+            },
+            {
+                "name": "PaginatorBootstrap",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/paginator.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    pages: 8,\r\n    theme: 'bootstrap',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-paginator [pages]=\"pages\" [theme]=\"theme\" (onPageChange)=\"onPageChange($event)\"></zt-paginator>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+            },
+            {
+                "name": "PaginatorDark",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/paginator.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    pages: 5,\r\n    theme: 'dark',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-paginator [pages]=\"pages\" [theme]=\"theme\" (onPageChange)=\"onPageChange($event)\"></zt-paginator>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+            },
+            {
+                "name": "PaginatorMaterial",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/paginator.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    pages: 12,\r\n    theme: 'material',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-paginator [pages]=\"pages\" [theme]=\"theme\" (onPageChange)=\"onPageChange($event)\"></zt-paginator>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+            },
+            {
                 "name": "preview",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -109,6 +309,56 @@
                 "deprecationMessage": "",
                 "type": "Preview",
                 "defaultValue": "{\n  parameters: {\n    controls: {\n      matchers: {\n       color: /(background|color)$/i,\n       date: /Date$/i,\n      },\n    },\n  },\n}"
+            },
+            {
+                "name": "Round_Button",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'light',\r\n  },\r\n  render: (args: ButtonComponent) => ({\r\n    template: `\r\n    <zt-button [variant]=\"'round'\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">+</zt-button>\r\n    <zt-button [variant]=\"'round'\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">✓</zt-button>\r\n    <zt-button [variant]=\"'round'\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">✕</zt-button>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+            },
+            {
+                "name": "sampleColumns",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/data-grid.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[\r\n  { field: 'id', title: 'ID', width: '80px', sortable: true },\r\n  { field: 'name', title: 'Name', sortable: true },\r\n  { field: 'age', title: 'Age', width: '100px', sortable: true },\r\n  { field: 'city', title: 'City', sortable: true },\r\n]"
+            },
+            {
+                "name": "sampleData",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/data-grid.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[\r\n  { id: 1, name: 'John Doe', age: 30, city: 'New York' },\r\n  { id: 2, name: 'Jane Smith', age: 25, city: 'Los Angeles' },\r\n  { id: 3, name: 'Bob Johnson', age: 35, city: 'Chicago' },\r\n  { id: 4, name: 'Alice Brown', age: 28, city: 'Houston' },\r\n  { id: 5, name: 'Charlie Wilson', age: 42, city: 'Phoenix' },\r\n  { id: 6, name: 'Diana Davis', age: 31, city: 'Philadelphia' },\r\n  { id: 7, name: 'Edward Miller', age: 29, city: 'San Antonio' },\r\n  { id: 8, name: 'Fiona Garcia', age: 33, city: 'San Diego' },\r\n  { id: 9, name: 'George Rodriguez', age: 27, city: 'Dallas' },\r\n  { id: 10, name: 'Helen Martinez', age: 36, city: 'San Jose' },\r\n  { id: 11, name: 'Ian Anderson', age: 24, city: 'Austin' },\r\n  { id: 12, name: 'Julia Thomas', age: 32, city: 'Jacksonville' },\r\n]"
+            },
+            {
+                "name": "Select",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/select.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'light',\r\n    inputStyle: 'zt',\r\n    placeholder: 'Choose an option',\r\n    dataSource: [\r\n      { id: 1, firstName: 'John' },\r\n      { id: 2, firstName: 'Jane' },\r\n      { id: 3, firstName: 'Bob' },\r\n    ],\r\n    key: 'id',\r\n    displayValue: 'firstName',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-select [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\" [dataSource]=\"dataSource\" [key]=\"key\" [displayValue]=\"displayValue\"></zt-select>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+            },
+            {
+                "name": "Textarea",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/textarea.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'light',\r\n    inputStyle: 'zt',\r\n    placeholder: 'Enter your message',\r\n    rows: 4,\r\n    textlength: 255,\r\n    showCharCount: true,\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-textarea [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\" [rows]=\"rows\" [textlength]=\"textlength\" [showCharCount]=\"showCharCount\"></zt-textarea>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
             }
         ],
         "functions": [],
@@ -119,6 +369,17 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<ButtonComponent>",
                 "file": "projects/zt-ui-components/src/stories/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<ZtDataGridComponent>",
+                "file": "projects/zt-ui-components/src/stories/data-grid.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -139,8 +400,52 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
+                "rawtype": "StoryObj<InputComponent>",
+                "file": "projects/zt-ui-components/src/stories/input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
                 "rawtype": "StoryObj<PageComponent>",
                 "file": "projects/zt-ui-components/src/stories/page.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<ZtPaginatorComponent>",
+                "file": "projects/zt-ui-components/src/stories/paginator.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<SelectComponent>",
+                "file": "projects/zt-ui-components/src/stories/select.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<TextareaComponent>",
+                "file": "projects/zt-ui-components/src/stories/textarea.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -149,6 +454,132 @@
         ],
         "enumerations": [],
         "groupedVariables": {
+            "projects/zt-ui-components/src/stories/input.stories.ts": [
+                {
+                    "name": "Bootstrap_Input",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'bootstrap',\r\n    inputStyle: 'bs',\r\n    placeholder: 'Bootstrap style input',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-input [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\"></zt-input>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "Input",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'light',\r\n    inputStyle: 'zt',\r\n    placeholder: 'Enter text',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-input [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\"></zt-input>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "Material_Input",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'light',\r\n    inputStyle: 'material',\r\n    placeholder: 'Material style input',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-input [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\"></zt-input>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<InputComponent>",
+                    "defaultValue": "{\r\n  title: 'Input',\r\n  component: InputComponent,\r\n  argTypes: {\r\n    size: {\r\n      options: ['zt-md', 'zt-sm', 'zt-lg'],\r\n      control: { type: 'select' },\r\n      default: 'zt-md',\r\n    },\r\n    theme: {\r\n      options: ['light', 'dark', 'bootstrap', 'material'],\r\n      control: { type: 'select' },\r\n      default: 'light',\r\n    },\r\n    inputStyle: {\r\n      options: ['zt', 'material', 'bs'],\r\n      control: { type: 'select' },\r\n      default: 'zt',\r\n    },\r\n  },\r\n}"
+                }
+            ],
+            "projects/zt-ui-components/src/stories/select.stories.ts": [
+                {
+                    "name": "Bootstrap_Select",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/select.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'bootstrap',\r\n    inputStyle: 'bs',\r\n    placeholder: 'Bootstrap style select',\r\n    dataSource: [\r\n      { id: 1, firstName: 'Eve' },\r\n      { id: 2, firstName: 'Frank' },\r\n      { id: 3, firstName: 'Grace' },\r\n    ],\r\n    key: 'id',\r\n    displayValue: 'firstName',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-select [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\" [dataSource]=\"dataSource\" [key]=\"key\" [displayValue]=\"displayValue\"></zt-select>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "Material_Select",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/select.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'light',\r\n    inputStyle: 'material',\r\n    placeholder: 'Material style select',\r\n    dataSource: [\r\n      { id: 1, firstName: 'Alice' },\r\n      { id: 2, firstName: 'Charlie' },\r\n      { id: 3, firstName: 'David' },\r\n    ],\r\n    key: 'id',\r\n    displayValue: 'firstName',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-select [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\" [dataSource]=\"dataSource\" [key]=\"key\" [displayValue]=\"displayValue\"></zt-select>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/select.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<SelectComponent>",
+                    "defaultValue": "{\r\n  title: 'Select',\r\n  component: SelectComponent,\r\n  argTypes: {\r\n    size: {\r\n      options: ['zt-md', 'zt-sm', 'zt-lg'],\r\n      control: { type: 'select' },\r\n      default: 'zt-md',\r\n    },\r\n    theme: {\r\n      options: ['light', 'dark', 'bootstrap', 'material'],\r\n      control: { type: 'select' },\r\n      default: 'light',\r\n    },\r\n    inputStyle: {\r\n      options: ['zt', 'material', 'bs'],\r\n      control: { type: 'select' },\r\n      default: 'zt',\r\n    },\r\n  },\r\n}"
+                },
+                {
+                    "name": "Select",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/select.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'light',\r\n    inputStyle: 'zt',\r\n    placeholder: 'Choose an option',\r\n    dataSource: [\r\n      { id: 1, firstName: 'John' },\r\n      { id: 2, firstName: 'Jane' },\r\n      { id: 3, firstName: 'Bob' },\r\n    ],\r\n    key: 'id',\r\n    displayValue: 'firstName',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-select [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\" [dataSource]=\"dataSource\" [key]=\"key\" [displayValue]=\"displayValue\"></zt-select>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                }
+            ],
+            "projects/zt-ui-components/src/stories/textarea.stories.ts": [
+                {
+                    "name": "Bootstrap_Textarea",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/textarea.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'bootstrap',\r\n    inputStyle: 'bs',\r\n    placeholder: 'Bootstrap style textarea',\r\n    rows: 4,\r\n    textlength: 255,\r\n    showCharCount: true,\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-textarea [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\" [rows]=\"rows\" [textlength]=\"textlength\" [showCharCount]=\"showCharCount\"></zt-textarea>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "Material_Textarea",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/textarea.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'light',\r\n    inputStyle: 'material',\r\n    placeholder: 'Material style textarea',\r\n    rows: 4,\r\n    textlength: 255,\r\n    showCharCount: true,\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-textarea [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\" [rows]=\"rows\" [textlength]=\"textlength\" [showCharCount]=\"showCharCount\"></zt-textarea>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/textarea.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<TextareaComponent>",
+                    "defaultValue": "{\r\n  title: 'Textarea',\r\n  component: TextareaComponent,\r\n  argTypes: {\r\n    size: {\r\n      options: ['zt-md', 'zt-sm', 'zt-lg'],\r\n      control: { type: 'select' },\r\n      default: 'zt-md',\r\n    },\r\n    theme: {\r\n      options: ['light', 'dark', 'bootstrap', 'material'],\r\n      control: { type: 'select' },\r\n      default: 'light',\r\n    },\r\n    inputStyle: {\r\n      options: ['zt', 'material', 'bs'],\r\n      control: { type: 'select' },\r\n      default: 'zt',\r\n    },\r\n  },\r\n}"
+                },
+                {
+                    "name": "Textarea",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/textarea.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'light',\r\n    inputStyle: 'zt',\r\n    placeholder: 'Enter your message',\r\n    rows: 4,\r\n    textlength: 255,\r\n    showCharCount: true,\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-textarea [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\" [rows]=\"rows\" [textlength]=\"textlength\" [showCharCount]=\"showCharCount\"></zt-textarea>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                }
+            ],
             "projects/zt-ui-components/src/stories/button.stories.ts": [
                 {
                     "name": "Button",
@@ -159,6 +590,16 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{\r\n  args: {\r\n    size: \"zt-sm\",\r\n    outline: false,\r\n    theme: \"light\",\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-button [variant]=\"'default'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">default</zt-button>\r\n    <zt-button [variant]=\"'primary'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">primary</zt-button>\r\n    <zt-button [variant]=\"'info'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">info</zt-button>\r\n    <zt-button [variant]=\"'success'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">success</zt-button>\r\n    <zt-button [variant]=\"'danger'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">danger</zt-button>\r\n    <zt-button [variant]=\"'warning'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">warning</zt-button>\r\n    <zt-button [variant]=\"'dark'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">dark</zt-button>\r\n    <zt-button [variant]=\"'link'\" [outline]=\"false\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">link</zt-button>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "Floating_Button",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    theme: 'light',\r\n    size: \"zt-sm\"\r\n  },\r\n  render: (args: ButtonComponent) => ({\r\n    template: `\r\n    <zt-button [variant]=\"'floating'\" [theme]=\"theme\">+</zt-button>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
                 },
                 {
                     "name": "meta",
@@ -179,6 +620,78 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    outline: true,\r\n    theme: 'light',\r\n  },\r\n  render: (args: ButtonComponent) => ({\r\n    template: `\r\n    <zt-button [variant]=\"'default'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">default</zt-button>\r\n    <zt-button [variant]=\"'primary'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">primary</zt-button>\r\n    <zt-button [variant]=\"'info'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">info</zt-button>\r\n    <zt-button [variant]=\"'success'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">success</zt-button>\r\n    <zt-button [variant]=\"'danger'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">danger</zt-button>\r\n    <zt-button [variant]=\"'warning'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">warning</zt-button>\r\n    <zt-button [variant]=\"'dark'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">dark</zt-button>\r\n    <zt-button [variant]=\"'link'\" [outline]=\"false\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">link</zt-button>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "Round_Button",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'light',\r\n  },\r\n  render: (args: ButtonComponent) => ({\r\n    template: `\r\n    <zt-button [variant]=\"'round'\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">+</zt-button>\r\n    <zt-button [variant]=\"'round'\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">✓</zt-button>\r\n    <zt-button [variant]=\"'round'\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">✕</zt-button>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                }
+            ],
+            "projects/zt-ui-components/src/stories/data-grid.stories.ts": [
+                {
+                    "name": "DataGrid",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/data-grid.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    dataSource: sampleData,\r\n    columns: sampleColumns,\r\n    striped: false,\r\n    showBorders: true,\r\n    showEdit: true,\r\n    showDelete: true,\r\n    allowSorting: true,\r\n    allowSelection: false,\r\n    selectionMode: 'none',\r\n    pages: 2,\r\n    pagesLimit: 3,\r\n    currentPageSize: 5,\r\n    paginatorStyle: 'page',\r\n    theme: 'light',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-data-grid\r\n      [dataSource]=\"dataSource\"\r\n      [columns]=\"columns\"\r\n      [striped]=\"striped\"\r\n      [showBorders]=\"showBorders\"\r\n      [showEdit]=\"showEdit\"\r\n      [showDelete]=\"showDelete\"\r\n      [allowSorting]=\"allowSorting\"\r\n      [allowSelection]=\"allowSelection\"\r\n      [selectionMode]=\"selectionMode\"\r\n      [pages]=\"pages\"\r\n      [pagesLimit]=\"pagesLimit\"\r\n      [currentPageSize]=\"currentPageSize\"\r\n      [paginatorStyle]=\"paginatorStyle\"\r\n      [theme]=\"theme\"\r\n      (onPageChange)=\"onPageChange($event)\"\r\n      (onDataGridEvent)=\"onDataGridEvent($event)\"\r\n    ></zt-data-grid>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "DataGridArrowPaginator",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/data-grid.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    dataSource: sampleData,\r\n    columns: sampleColumns,\r\n    striped: false,\r\n    showBorders: true,\r\n    showEdit: true,\r\n    showDelete: true,\r\n    allowSorting: true,\r\n    allowSelection: false,\r\n    selectionMode: 'none',\r\n    pages: 3,\r\n    pagesLimit: 3,\r\n    currentPageSize: 4,\r\n    paginatorStyle: 'arrow',\r\n    theme: 'dark',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-data-grid\r\n      [dataSource]=\"dataSource\"\r\n      [columns]=\"columns\"\r\n      [striped]=\"striped\"\r\n      [showBorders]=\"showBorders\"\r\n      [showEdit]=\"showEdit\"\r\n      [showDelete]=\"showDelete\"\r\n      [allowSorting]=\"allowSorting\"\r\n      [allowSelection]=\"allowSelection\"\r\n      [selectionMode]=\"selectionMode\"\r\n      [pages]=\"pages\"\r\n      [pagesLimit]=\"pagesLimit\"\r\n      [currentPageSize]=\"currentPageSize\"\r\n      [paginatorStyle]=\"paginatorStyle\"\r\n      [theme]=\"theme\"\r\n      (onPageChange)=\"onPageChange($event)\"\r\n      (onDataGridEvent)=\"onDataGridEvent($event)\"\r\n    ></zt-data-grid>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "DataGridStriped",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/data-grid.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    dataSource: sampleData,\r\n    columns: sampleColumns,\r\n    striped: true,\r\n    showBorders: true,\r\n    showEdit: false,\r\n    showDelete: false,\r\n    allowSorting: true,\r\n    allowSelection: false,\r\n    selectionMode: 'none',\r\n    pages: 3,\r\n    pagesLimit: 5,\r\n    currentPageSize: 4,\r\n    paginatorStyle: 'page',\r\n    theme: 'light',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-data-grid\r\n      [dataSource]=\"dataSource\"\r\n      [columns]=\"columns\"\r\n      [striped]=\"striped\"\r\n      [showBorders]=\"showBorders\"\r\n      [showEdit]=\"showEdit\"\r\n      [showDelete]=\"showDelete\"\r\n      [allowSorting]=\"allowSorting\"\r\n      [allowSelection]=\"allowSelection\"\r\n      [selectionMode]=\"selectionMode\"\r\n      [pages]=\"pages\"\r\n      [pagesLimit]=\"pagesLimit\"\r\n      [currentPageSize]=\"currentPageSize\"\r\n      [paginatorStyle]=\"paginatorStyle\"\r\n      [theme]=\"theme\"\r\n      (onPageChange)=\"onPageChange($event)\"\r\n      (onDataGridEvent)=\"onDataGridEvent($event)\"\r\n    ></zt-data-grid>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/data-grid.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<ZtDataGridComponent>",
+                    "defaultValue": "{\r\n  title: 'Data Grid',\r\n  component: ZtDataGridComponent,\r\n  argTypes: {\r\n    dataSource: {\r\n      control: { type: 'object' },\r\n    },\r\n    columns: {\r\n      control: { type: 'object' },\r\n    },\r\n    striped: {\r\n      control: { type: 'boolean' },\r\n      default: false,\r\n    },\r\n    showBorders: {\r\n      control: { type: 'boolean' },\r\n      default: true,\r\n    },\r\n    showEdit: {\r\n      control: { type: 'boolean' },\r\n      default: false,\r\n    },\r\n    showDelete: {\r\n      control: { type: 'boolean' },\r\n      default: false,\r\n    },\r\n    allowSorting: {\r\n      control: { type: 'boolean' },\r\n      default: true,\r\n    },\r\n    allowSelection: {\r\n      control: { type: 'boolean' },\r\n      default: false,\r\n    },\r\n    selectionMode: {\r\n      options: ['none', 'single', 'multiple'],\r\n      control: { type: 'select' },\r\n      default: 'none',\r\n    },\r\n    pages: {\r\n      control: { type: 'number' },\r\n      default: 1,\r\n    },\r\n    pagesLimit: {\r\n      control: { type: 'number' },\r\n      default: 3,\r\n    },\r\n    currentPageSize: {\r\n      control: { type: 'number' },\r\n      default: 10,\r\n    },\r\n    paginatorStyle: {\r\n      options: ['page', 'arrow'],\r\n      control: { type: 'select' },\r\n      default: 'page',\r\n    },\r\n    theme: {\r\n      options: ['light', 'dark', 'bootstrap', 'material'],\r\n      control: { type: 'select' },\r\n      default: 'light',\r\n    },\r\n  },\r\n}"
+                },
+                {
+                    "name": "sampleColumns",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/data-grid.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[\r\n  { field: 'id', title: 'ID', width: '80px', sortable: true },\r\n  { field: 'name', title: 'Name', sortable: true },\r\n  { field: 'age', title: 'Age', width: '100px', sortable: true },\r\n  { field: 'city', title: 'City', sortable: true },\r\n]"
+                },
+                {
+                    "name": "sampleData",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/data-grid.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[\r\n  { id: 1, name: 'John Doe', age: 30, city: 'New York' },\r\n  { id: 2, name: 'Jane Smith', age: 25, city: 'Los Angeles' },\r\n  { id: 3, name: 'Bob Johnson', age: 35, city: 'Chicago' },\r\n  { id: 4, name: 'Alice Brown', age: 28, city: 'Houston' },\r\n  { id: 5, name: 'Charlie Wilson', age: 42, city: 'Phoenix' },\r\n  { id: 6, name: 'Diana Davis', age: 31, city: 'Philadelphia' },\r\n  { id: 7, name: 'Edward Miller', age: 29, city: 'San Antonio' },\r\n  { id: 8, name: 'Fiona Garcia', age: 33, city: 'San Diego' },\r\n  { id: 9, name: 'George Rodriguez', age: 27, city: 'Dallas' },\r\n  { id: 10, name: 'Helen Martinez', age: 36, city: 'San Jose' },\r\n  { id: 11, name: 'Ian Anderson', age: 24, city: 'Austin' },\r\n  { id: 12, name: 'Julia Thomas', age: 32, city: 'Jacksonville' },\r\n]"
                 }
             ],
             "projects/zt-ui-components/src/stories/header.stories.ts": [
@@ -245,6 +758,58 @@
                     "defaultValue": "{\n  title: 'Example/Page',\n  component: PageComponent,\n  parameters: {\n    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout\n    layout: 'fullscreen',\n  },\n}"
                 }
             ],
+            "projects/zt-ui-components/src/stories/paginator.stories.ts": [
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/paginator.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<ZtPaginatorComponent>",
+                    "defaultValue": "{\r\n  title: 'Paginator',\r\n  component: ZtPaginatorComponent,\r\n  argTypes: {\r\n    pages: {\r\n      control: { type: 'number' },\r\n      default: 10,\r\n    },\r\n    theme: {\r\n      options: ['light', 'dark', 'bootstrap', 'material'],\r\n      control: { type: 'select' },\r\n      default: 'light',\r\n    },\r\n  },\r\n}"
+                },
+                {
+                    "name": "Paginator",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/paginator.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    pages: 10,\r\n    theme: 'light',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-paginator [pages]=\"pages\" [theme]=\"theme\" (onPageChange)=\"onPageChange($event)\"></zt-paginator>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "PaginatorBootstrap",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/paginator.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    pages: 8,\r\n    theme: 'bootstrap',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-paginator [pages]=\"pages\" [theme]=\"theme\" (onPageChange)=\"onPageChange($event)\"></zt-paginator>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "PaginatorDark",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/paginator.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    pages: 5,\r\n    theme: 'dark',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-paginator [pages]=\"pages\" [theme]=\"theme\" (onPageChange)=\"onPageChange($event)\"></zt-paginator>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "PaginatorMaterial",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/paginator.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    pages: 12,\r\n    theme: 'material',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-paginator [pages]=\"pages\" [theme]=\"theme\" (onPageChange)=\"onPageChange($event)\"></zt-paginator>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                }
+            ],
             "projects/zt-ui-components/.storybook/preview.ts": [
                 {
                     "name": "preview",
@@ -274,6 +839,19 @@
                     "kind": 184
                 }
             ],
+            "projects/zt-ui-components/src/stories/data-grid.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<ZtDataGridComponent>",
+                    "file": "projects/zt-ui-components/src/stories/data-grid.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
             "projects/zt-ui-components/src/stories/header.stories.ts": [
                 {
                     "name": "Story",
@@ -287,6 +865,19 @@
                     "kind": 184
                 }
             ],
+            "projects/zt-ui-components/src/stories/input.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<InputComponent>",
+                    "file": "projects/zt-ui-components/src/stories/input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
             "projects/zt-ui-components/src/stories/page.stories.ts": [
                 {
                     "name": "Story",
@@ -294,6 +885,45 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<PageComponent>",
                     "file": "projects/zt-ui-components/src/stories/page.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "projects/zt-ui-components/src/stories/paginator.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<ZtPaginatorComponent>",
+                    "file": "projects/zt-ui-components/src/stories/paginator.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "projects/zt-ui-components/src/stories/select.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<SelectComponent>",
+                    "file": "projects/zt-ui-components/src/stories/select.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "projects/zt-ui-components/src/stories/textarea.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<TextareaComponent>",
+                    "file": "projects/zt-ui-components/src/stories/textarea.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -336,6 +966,16 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
+                "name": "Floating_Button",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
                 "name": "meta",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
@@ -353,6 +993,86 @@
             },
             {
                 "filePath": "projects/zt-ui-components/src/stories/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Round_Button",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/button.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/data-grid.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "DataGrid",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/data-grid.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "DataGridArrowPaginator",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/data-grid.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "DataGridStriped",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/data-grid.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/data-grid.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "sampleColumns",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/data-grid.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "sampleData",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/data-grid.stories.ts",
                 "type": "type alias",
                 "linktype": "miscellaneous",
                 "linksubtype": "typealias",
@@ -402,6 +1122,56 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/zt-ui-components/src/stories/input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Bootstrap_Input",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Input",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Material_Input",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/input.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/zt-ui-components/src/stories/page.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -433,6 +1203,166 @@
             },
             {
                 "filePath": "projects/zt-ui-components/src/stories/page.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/paginator.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/paginator.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Paginator",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/paginator.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "PaginatorBootstrap",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/paginator.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "PaginatorDark",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/paginator.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "PaginatorMaterial",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/paginator.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/select.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Bootstrap_Select",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/select.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Material_Select",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/select.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/select.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Select",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/select.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/textarea.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Bootstrap_Textarea",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/textarea.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Material_Textarea",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/textarea.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/textarea.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Textarea",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/textarea.stories.ts",
                 "type": "type alias",
                 "linktype": "miscellaneous",
                 "linksubtype": "typealias",

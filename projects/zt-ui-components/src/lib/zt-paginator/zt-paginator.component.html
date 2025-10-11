@@ -1,0 +1,14 @@
+<div class="pagination">
+  <a (click)="goFirst()">&laquo;</a>
+  <a (click)="goPrevious()">&lsaquo;</a>
+  @for (p of pageNumbers; track p) {
+    <a
+      (click)="getPageNo(p)"
+      [ngClass]="p === currentPage ? 'active' : ''"
+      >{{ p }}</a
+      >
+    }
+    <a (click)="goNext()">&rsaquo;</a>
+    <a (click)="goLast()">&raquo;</a>
+  </div>
+  <!-- <a>...</a> -->
