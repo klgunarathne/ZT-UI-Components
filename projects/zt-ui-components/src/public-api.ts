@@ -3,4 +3,4 @@
  */
 
 export * from './lib/zt-ui-components';
-export * from './lib/button/button';
+export * from './lib/zt-button/button.component';

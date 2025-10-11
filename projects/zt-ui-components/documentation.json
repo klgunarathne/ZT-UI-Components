@@ -11,14 +11,14 @@
     "miscellaneous": {
         "variables": [
             {
-                "name": "Large",
+                "name": "Button",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/zt-ui-components/src/stories/button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    size: 'large',\n    label: 'Button',\n  },\n}"
+                "defaultValue": "{\r\n  args: {\r\n    size: \"zt-sm\",\r\n    outline: false,\r\n    theme: \"light\",\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-button [variant]=\"'default'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">default</zt-button>\r\n    <zt-button [variant]=\"'primary'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">primary</zt-button>\r\n    <zt-button [variant]=\"'info'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">info</zt-button>\r\n    <zt-button [variant]=\"'success'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">success</zt-button>\r\n    <zt-button [variant]=\"'danger'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">danger</zt-button>\r\n    <zt-button [variant]=\"'warning'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">warning</zt-button>\r\n    <zt-button [variant]=\"'dark'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">dark</zt-button>\r\n    <zt-button [variant]=\"'link'\" [outline]=\"false\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">link</zt-button>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
             },
             {
                 "name": "LoggedIn",
@@ -68,7 +68,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<ButtonComponent>",
-                "defaultValue": "{\n  title: 'Example/Button',\n  component: ButtonComponent,\n  tags: ['autodocs'],\n  argTypes: {\n    backgroundColor: {\n      control: 'color',\n    },\n  },\n  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args\n  args: { onClick: fn() },\n}"
+                "defaultValue": "{\r\n  title: 'Button',\r\n  component: ButtonComponent,\r\n  argTypes: {\r\n    size: {\r\n      options: ['zt-md', 'zt-sm', 'zt-lg'],\r\n      control: { type: 'select' },\r\n      default: 'zt-md',\r\n    },\r\n    theme: {\r\n      options: ['light', 'dark', 'bootstrap', 'material'],\r\n      control: { type: 'select' },\r\n      default: 'light',\r\n    },\r\n  },\r\n}"
             },
             {
                 "name": "meta",
@@ -91,6 +91,16 @@
                 "defaultValue": "{\n  title: 'Example/Page',\n  component: PageComponent,\n  parameters: {\n    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout\n    layout: 'fullscreen',\n  },\n}"
             },
             {
+                "name": "Outline_Button",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    outline: true,\r\n    theme: 'light',\r\n  },\r\n  render: (args: ButtonComponent) => ({\r\n    template: `\r\n    <zt-button [variant]=\"'default'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">default</zt-button>\r\n    <zt-button [variant]=\"'primary'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">primary</zt-button>\r\n    <zt-button [variant]=\"'info'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">info</zt-button>\r\n    <zt-button [variant]=\"'success'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">success</zt-button>\r\n    <zt-button [variant]=\"'danger'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">danger</zt-button>\r\n    <zt-button [variant]=\"'warning'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">warning</zt-button>\r\n    <zt-button [variant]=\"'dark'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">dark</zt-button>\r\n    <zt-button [variant]=\"'link'\" [outline]=\"false\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">link</zt-button>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+            },
+            {
                 "name": "preview",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -99,36 +109,6 @@
                 "deprecationMessage": "",
                 "type": "Preview",
                 "defaultValue": "{\n  parameters: {\n    controls: {\n      matchers: {\n       color: /(background|color)$/i,\n       date: /Date$/i,\n      },\n    },\n  },\n}"
-            },
-            {
-                "name": "Primary",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/zt-ui-components/src/stories/button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    primary: true,\n    label: 'Button',\n  },\n}"
-            },
-            {
-                "name": "Secondary",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/zt-ui-components/src/stories/button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    label: 'Button',\n  },\n}"
-            },
-            {
-                "name": "Small",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/zt-ui-components/src/stories/button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    size: 'small',\n    label: 'Button',\n  },\n}"
             }
         ],
         "functions": [],
@@ -171,14 +151,14 @@
         "groupedVariables": {
             "projects/zt-ui-components/src/stories/button.stories.ts": [
                 {
-                    "name": "Large",
+                    "name": "Button",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/zt-ui-components/src/stories/button.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  args: {\n    size: 'large',\n    label: 'Button',\n  },\n}"
+                    "defaultValue": "{\r\n  args: {\r\n    size: \"zt-sm\",\r\n    outline: false,\r\n    theme: \"light\",\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-button [variant]=\"'default'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">default</zt-button>\r\n    <zt-button [variant]=\"'primary'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">primary</zt-button>\r\n    <zt-button [variant]=\"'info'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">info</zt-button>\r\n    <zt-button [variant]=\"'success'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">success</zt-button>\r\n    <zt-button [variant]=\"'danger'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">danger</zt-button>\r\n    <zt-button [variant]=\"'warning'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">warning</zt-button>\r\n    <zt-button [variant]=\"'dark'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">dark</zt-button>\r\n    <zt-button [variant]=\"'link'\" [outline]=\"false\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">link</zt-button>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
                 },
                 {
                     "name": "meta",
@@ -188,37 +168,17 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<ButtonComponent>",
-                    "defaultValue": "{\n  title: 'Example/Button',\n  component: ButtonComponent,\n  tags: ['autodocs'],\n  argTypes: {\n    backgroundColor: {\n      control: 'color',\n    },\n  },\n  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args\n  args: { onClick: fn() },\n}"
+                    "defaultValue": "{\r\n  title: 'Button',\r\n  component: ButtonComponent,\r\n  argTypes: {\r\n    size: {\r\n      options: ['zt-md', 'zt-sm', 'zt-lg'],\r\n      control: { type: 'select' },\r\n      default: 'zt-md',\r\n    },\r\n    theme: {\r\n      options: ['light', 'dark', 'bootstrap', 'material'],\r\n      control: { type: 'select' },\r\n      default: 'light',\r\n    },\r\n  },\r\n}"
                 },
                 {
-                    "name": "Primary",
+                    "name": "Outline_Button",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/zt-ui-components/src/stories/button.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  args: {\n    primary: true,\n    label: 'Button',\n  },\n}"
-                },
-                {
-                    "name": "Secondary",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/zt-ui-components/src/stories/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    label: 'Button',\n  },\n}"
-                },
-                {
-                    "name": "Small",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/zt-ui-components/src/stories/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    size: 'small',\n    label: 'Button',\n  },\n}"
+                    "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    outline: true,\r\n    theme: 'light',\r\n  },\r\n  render: (args: ButtonComponent) => ({\r\n    template: `\r\n    <zt-button [variant]=\"'default'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">default</zt-button>\r\n    <zt-button [variant]=\"'primary'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">primary</zt-button>\r\n    <zt-button [variant]=\"'info'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">info</zt-button>\r\n    <zt-button [variant]=\"'success'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">success</zt-button>\r\n    <zt-button [variant]=\"'danger'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">danger</zt-button>\r\n    <zt-button [variant]=\"'warning'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">warning</zt-button>\r\n    <zt-button [variant]=\"'dark'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">dark</zt-button>\r\n    <zt-button [variant]=\"'link'\" [outline]=\"false\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">link</zt-button>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
                 }
             ],
             "projects/zt-ui-components/src/stories/header.stories.ts": [
@@ -366,7 +326,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "Large",
+                "name": "Button",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -386,27 +346,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "Primary",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/zt-ui-components/src/stories/button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Secondary",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/zt-ui-components/src/stories/button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Small",
+                "name": "Outline_Button",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

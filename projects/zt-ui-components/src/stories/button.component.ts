@@ -1,28 +1,39 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { ButtonComponent as ZtButtonComponent } from '../lib/zt-button/button.component';
 
 @Component({
   selector: 'storybook-button',
   standalone: true,
-  imports: [CommonModule],
-  template: ` <button
-  type="button"
+  imports: [CommonModule, ZtButtonComponent],
+  template: ` <zt-button
+  [type]="type"
+  [variant]="variant"
+  [size]="ztSize"
+  [outline]="outline"
+  [disabled]="disabled"
   (click)="onClick.emit($event)"
-  [ngClass]="classes"
-  [ngStyle]="{ 'background-color': backgroundColor }"
 >
   {{ label }}
-</button>`,
+</zt-button>`,
   styleUrls: ['./button.css'],
 })
 export class ButtonComponent {
-  /** Is this the principal call to action on the page? */
+  /** Button type */
   @Input()
-  primary = false;
+  type: 'button' | 'submit' | 'reset' = 'button';
 
-  /** What background color to use */
+  /** Button variant */
   @Input()
-  backgroundColor?: string;
+  variant: 'default' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'dark' | 'link' = 'default';
+
+  /** Is outline style? */
+  @Input()
+  outline = false;
+
+  /** Is disabled? */
+  @Input()
+  disabled = false;
 
   /** How large should the button be? */
   @Input()
@@ -40,9 +51,12 @@ export class ButtonComponent {
   @Output()
   onClick = new EventEmitter<Event>();
 
-  public get classes(): string[] {
-    const mode = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary';
-
-    return ['storybook-button', `storybook-button--${this.size}`, mode];
+  get ztSize(): 'zt-sm' | 'zt-md' | 'zt-lg' {
+    switch (this.size) {
+      case 'small': return 'zt-sm';
+      case 'medium': return 'zt-md';
+      case 'large': return 'zt-lg';
+      default: return 'zt-md';
+    }
   }
 }

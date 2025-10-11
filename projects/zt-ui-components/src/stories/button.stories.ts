@@ -1,49 +1,64 @@
+import { ButtonComponent } from '../lib/zt-button/button.component';
 import type { Meta, StoryObj } from '@storybook/angular';
-import { fn } from 'storybook/test';
 
-import { ButtonComponent } from './button.component';
-
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta: Meta<ButtonComponent> = {
-  title: 'Example/Button',
+  title: 'Button',
   component: ButtonComponent,
-  tags: ['autodocs'],
   argTypes: {
-    backgroundColor: {
-      control: 'color',
+    size: {
+      options: ['zt-md', 'zt-sm', 'zt-lg'],
+      control: { type: 'select' },
+      default: 'zt-md',
+    },
+    theme: {
+      options: ['light', 'dark', 'bootstrap', 'material'],
+      control: { type: 'select' },
+      default: 'light',
     },
   },
-  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-  args: { onClick: fn() },
 };
 
 export default meta;
 type Story = StoryObj<ButtonComponent>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Primary: Story = {
+export const Button: Story = {
   args: {
-    primary: true,
-    label: 'Button',
+    size: "zt-sm",
+    outline: false,
+    theme: "light",
   },
+  render: (args) => ({
+    template: `
+    <zt-button [variant]="'default'" [outline]="outline" [size]="size" [theme]="theme" style="margin-right: 1em; margin-bottom:1em;">default</zt-button>
+    <zt-button [variant]="'primary'" [outline]="outline" [size]="size" [theme]="theme" style="margin-right: 1em; margin-bottom:1em;">primary</zt-button>
+    <zt-button [variant]="'info'" [outline]="outline" [size]="size" [theme]="theme" style="margin-right: 1em; margin-bottom:1em;">info</zt-button>
+    <zt-button [variant]="'success'" [outline]="outline" [size]="size" [theme]="theme" style="margin-right: 1em; margin-bottom:1em;">success</zt-button>
+    <zt-button [variant]="'danger'" [outline]="outline" [size]="size" [theme]="theme" style="margin-right: 1em; margin-bottom:1em;">danger</zt-button>
+    <zt-button [variant]="'warning'" [outline]="outline" [size]="size" [theme]="theme" style="margin-right: 1em; margin-bottom:1em;">warning</zt-button>
+    <zt-button [variant]="'dark'" [outline]="outline" [size]="size" [theme]="theme" style="margin-right: 1em; margin-bottom:1em;">dark</zt-button>
+    <zt-button [variant]="'link'" [outline]="false" [size]="size" [theme]="theme" style="margin-right: 1em; margin-bottom:1em;">link</zt-button>
+    `,
+    props: args,
+  }),
 };
 
-export const Secondary: Story = {
+export const Outline_Button: Story = {
   args: {
-    label: 'Button',
+    size: 'zt-md',
+    outline: true,
+    theme: 'light',
   },
-};
-
-export const Large: Story = {
-  args: {
-    size: 'large',
-    label: 'Button',
-  },
-};
-
-export const Small: Story = {
-  args: {
-    size: 'small',
-    label: 'Button',
-  },
+  render: (args: ButtonComponent) => ({
+    template: `
+    <zt-button [variant]="'default'" [outline]="outline" [size]="size" [theme]="theme" style="margin-right: 1em; margin-bottom:1em;">default</zt-button>
+    <zt-button [variant]="'primary'" [outline]="outline" [size]="size" [theme]="theme" style="margin-right: 1em; margin-bottom:1em;">primary</zt-button>
+    <zt-button [variant]="'info'" [outline]="outline" [size]="size" [theme]="theme" style="margin-right: 1em; margin-bottom:1em;">info</zt-button>
+    <zt-button [variant]="'success'" [outline]="outline" [size]="size" [theme]="theme" style="margin-right: 1em; margin-bottom:1em;">success</zt-button>
+    <zt-button [variant]="'danger'" [outline]="outline" [size]="size" [theme]="theme" style="margin-right: 1em; margin-bottom:1em;">danger</zt-button>
+    <zt-button [variant]="'warning'" [outline]="outline" [size]="size" [theme]="theme" style="margin-right: 1em; margin-bottom:1em;">warning</zt-button>
+    <zt-button [variant]="'dark'" [outline]="outline" [size]="size" [theme]="theme" style="margin-right: 1em; margin-bottom:1em;">dark</zt-button>
+    <zt-button [variant]="'link'" [outline]="false" [size]="size" [theme]="theme" style="margin-right: 1em; margin-bottom:1em;">link</zt-button>
+    `,
+    props: args,
+  }),
 };
