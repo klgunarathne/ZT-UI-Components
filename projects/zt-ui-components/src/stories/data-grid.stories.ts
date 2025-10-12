@@ -49,6 +49,16 @@ const meta: Meta<ZtDataGridComponent> = {
       control: { type: 'boolean' },
       default: false,
     },
+    editButtonType: {
+      options: ['button', 'link'],
+      control: { type: 'select' },
+      default: 'link',
+    },
+    deleteButtonType: {
+      options: ['button', 'link'],
+      control: { type: 'select' },
+      default: 'link',
+    },
     allowSorting: {
       control: { type: 'boolean' },
       default: true,
@@ -65,10 +75,6 @@ const meta: Meta<ZtDataGridComponent> = {
     pages: {
       control: { type: 'number' },
       default: 1,
-    },
-    pagesLimit: {
-      control: { type: 'number' },
-      default: 3,
     },
     currentPageSize: {
       control: { type: 'number' },
@@ -94,18 +100,19 @@ export const DataGrid: Story = {
   args: {
     dataSource: sampleData,
     columns: sampleColumns,
-    striped: false,
+    striped: true,
     showBorders: true,
     showEdit: true,
     showDelete: true,
+    editButtonType: 'link',
+    deleteButtonType: 'link',
     allowSorting: true,
-    allowSelection: false,
+    allowSelection: true,
     selectionMode: 'none',
-    pages: 2,
-    pagesLimit: 3,
+    pages: 4,
     currentPageSize: 5,
     paginatorStyle: 'page',
-    theme: 'light',
+    theme: "material",
   },
   render: (args) => ({
     template: `
@@ -116,11 +123,12 @@ export const DataGrid: Story = {
       [showBorders]="showBorders"
       [showEdit]="showEdit"
       [showDelete]="showDelete"
+      [editButtonType]="editButtonType"
+      [deleteButtonType]="deleteButtonType"
       [allowSorting]="allowSorting"
       [allowSelection]="allowSelection"
       [selectionMode]="selectionMode"
       [pages]="pages"
-      [pagesLimit]="pagesLimit"
       [currentPageSize]="currentPageSize"
       [paginatorStyle]="paginatorStyle"
       [theme]="theme"
@@ -140,11 +148,12 @@ export const DataGridStriped: Story = {
     showBorders: true,
     showEdit: false,
     showDelete: false,
+    editButtonType: 'link',
+    deleteButtonType: 'link',
     allowSorting: true,
     allowSelection: false,
     selectionMode: 'none',
     pages: 3,
-    pagesLimit: 5,
     currentPageSize: 4,
     paginatorStyle: 'page',
     theme: 'light',
@@ -162,7 +171,6 @@ export const DataGridStriped: Story = {
       [allowSelection]="allowSelection"
       [selectionMode]="selectionMode"
       [pages]="pages"
-      [pagesLimit]="pagesLimit"
       [currentPageSize]="currentPageSize"
       [paginatorStyle]="paginatorStyle"
       [theme]="theme"
@@ -182,11 +190,12 @@ export const DataGridArrowPaginator: Story = {
     showBorders: true,
     showEdit: true,
     showDelete: true,
+    editButtonType: 'button',
+    deleteButtonType: 'button',
     allowSorting: true,
     allowSelection: false,
     selectionMode: 'none',
     pages: 3,
-    pagesLimit: 3,
     currentPageSize: 4,
     paginatorStyle: 'arrow',
     theme: 'dark',

@@ -1,152 +1,158 @@
-<!-- <div class="tbl-header">
-<table id="table" class="table table-hover table-mc-light-blue">
-  <caption>
-    Employee Details
-  </caption>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Phone</th>
-      <th>Fax</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Tom's Club</td>
-      <td>Issaquah</td>
-      <td>Washington</td>
-      <td>(800) 955-2292</td>
-      <td>(800) 955-2293</td>
-    </tr>
-    <tr>
-      <td>StereoShack</td>
-      <td>Fort Worth</td>
-      <td>Texas</td>
-      <td>(817) 820-0741</td>
-      <td>(817) 820-0742</td>
-    </tr>
-  </tbody>
-  <tfoot>
-    &copy; Zero Technologies
-  </tfoot>
-</table>
-</div> -->
-
-<div class="tbl-header">
-  <table
-    cellpadding="0"
-    cellspacing="0"
-    border="0"
+<div class="dx-datagrid-wrapper">
+  <div
+    class="dx-datagrid"
     [ngClass]="{
-      'ztb-striped': striped,
-      'ztb-bordered': showBorders
+      'dx-datagrid-striped': striped,
+      'dx-datagrid-borders': showBorders
     }"
+  >
+    <table
+      class="dx-datagrid-table"
+      cellpadding="0"
+      cellspacing="0"
+      border="0"
     >
-    <thead>
-      <tr>
-        @for (column of columns; track column.field) {
-          @if (column.visible) {
-            <th
-              [style.width]="column.width"
-              [ngClass]="{'sortable': column.sortable, 'sorted-asc': column.sortDirection === 'asc', 'sorted-desc': column.sortDirection === 'desc'}"
-              (click)="column.sortable && onSort(column)">
-              {{ column.title || column.field }}
-              @if (column.sortable) {
-                <span class="sort-indicator">
-                  @if (column.sortDirection === 'asc') {
-                    ▲
-                  } @else if (column.sortDirection === 'desc') {
-                    ▼
-                  } @else {
-                    ⇅
-                  }
-                </span>
-              }
-            </th>
-          }
-        }
-        @if (showEdit || showDelete) {
-          <th>Actions</th>
-        }
-      </tr>
-    </thead>
-    <tbody>
-      @for (row of processedData; track row.key) {
-        <tr [ngClass]="{'selected': row.selected}">
+      <thead class="dx-datagrid-headers">
+        <tr class="dx-datagrid-header-row">
           @for (column of columns; track column.field) {
-            @if (column.visible) {
-              <td>{{ row.data[column.field] }}</td>
+            @if (column.visible !== false) {
+              <th
+                class="dx-datagrid-header"
+                [style.width]="column.width"
+                [style.min-width]="column.minWidth"
+                [style.max-width]="column.maxWidth"
+                [style.text-align]="column.alignment || 'left'"
+                [ngClass]="{
+                  'dx-datagrid-header-sortable': column.sortable && allowSorting,
+                  'dx-datagrid-header-sorted-asc': column.sortDirection === 'asc',
+                  'dx-datagrid-header-sorted-desc': column.sortDirection === 'desc'
+                }"
+                (click)="column.sortable && allowSorting && onSort(column)"
+              >
+                <div class="dx-datagrid-text-content">
+                  <span class="dx-datagrid-header-text">
+                    {{ column.title || column.field }}
+                  </span>
+                  @if (column.sortable && allowSorting) {
+                    <div class="dx-datagrid-sort-indicator">
+                      @if (column.sortDirection === 'asc') {
+                        <div class="dx-datagrid-sort-up"></div>
+                      } @else if (column.sortDirection === 'desc') {
+                        <div class="dx-datagrid-sort-down"></div>
+                      } @else {
+                        <div class="dx-datagrid-sort-none">
+                          <div class="dx-datagrid-sort-up"></div>
+                          <div class="dx-datagrid-sort-down"></div>
+                        </div>
+                      }
+                    </div>
+                  }
+                </div>
+              </th>
             }
           }
           @if (showEdit || showDelete) {
-            <td>
-              <span>
-                @if (showEdit) {
-                  <zt-button
-                    class="zt-link"
-                    style="margin-right: 1em; margin-bottom: 1em"
-                    >Edit</zt-button
-                    >
-                    }</span
-                    >
-                    <span>
-                      @if (showDelete) {
-                        <zt-button
-                          class="zt-link"
-                          style="margin-right: 1em; margin-bottom: 1em"
-                          >Delete</zt-button
-                          >
-                        }
-                      </span>
-                    </td>
-                  }
-                </tr>
+            <th class="dx-datagrid-header">
+              <div class="dx-datagrid-text-content">
+                <span class="dx-datagrid-header-text">Actions</span>
+              </div>
+            </th>
+          }
+        </tr>
+      </thead>
+      <tbody class="dx-datagrid-rows">
+        @for (row of processedData; track row.key) {
+          <tr
+             class="dx-datagrid-row"
+             [ngClass]="{
+               'dx-datagrid-row-selected': row.selected,
+               'dx-datagrid-row-hover': allowSelection && selectionMode !== 'none'
+             }"
+             (click)="allowSelection && selectionMode !== 'none' && onRowClick(row)"
+           >
+            @for (column of columns; track column.field) {
+              @if (column.visible !== false) {
+                <td
+                  class="dx-datagrid-cell"
+                  [style.text-align]="column.alignment || 'left'"
+                >
+                  <div class="dx-datagrid-cell-content">
+                    {{ row.data[column.field] }}
+                  </div>
+                </td>
               }
-            </tbody>
-          </table>
-          <div class="pagination-container">
-            <div class="page-size-options">
-              <ul>
-                @for (size of pageSizes; track size) {
-                  <li
-                    [ngClass]="size === currentPageSize ? 'active' : ''"
-                    (click)="onPageSize(size)"
-                    >
-                    {{ size }}
-                  </li>
-                }
-              </ul>
-            </div>
-            @if (paginatorStyle === 'page') {
-              <div>
-                <div class="pagination">
-                    <a (click)="goFirst()">&laquo;</a>
-                    <a (click)="goPrevious()">&lsaquo;</a>
-                  @for (p of this.pageNumbers; track p) {
-                    <a
-                      [ngClass]="p === currentPage ? 'active' : ''"
-                      (click)="getPageNo(p)"
-                      >{{ p }}</a
+            }
+            @if (showEdit || showDelete) {
+              <td class="dx-datagrid-cell">
+                <div class="dx-datagrid-cell-content">
+                  <div class="dx-datagrid-actions">
+                    @if (showEdit) {
+                      <zt-button
+                        [ngClass]="{
+                          'dx-datagrid-action-button': editButtonType === 'button',
+                          'dx-datagrid-action-link': editButtonType === 'link'
+                        }"
+                        style="margin-right: 8px;"
                       >
+                        Edit
+                      </zt-button>
                     }
-                    <a (click)="goNext()">&rsaquo;</a>
-                    <a (click)="goLast()">&raquo;</a>
+                    @if (showDelete) {
+                      <zt-button
+                        [ngClass]="{
+                          'dx-datagrid-action-button': deleteButtonType === 'button',
+                          'dx-datagrid-action-link': deleteButtonType === 'link'
+                        }"
+                        style="margin-right: 8px;"
+                      >
+                        Delete
+                      </zt-button>
+                    }
                   </div>
                 </div>
-              }
+              </td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
 
-              @if (paginatorStyle === 'arrow') {
-                <div>
-                  <div class="pagination">
-                    <a (click)="goFirst()">&laquo;</a>
-                    <a (click)="goPrevious()">&lsaquo;</a>
-                    <a>{{ currentPage }} / {{ pages }}</a>
-                    <a (click)="goNext()">&rsaquo;</a>
-                    <a (click)="goLast()">&raquo;</a>
-                  </div>
-                </div>
-              }
-            </div>
+    <!-- Pagination Section -->
+    <div class="dx-datagrid-pager">
+      <div class="dx-datagrid-pager-container">
+        <!-- Page Size Selector -->
+        <div class="dx-datagrid-pager-page-size">
+          <span class="dx-datagrid-pager-label">Show:</span>
+          <div class="dx-datagrid-pager-page-size-selector">
+            @for (size of pageSizes; track size) {
+              <button
+                class="dx-datagrid-pager-page-size-item"
+                [ngClass]="{'dx-datagrid-pager-page-size-selected': size === currentPageSize}"
+                (click)="onPageSize(size)"
+              >
+                {{ size }}
+              </button>
+            }
           </div>
+        </div>
+
+        <!-- Page Info -->
+        <div class="dx-datagrid-pager-info">
+          <span class="dx-datagrid-pager-info-text">
+            {{ (currentPage - 1) * currentPageSize + 1 }} - {{ (currentPage * currentPageSize) < dataSource.length ? (currentPage * currentPageSize) : dataSource.length }} of {{ dataSource.length }} items
+          </span>
+        </div>
+
+        <!-- ZT Paginator Component -->
+        <div class="dx-datagrid-pager-navigation">
+          <zt-paginator-x
+            [pages]="pages"
+            [paginatorStyle]="paginatorStyle"
+            [theme]="theme"
+            (onPageChange)="onPaginatorPageChange($event)"
+          ></zt-paginator-x>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

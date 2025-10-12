@@ -1,0 +1,1640 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>zt-ui-components documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">zt-ui-components documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ZtPaginatorXComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>projects/zt-ui-components/src/lib/zt-paginator/zt-paginator-x/zt-paginator-x.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>An advanced pagination component with configurable page limits and styles.
+Supports both page number and arrow navigation styles with theme customization.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;zt-paginator-x
+  [pages]=&quot;20&quot;
+  [pagesLimit]=&quot;5&quot;
+  [paginatorStyle]=&quot;&#39;page&#39;&quot;
+  [theme]=&quot;&#39;light&#39;&quot;
+  (onPageChange)=&quot;onPageChange($event)&quot;&gt;
+&lt;/zt-paginator-x&gt;</code></pre></div>
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+                <code>AfterViewInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>zt-paginator-x</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./zt-paginator-x.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./zt-paginator-x.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#currentPage" >currentPage</a>
+                            </li>
+                            <li>
+                                <a href="#display" >display</a>
+                            </li>
+                            <li>
+                                <a href="#pageNumbers" >pageNumbers</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getPageNo" >getPageNo</a>
+                            </li>
+                            <li>
+                                <a href="#getPageNumbers" >getPageNumbers</a>
+                            </li>
+                            <li>
+                                <a href="#goFirst" >goFirst</a>
+                            </li>
+                            <li>
+                                <a href="#goLast" >goLast</a>
+                            </li>
+                            <li>
+                                <a href="#goNext" >goNext</a>
+                            </li>
+                            <li>
+                                <a href="#goPrevious" >goPrevious</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnChanges" >ngOnChanges</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#pages" >pages</a>
+                            </li>
+                            <li>
+                                <a href="#pagesLimit" >pagesLimit</a>
+                            </li>
+                            <li>
+                                <a href="#paginatorStyle" >paginatorStyle</a>
+                            </li>
+                            <li>
+                                <a href="#theme" >theme</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#onPageChange" >onPageChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostBindings</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#class" >class</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#paginatorClass" >paginatorClass</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">projects/zt-ui-components/src/lib/zt-paginator/zt-paginator-x/zt-paginator-x.component.ts:87</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="pages"></a>
+                        <b>pages</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>1</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">projects/zt-ui-components/src/lib/zt-paginator/zt-paginator-x/zt-paginator-x.component.ts:55</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Total number of pages available.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="pagesLimit"></a>
+                        <b>pagesLimit</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>3</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">projects/zt-ui-components/src/lib/zt-paginator/zt-paginator-x/zt-paginator-x.component.ts:61</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Maximum number of page numbers to display at once.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="paginatorStyle"></a>
+                        <b>paginatorStyle</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;page&quot; | &quot;arrow&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;page&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">projects/zt-ui-components/src/lib/zt-paginator/zt-paginator-x/zt-paginator-x.component.ts:67</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Style of the paginator navigation.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="theme"></a>
+                        <b>theme</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;light&quot; | &quot;dark&quot; | &quot;bootstrap&quot; | &quot;material&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;light&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">projects/zt-ui-components/src/lib/zt-paginator/zt-paginator-x/zt-paginator-x.component.ts:73</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The theme of the paginator component.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onPageChange"></a>
+                        <b>onPageChange</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;number&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">projects/zt-ui-components/src/lib/zt-paginator/zt-paginator-x/zt-paginator-x.component.ts:87</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Event emitted when the current page changes.
+Provides the new page number.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-properties">
+    <h3>HostBindings</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="class"></a>
+                    <span class="name">
+                        <span ><b>class</b></span>
+                        <a href="#class"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">projects/zt-ui-components/src/lib/zt-paginator/zt-paginator-x/zt-paginator-x.component.ts:79</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Dynamically applies CSS classes to the paginator element based on the theme.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getPageNo"></a>
+                    <span class="name">
+                        <span ><b>getPageNo</b></span>
+                        <a href="#getPageNo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getPageNo(currentPage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="130"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-paginator/zt-paginator-x/zt-paginator-x.component.ts:130</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Sets the current page and emits the page change event, then recalculates displayed pages.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>currentPage</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The page number to navigate to.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getPageNumbers"></a>
+                    <span class="name">
+                        <span ><b>getPageNumbers</b></span>
+                        <a href="#getPageNumbers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getPageNumbers(start: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, limit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="108"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-paginator/zt-paginator-x/zt-paginator-x.component.ts:108</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Generates the array of page numbers to display based on current page and limit.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>start</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The starting page number.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>limit</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The maximum number of pages to show.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goFirst"></a>
+                    <span class="name">
+                        <span ><b>goFirst</b></span>
+                        <a href="#goFirst"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goFirst()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="139"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-paginator/zt-paginator-x/zt-paginator-x.component.ts:139</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Navigates to the first page if not already there.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goLast"></a>
+                    <span class="name">
+                        <span ><b>goLast</b></span>
+                        <a href="#goLast"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goLast()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="172"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-paginator/zt-paginator-x/zt-paginator-x.component.ts:172</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Navigates to the last page if not already there.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goNext"></a>
+                    <span class="name">
+                        <span ><b>goNext</b></span>
+                        <a href="#goNext"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goNext()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="150"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-paginator/zt-paginator-x/zt-paginator-x.component.ts:150</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Navigates to the next page if available.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goPrevious"></a>
+                    <span class="name">
+                        <span ><b>goPrevious</b></span>
+                        <a href="#goPrevious"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goPrevious()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="161"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-paginator/zt-paginator-x/zt-paginator-x.component.ts:161</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Navigates to the previous page if available.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="101"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-paginator/zt-paginator-x/zt-paginator-x.component.ts:101</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnChanges"></a>
+                    <span class="name">
+                        <span ><b>ngOnChanges</b></span>
+                        <a href="#ngOnChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnChanges(changes: SimpleChanges)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="97"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-paginator/zt-paginator-x/zt-paginator-x.component.ts:97</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Lifecycle hook that recalculates page numbers when input properties change.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>changes</td>
+                                            <td>
+                                                        <code>SimpleChanges</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Object containing changed properties.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="91"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-paginator/zt-paginator-x/zt-paginator-x.component.ts:91</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentPage"></a>
+                    <span class="name">
+                        <span ><b>currentPage</b></span>
+                        <a href="#currentPage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>1</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">projects/zt-ui-components/src/lib/zt-paginator/zt-paginator-x/zt-paginator-x.component.ts:44</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The currently active page number.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="display"></a>
+                    <span class="name">
+                        <span ><b>display</b></span>
+                        <a href="#display"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">projects/zt-ui-components/src/lib/zt-paginator/zt-paginator-x/zt-paginator-x.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Display string for pagination info.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pageNumbers"></a>
+                    <span class="name">
+                        <span ><b>pageNumbers</b></span>
+                        <a href="#pageNumbers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">projects/zt-ui-components/src/lib/zt-paginator/zt-paginator-x/zt-paginator-x.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Array of page numbers currently displayed.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="paginatorClass"></a>
+                        <span class="name"><b>paginatorClass</b><a href="#paginatorClass"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>paginatorClass()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">projects/zt-ui-components/src/lib/zt-paginator/zt-paginator-x/zt-paginator-x.component.ts:79</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Dynamically applies CSS classes to the paginator element based on the theme.</p>
+</div>
+
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  HostBinding,
+  Input,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+
+/**
+ * An advanced pagination component with configurable page limits and styles.
+ * Supports both page number and arrow navigation styles with theme customization.
+ *
+ * @example
+ * &lt;zt-paginator-x
+ *   [pages]&#x3D;&quot;20&quot;
+ *   [pagesLimit]&#x3D;&quot;5&quot;
+ *   [paginatorStyle]&#x3D;&quot;&#x27;page&#x27;&quot;
+ *   [theme]&#x3D;&quot;&#x27;light&#x27;&quot;
+ *   (onPageChange)&#x3D;&quot;onPageChange($event)&quot;&gt;
+ * &lt;/zt-paginator-x&gt;
+ */
+@Component({
+  selector: &#x27;zt-paginator-x&#x27;,
+  templateUrl: &#x27;./zt-paginator-x.component.html&#x27;,
+  styleUrls: [&#x27;./zt-paginator-x.component.scss&#x27;],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [CommonModule],
+})
+export class ZtPaginatorXComponent implements OnInit, AfterViewInit {
+  /**
+   * Array of page numbers currently displayed.
+   */
+  pageNumbers: number[] &#x3D; [];
+
+  /**
+   * The currently active page number.
+   */
+  currentPage: number &#x3D; 1;
+
+  /**
+   * Display string for pagination info.
+   */
+  display &#x3D; &#x27;&#x27;;
+
+  /**
+   * Total number of pages available.
+   * @default 1
+   */
+  @Input() pages: number &#x3D; 1;
+
+  /**
+   * Maximum number of page numbers to display at once.
+   * @default 3
+   */
+  @Input() pagesLimit: number &#x3D; 3;
+
+  /**
+   * Style of the paginator navigation.
+   * @default &#x27;page&#x27;
+   */
+  @Input() paginatorStyle: &#x27;page&#x27; | &#x27;arrow&#x27; &#x3D; &#x27;page&#x27;;
+
+  /**
+   * The theme of the paginator component.
+   * @default &#x27;light&#x27;
+   */
+  @Input() theme: &#x27;light&#x27; | &#x27;dark&#x27; | &#x27;bootstrap&#x27; | &#x27;material&#x27; &#x3D; &#x27;light&#x27;;
+
+  /**
+   * Dynamically applies CSS classes to the paginator element based on the theme.
+   * @returns A string of CSS classes.
+   */
+  @HostBinding(&#x27;class&#x27;) get paginatorClass(): string {
+    return &#x60;theme-${this.theme}&#x60;;
+  }
+
+  /**
+   * Event emitted when the current page changes.
+   * Provides the new page number.
+   */
+  @Output() onPageChange: EventEmitter&lt;number&gt; &#x3D; new EventEmitter();
+
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  /**
+   * Lifecycle hook that recalculates page numbers when input properties change.
+   * @param changes Object containing changed properties.
+   */
+  ngOnChanges(changes: SimpleChanges): void {
+    this.getPageNumbers(this.currentPage, this.pagesLimit);
+  }
+
+  ngAfterViewInit(): void {}
+
+  /**
+   * Generates the array of page numbers to display based on current page and limit.
+   * @param start The starting page number.
+   * @param limit The maximum number of pages to show.
+   */
+  getPageNumbers(start: number, limit: number) {
+    this.pageNumbers &#x3D; [];
+    let count &#x3D; 0;
+    if (start &gt; 1) {
+      for (let i &#x3D; start - 1; i &lt;&#x3D; this.pages; i++) {
+        if (count &gt;&#x3D; limit) break;
+        this.pageNumbers.push(i);
+        count++;
+      }
+    } else {
+      for (let i &#x3D; start; i &lt;&#x3D; this.pages; i++) {
+        if (count &gt;&#x3D; limit) break;
+        this.pageNumbers.push(i);
+        count++;
+      }
+    }
+  }
+
+  /**
+   * Sets the current page and emits the page change event, then recalculates displayed pages.
+   * @param currentPage The page number to navigate to.
+   */
+  getPageNo(currentPage: number) {
+    this.currentPage &#x3D; currentPage;
+    this.onPageChange.emit(currentPage);
+    this.getPageNumbers(this.currentPage, this.pagesLimit);
+  }
+
+  /**
+   * Navigates to the first page if not already there.
+   */
+  goFirst() {
+    if (this.currentPage !&#x3D;&#x3D; 1) {
+      this.currentPage &#x3D; 1;
+      this.onPageChange.emit(this.currentPage);
+      this.getPageNumbers(1, this.pagesLimit);
+    }
+  }
+
+  /**
+   * Navigates to the next page if available.
+   */
+  goNext() {
+    if (this.currentPage &lt; this.pages) {
+      this.currentPage++;
+      this.onPageChange.emit(this.currentPage);
+      this.getPageNumbers(this.currentPage, this.pagesLimit);
+    }
+  }
+
+  /**
+   * Navigates to the previous page if available.
+   */
+  goPrevious() {
+    if (this.currentPage &gt; 1) {
+      this.currentPage--;
+      this.onPageChange.emit(this.currentPage);
+      this.getPageNumbers(this.currentPage, this.pagesLimit);
+    }
+  }
+
+  /**
+   * Navigates to the last page if not already there.
+   */
+  goLast() {
+    if (this.currentPage !&#x3D;&#x3D; this.pages) {
+      this.currentPage &#x3D; this.pages;
+      this.onPageChange.emit(this.currentPage);
+      this.getPageNumbers(this.pages, this.pagesLimit);
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">@if (paginatorStyle &#x3D;&#x3D;&#x3D; &#x27;page&#x27;) {
+  &lt;div&gt;
+    &lt;div class&#x3D;&quot;pagination&quot;&gt;
+      &lt;a (click)&#x3D;&quot;goFirst()&quot; [ngClass]&#x3D;&quot;{&#x27;disabled&#x27;: currentPage &#x3D;&#x3D;&#x3D; 1}&quot;&gt;&amp;laquo;&lt;/a&gt;
+      &lt;a (click)&#x3D;&quot;goPrevious()&quot; [ngClass]&#x3D;&quot;{&#x27;disabled&#x27;: currentPage &#x3D;&#x3D;&#x3D; 1}&quot;&gt;&amp;lsaquo;&lt;/a&gt;
+      @for (p of this.pageNumbers; track p) {
+        &lt;a
+          (click)&#x3D;&quot;getPageNo(p)&quot;
+          [ngClass]&#x3D;&quot;p &#x3D;&#x3D;&#x3D; currentPage ? &#x27;active&#x27; : &#x27;&#x27;&quot;
+          &gt;{{ p }}&lt;/a
+          &gt;
+        }
+        &lt;a (click)&#x3D;&quot;goNext()&quot; [ngClass]&#x3D;&quot;{&#x27;disabled&#x27;: currentPage &#x3D;&#x3D;&#x3D; pages}&quot;&gt;&amp;rsaquo;&lt;/a&gt;
+        &lt;a (click)&#x3D;&quot;goLast()&quot; [ngClass]&#x3D;&quot;{&#x27;disabled&#x27;: currentPage &#x3D;&#x3D;&#x3D; pages}&quot;&gt;&amp;raquo;&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  }
+
+  @if (paginatorStyle &#x3D;&#x3D;&#x3D; &#x27;arrow&#x27;) {
+    &lt;div&gt;
+      &lt;div class&#x3D;&quot;pagination&quot;&gt;
+        &lt;a (click)&#x3D;&quot;goFirst()&quot; [ngClass]&#x3D;&quot;{&#x27;disabled&#x27;: currentPage &#x3D;&#x3D;&#x3D; 1}&quot;&gt;&amp;laquo;&lt;/a&gt;
+        &lt;a (click)&#x3D;&quot;goPrevious()&quot; [ngClass]&#x3D;&quot;{&#x27;disabled&#x27;: currentPage &#x3D;&#x3D;&#x3D; 1}&quot;&gt;&amp;lsaquo;&lt;/a&gt;
+        &lt;a&gt;{{ currentPage }} / {{ pages }}&lt;/a&gt;
+        &lt;a (click)&#x3D;&quot;goNext()&quot;&gt;&amp;rsaquo;&lt;/a&gt;
+        &lt;a (click)&#x3D;&quot;goLast()&quot;&gt;&amp;raquo;&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  }
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./zt-paginator-x.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">// ZT Paginator X - Theme Support
+// Light theme (default)
+:host(.theme-light) {
+  --zt-paginator-primary: #007bff;
+  --zt-paginator-text: #000000;
+  --zt-paginator-bg-active: #007bff;
+  --zt-paginator-text-active: #ffffff;
+  --zt-paginator-hover: #007bff;
+}
+
+// Dark theme
+:host(.theme-dark) {
+  --zt-paginator-primary: #4dabf7;
+  --zt-paginator-text: #ffffff;
+  --zt-paginator-bg-active: #4dabf7;
+  --zt-paginator-text-active: #000000;
+  --zt-paginator-hover: #63b3f7;
+  --zt-paginator-hover-bg: rgba(77, 171, 247, 0.1);
+}
+
+// Bootstrap theme
+:host(.theme-bootstrap) {
+  --zt-paginator-primary: #007bff;
+  --zt-paginator-text: #000000;
+  --zt-paginator-bg-active: #007bff;
+  --zt-paginator-text-active: #ffffff;
+  --zt-paginator-hover: #007bff;
+}
+
+// Material theme
+:host(.theme-material) {
+  --zt-paginator-primary: #6200ee;
+  --zt-paginator-text: #000000;
+  --zt-paginator-bg-active: #6200ee;
+  --zt-paginator-text-active: #ffffff;
+  --zt-paginator-hover: #6200ee;
+}
+
+:host {
+  user-select: none;
+
+  .pagination {
+    display: inline-block;
+  }
+
+  .pagination a {
+    color: var(--zt-paginator-text);
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+
+    &amp;:hover:not(:disabled) {
+      color: var(--zt-paginator-hover);
+      background-color: var(--zt-paginator-hover-bg, rgba(0, 0, 0, 0.05));
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    &amp;:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &amp;.active {
+      color: var(--zt-paginator-text-active);
+      background: var(--zt-paginator-bg-active);
+      font-weight: 600;
+      border: 1px solid var(--zt-paginator-primary);
+      border-radius: 4px;
+      padding: 6px 12px;
+    }
+
+    &amp;.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div>@if (paginatorStyle === \'page\') {  <div>    <div class="pagination">      <a (click)="goFirst()" [ngClass]="{\'disabled\': currentPage === 1}">&laquo;</a>      <a (click)="goPrevious()" [ngClass]="{\'disabled\': currentPage === 1}">&lsaquo;</a>      @for (p of this.pageNumbers; track p) {        <a          (click)="getPageNo(p)"          [ngClass]="p === currentPage ? \'active\' : \'\'"          >{{ p }}</a          >        }        <a (click)="goNext()" [ngClass]="{\'disabled\': currentPage === pages}">&rsaquo;</a>        <a (click)="goLast()" [ngClass]="{\'disabled\': currentPage === pages}">&raquo;</a>      </div>    </div>  }  @if (paginatorStyle === \'arrow\') {    <div>      <div class="pagination">        <a (click)="goFirst()" [ngClass]="{\'disabled\': currentPage === 1}">&laquo;</a>        <a (click)="goPrevious()" [ngClass]="{\'disabled\': currentPage === 1}">&lsaquo;</a>        <a>{{ currentPage }} / {{ pages }}</a>        <a (click)="goNext()">&rsaquo;</a>        <a (click)="goLast()">&raquo;</a>      </div>    </div>  }</div>'
+    var COMPONENTS = [{'name': 'ButtonComponent', 'selector': 'storybook-button'},{'name': 'ButtonComponent', 'selector': 'zt-button'},{'name': 'HeaderComponent', 'selector': 'storybook-header'},{'name': 'InputComponent', 'selector': 'zt-input'},{'name': 'PageComponent', 'selector': 'storybook-page'},{'name': 'SelectComponent', 'selector': 'zt-select'},{'name': 'TextareaComponent', 'selector': 'zt-textarea'},{'name': 'ZtDataGridComponent', 'selector': 'zt-data-grid'},{'name': 'ZtPaginatorComponent', 'selector': 'zt-paginator'},{'name': 'ZtPaginatorXComponent', 'selector': 'zt-paginator-x'},{'name': 'ZtUiComponents', 'selector': 'lib-zt-ui-components'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ZtPaginatorXComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ZtPaginatorXComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

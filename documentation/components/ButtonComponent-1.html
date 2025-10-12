@@ -1,0 +1,1551 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>zt-ui-components documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">zt-ui-components documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ButtonComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>projects/zt-ui-components/src/lib/zt-button/button.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>A customizable button component that supports various styles, sizes, themes, and variants.
+It can be used as a standard button, submit button, or reset button with different visual appearances.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;zt-button variant=&quot;primary&quot; size=&quot;zt-md&quot; theme=&quot;light&quot;&gt;Click me&lt;/zt-button&gt;
+&lt;zt-button variant=&quot;danger&quot; outline=&quot;true&quot; disabled=&quot;true&quot;&gt;Disabled&lt;/zt-button&gt;</code></pre></div>
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>zt-button</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./button.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./button.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#disabled" >disabled</a>
+                            </li>
+                            <li>
+                                <a href="#outline" >outline</a>
+                            </li>
+                            <li>
+                                <a href="#size" >size</a>
+                            </li>
+                            <li>
+                                <a href="#theme" >theme</a>
+                            </li>
+                            <li>
+                                <a href="#type" >type</a>
+                            </li>
+                            <li>
+                                <a href="#variant" >variant</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostBindings</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#attr.disabled" >attr.disabled</a>
+                            </li>
+                            <li>
+                                <a href="#attr.type" >attr.type</a>
+                            </li>
+                            <li>
+                                <a href="#class" >class</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#buttonClass" >buttonClass</a>
+                                </li>
+                                <li>
+                                    <a href="#buttonType" >buttonType</a>
+                                </li>
+                                <li>
+                                    <a href="#isDisabled" >isDisabled</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="disabled"></a>
+                        <b>disabled</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">projects/zt-ui-components/src/lib/zt-button/button.component.ts:35</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether the button is disabled.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="outline"></a>
+                        <b>outline</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">projects/zt-ui-components/src/lib/zt-button/button.component.ts:47</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether to display the button as an outline style.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="size"></a>
+                        <b>size</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;zt-sm&quot; | &quot;zt-md&quot; | &quot;zt-lg&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;zt-md&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">projects/zt-ui-components/src/lib/zt-button/button.component.ts:53</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The size of the button.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="theme"></a>
+                        <b>theme</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;light&quot; | &quot;dark&quot; | &quot;bootstrap&quot; | &quot;material&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;light&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">projects/zt-ui-components/src/lib/zt-button/button.component.ts:59</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The theme of the button.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="type"></a>
+                        <b>type</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;button&quot; | &quot;submit&quot; | &quot;reset&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;button&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">projects/zt-ui-components/src/lib/zt-button/button.component.ts:29</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The type of the button element.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="variant"></a>
+                        <b>variant</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;default&quot; | &quot;primary&quot; | &quot;success&quot; | &quot;info&quot; | &quot;warning&quot; | &quot;danger&quot; | &quot;dark&quot; | &quot;link&quot; | &quot;round&quot; | &quot;floating&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;primary&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">projects/zt-ui-components/src/lib/zt-button/button.component.ts:41</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The visual variant of the button.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-properties">
+    <h3>HostBindings</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="attr.disabled"></a>
+                    <span class="name">
+                        <span ><b>attr.disabled</b></span>
+                        <a href="#attr.disabled"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>boolean | null</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">projects/zt-ui-components/src/lib/zt-button/button.component.ts:87</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sets the &#39;disabled&#39; attribute on the button element when disabled is true.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="attr.type"></a>
+                    <span class="name">
+                        <span ><b>attr.type</b></span>
+                        <a href="#attr.type"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">projects/zt-ui-components/src/lib/zt-button/button.component.ts:79</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sets the &#39;type&#39; attribute on the button element.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="class"></a>
+                    <span class="name">
+                        <span ><b>class</b></span>
+                        <a href="#class"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">projects/zt-ui-components/src/lib/zt-button/button.component.ts:65</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Dynamically applies CSS classes to the button element based on the component&#39;s properties.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="buttonClass"></a>
+                        <span class="name"><b>buttonClass</b><a href="#buttonClass"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>buttonClass()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">projects/zt-ui-components/src/lib/zt-button/button.component.ts:65</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Dynamically applies CSS classes to the button element based on the component&#39;s properties.</p>
+</div>
+
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="buttonType"></a>
+                        <span class="name"><b>buttonType</b><a href="#buttonType"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>buttonType()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">projects/zt-ui-components/src/lib/zt-button/button.component.ts:79</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Sets the &#39;type&#39; attribute on the button element.</p>
+</div>
+
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isDisabled"></a>
+                        <span class="name"><b>isDisabled</b><a href="#isDisabled"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>isDisabled()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">projects/zt-ui-components/src/lib/zt-button/button.component.ts:87</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Sets the &#39;disabled&#39; attribute on the button element when disabled is true.</p>
+</div>
+
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>boolean | null</code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  Input,
+} from &#x27;@angular/core&#x27;;
+
+/**
+ * A customizable button component that supports various styles, sizes, themes, and variants.
+ * It can be used as a standard button, submit button, or reset button with different visual appearances.
+ *
+ * @example
+ * &lt;zt-button variant&#x3D;&quot;primary&quot; size&#x3D;&quot;zt-md&quot; theme&#x3D;&quot;light&quot;&gt;Click me&lt;/zt-button&gt;
+ * &lt;zt-button variant&#x3D;&quot;danger&quot; outline&#x3D;&quot;true&quot; disabled&#x3D;&quot;true&quot;&gt;Disabled&lt;/zt-button&gt;
+ */
+@Component({
+  selector: &#x27;zt-button&#x27;,
+  templateUrl: &#x27;./button.component.html&#x27;,
+  styleUrls: [&#x27;./button.component.scss&#x27;],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [],
+})
+export class ButtonComponent {
+  /**
+   * The type of the button element.
+   * @default &#x27;button&#x27;
+   */
+  @Input() type: &#x27;button&#x27; | &#x27;submit&#x27; | &#x27;reset&#x27; &#x3D; &#x27;button&#x27;;
+
+  /**
+   * Whether the button is disabled.
+   * @default false
+   */
+  @Input() disabled &#x3D; false;
+
+  /**
+   * The visual variant of the button.
+   * @default &#x27;primary&#x27;
+   */
+  @Input() variant: &#x27;default&#x27; | &#x27;primary&#x27; | &#x27;success&#x27; | &#x27;info&#x27; | &#x27;warning&#x27; | &#x27;danger&#x27; | &#x27;dark&#x27; | &#x27;link&#x27; | &#x27;round&#x27; | &#x27;floating&#x27; &#x3D; &#x27;primary&#x27;;
+
+  /**
+   * Whether to display the button as an outline style.
+   * @default false
+   */
+  @Input() outline &#x3D; false;
+
+  /**
+   * The size of the button.
+   * @default &#x27;zt-md&#x27;
+   */
+  @Input() size: &#x27;zt-sm&#x27; | &#x27;zt-md&#x27; | &#x27;zt-lg&#x27; &#x3D; &#x27;zt-md&#x27;;
+
+  /**
+   * The theme of the button.
+   * @default &#x27;light&#x27;
+   */
+  @Input() theme: &#x27;light&#x27; | &#x27;dark&#x27; | &#x27;bootstrap&#x27; | &#x27;material&#x27; &#x3D; &#x27;light&#x27;;
+
+  /**
+   * Dynamically applies CSS classes to the button element based on the component&#x27;s properties.
+   * @returns A string of CSS classes.
+   */
+  @HostBinding(&#x27;class&#x27;) get buttonClass(): string {
+    let classes: string[] &#x3D; [this.size, &#x60;theme-${this.theme}&#x60;];
+    if (this.outline) {
+      classes.push(&#x60;zt-${this.variant}-o&#x60;);
+    } else {
+      classes.push(&#x60;zt-${this.variant}&#x60;);
+    }
+    return classes.join(&#x27; &#x27;);
+  }
+
+  /**
+   * Sets the &#x27;type&#x27; attribute on the button element.
+   * @returns The button type.
+   */
+  @HostBinding(&#x27;attr.type&#x27;) get buttonType(): string {
+    return this.type;
+  }
+
+  /**
+   * Sets the &#x27;disabled&#x27; attribute on the button element when disabled is true.
+   * @returns true if disabled, null otherwise.
+   */
+  @HostBinding(&#x27;attr.disabled&#x27;) get isDisabled(): boolean | null {
+    return this.disabled || null;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ng-content&gt;&lt;/ng-content&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./button.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">// Light theme (default)
+:host(.theme-light) {
+  --zt-text-black: #000000;
+  --zt-text-white: #ffffff;
+  --zt-text-primary: #007bff;
+
+  --zt-default: #f8f9fa;
+  --zt-default-hover-bg: #e9ecef;
+  --zt-default-hover-border: #adb5bd;
+  --zt-default-pressed: #dee2e6;
+
+  --zt-primary: #007bff;
+  --zt-primary-hover-bg: #0056b3;
+  --zt-primary-hover-border: #004085;
+  --zt-primary-pressed: #004085;
+
+  --zt-success: #28a745;
+  --zt-success-hover-bg: #1e7e34;
+  --zt-success-hover-border: #155724;
+  --zt-success-pressed: #155724;
+
+  --zt-info: #17a2b8;
+  --zt-info-hover-bg: #117a8b;
+  --zt-info-hover-border: #0c5460;
+  --zt-info-pressed: #0c5460;
+
+  --zt-warning: #ffc107;
+  --zt-warning-hover-bg: #e0a800;
+  --zt-warning-hover-border: #d39e00;
+  --zt-warning-pressed: #d39e00;
+
+  --zt-danger: #dc3545;
+  --zt-danger-hover-bg: #c82333;
+  --zt-danger-hover-border: #bd2130;
+  --zt-danger-pressed: #bd2130;
+
+  --zt-dark: #343a40;
+  --zt-dark-hover-bg: #23272b;
+  --zt-dark-hover-border: #1d2124;
+  --zt-dark-pressed: #1d2124;
+
+  --zt-link: transparent;
+  --zt-link-hover-bg: rgba(0, 123, 255, 0.1);
+  --zt-link-hover-border: #007bff;
+  --zt-link-pressed: rgba(0, 123, 255, 0.2);
+
+  --zt-outline-border-size: 1px;
+  --zt-border-radius: 4px;
+}
+
+// Dark theme
+:host(.theme-dark) {
+  --zt-text-black: #000000;
+  --zt-text-white: #ffffff;
+  --zt-text-primary: #4dabf7;
+
+  color: var(--zt-text-white);
+
+  &amp;:hover {
+    color: var(--zt-text-white);
+  }
+
+  --zt-default: #2d3748;
+  --zt-default-hover-bg: #4a5568;
+  --zt-default-hover-border: #718096;
+  --zt-default-pressed: #1a202c;
+
+  --zt-primary: #4dabf7;
+  --zt-primary-hover-bg: #3182ce;
+  --zt-primary-hover-border: #2c5282;
+  --zt-primary-pressed: #2a69ac;
+
+  --zt-success: #48bb78;
+  --zt-success-hover-bg: #38a169;
+  --zt-success-hover-border: #2f855a;
+  --zt-success-pressed: #276749;
+
+  --zt-info: #4fd1c9;
+  --zt-info-hover-bg: #38b2ac;
+  --zt-info-hover-border: #319795;
+  --zt-info-pressed: #2c7a7b;
+
+  --zt-warning: #ed8936;
+  --zt-warning-hover-bg: #dd6b20;
+  --zt-warning-hover-border: #c05621;
+  --zt-warning-pressed: #9c4221;
+
+  --zt-danger: #f56565;
+  --zt-danger-hover-bg: #e53e3e;
+  --zt-danger-hover-border: #c53030;
+  --zt-danger-pressed: #9b2c2c;
+
+  --zt-dark: #1a202c;
+  --zt-dark-hover-bg: #2d3748;
+  --zt-dark-hover-border: #4a5568;
+  --zt-dark-pressed: #718096;
+
+  --zt-link: transparent;
+  --zt-link-hover-bg: rgba(77, 171, 247, 0.1);
+  --zt-link-hover-border: #4dabf7;
+  --zt-link-pressed: rgba(77, 171, 247, 0.2);
+
+  --zt-outline-border-size: 1px;
+  --zt-border-radius: 4px;
+}
+
+// Bootstrap theme
+:host(.theme-bootstrap) {
+  --zt-text-black: #000000;
+  --zt-text-white: #ffffff;
+  --zt-text-primary: #007bff;
+
+  --zt-default: #f8f9fa;
+  --zt-default-hover-bg: #e9ecef;
+  --zt-default-hover-border: #adb5bd;
+  --zt-default-pressed: #dee2e6;
+
+  --zt-primary: #007bff;
+  --zt-primary-hover-bg: #0056b3;
+  --zt-primary-hover-border: #004085;
+  --zt-primary-pressed: #004085;
+
+  --zt-success: #28a745;
+  --zt-success-hover-bg: #1e7e34;
+  --zt-success-hover-border: #155724;
+  --zt-success-pressed: #155724;
+
+  --zt-info: #17a2b8;
+  --zt-info-hover-bg: #117a8b;
+  --zt-info-hover-border: #0c5460;
+  --zt-info-pressed: #0c5460;
+
+  --zt-warning: #ffc107;
+  --zt-warning-hover-bg: #e0a800;
+  --zt-warning-hover-border: #d39e00;
+  --zt-warning-pressed: #d39e00;
+
+  --zt-danger: #dc3545;
+  --zt-danger-hover-bg: #c82333;
+  --zt-danger-hover-border: #bd2130;
+  --zt-danger-pressed: #bd2130;
+
+  --zt-dark: #343a40;
+  --zt-dark-hover-bg: #23272b;
+  --zt-dark-hover-border: #1d2124;
+  --zt-dark-pressed: #1d2124;
+
+  --zt-link: transparent;
+  --zt-link-hover-bg: rgba(0, 123, 255, 0.1);
+  --zt-link-hover-border: #007bff;
+  --zt-link-pressed: rgba(0, 123, 255, 0.2);
+
+  --zt-outline-border-size: 1px;
+  --zt-border-radius: 4px;
+}
+
+// Material theme
+:host(.theme-material) {
+  --zt-text-black: #000000;
+  --zt-text-white: #ffffff;
+  --zt-text-primary: #6200ee;
+
+  --zt-default: #ffffff;
+  --zt-default-hover-bg: #f5f5f5;
+  --zt-default-hover-border: #e0e0e0;
+  --zt-default-pressed: #eeeeee;
+
+  --zt-primary: #6200ee;
+  --zt-primary-hover-bg: #4c00d4;
+  --zt-primary-hover-border: #3b00a1;
+  --zt-primary-pressed: #3b00a1;
+
+  --zt-success: #4caf50;
+  --zt-success-hover-bg: #388e3c;
+  --zt-success-hover-border: #2e7d32;
+  --zt-success-pressed: #2e7d32;
+
+  --zt-info: #2196f3;
+  --zt-info-hover-bg: #1976d2;
+  --zt-info-hover-border: #1565c0;
+  --zt-info-pressed: #1565c0;
+
+  --zt-warning: #ff9800;
+  --zt-warning-hover-bg: #f57c00;
+  --zt-warning-hover-border: #ef6c00;
+  --zt-warning-pressed: #ef6c00;
+
+  --zt-danger: #f44336;
+  --zt-danger-hover-bg: #d32f2f;
+  --zt-danger-hover-border: #b71c1c;
+  --zt-danger-pressed: #b71c1c;
+
+  --zt-dark: #212121;
+  --zt-dark-hover-bg: #424242;
+  --zt-dark-hover-border: #616161;
+  --zt-dark-pressed: #616161;
+
+  --zt-link: transparent;
+  --zt-link-hover-bg: rgba(98, 0, 238, 0.1);
+  --zt-link-hover-border: #6200ee;
+  --zt-link-pressed: rgba(98, 0, 238, 0.2);
+
+  --zt-outline-border-size: 1px;
+  --zt-border-radius: 4px;
+}
+
+:host {
+  // default button
+  height: 38px;
+  padding: 0 0.75em;
+  background-color: var(--zt-default);
+  border: var(--zt-outline-border-size) solid var(--zt-default);
+  box-sizing: border-box;
+  border-radius: var(--zt-border-radius);
+  color: var(--zt-text-black);
+  display: inline-flex;
+  line-height: 1.5;
+  font-weight: 400;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: middle;
+  font-family: inherit;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+
+  &amp;:hover {
+    cursor: pointer;
+    background-color: var(--zt-default-hover-bg);
+    border: var(--zt-outline-border-size) solid var(--zt-default-hover-border);
+    color: var(--zt-text-black);
+  }
+
+  &amp;:active {
+    background-color: var(--zt-default-pressed);
+  }
+
+  &amp;.zt-default-o {
+    // default outline button
+    padding: 0 0.75em;
+    background-color: inherit;
+    border: var(--zt-outline-border-size) solid var(--zt-default);
+    box-sizing: border-box;
+    border-radius: var(--zt-border-radius);
+    color: var(--zt-text-black);
+    line-height: 1.5;
+    font-weight: 400;
+    text-decoration: none;
+    text-align: center;
+    font-family: inherit;
+
+    &amp;:hover {
+      cursor: pointer;
+      background-color: var(--zt-default-hover-bg);
+      border: var(--zt-outline-border-size) solid var(--zt-default-hover-border);
+      color: var(--zt-text-black);
+    }
+
+    &amp;:active {
+      background-color: var(--zt-default-pressed);
+    }
+  }
+
+  // primary button
+  &amp;.zt-primary {
+    background-color: var(--zt-primary);
+    border: var(--zt-outline-border-size) solid var(--zt-primary);
+    box-sizing: border-box;
+    border-radius: var(--zt-border-radius);
+    color: var(--zt-text-white);
+    &amp;:hover {
+      background-color: var(--zt-primary-hover-bg);
+      border: var(--zt-outline-border-size) solid var(--zt-primary-hover-border);
+      color: var(--zt-text-white);
+      cursor: pointer;
+    }
+
+    &amp;:active {
+      background-color: var(--zt-primary-pressed);
+    }
+  }
+
+  // primary outline button
+  &amp;.zt-primary-o {
+    background-color: inherit;
+    border: var(--zt-outline-border-size) solid var(--zt-primary);
+    box-sizing: border-box;
+    border-radius: var(--zt-border-radius);
+    color: var(--zt-text-black);
+    &amp;:hover {
+      background-color: var(--zt-primary-hover-bg);
+      border: var(--zt-outline-border-size) solid var(--zt-primary-hover-border);
+      color: var(--zt-text-black);
+      cursor: pointer;
+    }
+
+    &amp;:active {
+      background-color: var(--zt-primary-pressed);
+    }
+  }
+
+  // success button
+  &amp;.zt-success {
+    background-color: var(--zt-success);
+    border: var(--zt-outline-border-size) solid var(--zt-success);
+    box-sizing: border-box;
+    border-radius: var(--zt-border-radius);
+    color: var(--zt-text-white);
+
+    &amp;:hover {
+      background-color: var(--zt-success-hover-bg);
+      border: var(--zt-outline-border-size) solid var(--zt-success-hover-border);
+      color: var(--zt-text-white);
+      cursor: pointer;
+    }
+
+    &amp;:active {
+      background-color: var(--zt-success-pressed);
+    }
+  }
+
+  // success outline button
+  &amp;.zt-success-o {
+    background-color: inherit;
+    border: var(--zt-outline-border-size) solid var(--zt-success);
+    box-sizing: border-box;
+    border-radius: var(--zt-border-radius);
+    color: var(--zt-text-black);
+
+    &amp;:hover {
+      background-color: var(--zt-success-hover-bg);
+      border: var(--zt-outline-border-size) solid var(--zt-success-hover-border);
+      color: var(--zt-text-white);
+      cursor: pointer;
+    }
+
+    &amp;:active {
+      background-color: var(--zt-success-pressed);
+    }
+  }
+
+  // info button
+  &amp;.zt-info {
+    background-color: var(--zt-info);
+    border: var(--zt-outline-border-size) solid var(--zt-info);
+    box-sizing: border-box;
+    border-radius: var(--zt-border-radius);
+    color: var(--zt-text-white);
+
+    &amp;:hover {
+      background-color: var(--zt-info-hover-bg);
+      border: var(--zt-outline-border-size) solid var(--zt-info-hover-border);
+      color: var(--zt-text-white);
+      cursor: pointer;
+    }
+
+    &amp;:active {
+      background-color: var(--zt-info-pressed);
+    }
+  }
+
+  // info outline button
+  &amp;.zt-info-o {
+    background-color: inherit;
+    border: var(--zt-outline-border-size) solid var(--zt-info);
+    box-sizing: border-box;
+    border-radius: var(--zt-border-radius);
+    color: var(--zt-text-black);
+
+    &amp;:hover {
+      background-color: var(--zt-info-hover-bg);
+      border: var(--zt-outline-border-size) solid var(--zt-info-hover-border);
+      color: var(--zt-text-white);
+      cursor: pointer;
+    }
+
+    &amp;:active {
+      background-color: var(--zt-info-pressed);
+    }
+  }
+
+  // warning button
+  &amp;.zt-warning {
+    background-color: var(--zt-warning);
+    border: var(--zt-outline-border-size) solid var(--zt-warning);
+    box-sizing: border-box;
+    border-radius: var(--zt-border-radius);
+    color: var(--zt-text-white);
+
+    &amp;:hover {
+      background-color: var(--zt-warning-hover-bg);
+      border: var(--zt-outline-border-size) solid var(--zt-warning-hover-border);
+      color: var(--zt-text-white);
+      cursor: pointer;
+    }
+
+    &amp;:active {
+      background-color: var(--zt-warning-pressed);
+    }
+  }
+
+  // warning outline button
+  &amp;.zt-warning-o {
+    background-color: inherit;
+    border: var(--zt-outline-border-size) solid var(--zt-warning);
+    box-sizing: border-box;
+    border-radius: var(--zt-border-radius);
+    color: var(--zt-text-black);
+
+    &amp;:hover {
+      background-color: var(--zt-warning-hover-bg);
+      border: var(--zt-outline-border-size) solid var(--zt-warning-hover-border);
+      color: var(--zt-text-white);
+      cursor: pointer;
+    }
+
+    &amp;:active {
+      background-color: var(--zt-warning-pressed);
+    }
+  }
+
+  // danger button
+  &amp;.zt-danger {
+    background-color: var(--zt-danger);
+    border: var(--zt-outline-border-size) solid var(--zt-danger);
+    box-sizing: border-box;
+    border-radius: var(--zt-border-radius);
+    color: var(--zt-text-white);
+
+    &amp;:hover {
+      background-color: var(--zt-danger-hover-bg);
+      border: var(--zt-outline-border-size) solid var(--zt-danger-hover-border);
+      color: var(--zt-text-white);
+      cursor: pointer;
+    }
+
+    &amp;:active {
+      background-color: var(--zt-danger-pressed);
+    }
+  }
+
+  // danger outline button
+  &amp;.zt-danger-o {
+    background-color: inherit;
+    border: var(--zt-outline-border-size) solid var(--zt-danger);
+    box-sizing: border-box;
+    border-radius: var(--zt-border-radius);
+    color: var(--zt-text-black);
+
+    &amp;:hover {
+      background-color: var(--zt-danger-hover-bg);
+      border: var(--zt-outline-border-size) solid var(--zt-danger-hover-border);
+      color: var(--zt-text-white);
+      cursor: pointer;
+    }
+
+    &amp;:active {
+      background-color: var(--zt-danger-pressed);
+    }
+  }
+
+  // dark button
+  &amp;.zt-dark {
+    background-color: var(--zt-dark);
+    border: var(--zt-outline-border-size) solid var(--zt-dark);
+    box-sizing: border-box;
+    border-radius: var(--zt-border-radius);
+    color: var(--zt-text-white);
+
+    &amp;:hover {
+      background-color: var(--zt-dark-hover-bg);
+      border: var(--zt-outline-border-size) solid var(--zt-dark-hover-border);
+      color: var(--zt-text-white);
+      cursor: pointer;
+    }
+
+    &amp;:active {
+      background-color: var(--zt-dark-pressed);
+    }
+  }
+
+  // dark outline button
+  &amp;.zt-dark-o {
+    background-color: inherit;
+    border: var(--zt-outline-border-size) solid var(--zt-dark);
+    box-sizing: border-box;
+    border-radius: var(--zt-border-radius);
+    color: var(--zt-text-black);
+
+    &amp;:hover {
+      background-color: var(--zt-dark-hover-bg);
+      border: var(--zt-outline-border-size) solid var(--zt-dark-hover-border);
+      color: var(--zt-text-white);
+      cursor: pointer;
+    }
+
+    &amp;:active {
+      background-color: var(--zt-dark-pressed);
+    }
+  }
+
+  // link button
+  &amp;.zt-link {
+    background-color: var(--zt-link);
+    border: var(--zt-outline-border-size) solid var(--zt-link);
+    box-sizing: border-box;
+    border-radius: var(--zt-border-radius);
+    color: var(--zt-text-primary);
+
+    &amp;:hover {
+      background-color: var(--zt-link-hover-bg);
+      border: var(--zt-outline-border-size) solid var(--zt-link-hover-border);
+      color: var(--zt-text-primary);
+      cursor: pointer;
+    }
+
+    &amp;:active {
+      background-color: var(--zt-link-pressed);
+      color: var(--zt-text-primary);
+    }
+  }
+
+  // round button
+  &amp;.zt-round {
+    background-color: var(--zt-primary);
+    border: var(--zt-outline-border-size) solid var(--zt-primary);
+    box-sizing: border-box;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    color: var(--zt-text-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &amp;:hover {
+      background-color: var(--zt-primary-hover-bg);
+      border: var(--zt-outline-border-size) solid var(--zt-primary-hover-border);
+      color: var(--zt-text-white);
+      cursor: pointer;
+    }
+
+    &amp;:active {
+      background-color: var(--zt-primary-pressed);
+    }
+  }
+
+  // floating button
+  &amp;.zt-floating {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    background-color: var(--zt-primary);
+    border: var(--zt-outline-border-size) solid var(--zt-primary);
+    box-sizing: border-box;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    color: var(--zt-text-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+
+    &amp;:hover {
+      background-color: var(--zt-primary-hover-bg);
+      border: var(--zt-outline-border-size) solid var(--zt-primary-hover-border);
+      color: var(--zt-text-white);
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    &amp;:active {
+      background-color: var(--zt-primary-pressed);
+    }
+  }
+
+  // Size variants
+  &amp;.zt-sm {
+    height: 30px;
+    padding: 0 0.5em;
+    font-size: 12px;
+  }
+
+  &amp;.zt-md {
+    height: 38px;
+    padding: 0 0.75em;
+    font-size: 14px;
+  }
+
+  &amp;.zt-lg {
+    height: 46px;
+    padding: 0 1em;
+    font-size: 16px;
+  }
+
+  .button-red {
+    background: #b8312f;
+  }
+
+  button {
+    cursor: pointer;
+    border: 0;
+    margin: 8px;
+    padding: 8px;
+    border-radius: 3px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.8);
+    background: #333;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ng-content></ng-content></div>'
+    var COMPONENTS = [{'name': 'ButtonComponent', 'selector': 'storybook-button'},{'name': 'ButtonComponent', 'selector': 'zt-button'},{'name': 'HeaderComponent', 'selector': 'storybook-header'},{'name': 'InputComponent', 'selector': 'zt-input'},{'name': 'PageComponent', 'selector': 'storybook-page'},{'name': 'SelectComponent', 'selector': 'zt-select'},{'name': 'TextareaComponent', 'selector': 'zt-textarea'},{'name': 'ZtDataGridComponent', 'selector': 'zt-data-grid'},{'name': 'ZtPaginatorComponent', 'selector': 'zt-paginator'},{'name': 'ZtPaginatorXComponent', 'selector': 'zt-paginator-x'},{'name': 'ZtUiComponents', 'selector': 'lib-zt-ui-components'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ButtonComponent-1'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ButtonComponent-1.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

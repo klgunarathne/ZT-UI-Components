@@ -1,0 +1,1248 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>zt-ui-components documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">zt-ui-components documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  InputComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>projects/zt-ui-components/src/lib/zt-input/input.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>A customizable input component that supports various input types, styles, and themes.
+It provides features like character length validation and different visual appearances.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;zt-input placeholder=&quot;Enter text&quot; inputType=&quot;text&quot; size=&quot;zt-md&quot; theme=&quot;light&quot;&gt;&lt;/zt-input&gt;
+&lt;zt-input [textlength]=&quot;50&quot; inputStyle=&quot;material&quot; [value]=&quot;inputValue&quot;&gt;&lt;/zt-input&gt;</code></pre></div>
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>zt-input</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./input.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./input.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#textInput" >textInput</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#onKeydown" >onKeydown</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#inputStyle" >inputStyle</a>
+                            </li>
+                            <li>
+                                <a href="#inputType" >inputType</a>
+                            </li>
+                            <li>
+                                <a href="#placeholder" >placeholder</a>
+                            </li>
+                            <li>
+                                <a href="#size" >size</a>
+                            </li>
+                            <li>
+                                <a href="#textlength" >textlength</a>
+                            </li>
+                            <li>
+                                <a href="#theme" >theme</a>
+                            </li>
+                            <li>
+                                <a href="#value" >value</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostBindings</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#class" >class</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostListeners</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#keydown" >keydown</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#inputClass" >inputClass</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="inputStyle"></a>
+                        <b>inputStyle</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;zt&quot; | &quot;material&quot; | &quot;bs&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;zt&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:62</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The visual style of the input (zt, material, bs for Bootstrap).</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="inputType"></a>
+                        <b>inputType</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;text&quot; | &quot;number&quot; | &quot;email&quot; | &quot;password&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;text&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:56</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The type of input element (text, number, email, password).</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="placeholder"></a>
+                        <b>placeholder</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;label&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:44</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Placeholder text displayed when the input is empty.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="size"></a>
+                        <b>size</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;zt-md&quot; | &quot;zt-sm&quot; | &quot;zt-lg&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;zt-md&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:74</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The size of the input component.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="textlength"></a>
+                        <b>textlength</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>255</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:50</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Maximum allowed character length for the input.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="theme"></a>
+                        <b>theme</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;light&quot; | &quot;dark&quot; | &quot;bootstrap&quot; | &quot;material&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;light&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:68</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The theme of the input component.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="value"></a>
+                        <b>value</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:38</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The current value of the input field.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-properties">
+    <h3>HostBindings</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="class"></a>
+                    <span class="name">
+                        <span ><b>class</b></span>
+                        <a href="#class"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:80</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Dynamically applies CSS classes to the input element based on size and theme.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-methods">
+    <h3>HostListeners</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="keydown"></a>
+                    <span class="name">
+                        <span ><b>keydown</b></span>
+                        <a href="#keydown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>keydown()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="88"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:88</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handles keydown events to enforce character length limits.
+Updates the value if within the allowed length.</p>
+</div>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onKeydown"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>onKeydown</b></span>
+                        <a href="#onKeydown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onKeydown()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;keydown&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="88"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:88</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handles keydown events to enforce character length limits.
+Updates the value if within the allowed length.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="textInput"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>textInput</b></span>
+                        <a href="#textInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ElementRef</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;textInput&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Reference to the input element for direct DOM manipulation.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="inputClass"></a>
+                        <span class="name"><b>inputClass</b><a href="#inputClass"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>inputClass()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:80</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Dynamically applies CSS classes to the input element based on size and theme.</p>
+</div>
+
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  HostBinding,
+  HostListener,
+  Input,
+  ViewChild,
+} from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+
+/**
+ * A customizable input component that supports various input types, styles, and themes.
+ * It provides features like character length validation and different visual appearances.
+ *
+ * @example
+ * &lt;zt-input placeholder&#x3D;&quot;Enter text&quot; inputType&#x3D;&quot;text&quot; size&#x3D;&quot;zt-md&quot; theme&#x3D;&quot;light&quot;&gt;&lt;/zt-input&gt;
+ * &lt;zt-input [textlength]&#x3D;&quot;50&quot; inputStyle&#x3D;&quot;material&quot; [value]&#x3D;&quot;inputValue&quot;&gt;&lt;/zt-input&gt;
+ */
+@Component({
+  selector: &#x27;zt-input&#x27;,
+  templateUrl: &#x27;./input.component.html&#x27;,
+  styleUrls: [&#x27;./input.component.scss&#x27;],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [CommonModule],
+})
+export class InputComponent {
+  /**
+   * Reference to the input element for direct DOM manipulation.
+   */
+  @ViewChild(&#x27;textInput&#x27;) textInput?: ElementRef;
+
+  /**
+   * The current value of the input field.
+   * @default &#x27;&#x27;
+   */
+  @Input() value? &#x3D; &#x27;&#x27;;
+
+  /**
+   * Placeholder text displayed when the input is empty.
+   * @default &#x27;label&#x27;
+   */
+  @Input() placeholder? &#x3D; &#x27;label&#x27;;
+
+  /**
+   * Maximum allowed character length for the input.
+   * @default 255
+   */
+  @Input() textlength? &#x3D; 255;
+
+  /**
+   * The type of input element (text, number, email, password).
+   * @default &#x27;text&#x27;
+   */
+  @Input() inputType?: &#x27;text&#x27; | &#x27;number&#x27; | &#x27;email&#x27; | &#x27;password&#x27; &#x3D; &#x27;text&#x27;;
+
+  /**
+   * The visual style of the input (zt, material, bs for Bootstrap).
+   * @default &#x27;zt&#x27;
+   */
+  @Input() inputStyle: &#x27;zt&#x27; | &#x27;material&#x27; | &#x27;bs&#x27; &#x3D; &#x27;zt&#x27;;
+
+  /**
+   * The theme of the input component.
+   * @default &#x27;light&#x27;
+   */
+  @Input() theme: &#x27;light&#x27; | &#x27;dark&#x27; | &#x27;bootstrap&#x27; | &#x27;material&#x27; &#x3D; &#x27;light&#x27;;
+
+  /**
+   * The size of the input component.
+   * @default &#x27;zt-md&#x27;
+   */
+  @Input() size: &#x27;zt-md&#x27; | &#x27;zt-sm&#x27; | &#x27;zt-lg&#x27; &#x3D; &#x27;zt-md&#x27;;
+
+  /**
+   * Dynamically applies CSS classes to the input element based on size and theme.
+   * @returns A string of CSS classes.
+   */
+  @HostBinding(&#x27;class&#x27;) get inputClass(): string {
+    return &#x60;${this.size} theme-${this.theme}&#x60;;
+  }
+
+  /**
+   * Handles keydown events to enforce character length limits.
+   * Updates the value if within the allowed length.
+   */
+  @HostListener(&#x27;keydown&#x27;) onKeydown() {
+    if (Number(this.textlength) &gt; this.textInput?.nativeElement.value.length)
+      this.value &#x3D; this.textInput?.nativeElement.value;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">@if (inputStyle &#x3D;&#x3D;&#x3D; &#x27;zt&#x27;) {
+  &lt;div&gt;
+    &lt;div class&#x3D;&quot;box_input&quot;&gt;
+      &lt;div class&#x3D;&quot;form__group&quot;&gt;
+        &lt;input
+          [type]&#x3D;&quot;inputType&quot;
+          id&#x3D;&quot;input&quot;
+          aria-labelledby&#x3D;&quot;label-fname&quot;
+          [maxLength]&#x3D;&quot;textlength&quot;
+          #textInput
+          /&gt;
+        &lt;label class&#x3D;&quot;label&quot; for&#x3D;&quot;fname&quot; id&#x3D;&quot;label-fname&quot;&gt;
+          &lt;div class&#x3D;&quot;text&quot;&gt;{{ placeholder }}&lt;/div&gt;
+        &lt;/label&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+}
+
+@if (inputStyle &#x3D;&#x3D;&#x3D; &#x27;material&#x27;) {
+  &lt;div&gt;
+    &lt;div class&#x3D;&quot;material_input&quot;&gt;
+      &lt;div class&#x3D;&quot;form__group&quot;&gt;
+        &lt;input
+          [type]&#x3D;&quot;inputType&quot;
+          id&#x3D;&quot;input_m&quot;
+          class&#x3D;&quot;form__field&quot;
+          [placeholder]&#x3D;&quot;placeholder&quot;
+          #textInput
+          /&gt;
+        &lt;label for&#x3D;&quot;email&quot; class&#x3D;&quot;form__label&quot;&gt;{{ placeholder }}&lt;/label&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+}
+
+@if (inputStyle &#x3D;&#x3D;&#x3D; &#x27;bs&#x27;) {
+  &lt;div&gt;
+    &lt;div class&#x3D;&quot;input_bs&quot;&gt;
+      &lt;input
+        type&#x3D;&quot;text&quot;
+        class&#x3D;&quot;form__field&quot;
+        [placeholder]&#x3D;&quot;placeholder&quot;
+        [type]&#x3D;&quot;inputType&quot;
+        id&#x3D;&quot;input_bs&quot;
+        /&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./input.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &quot;../../assets/variables&quot;;
+
+// Light theme (default)
+:host(.theme-light) {
+  --zt-border-color: #d2d2d2;
+  --zt-border-focus: #0275d8;
+  --zt-border-focus-out: #f30e0e;
+  --zt-bg-white: #ffffff;
+  --zt-text-black: #212121;
+  --zt-text-gray: #9b9b9b;
+}
+
+// Dark theme
+:host(.theme-dark) {
+  --zt-border-color: #4a5568;
+  --zt-border-focus: #4dabf7;
+  --zt-border-focus-out: #f56565;
+  --zt-bg-white: #2d3748;
+  --zt-text-black: #ffffff;
+  --zt-text-gray: #718096;
+
+  .label .text {
+    color: var(--zt-text-white);
+  }
+
+  input::placeholder {
+    color: var(--zt-text-white);
+  }
+}
+
+// Bootstrap theme
+:host(.theme-bootstrap) {
+  --zt-border-color: #d2d2d2;
+  --zt-border-focus: #007bff;
+  --zt-border-focus-out: #dc3545;
+  --zt-bg-white: #ffffff;
+  --zt-text-black: #212121;
+  --zt-text-gray: #6c757d;
+}
+
+// Material theme
+:host(.theme-material) {
+  --zt-border-color: #e0e0e0;
+  --zt-border-focus: #6200ee;
+  --zt-border-focus-out: #f44336;
+  --zt-bg-white: #ffffff;
+  --zt-text-black: #212121;
+  --zt-text-gray: #9e9e9e;
+}
+
+:host {
+  font-family: inherit;
+
+  .box_input {
+    .outline {
+      border: 0;
+    }
+
+    .no-outline {
+      bottom: 0;
+      border-bottom: 1px solid var(--zt-border-color);
+      outline: 0;
+    }
+
+    .form__group {
+      position: relative;
+    }
+
+    input {
+      height: 48px;
+      width: 100%;
+      border: 1px solid var(--zt-border-color);
+      border-radius: 4px;
+      box-sizing: border-box;
+      padding: 16px;
+      background-color: var(--zt-bg-white);
+      color: var(--zt-text-black);
+
+      &amp;::placeholder {
+        color: var(--zt-text-gray);
+        background-color: transparent;
+      }
+    }
+
+    .label {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 16px;
+      display: flex;
+      align-items: center;
+    }
+
+    input,
+    .label .text {
+      font-family: &quot;Segoe UI&quot;;
+      font-size: $font-size-input;
+    }
+
+    input:focus {
+      outline: none;
+      border: 2px solid var(--zt-border-focus);
+    }
+
+    input:focus + .label .text,
+    :not(input[value&#x3D;&quot;&quot;]) + .label .text {
+      font-size: $font-size-input-label-sm;
+      transform: translate(0, -150%);
+      background-color: var(--zt-bg-white);
+      padding-left: 4px;
+      padding-right: 4px;
+    }
+
+    .label .text {
+      transition: all 0.15s ease-out;
+      color: var(--zt-text-black);
+    }
+  }
+
+  .material_input {
+    .form__group {
+      position: relative;
+      padding: 15px 0 0;
+      margin-top: 10px;
+    }
+
+    .form__field {
+      font-family: inherit;
+      width: 100%;
+      border: 0;
+      border-bottom: 1px solid var(--zt-border-color);
+      outline: 0;
+      font-size: 16px;
+      color: var(--zt-text-black);
+      padding: 7px 0;
+      background: transparent;
+      transition: border-color 0.2s;
+    }
+
+    .form__field::placeholder {
+      color: transparent;
+    }
+
+    .form__field:placeholder-shown ~ .form__label {
+      font-size: 16px;
+      cursor: text;
+      top: 20px;
+    }
+
+    label,
+    .form__field:focus ~ .form__label {
+      position: absolute;
+      top: 0;
+      display: block;
+      transition: 0.2s;
+      font-size: 12px;
+      color: var(--zt-text-gray);
+    }
+
+    .form__field:focus ~ .form__label {
+      color: var(--zt-border-focus);
+    }
+
+    .form__field:focus {
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--zt-border-focus);
+    }
+  }
+
+  .input_bs {
+    .form__field {
+      width: 100%;
+      border: 2px solid var(--zt-text-gray);
+      border-radius: 4px;
+      margin: 8px 0;
+      outline: none;
+      padding: 8px;
+      box-sizing: border-box;
+      transition: 0.3s;
+    }
+
+    .form__field:focus {
+      border-color: var(--zt-border-focus);
+      box-shadow: 0 0 8px 0 var(--zt-border-focus);
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div>@if (inputStyle === \'zt\') {  <div>    <div class="box_input">      <div class="form__group">        <input          [type]="inputType"          id="input"          aria-labelledby="label-fname"          [maxLength]="textlength"          #textInput          />        <label class="label" for="fname" id="label-fname">          <div class="text">{{ placeholder }}</div>        </label>      </div>    </div>  </div>}@if (inputStyle === \'material\') {  <div>    <div class="material_input">      <div class="form__group">        <input          [type]="inputType"          id="input_m"          class="form__field"          [placeholder]="placeholder"          #textInput          />        <label for="email" class="form__label">{{ placeholder }}</label>      </div>    </div>  </div>}@if (inputStyle === \'bs\') {  <div>    <div class="input_bs">      <input        type="text"        class="form__field"        [placeholder]="placeholder"        [type]="inputType"        id="input_bs"        />    </div>  </div>}</div>'
+    var COMPONENTS = [{'name': 'ButtonComponent', 'selector': 'storybook-button'},{'name': 'ButtonComponent', 'selector': 'zt-button'},{'name': 'HeaderComponent', 'selector': 'storybook-header'},{'name': 'InputComponent', 'selector': 'zt-input'},{'name': 'PageComponent', 'selector': 'storybook-page'},{'name': 'SelectComponent', 'selector': 'zt-select'},{'name': 'TextareaComponent', 'selector': 'zt-textarea'},{'name': 'ZtDataGridComponent', 'selector': 'zt-data-grid'},{'name': 'ZtPaginatorComponent', 'selector': 'zt-paginator'},{'name': 'ZtPaginatorXComponent', 'selector': 'zt-paginator-x'},{'name': 'ZtUiComponents', 'selector': 'lib-zt-ui-components'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'InputComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'InputComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

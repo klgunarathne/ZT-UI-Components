@@ -1,18 +1,17 @@
 @if (paginatorStyle === 'page') {
   <div>
     <div class="pagination">
-      <a (click)="goFirst()">&laquo;</a>
-      <a (click)="goPreviours()">&lsaquo;</a>
+      <a (click)="goFirst()" [ngClass]="{'disabled': currentPage === 1}">&laquo;</a>
+      <a (click)="goPrevious()" [ngClass]="{'disabled': currentPage === 1}">&lsaquo;</a>
       @for (p of this.pageNumbers; track p) {
         <a
           (click)="getPageNo(p)"
           [ngClass]="p === currentPage ? 'active' : ''"
-          (click)="onPageChange.emit(p)"
           >{{ p }}</a
           >
         }
-        <a (click)="goNext()">&rsaquo;</a>
-        <a (click)="goLast()">&raquo;</a>
+        <a (click)="goNext()" [ngClass]="{'disabled': currentPage === pages}">&rsaquo;</a>
+        <a (click)="goLast()" [ngClass]="{'disabled': currentPage === pages}">&raquo;</a>
       </div>
     </div>
   }
@@ -20,8 +19,8 @@
   @if (paginatorStyle === 'arrow') {
     <div>
       <div class="pagination">
-        <a (click)="goFirst()">&laquo;</a>
-        <a (click)="goPreviours()">&lsaquo;</a>
+        <a (click)="goFirst()" [ngClass]="{'disabled': currentPage === 1}">&laquo;</a>
+        <a (click)="goPrevious()" [ngClass]="{'disabled': currentPage === 1}">&lsaquo;</a>
         <a>{{ currentPage }} / {{ pages }}</a>
         <a (click)="goNext()">&rsaquo;</a>
         <a (click)="goLast()">&raquo;</a>

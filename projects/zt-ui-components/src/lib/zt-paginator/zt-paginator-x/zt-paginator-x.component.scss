@@ -1,4 +1,40 @@
-@import "./../../../../assets/pagination_variables";
+// ZT Paginator X - Theme Support
+// Light theme (default)
+:host(.theme-light) {
+  --zt-paginator-primary: #007bff;
+  --zt-paginator-text: #000000;
+  --zt-paginator-bg-active: #007bff;
+  --zt-paginator-text-active: #ffffff;
+  --zt-paginator-hover: #007bff;
+}
+
+// Dark theme
+:host(.theme-dark) {
+  --zt-paginator-primary: #4dabf7;
+  --zt-paginator-text: #ffffff;
+  --zt-paginator-bg-active: #4dabf7;
+  --zt-paginator-text-active: #000000;
+  --zt-paginator-hover: #63b3f7;
+  --zt-paginator-hover-bg: rgba(77, 171, 247, 0.1);
+}
+
+// Bootstrap theme
+:host(.theme-bootstrap) {
+  --zt-paginator-primary: #007bff;
+  --zt-paginator-text: #000000;
+  --zt-paginator-bg-active: #007bff;
+  --zt-paginator-text-active: #ffffff;
+  --zt-paginator-hover: #007bff;
+}
+
+// Material theme
+:host(.theme-material) {
+  --zt-paginator-primary: #6200ee;
+  --zt-paginator-text: #000000;
+  --zt-paginator-bg-active: #6200ee;
+  --zt-paginator-text-active: #ffffff;
+  --zt-paginator-hover: #6200ee;
+}
 
 :host {
   user-select: none;
@@ -8,23 +44,37 @@
   }
 
   .pagination a {
-    color: black;
+    color: var(--zt-paginator-text);
     float: left;
     padding: 8px 16px;
     text-decoration: none;
+    transition: all 0.2s ease;
 
-    &:hover {
-      color: $text-greyDark;
+    &:hover:not(:disabled) {
+      color: var(--zt-paginator-hover);
+      background-color: var(--zt-paginator-hover-bg, rgba(0, 0, 0, 0.05));
       cursor: pointer;
+      border-radius: 4px;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
 
     &.active {
-      color: $text-black;
-      background: $gray;
-      font-weight: 200;
-      border: 1px solid $gray;
-      border-radius: 5px;
-      padding: 5px 10px;
+      color: var(--zt-paginator-text-active);
+      background: var(--zt-paginator-bg-active);
+      font-weight: 600;
+      border: 1px solid var(--zt-paginator-primary);
+      border-radius: 4px;
+      padding: 6px 12px;
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
     }
   }
 }

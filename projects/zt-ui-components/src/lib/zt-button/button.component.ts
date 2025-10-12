@@ -5,6 +5,14 @@ import {
   Input,
 } from '@angular/core';
 
+/**
+ * A customizable button component that supports various styles, sizes, themes, and variants.
+ * It can be used as a standard button, submit button, or reset button with different visual appearances.
+ *
+ * @example
+ * <zt-button variant="primary" size="zt-md" theme="light">Click me</zt-button>
+ * <zt-button variant="danger" outline="true" disabled="true">Disabled</zt-button>
+ */
 @Component({
   selector: 'zt-button',
   templateUrl: './button.component.html',
@@ -14,13 +22,46 @@ import {
   imports: [],
 })
 export class ButtonComponent {
+  /**
+   * The type of the button element.
+   * @default 'button'
+   */
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
+
+  /**
+   * Whether the button is disabled.
+   * @default false
+   */
   @Input() disabled = false;
+
+  /**
+   * The visual variant of the button.
+   * @default 'primary'
+   */
   @Input() variant: 'default' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'dark' | 'link' | 'round' | 'floating' = 'primary';
+
+  /**
+   * Whether to display the button as an outline style.
+   * @default false
+   */
   @Input() outline = false;
+
+  /**
+   * The size of the button.
+   * @default 'zt-md'
+   */
   @Input() size: 'zt-sm' | 'zt-md' | 'zt-lg' = 'zt-md';
+
+  /**
+   * The theme of the button.
+   * @default 'light'
+   */
   @Input() theme: 'light' | 'dark' | 'bootstrap' | 'material' = 'light';
 
+  /**
+   * Dynamically applies CSS classes to the button element based on the component's properties.
+   * @returns A string of CSS classes.
+   */
   @HostBinding('class') get buttonClass(): string {
     let classes: string[] = [this.size, `theme-${this.theme}`];
     if (this.outline) {
@@ -31,10 +72,18 @@ export class ButtonComponent {
     return classes.join(' ');
   }
 
+  /**
+   * Sets the 'type' attribute on the button element.
+   * @returns The button type.
+   */
   @HostBinding('attr.type') get buttonType(): string {
     return this.type;
   }
 
+  /**
+   * Sets the 'disabled' attribute on the button element when disabled is true.
+   * @returns true if disabled, null otherwise.
+   */
   @HostBinding('attr.disabled') get isDisabled(): boolean | null {
     return this.disabled || null;
   }

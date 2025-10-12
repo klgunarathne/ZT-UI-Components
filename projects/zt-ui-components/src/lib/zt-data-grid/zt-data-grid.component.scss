@@ -1,293 +1,455 @@
-// Light theme (default)
+// DevExtreme DataGrid Theme Variables
 :host(.theme-light) {
-  --zt-table-header: #ffffff;
-  --zt-table-border-color: #eeeeee;
-  --zt-table-border: 1px;
-  --zt-table-font-size: 12px;
-  --zt-table-header-font-color: #b6b3b3;
-  --zt-table-body-hover-color: #d4cbcb;
-  --zt-table-body-stripted-color: #f0e9e9;
-  --zt-table-text: #000000;
-  --zt-pagination-text: #000000;
-  --zt-pagination-hover: #2d4848;
-  --zt-pagination-active-text: #000000;
-  --zt-pagination-active-bg: #d4d4d4;
-  --zt-pagination-gray: #d4d4d4;
-  --zt-pagination-text-grey: #9ea2a1;
-  --zt-pagination-text-greyDark: #2d4848;
-  --zt-pagination-text-black: #000000;
+  --dx-datagrid-border-color: #e0e0e0;
+  --dx-datagrid-header-bg: #f5f5f5;
+  --dx-datagrid-header-color: #333333;
+  --dx-datagrid-header-border-color: #d0d0d0;
+  --dx-datagrid-row-bg: #ffffff;
+  --dx-datagrid-row-color: #333333;
+  --dx-datagrid-row-hover-bg: #f0f8ff;
+  --dx-datagrid-row-selected-bg: #d4e6f1;
+  --dx-datagrid-row-alternate-bg: #fafafa;
+  --dx-datagrid-border-size: 1px;
+  --dx-datagrid-font-size: 14px;
+  --dx-datagrid-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --dx-datagrid-line-height: 1.4;
+  --dx-datagrid-cell-padding: 8px 12px;
+  --dx-datagrid-header-height: 40px;
+  --dx-datagrid-row-height: 36px;
+  --dx-datagrid-pager-bg: #f5f5f5;
+  --dx-datagrid-pager-color: #333333;
+  --dx-datagrid-pager-border-color: #d0d0d0;
+  --dx-datagrid-pager-height: 40px;
+  --dx-datagrid-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --dx-datagrid-accent-color: #007bff;
 }
 
-// Dark theme
 :host(.theme-dark) {
-  --zt-table-header: #2d3748;
-  --zt-table-border-color: #4a5568;
-  --zt-table-border: 1px;
-  --zt-table-font-size: 12px;
-  --zt-table-header-font-color: #e2e8f0;
-  --zt-table-body-hover-color: #4a5568;
-  --zt-table-body-stripted-color: #2d3748;
-  --zt-table-text: #ffffff;
-  --zt-pagination-text: #ffffff;
-  --zt-pagination-hover: #4dabf7;
-  --zt-pagination-active-text: #000000;
-  --zt-pagination-active-bg: #4dabf7;
-  --zt-pagination-gray: #4a5568;
-  --zt-pagination-text-grey: #a0aec0;
-  --zt-pagination-text-greyDark: #4dabf7;
-  --zt-pagination-text-black: #ffffff;
+  --dx-datagrid-border-color: #4a4a4a;
+  --dx-datagrid-header-bg: #2d2d2d;
+  --dx-datagrid-header-color: #ffffff;
+  --dx-datagrid-header-border-color: #555555;
+  --dx-datagrid-row-bg: #1a1a1a;
+  --dx-datagrid-row-color: #ffffff;
+  --dx-datagrid-row-hover-bg: #333333;
+  --dx-datagrid-row-selected-bg: #4a5568;
+  --dx-datagrid-row-alternate-bg: #252525;
+  --dx-datagrid-border-size: 1px;
+  --dx-datagrid-font-size: 14px;
+  --dx-datagrid-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --dx-datagrid-line-height: 1.4;
+  --dx-datagrid-cell-padding: 8px 12px;
+  --dx-datagrid-header-height: 40px;
+  --dx-datagrid-row-height: 36px;
+  --dx-datagrid-pager-bg: #2d2d2d;
+  --dx-datagrid-pager-color: #ffffff;
+  --dx-datagrid-pager-border-color: #555555;
+  --dx-datagrid-pager-height: 40px;
+  --dx-datagrid-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --dx-datagrid-accent-color: #4a90e2;
 }
 
-// Bootstrap theme
 :host(.theme-bootstrap) {
-  --zt-table-header: #f8f9fa;
-  --zt-table-border-color: #dee2e6;
-  --zt-table-border: 1px;
-  --zt-table-font-size: 12px;
-  --zt-table-header-font-color: #495057;
-  --zt-table-body-hover-color: #f8f9fa;
-  --zt-table-body-stripted-color: #e9ecef;
-  --zt-table-text: #000000;
-  --zt-pagination-text: #000000;
-  --zt-pagination-hover: #007bff;
-  --zt-pagination-active-text: #ffffff;
-  --zt-pagination-active-bg: #007bff;
-  --zt-pagination-gray: #6c757d;
-  --zt-pagination-text-grey: #6c757d;
-  --zt-pagination-text-greyDark: #007bff;
-  --zt-pagination-text-black: #000000;
+  --dx-datagrid-border-color: #dee2e6;
+  --dx-datagrid-header-bg: #f8f9fa;
+  --dx-datagrid-header-color: #495057;
+  --dx-datagrid-header-border-color: #dee2e6;
+  --dx-datagrid-row-bg: #ffffff;
+  --dx-datagrid-row-color: #212529;
+  --dx-datagrid-row-hover-bg: #f8f9fa;
+  --dx-datagrid-row-selected-bg: #e9ecef;
+  --dx-datagrid-row-alternate-bg: #f8f9fa;
+  --dx-datagrid-border-size: 1px;
+  --dx-datagrid-font-size: 14px;
+  --dx-datagrid-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --dx-datagrid-line-height: 1.4;
+  --dx-datagrid-cell-padding: 8px 12px;
+  --dx-datagrid-header-height: 40px;
+  --dx-datagrid-row-height: 36px;
+  --dx-datagrid-pager-bg: #f8f9fa;
+  --dx-datagrid-pager-color: #495057;
+  --dx-datagrid-pager-border-color: #dee2e6;
+  --dx-datagrid-pager-height: 40px;
+  --dx-datagrid-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --dx-datagrid-accent-color: #007bff;
 }
 
-// Material theme
 :host(.theme-material) {
-  --zt-table-header: #f5f5f5;
-  --zt-table-border-color: #e0e0e0;
-  --zt-table-border: 1px;
-  --zt-table-font-size: 12px;
-  --zt-table-header-font-color: #424242;
-  --zt-table-body-hover-color: #f5f5f5;
-  --zt-table-body-stripted-color: #fafafa;
-  --zt-table-text: #000000;
-  --zt-pagination-text: #000000;
-  --zt-pagination-hover: #6200ee;
-  --zt-pagination-active-text: #ffffff;
-  --zt-pagination-active-bg: #6200ee;
-  --zt-pagination-gray: #9e9e9e;
-  --zt-pagination-text-grey: #757575;
-  --zt-pagination-text-greyDark: #6200ee;
-  --zt-pagination-text-black: #000000;
+  --dx-datagrid-border-color: #e0e0e0;
+  --dx-datagrid-header-bg: #f5f5f5;
+  --dx-datagrid-header-color: #424242;
+  --dx-datagrid-header-border-color: #e0e0e0;
+  --dx-datagrid-row-bg: #ffffff;
+  --dx-datagrid-row-color: #212121;
+  --dx-datagrid-row-hover-bg: #f5f5f5;
+  --dx-datagrid-row-selected-bg: #e8f5e8;
+  --dx-datagrid-row-alternate-bg: #fafafa;
+  --dx-datagrid-border-size: 1px;
+  --dx-datagrid-font-size: 14px;
+  --dx-datagrid-font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  --dx-datagrid-line-height: 1.4;
+  --dx-datagrid-cell-padding: 8px 12px;
+  --dx-datagrid-header-height: 40px;
+  --dx-datagrid-row-height: 36px;
+  --dx-datagrid-pager-bg: #f5f5f5;
+  --dx-datagrid-pager-color: #424242;
+  --dx-datagrid-pager-border-color: #e0e0e0;
+  --dx-datagrid-pager-height: 40px;
+  --dx-datagrid-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --dx-datagrid-accent-color: #1976d2;
 }
 
+// DevExtreme DataGrid Main Styles
 :host {
-  font-family: inherit;
-  font-size: inherit;
-  table {
+  font-family: var(--dx-datagrid-font-family);
+  font-size: var(--dx-datagrid-font-size);
+  line-height: var(--dx-datagrid-line-height);
+  color: var(--dx-datagrid-row-color);
+  display: block;
+}
+
+// Main wrapper
+.dx-datagrid-wrapper {
+  box-shadow: var(--dx-datagrid-shadow);
+  border: var(--dx-datagrid-border-size) solid var(--dx-datagrid-border-color);
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: var(--dx-datagrid-row-bg);
+}
+
+// Main table
+.dx-datagrid {
+  width: 100%;
+
+  .dx-datagrid-table {
     width: 100%;
-    table-layout: fixed;
-    border-bottom: var(--zt-table-border) solid var(--zt-table-border-color);
-  }
-  thead {
-    background-color: var(--zt-table-header);
-  }
-  .tbl-content {
-    height: 300px;
-    overflow-x: auto;
-    margin-top: 0px;
-    border: var(--zt-table-border) solid rgba(255, 255, 255, 0.3);
-  }
-  th {
-    padding: 8px;
-    text-align: left;
-    font-weight: 100;
-    font-size: var(--zt-table-font-size);
-    color: var(--zt-table-header-font-color);
-    border: var(--zt-table-border) solid var(--zt-table-border-color);
-    cursor: pointer;
-    user-select: none;
-  }
-  td {
-    padding: 10px;
-    text-align: left;
-    vertical-align: middle;
-    font-weight: 100;
-    font-size: var(--zt-table-font-size);
-    color: var(--zt-table-text);
-    border-bottom: solid var(--zt-table-border) rgba(255, 255, 255, 0.1);
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: var(--dx-datagrid-row-bg);
   }
 
-  table tbody tr:hover {
-    background: var(--zt-table-body-hover-color);
-    // cursor: pointer;
-  }
+  // Header styles
+  .dx-datagrid-headers {
+    background-color: var(--dx-datagrid-header-bg);
 
-  tr:first-child {
-    border-top: none;
-  }
+    .dx-datagrid-header-row {
+      background-color: var(--dx-datagrid-header-bg);
 
-  tr:last-child {
-    border-bottom: none;
-  }
+      .dx-datagrid-header {
+        padding: var(--dx-datagrid-cell-padding);
+        text-align: left;
+        font-weight: 600;
+        font-size: var(--dx-datagrid-font-size);
+        color: var(--dx-datagrid-header-color);
+        border-bottom: var(--dx-datagrid-border-size) solid var(--dx-datagrid-header-border-color);
+        border-right: var(--dx-datagrid-border-size) solid var(--dx-datagrid-border-color);
+        position: relative;
+        vertical-align: middle;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
-  // table striped
-  .ztb-striped {
-    tr:nth-child(odd) td {
-      background: var(--zt-table-body-stripted-color);
+        &:last-child {
+          border-right: none;
+        }
+
+        .dx-datagrid-text-content {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .dx-datagrid-header-text {
+            flex: 1;
+            min-width: 0;
+          }
+        }
+
+        // Sortable header
+        &.dx-datagrid-header-sortable {
+          cursor: pointer;
+          user-select: none;
+
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+          }
+        }
+
+        // Sorted headers
+        &.dx-datagrid-header-sorted-asc,
+        &.dx-datagrid-header-sorted-desc {
+          background-color: rgba(0, 123, 255, 0.1);
+        }
+      }
     }
   }
 
-  .ztb-borderd-y {
-    tbody tr td {
-      border-left: var(--zt-table-border) solid var(--zt-table-border-color);
-      border-right: var(--zt-table-border) solid var(--zt-table-border-color);
-    }
-  }
-
-  .ztb-borderd-x {
-    tbody tr td {
-      border-top: var(--zt-table-border) solid var(--zt-table-border-color);
-      border-bottom: var(--zt-table-border) solid var(--zt-table-border-color);
-    }
-  }
-
-  tr:last-child td:first-child {
-    border-bottom-left-radius: 3px;
-  }
-
-  tr:last-child td:last-child {
-    border-bottom-right-radius: 3px;
-  }
-
-  // Sorting styles
-  th.sortable {
-    cursor: pointer;
-    user-select: none;
-    position: relative;
-
-    &:hover {
-      background-color: var(--zt-table-header-hover, rgba(0, 0, 0, 0.1));
-    }
-
-    &.sorted-asc, &.sorted-desc {
-      background-color: var(--zt-table-header-sorted, rgba(0, 123, 255, 0.1));
-    }
-  }
-
-  .sort-indicator {
-    margin-left: 5px;
-    font-size: 12px;
-    opacity: 0.7;
-  }
-
-  // Selection styles
-  tr.selected {
-    background-color: var(--zt-table-row-selected, rgba(0, 123, 255, 0.2));
-  }
-
-  tbody tr:hover {
-    background-color: var(--zt-table-body-hover-color);
-    cursor: pointer;
-  }
-
-  /* for custom scrollbar for webkit browser*/
-
-  tbody::-webkit-scrollbar {
-    width: 6px;
-  }
-  tbody::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  }
-  tbody::-webkit-scrollbar-thumb {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  }
-
-  // link button - using button component vars
-  .zt-link {
-    background-color: transparent;
-    border: 1px solid var(--zt-link);
-    box-sizing: border-box;
-    border-radius: var(--zt-border-radius);
-    color: var(--zt-text-primary);
-    user-select: none;
-
-    &:hover {
-      background-color: var(--zt-link-hover-bg);
-      border: 1px solid var(--zt-link-hover-border);
-      color: var(--zt-text-primary);
-      cursor: pointer;
-    }
-
-    &:active {
-      background-color: var(--zt-link-pressed);
-      color: var(--zt-text-primary);
-    }
-  }
-
-  // pagination styles
-
-  .pagination-container {
-    user-select: none;
-    margin-top: 10px;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-
-    .pagination {
-      display: inline-block;
-    }
-
-    .pagination a {
-      color: var(--zt-pagination-text);
-      float: left;
-      padding: 4px 8px;
-      text-decoration: none;
+  // Row styles
+  .dx-datagrid-rows {
+    .dx-datagrid-row {
+      background-color: var(--dx-datagrid-row-bg);
+      border-bottom: var(--dx-datagrid-border-size) solid var(--dx-datagrid-border-color);
 
       &:hover {
-        color: var(--zt-pagination-hover);
+        background-color: var(--dx-datagrid-row-hover-bg);
+      }
+
+      &.dx-datagrid-row-hover {
         cursor: pointer;
       }
 
-      &.active {
-        color: var(--zt-pagination-active-text);
-        background: var(--zt-pagination-active-bg);
-        font-weight: 200;
-        border: 1px solid var(--zt-pagination-gray);
-        border-radius: 5px;
-        padding: 5px 10px;
+      &.dx-datagrid-row-selected {
+        background-color: var(--dx-datagrid-row-selected-bg);
+
+        &:hover {
+          background-color: var(--dx-datagrid-row-selected-bg);
+        }
+      }
+
+      .dx-datagrid-cell {
+        padding: var(--dx-datagrid-cell-padding);
+        border-right: var(--dx-datagrid-border-size) solid var(--dx-datagrid-border-color);
+        vertical-align: middle;
+        position: relative;
+
+        &:last-child {
+          border-right: none;
+        }
+
+        .dx-datagrid-cell-content {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+
+  // Striped rows
+  &.dx-datagrid-striped {
+    .dx-datagrid-row:nth-child(even) {
+      background-color: var(--dx-datagrid-row-alternate-bg);
+    }
+
+    .dx-datagrid-row:nth-child(odd) {
+      background-color: var(--dx-datagrid-row-bg);
+    }
+  }
+
+  // Borders
+  &.dx-datagrid-borders {
+    .dx-datagrid-row .dx-datagrid-cell {
+      border-right: var(--dx-datagrid-border-size) solid var(--dx-datagrid-border-color);
+    }
+
+    .dx-datagrid-header {
+      border-right: var(--dx-datagrid-border-size) solid var(--dx-datagrid-border-color);
+    }
+  }
+}
+
+// Sort indicators
+.dx-datagrid-sort-indicator {
+  display: inline-flex;
+  flex-direction: column;
+  margin-left: 8px;
+  width: 12px;
+  height: 12px;
+  position: relative;
+
+  .dx-datagrid-sort-up,
+  .dx-datagrid-sort-down {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    position: absolute;
+  }
+
+  .dx-datagrid-sort-up {
+    border-bottom: 4px solid #ccc;
+    top: 0;
+  }
+
+  .dx-datagrid-sort-down {
+    border-top: 4px solid #ccc;
+    bottom: 0;
+  }
+
+  .dx-datagrid-sort-none {
+    .dx-datagrid-sort-up {
+      border-bottom-color: #ccc;
+    }
+
+    .dx-datagrid-sort-down {
+      border-top-color: #ccc;
+    }
+  }
+}
+
+// Header sorted state
+.dx-datagrid-header-sorted-asc {
+  .dx-datagrid-sort-indicator .dx-datagrid-sort-up {
+    border-bottom-color: var(--dx-datagrid-accent-color);
+  }
+}
+
+.dx-datagrid-header-sorted-desc {
+  .dx-datagrid-sort-indicator .dx-datagrid-sort-down {
+    border-top-color: var(--dx-datagrid-accent-color);
+  }
+}
+
+// Action buttons
+.dx-datagrid-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .dx-datagrid-action-button {
+    font-size: 12px;
+    padding: 4px 8px;
+    min-width: auto;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  .dx-datagrid-action-link {
+    font-size: 12px;
+    padding: 4px 8px;
+    min-width: auto;
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--dx-datagrid-accent-color);
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 400;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: rgba(0, 123, 255, 0.1);
+      border-color: rgba(0, 123, 255, 0.2);
+      color: #0056b3;
+      text-decoration: none;
+    }
+
+    &:active {
+      background-color: rgba(0, 123, 255, 0.2);
+      border-color: rgba(0, 123, 255, 0.3);
+      color: #004085;
+    }
+  }
+}
+
+// Pager styles
+.dx-datagrid-pager {
+  background-color: var(--dx-datagrid-pager-bg);
+  border-top: var(--dx-datagrid-border-size) solid var(--dx-datagrid-pager-border-color);
+  height: var(--dx-datagrid-pager-height);
+  display: flex;
+  align-items: center;
+
+  .dx-datagrid-pager-container {
+    width: 100%;
+    padding: 0 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .dx-datagrid-pager-page-size {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .dx-datagrid-pager-label {
+        font-size: 12px;
+        color: var(--dx-datagrid-pager-color);
+      }
+
+      .dx-datagrid-pager-page-size-selector {
+        display: flex;
+        gap: 4px;
+
+        .dx-datagrid-pager-page-size-item {
+          padding: 4px 8px;
+          font-size: 12px;
+          border: 1px solid transparent;
+          background: transparent;
+          color: var(--dx-datagrid-pager-color);
+          cursor: pointer;
+          border-radius: 4px;
+          transition: all 0.2s ease;
+
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.2);
+          }
+
+          &.dx-datagrid-pager-page-size-selected {
+            background-color: var(--dx-datagrid-accent-color);
+            color: white;
+            border-color: var(--dx-datagrid-accent-color);
+          }
+        }
       }
     }
 
-    .page-size-options {
-      ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
+    .dx-datagrid-pager-info {
+      .dx-datagrid-pager-info-text {
+        font-size: 12px;
+        color: var(--dx-datagrid-pager-color);
+      }
+    }
 
-        li {
-          display: inline-flex;
-          color: var(--zt-pagination-text);
-          padding: 5px;
+    .dx-datagrid-pager-navigation {
+      .dx-datagrid-pager-pages {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        .dx-datagrid-pager-nav-button,
+        .dx-datagrid-pager-page {
+          padding: 6px 10px;
+          font-size: 12px;
+          border: 1px solid var(--dx-datagrid-pager-border-color);
+          background: transparent;
+          color: var(--dx-datagrid-pager-color);
+          cursor: pointer;
+          border-radius: 4px;
+          transition: all 0.2s ease;
           text-decoration: none;
-          margin-right: 5px;
-          text-align: center;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 32px;
 
-          &:hover {
-            cursor: pointer;
-            color: var(--zt-pagination-text-black);
-            background: var(--zt-pagination-gray);
-            font-weight: 200;
-            border: 1px solid var(--zt-pagination-gray);
-            border-radius: 5px;
-            padding: 5px;
+          &:hover:not(:disabled) {
+            background-color: rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.2);
           }
 
-          &.active {
-            color: var(--zt-pagination-text-black);
-            background: var(--zt-pagination-gray);
-            font-weight: 200;
-            border: 1px solid var(--zt-pagination-gray);
-            border-radius: 5px;
-            padding: 5px;
+          &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
           }
+        }
+
+        .dx-datagrid-pager-page.dx-datagrid-pager-page-selected {
+          background-color: var(--dx-datagrid-accent-color);
+          color: white;
+          border-color: var(--dx-datagrid-accent-color);
+        }
+
+        .dx-datagrid-pager-current-page {
+          padding: 6px 10px;
+          font-size: 12px;
+          color: var(--dx-datagrid-pager-color);
+          margin: 0 8px;
         }
       }
     }

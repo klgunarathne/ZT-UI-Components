@@ -1,59 +1,217 @@
-# ZTUIComponents
+# ZT UI Components
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.5.
+A comprehensive collection of reusable Angular UI components built with Angular 20+. This library provides modern, customizable components with multiple themes and extensive configuration options.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- 🎨 Multiple themes (Light, Dark, Bootstrap, Material)
+- 📱 Responsive design
+- 🔧 Highly customizable
+- 📚 Well-documented with JSDoc comments
+- 🧪 Storybook integration for component demos
+- 🚀 Built with Angular standalone components
 
-```bash
-ng serve
+## Components
+
+### Button (`zt-button`)
+A versatile button component with various styles, sizes, and variants.
+
+**Features:**
+- Multiple variants: default, primary, success, info, warning, danger, dark, link, round, floating
+- Outline styles
+- Size options: small, medium, large
+- Theme support
+
+**Basic Usage:**
+```html
+<zt-button variant="primary" size="zt-md" theme="light">Click me</zt-button>
+<zt-button variant="danger" outline="true">Outlined Button</zt-button>
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Input (`zt-input`)
+A customizable input field with validation and styling options.
 
-## Code scaffolding
+**Features:**
+- Input types: text, number, email, password
+- Character length validation
+- Multiple styles: zt, material, bootstrap
+- Theme support
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+**Basic Usage:**
+```html
+<zt-input
+  placeholder="Enter text"
+  inputType="text"
+  [textlength]="255"
+  size="zt-md"
+  theme="light">
+</zt-input>
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Select (`zt-select`)
+A dropdown select component with data binding.
 
-```bash
-ng generate --help
+**Features:**
+- Data source binding
+- Customizable display and key fields
+- Clear button option
+- Theme support
+
+**Basic Usage:**
+```html
+<zt-select
+  [dataSource]="options"
+  [key]="'id'"
+  [displayValue]="'name'"
+  placeholder="Choose an option">
+</zt-select>
 ```
 
-## Building
+### Textarea (`zt-textarea`)
+A multi-line text input with character counting.
 
-To build the project run:
+**Features:**
+- Character count display
+- Length validation
+- Configurable rows and columns
+- Theme support
 
-```bash
-ng build
+**Basic Usage:**
+```html
+<zt-textarea
+  placeholder="Enter your message"
+  [textlength]="500"
+  [rows]="4"
+  [showCharCount]="true">
+</zt-textarea>
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Data Grid (`zt-data-grid`)
+A powerful data table component with sorting, filtering, and pagination.
 
-## Running unit tests
+**Features:**
+- Column sorting
+- Row selection (single/multiple)
+- Pagination
+- Customizable columns
+- Theme support
+- Edit/Delete actions
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
+**Basic Usage:**
+```html
+<zt-data-grid
+  [dataSource]="data"
+  [columns]="gridColumns"
+  [allowSorting]="true"
+  [allowSelection]="true"
+  [theme]="'light'"
+  (onDataGridEvent)="handleEvent($event)">
+</zt-data-grid>
 ```
 
-## Running end-to-end tests
+### Paginator (`zt-paginator`, `zt-paginator-x`)
+Pagination components for data navigation.
 
-For end-to-end (e2e) testing, run:
+**Features:**
+- Page number display
+- Navigation controls
+- Configurable page limits (zt-paginator-x)
+- Style options: page, arrow
 
-```bash
-ng e2e
+**Basic Usage:**
+```html
+<zt-paginator
+  [pages]="10"
+  [theme]="'light'"
+  (onPageChange)="onPageChange($event)">
+</zt-paginator>
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Installation
 
-## Additional Resources
+```bash
+npm install zt-ui-components
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Usage
+
+Import the components you need in your Angular module or standalone component:
+
+```typescript
+import { ButtonComponent, InputComponent } from 'zt-ui-components';
+
+@Component({
+  standalone: true,
+  imports: [ButtonComponent, InputComponent],
+  // ...
+})
+export class MyComponent {}
+```
+
+## Development
+
+### Prerequisites
+
+- Node.js 18+
+- Angular CLI 20+
+
+### Setup
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/zt-ui-components.git
+cd zt-ui-components
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start the development server:
+```bash
+npm start
+```
+
+4. View Storybook stories:
+```bash
+npm run storybook
+```
+
+### Building
+
+```bash
+npm run build
+```
+
+### Running Tests
+
+```bash
+npm test
+```
+
+### Generating Documentation
+
+```bash
+npx compodoc -p projects/zt-ui-components/tsconfig.lib.json
+```
+
+## API Documentation
+
+Comprehensive API documentation is available via Compodoc. Run the documentation generation command above and open `documentation/index.html` in your browser.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## License
+
+MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+For questions and support, please open an issue on GitHub.
