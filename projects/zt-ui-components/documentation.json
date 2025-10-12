@@ -51,6 +51,16 @@
                 "defaultValue": "{\r\n  args: {\r\n    size: \"zt-sm\",\r\n    outline: false,\r\n    theme: \"light\",\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-button [variant]=\"'default'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">default</zt-button>\r\n    <zt-button [variant]=\"'primary'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">primary</zt-button>\r\n    <zt-button [variant]=\"'info'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">info</zt-button>\r\n    <zt-button [variant]=\"'success'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">success</zt-button>\r\n    <zt-button [variant]=\"'danger'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">danger</zt-button>\r\n    <zt-button [variant]=\"'warning'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">warning</zt-button>\r\n    <zt-button [variant]=\"'dark'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">dark</zt-button>\r\n    <zt-button [variant]=\"'link'\" [outline]=\"false\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">link</zt-button>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
             },
             {
+                "name": "DarkThemeCard",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    cardStyle: 'elevated',\r\n    theme: 'dark',\r\n    size: 'md',\r\n    hoverable: false,\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-card [cardStyle]=\"cardStyle\" [theme]=\"theme\" [size]=\"size\" [hoverable]=\"hoverable\">\r\n      <zt-card-header>Dark Theme Card</zt-card-header>\r\n      <zt-card-body>This card demonstrates the dark theme with elevated style.</zt-card-body>\r\n      <zt-card-footer><button>Action</button></zt-card-footer>\r\n    </zt-card>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+            },
+            {
                 "name": "DataGrid",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -58,7 +68,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    dataSource: sampleData,\r\n    columns: sampleColumns,\r\n    striped: true,\r\n    showBorders: true,\r\n    showEdit: true,\r\n    showDelete: true,\r\n    editButtonType: 'link',\r\n    deleteButtonType: 'link',\r\n    allowSorting: false,\r\n    allowSelection: true,\r\n    selectionMode: 'none',\r\n    pages: 4,\r\n    currentPageSize: 5,\r\n    paginatorStyle: 'page',\r\n    theme: 'light',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-data-grid\r\n      [dataSource]=\"dataSource\"\r\n      [columns]=\"columns\"\r\n      [striped]=\"striped\"\r\n      [showBorders]=\"showBorders\"\r\n      [showEdit]=\"showEdit\"\r\n      [showDelete]=\"showDelete\"\r\n      [editButtonType]=\"editButtonType\"\r\n      [deleteButtonType]=\"deleteButtonType\"\r\n      [allowSorting]=\"allowSorting\"\r\n      [allowSelection]=\"allowSelection\"\r\n      [selectionMode]=\"selectionMode\"\r\n      [pages]=\"pages\"\r\n      [currentPageSize]=\"currentPageSize\"\r\n      [paginatorStyle]=\"paginatorStyle\"\r\n      [theme]=\"theme\"\r\n      (onPageChange)=\"onPageChange($event)\"\r\n      (onDataGridEvent)=\"onDataGridEvent($event)\"\r\n    ></zt-data-grid>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n    dataSource: sampleData,\r\n    columns: sampleColumns,\r\n    striped: true,\r\n    showBorders: true,\r\n    showEdit: true,\r\n    showDelete: true,\r\n    editButtonType: 'link',\r\n    deleteButtonType: 'link',\r\n    allowSorting: true,\r\n    allowSelection: true,\r\n    selectionMode: 'none',\r\n    pages: 4,\r\n    currentPageSize: 5,\r\n    paginatorStyle: 'page',\r\n    theme: \"material\",\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-data-grid\r\n      [dataSource]=\"dataSource\"\r\n      [columns]=\"columns\"\r\n      [striped]=\"striped\"\r\n      [showBorders]=\"showBorders\"\r\n      [showEdit]=\"showEdit\"\r\n      [showDelete]=\"showDelete\"\r\n      [editButtonType]=\"editButtonType\"\r\n      [deleteButtonType]=\"deleteButtonType\"\r\n      [allowSorting]=\"allowSorting\"\r\n      [allowSelection]=\"allowSelection\"\r\n      [selectionMode]=\"selectionMode\"\r\n      [pages]=\"pages\"\r\n      [currentPageSize]=\"currentPageSize\"\r\n      [paginatorStyle]=\"paginatorStyle\"\r\n      [theme]=\"theme\"\r\n      (onPageChange)=\"onPageChange($event)\"\r\n      (onDataGridEvent)=\"onDataGridEvent($event)\"\r\n    ></zt-data-grid>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
             },
             {
                 "name": "DataGridArrowPaginator",
@@ -79,6 +89,26 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {\r\n    dataSource: sampleData,\r\n    columns: sampleColumns,\r\n    striped: true,\r\n    showBorders: true,\r\n    showEdit: false,\r\n    showDelete: false,\r\n    editButtonType: 'link',\r\n    deleteButtonType: 'link',\r\n    allowSorting: true,\r\n    allowSelection: false,\r\n    selectionMode: 'none',\r\n    pages: 3,\r\n    currentPageSize: 4,\r\n    paginatorStyle: 'page',\r\n    theme: 'light',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-data-grid\r\n      [dataSource]=\"dataSource\"\r\n      [columns]=\"columns\"\r\n      [striped]=\"striped\"\r\n      [showBorders]=\"showBorders\"\r\n      [showEdit]=\"showEdit\"\r\n      [showDelete]=\"showDelete\"\r\n      [allowSorting]=\"allowSorting\"\r\n      [allowSelection]=\"allowSelection\"\r\n      [selectionMode]=\"selectionMode\"\r\n      [pages]=\"pages\"\r\n      [currentPageSize]=\"currentPageSize\"\r\n      [paginatorStyle]=\"paginatorStyle\"\r\n      [theme]=\"theme\"\r\n      (onPageChange)=\"onPageChange($event)\"\r\n      (onDataGridEvent)=\"onDataGridEvent($event)\"\r\n    ></zt-data-grid>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+            },
+            {
+                "name": "ElevatedCard",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    cardStyle: 'elevated',\r\n    theme: 'light',\r\n    size: 'md',\r\n    hoverable: false,\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-card [cardStyle]=\"cardStyle\" [theme]=\"theme\" [size]=\"size\" [hoverable]=\"hoverable\">\r\n      <zt-card-header>Card Title</zt-card-header>\r\n      <zt-card-body>This is an elevated card with default styling. It has a subtle shadow and modern design.</zt-card-body>\r\n      <zt-card-footer><button>Action</button></zt-card-footer>\r\n    </zt-card>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+            },
+            {
+                "name": "FlatCard",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    cardStyle: 'flat',\r\n    theme: 'material',\r\n    size: 'lg',\r\n    hoverable: true,\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-card [cardStyle]=\"cardStyle\" [theme]=\"theme\" [size]=\"size\" [hoverable]=\"hoverable\">\r\n      <zt-card-media><img src=\"https://via.placeholder.com/300x200\" alt=\"Sample image\"></zt-card-media>\r\n      <zt-card-header>Flat Card with Media</zt-card-header>\r\n      <zt-card-body>This is a flat card with a media section. It uses Material theme and large size.</zt-card-body>\r\n      <zt-card-footer><button>View Details</button></zt-card-footer>\r\n    </zt-card>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
             },
             {
                 "name": "Floating_Button",
@@ -184,6 +214,16 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<CardComponent>",
+                "defaultValue": "{\r\n  title: 'Card',\r\n  component: CardComponent,\r\n  argTypes: {\r\n    cardStyle: {\r\n      options: ['elevated', 'outlined', 'flat'],\r\n      control: { type: 'select' },\r\n      default: 'elevated',\r\n    },\r\n    theme: {\r\n      options: ['light', 'dark', 'bootstrap', 'material'],\r\n      control: { type: 'select' },\r\n      default: 'light',\r\n    },\r\n    size: {\r\n      options: ['sm', 'md', 'lg'],\r\n      control: { type: 'select' },\r\n      default: 'md',\r\n    },\r\n    hoverable: {\r\n      control: { type: 'boolean' },\r\n      default: false,\r\n    },\r\n  },\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/zt-ui-components/src/stories/data-grid.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -259,6 +299,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    outline: true,\r\n    theme: 'light',\r\n  },\r\n  render: (args: ButtonComponent) => ({\r\n    template: `\r\n    <zt-button [variant]=\"'default'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">default</zt-button>\r\n    <zt-button [variant]=\"'primary'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">primary</zt-button>\r\n    <zt-button [variant]=\"'info'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">info</zt-button>\r\n    <zt-button [variant]=\"'success'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">success</zt-button>\r\n    <zt-button [variant]=\"'danger'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">danger</zt-button>\r\n    <zt-button [variant]=\"'warning'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">warning</zt-button>\r\n    <zt-button [variant]=\"'dark'\" [outline]=\"outline\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">dark</zt-button>\r\n    <zt-button [variant]=\"'link'\" [outline]=\"false\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">link</zt-button>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+            },
+            {
+                "name": "OutlinedCard",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    cardStyle: 'outlined',\r\n    theme: 'light',\r\n    size: 'md',\r\n    hoverable: true,\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-card [cardStyle]=\"cardStyle\" [theme]=\"theme\" [size]=\"size\" [hoverable]=\"hoverable\">\r\n      <zt-card-header>Outlined Card</zt-card-header>\r\n      <zt-card-body>This card has an outline border instead of a shadow. Hover over it to see the effect.</zt-card-body>\r\n      <zt-card-footer><button>Learn More</button></zt-card-footer>\r\n    </zt-card>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
             },
             {
                 "name": "Paginator",
@@ -369,6 +419,17 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<ButtonComponent>",
                 "file": "projects/zt-ui-components/src/stories/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<CardComponent>",
+                "file": "projects/zt-ui-components/src/stories/card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -632,6 +693,58 @@
                     "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'light',\r\n  },\r\n  render: (args: ButtonComponent) => ({\r\n    template: `\r\n    <zt-button [variant]=\"'round'\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">+</zt-button>\r\n    <zt-button [variant]=\"'round'\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">✓</zt-button>\r\n    <zt-button [variant]=\"'round'\" [size]=\"size\" [theme]=\"theme\" style=\"margin-right: 1em; margin-bottom:1em;\">✕</zt-button>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
                 }
             ],
+            "projects/zt-ui-components/src/stories/card.stories.ts": [
+                {
+                    "name": "DarkThemeCard",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    cardStyle: 'elevated',\r\n    theme: 'dark',\r\n    size: 'md',\r\n    hoverable: false,\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-card [cardStyle]=\"cardStyle\" [theme]=\"theme\" [size]=\"size\" [hoverable]=\"hoverable\">\r\n      <zt-card-header>Dark Theme Card</zt-card-header>\r\n      <zt-card-body>This card demonstrates the dark theme with elevated style.</zt-card-body>\r\n      <zt-card-footer><button>Action</button></zt-card-footer>\r\n    </zt-card>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "ElevatedCard",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    cardStyle: 'elevated',\r\n    theme: 'light',\r\n    size: 'md',\r\n    hoverable: false,\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-card [cardStyle]=\"cardStyle\" [theme]=\"theme\" [size]=\"size\" [hoverable]=\"hoverable\">\r\n      <zt-card-header>Card Title</zt-card-header>\r\n      <zt-card-body>This is an elevated card with default styling. It has a subtle shadow and modern design.</zt-card-body>\r\n      <zt-card-footer><button>Action</button></zt-card-footer>\r\n    </zt-card>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "FlatCard",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    cardStyle: 'flat',\r\n    theme: 'material',\r\n    size: 'lg',\r\n    hoverable: true,\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-card [cardStyle]=\"cardStyle\" [theme]=\"theme\" [size]=\"size\" [hoverable]=\"hoverable\">\r\n      <zt-card-media><img src=\"https://via.placeholder.com/300x200\" alt=\"Sample image\"></zt-card-media>\r\n      <zt-card-header>Flat Card with Media</zt-card-header>\r\n      <zt-card-body>This is a flat card with a media section. It uses Material theme and large size.</zt-card-body>\r\n      <zt-card-footer><button>View Details</button></zt-card-footer>\r\n    </zt-card>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<CardComponent>",
+                    "defaultValue": "{\r\n  title: 'Card',\r\n  component: CardComponent,\r\n  argTypes: {\r\n    cardStyle: {\r\n      options: ['elevated', 'outlined', 'flat'],\r\n      control: { type: 'select' },\r\n      default: 'elevated',\r\n    },\r\n    theme: {\r\n      options: ['light', 'dark', 'bootstrap', 'material'],\r\n      control: { type: 'select' },\r\n      default: 'light',\r\n    },\r\n    size: {\r\n      options: ['sm', 'md', 'lg'],\r\n      control: { type: 'select' },\r\n      default: 'md',\r\n    },\r\n    hoverable: {\r\n      control: { type: 'boolean' },\r\n      default: false,\r\n    },\r\n  },\r\n}"
+                },
+                {
+                    "name": "OutlinedCard",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    cardStyle: 'outlined',\r\n    theme: 'light',\r\n    size: 'md',\r\n    hoverable: true,\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-card [cardStyle]=\"cardStyle\" [theme]=\"theme\" [size]=\"size\" [hoverable]=\"hoverable\">\r\n      <zt-card-header>Outlined Card</zt-card-header>\r\n      <zt-card-body>This card has an outline border instead of a shadow. Hover over it to see the effect.</zt-card-body>\r\n      <zt-card-footer><button>Learn More</button></zt-card-footer>\r\n    </zt-card>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                }
+            ],
             "projects/zt-ui-components/src/stories/data-grid.stories.ts": [
                 {
                     "name": "DataGrid",
@@ -641,7 +754,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    dataSource: sampleData,\r\n    columns: sampleColumns,\r\n    striped: true,\r\n    showBorders: true,\r\n    showEdit: true,\r\n    showDelete: true,\r\n    editButtonType: 'link',\r\n    deleteButtonType: 'link',\r\n    allowSorting: false,\r\n    allowSelection: true,\r\n    selectionMode: 'none',\r\n    pages: 4,\r\n    currentPageSize: 5,\r\n    paginatorStyle: 'page',\r\n    theme: 'light',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-data-grid\r\n      [dataSource]=\"dataSource\"\r\n      [columns]=\"columns\"\r\n      [striped]=\"striped\"\r\n      [showBorders]=\"showBorders\"\r\n      [showEdit]=\"showEdit\"\r\n      [showDelete]=\"showDelete\"\r\n      [editButtonType]=\"editButtonType\"\r\n      [deleteButtonType]=\"deleteButtonType\"\r\n      [allowSorting]=\"allowSorting\"\r\n      [allowSelection]=\"allowSelection\"\r\n      [selectionMode]=\"selectionMode\"\r\n      [pages]=\"pages\"\r\n      [currentPageSize]=\"currentPageSize\"\r\n      [paginatorStyle]=\"paginatorStyle\"\r\n      [theme]=\"theme\"\r\n      (onPageChange)=\"onPageChange($event)\"\r\n      (onDataGridEvent)=\"onDataGridEvent($event)\"\r\n    ></zt-data-grid>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                    "defaultValue": "{\r\n  args: {\r\n    dataSource: sampleData,\r\n    columns: sampleColumns,\r\n    striped: true,\r\n    showBorders: true,\r\n    showEdit: true,\r\n    showDelete: true,\r\n    editButtonType: 'link',\r\n    deleteButtonType: 'link',\r\n    allowSorting: true,\r\n    allowSelection: true,\r\n    selectionMode: 'none',\r\n    pages: 4,\r\n    currentPageSize: 5,\r\n    paginatorStyle: 'page',\r\n    theme: \"material\",\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-data-grid\r\n      [dataSource]=\"dataSource\"\r\n      [columns]=\"columns\"\r\n      [striped]=\"striped\"\r\n      [showBorders]=\"showBorders\"\r\n      [showEdit]=\"showEdit\"\r\n      [showDelete]=\"showDelete\"\r\n      [editButtonType]=\"editButtonType\"\r\n      [deleteButtonType]=\"deleteButtonType\"\r\n      [allowSorting]=\"allowSorting\"\r\n      [allowSelection]=\"allowSelection\"\r\n      [selectionMode]=\"selectionMode\"\r\n      [pages]=\"pages\"\r\n      [currentPageSize]=\"currentPageSize\"\r\n      [paginatorStyle]=\"paginatorStyle\"\r\n      [theme]=\"theme\"\r\n      (onPageChange)=\"onPageChange($event)\"\r\n      (onDataGridEvent)=\"onDataGridEvent($event)\"\r\n    ></zt-data-grid>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
                 },
                 {
                     "name": "DataGridArrowPaginator",
@@ -839,6 +952,19 @@
                     "kind": 184
                 }
             ],
+            "projects/zt-ui-components/src/stories/card.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<CardComponent>",
+                    "file": "projects/zt-ui-components/src/stories/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
             "projects/zt-ui-components/src/stories/data-grid.stories.ts": [
                 {
                     "name": "Story",
@@ -1003,6 +1129,66 @@
             },
             {
                 "filePath": "projects/zt-ui-components/src/stories/button.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "DarkThemeCard",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ElevatedCard",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "FlatCard",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "OutlinedCard",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/card.stories.ts",
                 "type": "type alias",
                 "linktype": "miscellaneous",
                 "linksubtype": "typealias",

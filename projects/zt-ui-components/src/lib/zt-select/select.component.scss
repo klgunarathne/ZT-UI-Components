@@ -1,4 +1,4 @@
-@import "../../assets/variables";
+@use "../../assets/variables" as vars;
 
 // Light theme (default)
 :host(.theme-light) {
@@ -85,7 +85,7 @@
     select,
     .label .text {
       font-family: "Segoe UI";
-      font-size: $font-size-input;
+      font-size: vars.$font-size-input;
     }
 
     select:focus {
@@ -95,7 +95,7 @@
 
     select:focus + .label .text,
     :not(select[value=""]) + .label .text {
-      font-size: $font-size-input-label-sm;
+      font-size: vars.$font-size-input-label-sm;
       transform: translate(0, -150%);
       background-color: var(--zt-bg-white);
       padding-left: 4px;
@@ -107,7 +107,7 @@
     }
 
     .select-message {
-      color: $text-gray;
+      color: vars.$text-gray;
     }
 
     .close-icon {
@@ -138,7 +138,7 @@
       text-align: center;
       color: var(--zt-text-black);
       font-weight: normal;
-      font-size: $font-size-input-label-sm;
+      font-size: vars.$font-size-input-label-sm;
       cursor: pointer;
     }
   }
@@ -157,10 +157,10 @@
       background-color: transparent;
       width: 100%;
       padding: 10px 10px 10px 0;
-      font-size: $font-size-input;
+      font-size: vars.$font-size-input;
       border-radius: 0;
       border: none;
-      border-bottom: 1px solid $border-color;
+      border-bottom: 1px solid vars.$border-color;
     }
 
     .select-message {
@@ -202,7 +202,7 @@
     /* LABEL ======================================= */
     .select-label {
       color: var(--zt-text-gray);
-      font-size: $font-size-input;
+      font-size: vars.$font-size-input;
       font-weight: normal;
       position: absolute;
       pointer-events: none;
@@ -217,7 +217,7 @@
       color: var(--zt-border-focus);
       top: -10px;
       transition: 0.2s ease all;
-      font-size: $font-size-input-label-sm;
+      font-size: vars.$font-size-input-label-sm;
     }
 
     /* BOTTOM BARS ================================= */
@@ -291,7 +291,7 @@
       text-align: center;
       color: var(--zt-text-black);
       font-weight: normal;
-      font-size: $font-size-input-label-sm;
+      font-size: vars.$font-size-input-label-sm;
       cursor: pointer;
     }
   }
@@ -310,7 +310,7 @@
       box-sizing: border-box;
       transition: 0.3s;
       color: var(--zt-text-select);
-      font-size: $font-size-input;
+      font-size: vars.$font-size-input;
     }
 
     .form__field:focus {
@@ -350,7 +350,7 @@
       text-align: center;
       color: var(--zt-text-black);
       font-weight: normal;
-      font-size: $font-size-input-label-sm;
+      font-size: vars.$font-size-input-label-sm;
       cursor: pointer;
     }
   }

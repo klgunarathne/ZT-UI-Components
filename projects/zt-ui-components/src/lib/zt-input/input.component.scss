@@ -1,4 +1,4 @@
-@import "../../assets/variables";
+@use "../../assets/variables" as vars;
 
 // Light theme (default)
 :host(.theme-light) {
@@ -94,7 +94,7 @@
     input,
     .label .text {
       font-family: "Segoe UI";
-      font-size: $font-size-input;
+      font-size: vars.$font-size-input;
     }
 
     input:focus {
@@ -104,7 +104,7 @@
 
     input:focus + .label .text,
     :not(input[value=""]) + .label .text {
-      font-size: $font-size-input-label-sm;
+      font-size: vars.$font-size-input-label-sm;
       transform: translate(0, -150%);
       background-color: var(--zt-bg-white);
       padding-left: 4px;
