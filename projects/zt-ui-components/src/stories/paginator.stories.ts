@@ -2,7 +2,7 @@ import { ZtPaginatorComponent } from '../lib/zt-paginator/zt-paginator.component
 import type { Meta, StoryObj } from '@storybook/angular';
 
 const meta: Meta<ZtPaginatorComponent> = {
-  title: 'Paginator',
+  title: 'Components/Paginator',
   component: ZtPaginatorComponent,
   argTypes: {
     pages: {

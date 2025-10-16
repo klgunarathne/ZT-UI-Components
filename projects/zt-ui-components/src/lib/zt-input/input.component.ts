@@ -6,8 +6,12 @@ import {
   HostListener,
   Input,
   ViewChild,
+  Optional,
+  OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ThemeDirective } from '../theme/theme.directive';
+import { ThemeConfig } from '../theme/theme.types';
 
 /**
  * A customizable input component that supports various input types, styles, and themes.
@@ -25,7 +29,8 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
 })
-export class InputComponent {
+export class InputComponent implements OnInit {
+  constructor(private elementRef: ElementRef) {}
   /**
    * Reference to the input element for direct DOM manipulation.
    */
@@ -64,8 +69,15 @@ export class InputComponent {
   /**
    * The theme of the input component.
    * @default 'light'
+   * @deprecated Use global theming or ztTheme directive for local overrides
    */
   @Input() theme: 'light' | 'dark' | 'bootstrap' | 'material' = 'light';
+
+  /**
+   * Local theme override for this input component.
+   * Takes precedence over global theme.
+   */
+  @Input() ztTheme?: Partial<ThemeConfig>;
 
   /**
    * The size of the input component.
@@ -79,6 +91,45 @@ export class InputComponent {
    */
   @HostBinding('class') get inputClass(): string {
     return `${this.size} theme-${this.theme}`;
+  }
+
+  /**
+   * Applies theme overrides if specified
+   */
+  ngOnInit(): void {
+    if (this.ztTheme) {
+      // Apply local theme override
+      this.applyLocalTheme();
+    }
+  }
+
+  /**
+   * Applies local theme override to the component
+   */
+  private applyLocalTheme(): void {
+    if (!this.ztTheme) return;
+
+    // Apply theme variables directly to the host element
+    const hostElement = this.elementRef.nativeElement;
+
+    if (this.ztTheme.colors) {
+      Object.entries(this.ztTheme.colors).forEach(([key, value]) => {
+        const cssVar = `--zt-${key.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
+        hostElement.style.setProperty(cssVar, value);
+      });
+    }
+
+    if (this.ztTheme.borderRadius !== undefined) {
+      hostElement.style.setProperty('--zt-border-radius', `${this.ztTheme.borderRadius}px`);
+    }
+
+    if (this.ztTheme.borderSize !== undefined) {
+      hostElement.style.setProperty('--zt-border-size', `${this.ztTheme.borderSize}px`);
+    }
+
+    if (this.ztTheme.fontFamily) {
+      hostElement.style.setProperty('--zt-font-family', this.ztTheme.fontFamily);
+    }
   }
 
   /**

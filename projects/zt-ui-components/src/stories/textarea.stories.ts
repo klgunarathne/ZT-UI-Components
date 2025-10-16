@@ -2,7 +2,7 @@ import { TextareaComponent } from '../lib/zt-textarea/textarea.component';
 import type { Meta, StoryObj } from '@storybook/angular';
 
 const meta: Meta<TextareaComponent> = {
-  title: 'Textarea',
+  title: 'Components/Textarea',
   component: TextareaComponent,
   argTypes: {
     size: {

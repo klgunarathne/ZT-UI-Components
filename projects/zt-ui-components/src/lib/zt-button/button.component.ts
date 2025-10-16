@@ -3,7 +3,10 @@ import {
   Component,
   HostBinding,
   Input,
+  OnInit,
+  ElementRef,
 } from '@angular/core';
+import { ThemeConfig } from '../theme/theme.types';
 
 /**
  * A customizable button component that supports various styles, sizes, themes, and variants.
@@ -21,7 +24,8 @@ import {
   standalone: true,
   imports: [],
 })
-export class ButtonComponent {
+export class ButtonComponent implements OnInit {
+  constructor(private elementRef: ElementRef) {}
   /**
    * The type of the button element.
    * @default 'button'
@@ -55,8 +59,15 @@ export class ButtonComponent {
   /**
    * The theme of the button.
    * @default 'light'
+   * @deprecated Use global theming or ztTheme directive for local overrides
    */
   @Input() theme: 'light' | 'dark' | 'bootstrap' | 'material' = 'light';
+
+  /**
+   * Local theme override for this button component.
+   * Takes precedence over global theme.
+   */
+  @Input() ztTheme?: Partial<ThemeConfig>;
 
   /**
    * Dynamically applies CSS classes to the button element based on the component's properties.
@@ -86,5 +97,42 @@ export class ButtonComponent {
    */
   @HostBinding('attr.disabled') get isDisabled(): boolean | null {
     return this.disabled || null;
+  }
+
+  /**
+   * Applies theme overrides if specified
+   */
+  ngOnInit(): void {
+    if (this.ztTheme) {
+      this.applyLocalTheme();
+    }
+  }
+
+  /**
+   * Applies local theme override to the component
+   */
+  private applyLocalTheme(): void {
+    if (!this.ztTheme) return;
+
+    const hostElement = this.elementRef.nativeElement;
+
+    if (this.ztTheme.colors) {
+      Object.entries(this.ztTheme.colors).forEach(([key, value]) => {
+        const cssVar = `--zt-${key.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
+        hostElement.style.setProperty(cssVar, value);
+      });
+    }
+
+    if (this.ztTheme.borderRadius !== undefined) {
+      hostElement.style.setProperty('--zt-border-radius', `${this.ztTheme.borderRadius}px`);
+    }
+
+    if (this.ztTheme.borderSize !== undefined) {
+      hostElement.style.setProperty('--zt-border-size', `${this.ztTheme.borderSize}px`);
+    }
+
+    if (this.ztTheme.fontFamily) {
+      hostElement.style.setProperty('--zt-font-family', this.ztTheme.fontFamily);
+    }
   }
 }

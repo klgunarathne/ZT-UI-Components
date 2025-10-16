@@ -2,7 +2,7 @@ import { ButtonComponent } from '../lib/zt-button/button.component';
 import type { Meta, StoryObj } from '@storybook/angular';
 
 const meta: Meta<ButtonComponent> = {
-  title: 'Button',
+  title: 'Components/Button',
   component: ButtonComponent,
   argTypes: {
     size: {
@@ -48,7 +48,7 @@ export const Outline_Button: Story = {
     outline: true,
     theme: 'light',
   },
-  render: (args: ButtonComponent) => ({
+  render: (args) => ({
     template: `
     <zt-button [variant]="'default'" [outline]="outline" [size]="size" [theme]="theme" style="margin-right: 1em; margin-bottom:1em;">default</zt-button>
     <zt-button [variant]="'primary'" [outline]="outline" [size]="size" [theme]="theme" style="margin-right: 1em; margin-bottom:1em;">primary</zt-button>
@@ -68,7 +68,7 @@ export const Round_Button: Story = {
     size: 'zt-md',
     theme: 'light',
   },
-  render: (args: ButtonComponent) => ({
+  render: (args) => ({
     template: `
     <zt-button [variant]="'round'" [size]="size" [theme]="theme" style="margin-right: 1em; margin-bottom:1em;">+</zt-button>
     <zt-button [variant]="'round'" [size]="size" [theme]="theme" style="margin-right: 1em; margin-bottom:1em;">✓</zt-button>
@@ -83,7 +83,7 @@ export const Floating_Button: Story = {
     theme: 'light',
     size: "zt-sm"
   },
-  render: (args: ButtonComponent) => ({
+  render: (args) => ({
     template: `
     <zt-button [variant]="'floating'" [theme]="theme">+</zt-button>
     `,

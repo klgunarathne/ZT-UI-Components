@@ -2,7 +2,7 @@ import { SelectComponent } from '../lib/zt-select/select.component';
 import type { Meta, StoryObj } from '@storybook/angular';
 
 const meta: Meta<SelectComponent> = {
-  title: 'Select',
+  title: 'Components/Select',
   component: SelectComponent,
   argTypes: {
     size: {

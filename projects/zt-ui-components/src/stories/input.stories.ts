@@ -2,7 +2,7 @@ import { InputComponent } from '../lib/zt-input/input.component';
 import type { Meta, StoryObj } from '@storybook/angular';
 
 const meta: Meta<InputComponent> = {
-  title: 'Input',
+  title: 'Components/Input',
   component: InputComponent,
   argTypes: {
     size: {

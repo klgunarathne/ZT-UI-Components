@@ -24,7 +24,7 @@ const sampleColumns = [
 ];
 
 const meta: Meta<ZtDataGridComponent> = {
-  title: 'Data Grid',
+  title: 'Components/Data Grid',
   component: ZtDataGridComponent,
   argTypes: {
     dataSource: {

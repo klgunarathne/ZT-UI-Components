@@ -1,53 +1,5 @@
 @use "../../assets/variables" as vars;
 
-// Light theme (default)
-:host(.theme-light) {
-  --zt-border-color: #d2d2d2;
-  --zt-border-focus: #0275d8;
-  --zt-border-focus-out: #f30e0e;
-  --zt-bg-white: #ffffff;
-  --zt-text-black: #212121;
-  --zt-text-gray: #9b9b9b;
-}
-
-// Dark theme
-:host(.theme-dark) {
-  --zt-border-color: #4a5568;
-  --zt-border-focus: #4dabf7;
-  --zt-border-focus-out: #f56565;
-  --zt-bg-white: #2d3748;
-  --zt-text-black: #ffffff;
-  --zt-text-gray: #718096;
-
-  .label .text {
-    color: var(--zt-text-white);
-  }
-
-  input::placeholder {
-    color: var(--zt-text-white);
-  }
-}
-
-// Bootstrap theme
-:host(.theme-bootstrap) {
-  --zt-border-color: #d2d2d2;
-  --zt-border-focus: #007bff;
-  --zt-border-focus-out: #dc3545;
-  --zt-bg-white: #ffffff;
-  --zt-text-black: #212121;
-  --zt-text-gray: #6c757d;
-}
-
-// Material theme
-:host(.theme-material) {
-  --zt-border-color: #e0e0e0;
-  --zt-border-focus: #6200ee;
-  --zt-border-focus-out: #f44336;
-  --zt-bg-white: #ffffff;
-  --zt-text-black: #212121;
-  --zt-text-gray: #9e9e9e;
-}
-
 :host {
   font-family: inherit;
 
@@ -58,7 +10,7 @@
 
     .no-outline {
       bottom: 0;
-      border-bottom: 1px solid var(--zt-border-color);
+      border-bottom: var(--zt-border-size) solid var(--zt-default-hover-border);
       outline: 0;
     }
 
@@ -67,20 +19,20 @@
     }
 
     input {
-      height: 48px;
-      width: 100%;
-      border: 1px solid var(--zt-border-color);
-      border-radius: 4px;
-      box-sizing: border-box;
-      padding: 16px;
-      background-color: var(--zt-bg-white);
-      color: var(--zt-text-black);
+       height: 48px;
+       width: 100%;
+       border: var(--zt-border-size) solid var(--zt-default-hover-border);
+       border-radius: var(--zt-border-radius);
+       box-sizing: border-box;
+       padding: var(--zt-spacing-medium);
+       background-color: var(--zt-default);
+       color: var(--zt-text-black);
 
-      &::placeholder {
-        color: var(--zt-text-gray);
-        background-color: transparent;
-      }
-    }
+       &::placeholder {
+         color: var(--zt-text-gray);
+         background-color: transparent;
+       }
+     }
 
     .label {
       position: absolute;
@@ -98,18 +50,18 @@
     }
 
     input:focus {
-      outline: none;
-      border: 2px solid var(--zt-border-focus);
-    }
+       outline: none;
+       border: calc(var(--zt-border-size) * 2) solid var(--zt-primary);
+     }
 
     input:focus + .label .text,
-    :not(input[value=""]) + .label .text {
-      font-size: vars.$font-size-input-label-sm;
-      transform: translate(0, -150%);
-      background-color: var(--zt-bg-white);
-      padding-left: 4px;
-      padding-right: 4px;
-    }
+     :not(input[value=""]) + .label .text {
+       font-size: var(--zt-font-size-small);
+       transform: translate(0, -150%);
+       background-color: var(--zt-default);
+       padding-left: var(--zt-spacing-small);
+       padding-right: var(--zt-spacing-small);
+     }
 
     .label .text {
       transition: all 0.15s ease-out;
@@ -125,14 +77,14 @@
     }
 
     .form__field {
-      font-family: inherit;
+      font-family: var(--zt-font-family);
       width: 100%;
       border: 0;
-      border-bottom: 1px solid var(--zt-border-color);
+      border-bottom: var(--zt-border-size) solid var(--zt-default-hover-border);
       outline: 0;
-      font-size: 16px;
+      font-size: var(--zt-font-size-medium);
       color: var(--zt-text-black);
-      padding: 7px 0;
+      padding: var(--zt-spacing-small) 0;
       background: transparent;
       transition: border-color 0.2s;
     }
@@ -162,26 +114,26 @@
     }
 
     .form__field:focus {
-      padding-bottom: 6px;
-      border-bottom: 2px solid var(--zt-border-focus);
-    }
+       padding-bottom: var(--zt-spacing-small);
+       border-bottom: calc(var(--zt-border-size) * 2) solid var(--zt-primary);
+     }
   }
 
   .input_bs {
     .form__field {
       width: 100%;
-      border: 2px solid var(--zt-text-gray);
-      border-radius: 4px;
-      margin: 8px 0;
+      border: calc(var(--zt-border-size) * 2) solid var(--zt-text-gray);
+      border-radius: var(--zt-border-radius);
+      margin: var(--zt-spacing-small) 0;
       outline: none;
-      padding: 8px;
+      padding: var(--zt-spacing-small);
       box-sizing: border-box;
       transition: 0.3s;
     }
 
     .form__field:focus {
-      border-color: var(--zt-border-focus);
-      box-shadow: 0 0 8px 0 var(--zt-border-focus);
+      border-color: var(--zt-primary);
+      box-shadow: 0 0 var(--zt-spacing-small) 0 var(--zt-primary);
     }
   }
 }

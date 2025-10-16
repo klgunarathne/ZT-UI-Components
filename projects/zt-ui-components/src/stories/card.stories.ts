@@ -2,7 +2,7 @@ import { CardComponent } from '../lib/zt-card/card.component';
 import type { Meta, StoryObj } from '@storybook/angular';
 
 const meta: Meta<CardComponent> = {
-  title: 'Card',
+  title: 'Components/Card',
   component: CardComponent,
   argTypes: {
     cardStyle: {

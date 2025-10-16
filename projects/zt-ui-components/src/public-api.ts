@@ -8,3 +8,6 @@ export * from './lib/zt-card/card.component';
 export * from './lib/zt-input/input.component';
 export * from './lib/zt-select/select.component';
 export * from './lib/zt-textarea/textarea.component';
+
+// Theme system exports
+export * from './lib/theme/index';
