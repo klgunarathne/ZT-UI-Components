@@ -28,6 +28,9 @@ import { ThemeConfig } from '../theme/theme.types';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [CommonModule],
+  host: {
+    class:'zt-input'
+  }
 })
 export class InputComponent implements OnInit {
   constructor(private elementRef: ElementRef) {}
@@ -90,7 +93,7 @@ export class InputComponent implements OnInit {
    * @returns A string of CSS classes.
    */
   @HostBinding('class') get inputClass(): string {
-    return `${this.size} theme-${this.theme}`;
+    return `zt-${this.inputStyle} ${this.size} theme-${this.theme}`;
   }
 
   /**

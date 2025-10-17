@@ -29,7 +29,7 @@ type Story = StoryObj<InputComponent>;
 export const Input: Story = {
   args: {
     size: 'zt-md',
-    theme: 'light',
+    theme: "bootstrap",
     inputStyle: 'zt',
     placeholder: 'Enter text',
   },

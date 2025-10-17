@@ -138,7 +138,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'light',\r\n    inputStyle: 'zt',\r\n    placeholder: 'Enter text',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-input [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\"></zt-input>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: \"bootstrap\",\r\n    inputStyle: 'zt',\r\n    placeholder: 'Enter text',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-input [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\"></zt-input>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
             },
             {
                 "name": "InteractiveCard",
@@ -459,6 +459,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {\r\n    cardStyle: 'elevated',\r\n    size: 'md',\r\n    variant: 'primary',\r\n    hoverable: true,\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <div style=\"display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;\">\r\n      <zt-card cardStyle=\"elevated\" theme=\"light\" [size]=\"size\" [variant]=\"variant\" [hoverable]=\"hoverable\">\r\n        <div class=\"card-header\">Light Theme</div>\r\n        <div class=\"card-body\">Light theme uses bright backgrounds and dark text for optimal readability.</div>\r\n        <div class=\"card-footer\"><button>Light</button></div>\r\n      </zt-card>\r\n\r\n      <zt-card cardStyle=\"elevated\" theme=\"dark\" [size]=\"size\" [variant]=\"variant\" [hoverable]=\"hoverable\">\r\n        <div class=\"card-header\">Dark Theme</div>\r\n        <div class=\"card-body\">Dark theme uses dark backgrounds and light text for comfortable viewing.</div>\r\n        <div class=\"card-footer\"><button>Dark</button></div>\r\n      </zt-card>\r\n\r\n      <zt-card cardStyle=\"elevated\" theme=\"bootstrap\" [size]=\"size\" [variant]=\"variant\" [hoverable]=\"hoverable\">\r\n        <div class=\"card-header\">Bootstrap Theme</div>\r\n        <div class=\"card-body\">Bootstrap theme follows Bootstrap design principles and colors.</div>\r\n        <div class=\"card-footer\"><button>Bootstrap</button></div>\r\n      </zt-card>\r\n\r\n      <zt-card cardStyle=\"elevated\" theme=\"material\" [size]=\"size\" [variant]=\"variant\" [hoverable]=\"hoverable\">\r\n        <div class=\"card-header\">Material Theme</div>\r\n        <div class=\"card-body\">Material theme follows Material Design guidelines with rounded corners.</div>\r\n        <div class=\"card-footer\"><button>Material</button></div>\r\n      </zt-card>\r\n    </div>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+            },
+            {
+                "name": "UserRegistration",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    cardStyle: 'elevated',\r\n    theme: 'light',\r\n    size: 'md',\r\n    variant: 'default',\r\n    hoverable: false,\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-card [cardStyle]=\"cardStyle\" [theme]=\"theme\" [size]=\"size\" [variant]=\"variant\" [hoverable]=\"hoverable\">\r\n      <div class=\"card-header\">\r\n        <h3>User Registration</h3>\r\n      </div>\r\n      <div class=\"card-body\">\r\n        <zt-input\r\n          placeholder=\"Enter your name\"\r\n          size=\"zt-md\"\r\n          [textlength]=\"50\">\r\n        </zt-input>\r\n        <zt-button variant=\"primary\" size=\"zt-md\">\r\n          Submit\r\n        </zt-button>\r\n      </div>\r\n    </zt-card>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
             }
         ],
         "functions": [],
@@ -665,6 +675,16 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{\r\n  args: {\r\n    cardStyle: 'elevated',\r\n    size: 'md',\r\n    variant: 'primary',\r\n    hoverable: true,\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <div style=\"display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;\">\r\n      <zt-card cardStyle=\"elevated\" theme=\"light\" [size]=\"size\" [variant]=\"variant\" [hoverable]=\"hoverable\">\r\n        <div class=\"card-header\">Light Theme</div>\r\n        <div class=\"card-body\">Light theme uses bright backgrounds and dark text for optimal readability.</div>\r\n        <div class=\"card-footer\"><button>Light</button></div>\r\n      </zt-card>\r\n\r\n      <zt-card cardStyle=\"elevated\" theme=\"dark\" [size]=\"size\" [variant]=\"variant\" [hoverable]=\"hoverable\">\r\n        <div class=\"card-header\">Dark Theme</div>\r\n        <div class=\"card-body\">Dark theme uses dark backgrounds and light text for comfortable viewing.</div>\r\n        <div class=\"card-footer\"><button>Dark</button></div>\r\n      </zt-card>\r\n\r\n      <zt-card cardStyle=\"elevated\" theme=\"bootstrap\" [size]=\"size\" [variant]=\"variant\" [hoverable]=\"hoverable\">\r\n        <div class=\"card-header\">Bootstrap Theme</div>\r\n        <div class=\"card-body\">Bootstrap theme follows Bootstrap design principles and colors.</div>\r\n        <div class=\"card-footer\"><button>Bootstrap</button></div>\r\n      </zt-card>\r\n\r\n      <zt-card cardStyle=\"elevated\" theme=\"material\" [size]=\"size\" [variant]=\"variant\" [hoverable]=\"hoverable\">\r\n        <div class=\"card-header\">Material Theme</div>\r\n        <div class=\"card-body\">Material theme follows Material Design guidelines with rounded corners.</div>\r\n        <div class=\"card-footer\"><button>Material</button></div>\r\n      </zt-card>\r\n    </div>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "UserRegistration",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    cardStyle: 'elevated',\r\n    theme: 'light',\r\n    size: 'md',\r\n    variant: 'default',\r\n    hoverable: false,\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-card [cardStyle]=\"cardStyle\" [theme]=\"theme\" [size]=\"size\" [variant]=\"variant\" [hoverable]=\"hoverable\">\r\n      <div class=\"card-header\">\r\n        <h3>User Registration</h3>\r\n      </div>\r\n      <div class=\"card-body\">\r\n        <zt-input\r\n          placeholder=\"Enter your name\"\r\n          size=\"zt-md\"\r\n          [textlength]=\"50\">\r\n        </zt-input>\r\n        <zt-button variant=\"primary\" size=\"zt-md\">\r\n          Submit\r\n        </zt-button>\r\n      </div>\r\n    </zt-card>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
                 }
             ],
             "projects/zt-ui-components/src/stories/input.stories.ts": [
@@ -686,7 +706,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'light',\r\n    inputStyle: 'zt',\r\n    placeholder: 'Enter text',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-input [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\"></zt-input>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                    "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: \"bootstrap\",\r\n    inputStyle: 'zt',\r\n    placeholder: 'Enter text',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-input [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\"></zt-input>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
                 },
                 {
                     "name": "Material_Input",
@@ -1333,6 +1353,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "ThemeShowcase",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "UserRegistration",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

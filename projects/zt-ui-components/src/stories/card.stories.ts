@@ -76,6 +76,37 @@ export const InteractiveCard: Story = {
   }),
 };
 
+// User registration form example
+export const UserRegistration: Story = {
+  args: {
+    cardStyle: 'elevated',
+    theme: 'light',
+    size: 'md',
+    variant: 'default',
+    hoverable: false,
+  },
+  render: (args) => ({
+    template: `
+    <zt-card [cardStyle]="cardStyle" [theme]="theme" [size]="size" [variant]="variant" [hoverable]="hoverable">
+      <div class="card-header">
+        <h3>User Registration</h3>
+      </div>
+      <div class="card-body">
+        <zt-input
+          placeholder="Enter your name"
+          size="zt-md"
+          [textlength]="50">
+        </zt-input>
+        <zt-button variant="primary" size="zt-md">
+          Submit
+        </zt-button>
+      </div>
+    </zt-card>
+    `,
+    props: args,
+  }),
+};
+
 // Card styles showcase
 export const CardStylesShowcase: Story = {
   args: {

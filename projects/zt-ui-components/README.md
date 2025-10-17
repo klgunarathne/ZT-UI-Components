@@ -50,10 +50,10 @@ export class AppComponent {
 
 ```html
 <zt-card cardStyle="elevated" size="md">
-  <zt-card-header>
+  <div class="card-header">
     <h3>User Registration</h3>
-  </zt-card-header>
-  <zt-card-body>
+  </div>
+  <div class="card-body">
     <zt-input
       placeholder="Enter your name"
       size="zt-md"
@@ -62,7 +62,7 @@ export class AppComponent {
     <zt-button variant="primary" size="zt-md">
       Submit
     </zt-button>
-  </zt-card-body>
+  </div>
 </zt-card>
 ```
 
@@ -139,8 +139,8 @@ Override theme properties for individual components:
 ```html
 <!-- Override theme for specific card -->
 <zt-card [ztTheme]="customCardTheme" cardStyle="elevated">
-  <zt-card-header>Custom Themed Card</zt-card-header>
-  <zt-card-body>Content here</zt-card-body>
+  <div class="card-header">Custom Themed Card</div>
+  <div class="card-body">Content here</div>
 </zt-card>
 
 <!-- Override theme for specific input -->
@@ -487,11 +487,11 @@ Flexible container component with header, body, footer, and variants.
 ```html
 <!-- Basic card -->
 <zt-card cardStyle="elevated" size="md">
-  <zt-card-header>Card Title</zt-card-header>
-  <zt-card-body>Card content goes here</zt-card-body>
-  <zt-card-footer>
+  <div class="card-header">Card Title</div>
+  <div class="card-body">Card content goes here</div>
+  <div class="card-footer">
     <zt-button variant="primary">Action</zt-button>
-  </zt-card-footer>
+  </div>
 </zt-card>
 
 <!-- Outlined card with variant -->
@@ -500,8 +500,8 @@ Flexible container component with header, body, footer, and variants.
   variant="primary"
   [hoverable]="true"
   size="lg">
-  <zt-card-header>Primary Card</zt-card-header>
-  <zt-card-body>Content with primary styling</zt-card-body>
+  <div class="card-header">Primary Card</div>
+  <div class="card-body">Content with primary styling</div>
 </zt-card>
 
 <!-- Flat card with custom theme -->
@@ -509,7 +509,7 @@ Flexible container component with header, body, footer, and variants.
   [ztTheme]="cardTheme"
   cardStyle="flat"
   size="md">
-  <zt-card-body>Custom themed content</zt-card-body>
+  <div class="card-body">Custom themed content</div>
 </zt-card>
 ```
 
@@ -528,10 +528,10 @@ Flexible container component with header, body, footer, and variants.
 
 | Selector | Description |
 |----------|-------------|
-| `<zt-card-header>` | Card header section |
-| `<zt-card-body>` | Main card content |
-| `<zt-card-footer>` | Card footer/actions |
-| `<zt-card-media>` | Media content (images, etc.) |
+| `.card-header` | Card header section |
+| `.card-body` | Main card content |
+| `.card-footer` | Card footer/actions |
+| `.card-media` | Media content (images, etc.) |
 
 ### Paginator Component (`<zt-paginator>`)
 
@@ -1100,11 +1100,11 @@ import {
   imports: [ZtButton, ZtInput, ZtCard],
   template: `
     <zt-card>
-      <zt-card-header>Welcome</zt-card-header>
-      <zt-card-body>
+      <div class="card-header">Welcome</div>
+      <div class="card-body">
         <zt-input placeholder="Enter name"></zt-input>
         <zt-button variant="primary">Submit</zt-button>
-      </zt-card-body>
+      </div>
     </zt-card>
   `,
 })

@@ -15,9 +15,9 @@ import { ThemeConfig } from '../theme/theme.types';
  *
  * @example
  * <zt-card cardStyle="elevated" theme="light" size="md">
- *   <zt-card-header>Card Title</zt-card-header>
- *   <zt-card-body>Card content goes here.</zt-card-body>
- *   <zt-card-footer><button>Action</button></zt-card-footer>
+ *   <div class="card-header">Card Title</div>
+ *   <div class="card-body">Card content goes here.</div>
+ *   <div class="card-footer"><button>Action</button></div>
  * </zt-card>
  */
 @Component({
