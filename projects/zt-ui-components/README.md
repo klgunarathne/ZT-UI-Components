@@ -361,18 +361,45 @@ A versatile button component with multiple variants, sizes, and interaction stat
 
 ### Input Component (`<zt-input>`)
 
-A customizable text input with validation, floating labels, and multiple styles.
+A feature-rich, accessible text input component with advanced validation, multiple visual styles, and comprehensive theming support. Supports two-way data binding, reactive forms, character counting, and extensive customization options.
+
+#### Key Features
+
+- **🎨 Multiple Visual Styles**: ZT, Material Design, and Bootstrap styles
+- **📝 Advanced Validation**: Character limits, input types, visual feedback
+- **♿ Full Accessibility**: WCAG 2.1 AA compliant with proper ARIA support
+- **🔗 Two-Way Binding**: Seamless integration with `[(ngModel)]` and reactive forms
+- **🎯 ControlValueAccessor**: Native Angular forms support
+- **📊 Character Counter**: Real-time character counting with visual indicators
+- **🎨 Theme Integration**: Global and local theme overrides
+- **⚡ Performance Optimized**: OnPush change detection and efficient rendering
+- **🛡️ Type Safe**: Full TypeScript support with strict typing
+
+#### Basic Usage Examples
 
 ```html
 <!-- Basic text input -->
-<zt-input placeholder="Enter your name" size="zt-md"></zt-input>
+<zt-input
+  placeholder="Enter your name"
+  size="zt-md">
+</zt-input>
 
-<!-- With validation -->
+<!-- Email input with validation -->
 <zt-input
   placeholder="Email address"
   inputType="email"
   [textlength]="100"
+  [showCharCounter]="true"
   size="zt-md">
+</zt-input>
+
+<!-- Password input with character limit -->
+<zt-input
+  placeholder="Password"
+  inputType="password"
+  [textlength]="50"
+  [showCharCounter]="true"
+  size="zt-lg">
 </zt-input>
 
 <!-- Material design style -->
@@ -382,25 +409,265 @@ A customizable text input with validation, floating labels, and multiple styles.
   size="zt-md">
 </zt-input>
 
-<!-- With theme override -->
+<!-- Bootstrap style -->
 <zt-input
-  [ztTheme]="inputTheme"
-  placeholder="Custom styled input">
+  placeholder="Bootstrap input"
+  inputStyle="bs"
+  size="zt-md">
 </zt-input>
+```
+
+#### Two-Way Data Binding
+
+```html
+<!-- Using ngModel for two-way binding -->
+<zt-input
+  placeholder="Enter name"
+  [(ngModel)]="userName"
+  [textlength]="50"
+  [showCharCounter]="true">
+</zt-input>
+
+<p>Character count: {{ userName.length }}/50</p>
+```
+
+#### Reactive Forms Integration
+
+```typescript
+// In your component
+export class MyFormComponent {
+  userForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    name: new FormControl('', [Validators.required, Validators.maxLength(50)])
+  });
+
+  constructor() {
+    // Form control will automatically sync with input component
+  }
+}
+```
+
+```html
+<form [formGroup]="userForm">
+  <!-- Works seamlessly with reactive forms -->
+  <zt-input
+    formControlName="email"
+    placeholder="Email address"
+    inputType="email"
+    [showCharCounter]="true">
+  </zt-input>
+
+  <zt-input
+    formControlName="name"
+    placeholder="Full name"
+    [textlength]="50"
+    [showCharCounter]="true">
+  </zt-input>
+</form>
+```
+
+#### Event Handling
+
+```html
+<zt-input
+  placeholder="Interactive input"
+  (valueChange)="onValueChange($event)"
+  (focus)="onFocus($event)"
+  (blur)="onBlur($event)"
+  [textlength]="100"
+  [showCharCounter]="true">
+</zt-input>
+```
+
+```typescript
+export class MyComponent {
+  onValueChange(value: string) {
+    console.log('Input value changed:', value);
+  }
+
+  onFocus(event: FocusEvent) {
+    console.log('Input focused');
+  }
+
+  onBlur(event: FocusEvent) {
+    console.log('Input blurred');
+  }
+}
+```
+
+#### Advanced Configuration
+
+```html
+<!-- Fully configured input with all features -->
+<zt-input
+  placeholder="Advanced input example"
+  inputType="text"
+  inputStyle="zt"
+  size="zt-md"
+  [value]="initialValue"
+  [textlength]="200"
+  [showCharCounter]="true"
+  [disabled]="isDisabled"
+  [errorMessage]="validationError"
+  [ztTheme]="customTheme"
+  (valueChange)="onValueChange($event)"
+  (blur)="validateInput($event)">
+</zt-input>
+```
+
+#### Theme Customization
+
+```html
+<!-- Local theme override -->
+<zt-input
+  [ztTheme]="brandInputTheme"
+  placeholder="Brand styled input"
+  [showCharCounter]="true">
+</zt-input>
+```
+
+```typescript
+export class MyComponent {
+  brandInputTheme: Partial<ThemeConfig> = {
+    colors: {
+      primary: '#FF6B35',        // Brand orange
+      textBlack: '#2D3748',      // Dark gray text
+      default: '#FFFFFF',        // White background
+    },
+    borderRadius: 8,             // Rounded corners
+    borderSize: 2,              // Thicker borders
+    fontFamily: '"Inter", sans-serif'
+  };
+}
+```
+
+#### Accessibility Features
+
+```html
+<!-- Accessible input with proper labeling -->
+<zt-input
+  placeholder="First name"
+  [showCharCounter]="true"
+  [textlength]="50"
+  aria-describedby="first-name-help">
+</zt-input>
+
+<div id="first-name-help" class="help-text">
+  Enter your first name (maximum 50 characters)
+</div>
 ```
 
 #### Input Properties
 
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
-| `value` | `string` | `''` | Input value |
-| `placeholder` | `string` | `'label'` | Placeholder text |
+| `value` | `string` | `''` | Input value (supports two-way binding) |
+| `placeholder` | `string` | `'Enter text'` | Placeholder text displayed when empty |
 | `textlength` | `number` | `255` | Maximum character length |
 | `inputType` | `'text' \| 'number' \| 'email' \| 'password'` | `'text'` | HTML input type |
-| `inputStyle` | `'zt' \| 'material' \| 'bs'` | `'zt'` | Visual input style |
-| `size` | `'zt-sm' \| 'zt-md' \| 'zt-lg'` | `'zt-md'` | Input size |
-| `theme` | `'light' \| 'dark' \| 'bootstrap' \| 'material'` | `'light'` | Legacy theme property |
-| `ztTheme` | `Partial<ThemeConfig>` | - | Local theme override |
+| `inputStyle` | `'zt' \| 'material' \| 'bs'` | `'zt'` | Visual style (ZT, Material, Bootstrap) |
+| `size` | `'zt-sm' \| 'zt-md' \| 'zt-lg'` | `'zt-md'` | Component size |
+| `disabled` | `boolean` | `false` | Whether input is disabled |
+| `showCharCounter` | `boolean` | `false` | Show real-time character counter |
+| `errorMessage` | `string` | `undefined` | Error message to display |
+| `theme` | `'light' \| 'dark' \| 'bootstrap' \| 'material'` | `'light'` | Legacy theme property (deprecated) |
+| `ztTheme` | `Partial<ThemeConfig>` | `undefined` | Local theme override |
+
+#### Input Events
+
+| Event | Type | Description |
+|-------|------|-------------|
+| `(valueChange)` | `string` | Emitted when input value changes |
+| `(focus)` | `FocusEvent` | Emitted when input gains focus |
+| `(blur)` | `FocusEvent` | Emitted when input loses focus |
+
+#### CSS Custom Properties
+
+The component supports extensive customization through CSS custom properties:
+
+```scss
+:host {
+  // Input dimensions
+  --zt-input-height: 48px;
+  --zt-input-padding: var(--zt-spacing-medium, 12px);
+  --zt-input-border-radius: var(--zt-border-radius, 4px);
+  --zt-input-border-size: var(--zt-border-size, 1px);
+
+  // Colors
+  --zt-input-bg: var(--zt-default, #ffffff);
+  --zt-input-color: var(--zt-text-black, #212529);
+  --zt-input-border: var(--zt-default-hover-border, #ced4da);
+  --zt-input-border-focus: var(--zt-primary, #007bff);
+  --zt-input-placeholder: var(--zt-text-gray, #6c757d);
+
+  // Validation states
+  --zt-input-error: #dc3545;
+  --zt-input-warning: #ffc107;
+
+  // Character counter
+  --zt-counter-font-size: var(--zt-font-size-small, 0.875rem);
+}
+```
+
+#### Validation States
+
+The component provides visual feedback for different validation states:
+
+```scss
+// Error state (character limit exceeded)
+.zt-input.error input {
+  border-color: var(--zt-input-error);
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.25);
+}
+
+// Warning state (approaching limit)
+.char-counter.warning {
+  color: var(--zt-input-warning);
+}
+
+// Success state (valid input)
+.char-counter {
+  color: var(--zt-text-gray);
+}
+```
+
+#### Best Practices
+
+1. **Character Limits**: Always set reasonable `textlength` values for better UX
+2. **Show Counter**: Use `[showCharCounter]="true"` for inputs with limits
+3. **Error Messages**: Provide clear, actionable error messages
+4. **Accessibility**: Ensure proper labeling and ARIA attributes
+5. **Theme Consistency**: Use global themes rather than local overrides when possible
+6. **Form Integration**: Leverage ControlValueAccessor for seamless form integration
+
+#### Migration from v1.x
+
+If upgrading from an earlier version:
+
+```typescript
+// Before (v1.x)
+<zt-input
+  placeholder="Name"
+  [textlength]="50"
+  theme="light">
+</zt-input>
+
+// After (v2.x) - Enhanced features
+<zt-input
+  placeholder="Name"
+  [textlength]="50"
+  [showCharCounter]="true"
+  [ztTheme]="inputTheme">
+</zt-input>
+```
+
+Key improvements in v2.x:
+- ✅ Two-way data binding support
+- ✅ Reactive forms integration
+- ✅ Enhanced accessibility
+- ✅ Visual validation feedback
+- ✅ Performance optimizations
+- ✅ Better TypeScript support
 
 ### Textarea Component (`<zt-textarea>`)
 
@@ -1370,7 +1637,233 @@ try {
 }
 ```
 
-### Best Practices
+## Migration Guide
+
+### Upgrading from v1.x to v2.0
+
+Version 2.0 introduces significant improvements and some breaking changes. Follow this guide to migrate your existing implementations.
+
+#### New Features in v2.0
+
+- ✅ **Two-way Data Binding**: Full `[(ngModel)]` support
+- ✅ **Reactive Forms**: Complete `ControlValueAccessor` implementation
+- ✅ **Enhanced Accessibility**: WCAG 2.1 AA compliance
+- ✅ **Visual Validation**: Real-time feedback and error states
+- ✅ **Performance Optimizations**: OnPush change detection and efficient rendering
+- ✅ **Better TypeScript Support**: Improved type safety and IntelliSense
+
+#### Breaking Changes
+
+##### 1. **Input Validation Behavior**
+```typescript
+// Before (v1.x) - Validation was inconsistent
+<zt-input [textlength]="100" (keydown)="manualValidation()"></zt-input>
+
+// After (v2.0) - Automatic validation with visual feedback
+<zt-input [textlength]="100" [showCharCounter]="true" [errorMessage]="validationError"></zt-input>
+```
+
+##### 2. **Event Handling**
+```typescript
+// Before (v1.x) - Manual event handling required
+<zt-input (keydown)="onKeyDown($event)" [value]="inputValue" (input)="onInput($event)"></zt-input>
+
+// After (v2.0) - Simplified with proper event delegation
+<zt-input [(ngModel)]="inputValue" (valueChange)="onValueChange($event)"></zt-input>
+```
+
+##### 3. **Theme Application**
+```typescript
+// Before (v1.x) - Direct DOM manipulation
+<zt-input [ztTheme]="theme" (afterViewInit)="applyTheme()"></zt-input>
+
+// After (v2.0) - Automatic theme application
+<zt-input [ztTheme]="theme"></zt-input> // Theme applied automatically in ngOnInit
+```
+
+#### Migration Steps
+
+1. **Update Imports**
+```typescript
+// Before (v1.x)
+import { ZtInputModule } from 'zt-ui-components';
+
+// After (v2.0) - Enhanced module with forms support
+import { ZtInputModule } from 'zt-ui-components';
+import { ReactiveFormsModule } from '@angular/forms';
+
+@NgModule({
+  imports: [
+    ZtInputModule.forRoot(), // Use forRoot() for root module
+    ReactiveFormsModule
+  ]
+})
+```
+
+2. **Update Component Usage**
+```typescript
+// Before (v1.x)
+<zt-input
+  placeholder="Name"
+  [textlength]="50"
+  theme="light"
+  [value]="name"
+  (keydown)="validateInput()">
+</zt-input>
+
+// After (v2.0) - Enhanced features
+<zt-input
+  placeholder="Name"
+  [(ngModel)]="name"
+  [textlength]="50"
+  [showCharCounter]="true"
+  [ztTheme]="inputTheme"
+  (valueChange)="onNameChange($event)"
+  (blur)="validateName()">
+</zt-input>
+```
+
+3. **Update Form Integration**
+```typescript
+// Before (v1.x) - Manual form handling
+export class MyComponent {
+  name = '';
+
+  onInput(event: any) {
+    this.name = event.target.value;
+  }
+}
+
+// After (v2.0) - Automatic form integration
+export class MyComponent {
+  name = '';
+
+  onNameChange(newValue: string) {
+    this.name = newValue;
+    // Validation happens automatically
+  }
+}
+```
+
+#### Deprecated Features
+
+| Feature | Status | Replacement |
+|---------|--------|-------------|
+| `theme` input property | Deprecated | Use `ztTheme` or global theming |
+| Manual validation | Deprecated | Use reactive forms and `errorMessage` |
+| `keydown` event handling | Simplified | Use `valueChange` and `blur` events |
+
+## Accessibility Best Practices
+
+### WCAG 2.1 AA Compliance
+
+All components in ZT-UI-Components are designed to meet WCAG 2.1 AA standards:
+
+#### Keyboard Navigation
+- **Tab Order**: Components follow logical tab sequence
+- **Focus Indicators**: Visible focus states using theme colors
+- **Keyboard Shortcuts**: Standard shortcuts supported (Ctrl+A, etc.)
+
+#### Screen Reader Support
+- **Semantic HTML**: Proper use of form elements and landmarks
+- **ARIA Labels**: Descriptive labels and descriptions
+- **Live Regions**: Dynamic content updates announced
+
+#### Color and Contrast
+- **Minimum Ratios**: 4.5:1 for normal text, 3:1 for large text
+- **Theme Validation**: Built-in contrast checking
+- **Color Independence**: Information not conveyed by color alone
+
+### Input Component Accessibility Features
+
+```html
+<!-- Properly accessible input -->
+<label for="user-email">Email Address</label>
+<zt-input
+  id="user-email"
+  inputType="email"
+  placeholder="Enter your email address"
+  [textlength]="100"
+  [showCharCounter]="true"
+  [errorMessage]="emailError"
+  aria-describedby="email-help">
+</zt-input>
+
+<div id="email-help" class="help-text">
+  We'll use this email to send you updates (max 100 characters)
+</div>
+
+<!-- Error message with proper ARIA -->
+<div id="email-error" role="alert" *ngIf="emailError">
+  {{ emailError }}
+</div>
+```
+
+#### Accessibility Checklist
+
+- ✅ **Labels**: Every input has an associated label
+- ✅ **Instructions**: Complex inputs have clear instructions
+- ✅ **Error Messages**: Errors are descriptive and actionable
+- ✅ **Character Limits**: Limits are communicated before reaching them
+- ✅ **Focus Management**: Focus is visible and logical
+- ✅ **Keyboard Support**: All interactions work via keyboard
+- ✅ **Screen Readers**: Content is properly announced
+- ✅ **Color Contrast**: All text meets minimum contrast ratios
+
+### Performance Best Practices
+
+#### Change Detection Optimization
+- **OnPush Strategy**: Used throughout the library for optimal performance
+- **Input Binding**: Avoid complex expressions in templates
+- **TrackBy Functions**: Use with *ngFor directives
+
+#### Bundle Size Optimization
+- **Tree Shaking**: Standalone components for optimal bundle size
+- **Dynamic Imports**: Lazy load components when possible
+- **CSS Optimization**: Use CSS custom properties for theme switching
+
+#### Runtime Performance
+- **Efficient Events**: Use `input` events instead of `keydown` where possible
+- **Renderer2**: Safe DOM manipulation for Universal compatibility
+- **Batch Updates**: Minimize change detection cycles
+
+### Theming Best Practices
+
+#### Design Token Organization
+```scss
+// Use consistent naming conventions
+:root {
+  --zt-color-primary: #007bff;
+  --zt-color-success: #28a745;
+  --zt-color-danger: #dc3545;
+
+  --zt-spacing-xs: 4px;
+  --zt-spacing-sm: 8px;
+  --zt-spacing-md: 16px;
+  --zt-spacing-lg: 24px;
+
+  --zt-border-radius-sm: 4px;
+  --zt-border-radius-md: 8px;
+  --zt-border-radius-lg: 12px;
+}
+```
+
+#### Theme Validation
+```typescript
+// Always validate custom themes
+const validation = this.themeService.validateTheme(customTheme);
+if (!validation.isValid) {
+  console.error('Theme validation failed:', validation.errors);
+  // Provide fallback or fix issues
+}
+```
+
+#### Performance Considerations
+- **CSS Variables**: Use for dynamic theming (better performance)
+- **Theme Caching**: Cache computed theme values when possible
+- **Minimal Overrides**: Use global themes rather than component-level overrides
+
+## Best Practices
 
 - **Component Design**: Use Angular's standalone components for better tree-shaking
 - **Styling**: Use SCSS with BEM methodology for maintainable styles
@@ -1379,6 +1872,9 @@ try {
 - **Performance**: Use `OnPush` change detection where possible
 - **Testing**: Write comprehensive unit tests and integration tests
 - **Theming**: Prefer global themes with minimal local overrides for consistency
+- **Forms Integration**: Leverage ControlValueAccessor for seamless form support
+- **Error Handling**: Provide clear, actionable error messages
+- **Documentation**: Keep component documentation current and comprehensive
 
 ### Accessibility & Theming
 
@@ -1440,6 +1936,236 @@ ng test zt-ui-components --watch=false
 3. Publish: `npm publish`
 
 Make sure you have an NPM account and are logged in.
+
+## Complete API Reference
+
+### Input Component Detailed API
+
+#### Properties
+
+| Property | Type | Default | Description | Example |
+|----------|------|---------|-------------|---------|
+| `value` | `string` | `''` | Input value with two-way binding support | `[value]="name"` |
+| `placeholder` | `string` | `'Enter text'` | Placeholder text | `placeholder="Enter email"` |
+| `textlength` | `number` | `255` | Maximum characters allowed | `[textlength]="100"` |
+| `inputType` | `'text' \| 'number' \| 'email' \| 'password'` | `'text'` | HTML input type | `inputType="email"` |
+| `inputStyle` | `'zt' \| 'material' \| 'bs'` | `'zt'` | Visual style variant | `inputStyle="material"` |
+| `size` | `'zt-sm' \| 'zt-md' \| 'zt-lg'` | `'zt-md'` | Component size | `size="zt-lg"` |
+| `disabled` | `boolean` | `false` | Disable input interaction | `[disabled]="isDisabled"` |
+| `showCharCounter` | `boolean` | `false` | Show character counter | `[showCharCounter]="true"` |
+| `errorMessage` | `string` | `undefined` | Error message to display | `[errorMessage]="emailError"` |
+| `theme` | `'light' \| 'dark' \| 'bootstrap' \| 'material'` | `'light'` | Legacy theme (deprecated) | `theme="dark"` |
+| `ztTheme` | `Partial<ThemeConfig>` | `undefined` | Local theme override | `[ztTheme]="customTheme"` |
+
+#### Events
+
+| Event | Payload | Description | Example |
+|-------|---------|-------------|---------|
+| `valueChange` | `string` | Emitted when value changes | `(valueChange)="onChange($event)"` |
+| `focus` | `FocusEvent` | Emitted when input gains focus | `(focus)="onFocus($event)"` |
+| `blur` | `FocusEvent` | Emitted when input loses focus | `(blur)="onBlur($event)"` |
+
+#### Computed Properties
+
+| Property | Type | Description | Example |
+|----------|------|-------------|---------|
+| `currentLength` | `number` | Current character count | `{{ inputComponent.currentLength }}` |
+| `hasError` | `boolean` | Whether character limit exceeded | `*ngIf="inputComponent.hasError"` |
+| `counterClass` | `string` | CSS class for counter state | `[ngClass]="inputComponent.counterClass"` |
+| `ariaDescribedBy` | `string` | ARIA described-by attribute | `aria-describedby="{{ inputComponent.ariaDescribedBy }}"` |
+
+#### CSS Custom Properties
+
+| Property | Default | Description |
+|----------|---------|-------------|
+| `--zt-input-height` | `48px` | Input height |
+| `--zt-input-padding` | `var(--zt-spacing-medium)` | Input padding |
+| `--zt-input-border-radius` | `var(--zt-border-radius)` | Border radius |
+| `--zt-input-border-size` | `var(--zt-border-size)` | Border thickness |
+| `--zt-input-bg` | `var(--zt-default)` | Background color |
+| `--zt-input-color` | `var(--zt-text-black)` | Text color |
+| `--zt-input-border` | `var(--zt-default-hover-border)` | Border color |
+| `--zt-input-border-focus` | `var(--zt-primary)` | Focus border color |
+| `--zt-input-placeholder` | `var(--zt-text-gray)` | Placeholder color |
+| `--zt-input-error` | `#dc3545` | Error state color |
+| `--zt-input-warning` | `#ffc107` | Warning state color |
+| `--zt-counter-font-size` | `var(--zt-font-size-small)` | Counter text size |
+
+### Theme Configuration API
+
+#### ThemeConfig Interface
+
+```typescript
+interface ThemeConfig {
+  name: string;
+  colors: {
+    textBlack: string;
+    textWhite: string;
+    textPrimary: string;
+    default: string;
+    defaultHoverBg: string;
+    defaultHoverBorder: string;
+    defaultPressed: string;
+    primary: string;
+    primaryHoverBg: string;
+    primaryHoverBorder: string;
+    primaryPressed: string;
+    success: string;
+    successHoverBg: string;
+    successHoverBorder: string;
+    successPressed: string;
+    info: string;
+    infoHoverBg: string;
+    infoHoverBorder: string;
+    infoPressed: string;
+    warning: string;
+    warningHoverBg: string;
+    warningHoverBorder: string;
+    warningPressed: string;
+    danger: string;
+    dangerHoverBg: string;
+    dangerHoverBorder: string;
+    dangerPressed: string;
+    dark: string;
+    darkHoverBg: string;
+    darkHoverBorder: string;
+    darkPressed: string;
+    link: string;
+    linkHoverBg: string;
+    linkHoverBorder: string;
+    linkPressed: string;
+  };
+  borderRadius?: number;
+  borderSize?: number;
+  fontFamily?: string;
+  fontSize?: {
+    small: string;
+    medium: string;
+    large: string;
+  };
+  spacing?: {
+    small: string;
+    medium: string;
+    large: string;
+  };
+}
+```
+
+#### ZTThemeService Methods
+
+| Method | Parameters | Returns | Description |
+|--------|------------|---------|-------------|
+| `setTheme` | `theme: ThemeConfig` | `void` | Set complete theme configuration |
+| `setThemeByName` | `name: ThemeName` | `void` | Set predefined theme by name |
+| `getCurrentTheme` | `none` | `ThemeConfig` | Get current theme configuration |
+| `currentTheme$` | `none` | `Observable<ThemeConfig>` | Observable of current theme |
+| `validateTheme` | `theme: ThemeConfig` | `ValidationResult` | Validate theme for accessibility |
+| `exportTheme` | `none` | `ThemeConfig` | Export current theme as object |
+| `importTheme` | `theme: ThemeConfig` | `void` | Import theme from object |
+| `resetToDefault` | `none` | `void` | Reset to default theme |
+| `toggleDarkMode` | `none` | `void` | Toggle between light and dark themes |
+
+### Component Architecture
+
+#### Standalone Components
+
+All components are built as Angular standalone components:
+
+```typescript
+@Component({
+  selector: 'zt-input',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './input.component.html',
+  styleUrls: ['./input.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [/* ControlValueAccessor providers */]
+})
+export class InputComponent implements OnInit, OnDestroy, ControlValueAccessor {
+  // Component implementation
+}
+```
+
+#### Module-Based Usage (Optional)
+
+For traditional module-based applications:
+
+```typescript
+import { ZtInputModule } from 'zt-ui-components';
+
+@NgModule({
+  imports: [ZtInputModule.forRoot()],
+  // ...
+})
+export class AppModule {}
+```
+
+### Error Handling API
+
+#### Validation Error Types
+
+```typescript
+interface ValidationError {
+  type: 'required' | 'maxlength' | 'minlength' | 'pattern' | 'email' | 'custom';
+  message: string;
+  value?: any;
+}
+
+interface FormValidationResult {
+  isValid: boolean;
+  errors: ValidationError[];
+  warnings: string[];
+}
+```
+
+#### Component Error States
+
+```typescript
+// Error state management
+export class MyComponent {
+  emailError?: string;
+
+  validateEmail() {
+    if (this.emailFormControl.errors?.['required']) {
+      this.emailError = 'Email is required';
+    } else if (this.emailFormControl.errors?.['email']) {
+      this.emailError = 'Please enter a valid email address';
+    } else {
+      this.emailError = undefined;
+    }
+  }
+}
+```
+
+### TypeScript Utility Types
+
+#### Component Props Types
+
+```typescript
+// Input component props
+type InputType = 'text' | 'number' | 'email' | 'password';
+type InputStyle = 'zt' | 'material' | 'bs';
+type InputSize = 'zt-sm' | 'zt-md' | 'zt-lg';
+type ThemeName = 'light' | 'dark' | 'bootstrap' | 'material';
+
+// Theme configuration
+type ColorName = keyof ThemeConfig['colors'];
+type SpacingSize = 'small' | 'medium' | 'large';
+type FontSize = 'small' | 'medium' | 'large';
+```
+
+#### Event Handler Types
+
+```typescript
+// Event handler signatures
+type ValueChangeHandler = (value: string) => void;
+type FocusHandler = (event: FocusEvent) => void;
+type BlurHandler = (event: FocusEvent) => void;
+
+// ControlValueAccessor signatures
+type OnChangeFn = (value: any) => void;
+type OnTouchedFn = () => void;
+```
 
 ## Contributing
 

@@ -1,49 +1,95 @@
 @if (inputStyle === 'zt') {
-  <div>
+  <div class="zt-input-container">
     <div class="box_input">
       <div class="form__group">
         <input
           [type]="inputType"
-          id="input"
-          aria-labelledby="label-fname"
+          [id]="uniqueId"
+          [attr.aria-describedby]="ariaDescribedBy"
+          [attr.aria-labelledby]="uniqueId + '-label'"
           [maxLength]="textlength"
+          [disabled]="disabled"
+          [value]="value"
           #textInput
-          />
-        <label class="label" for="fname" id="label-fname">
+          [class.error]="hasError"
+        />
+        <label class="label" [for]="uniqueId" [id]="uniqueId + '-label'">
           <div class="text">{{ placeholder }}</div>
         </label>
       </div>
+      @if (showCharCounter) {
+        <div class="char-counter" [ngClass]="counterClass" [id]="uniqueId + '-counter'">
+          {{ currentLength }}/{{ textlength }}
+        </div>
+      }
+      @if (errorMessage) {
+        <div class="error-message" [id]="uniqueId + '-error'" role="alert">
+          {{ errorMessage }}
+        </div>
+      }
     </div>
   </div>
 }
 
 @if (inputStyle === 'material') {
-  <div>
+  <div class="zt-input-container">
     <div class="material_input">
       <div class="form__group">
         <input
           [type]="inputType"
-          id="input_m"
+          [id]="uniqueId"
+          [attr.aria-describedby]="ariaDescribedBy"
+          [attr.aria-labelledby]="uniqueId + '-label'"
           class="form__field"
           [placeholder]="placeholder"
+          [disabled]="disabled"
+          [value]="value"
           #textInput
-          />
-        <label for="email" class="form__label">{{ placeholder }}</label>
+          [class.error]="hasError"
+        />
+        <label [for]="uniqueId" [id]="uniqueId + '-label'" class="form__label">
+          {{ placeholder }}
+        </label>
       </div>
+      @if (showCharCounter) {
+        <div class="char-counter" [ngClass]="counterClass" [id]="uniqueId + '-counter'">
+          {{ currentLength }}/{{ textlength }}
+        </div>
+      }
+      @if (errorMessage) {
+        <div class="error-message" [id]="uniqueId + '-error'" role="alert">
+          {{ errorMessage }}
+        </div>
+      }
     </div>
   </div>
 }
 
 @if (inputStyle === 'bs') {
-  <div>
+  <div class="zt-input-container">
     <div class="input_bs">
       <input
-        type="text"
+        [type]="inputType"
+        [id]="uniqueId"
+        [attr.aria-describedby]="ariaDescribedBy"
+        [attr.aria-labelledby]="uniqueId + '-label'"
         class="form__field form-control"
         [placeholder]="placeholder"
-        [type]="inputType"
-        id="input_bs"
-        />
+        [disabled]="disabled"
+        [value]="value"
+        #textInput
+        [class.error]="hasError"
+      />
+      @if (showCharCounter) {
+        <div class="char-counter" [ngClass]="counterClass" [id]="uniqueId + '-counter'">
+          {{ currentLength }}/{{ textlength }}
+        </div>
+      }
+      @if (errorMessage) {
+        <div class="error-message" [id]="uniqueId + '-error'" role="alert">
+          {{ errorMessage }}
+        </div>
+      }
     </div>
   </div>
 }
