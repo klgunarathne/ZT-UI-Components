@@ -586,18 +586,48 @@
     height: 30px;
     padding: 0 0.5em;
     font-size: 12px;
+
+    &.zt-round {
+      width: 30px !important;
+      height: 30px !important;
+    }
+
+    &.zt-floating {
+      width: 42px !important;
+      height: 42px !important;
+    }
   }
 
   &.zt-md {
     height: 38px;
     padding: 0 0.75em;
     font-size: 14px;
+
+    &.zt-round {
+      width: 38px !important;
+      height: 38px !important;
+    }
+
+    &.zt-floating {
+      width: 56px !important;
+      height: 56px !important;
+    }
   }
 
   &.zt-lg {
     height: 46px;
     padding: 0 1em;
     font-size: 16px;
+
+    &.zt-round {
+      width: 46px !important;
+      height: 46px !important;
+    }
+
+    &.zt-floating {
+      width: 70px !important;
+      height: 70px !important;
+    }
   }
 
   .button-red {
