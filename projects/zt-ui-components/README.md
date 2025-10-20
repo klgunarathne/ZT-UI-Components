@@ -713,22 +713,57 @@ Multi-line text input with character counting and validation.
 
 ### Select Component (`<zt-select>`)
 
-Dropdown select component with data binding and customizable display.
+Dropdown select component with data binding, customizable display, and style-specific placeholder behaviors.
+
+#### Style-Specific Behaviors
+
+- **ZT Style** (`inputStyle="zt"`): Traditional styling with `value=""` placeholder option
+- **Material Style** (`inputStyle="material"`): Material Design styling with `value=""` placeholder option
+- **Bootstrap Style** (`inputStyle="bs"`): Bootstrap styling with `[ngValue]="null"` placeholder option (recommended for placeholder functionality)
+
+#### Placeholder Handling
+
+- **ZT & Material styles**: Use `value=""` for placeholder, clear to `-1`, display `message` property text
+- **Bootstrap style**: Uses `[ngValue]="null"` for placeholder, clears to `null`, displays `placeholder` property text
 
 ```html
-<!-- Basic select -->
+<!-- ZT Style (default) -->
 <zt-select
+  inputStyle="zt"
   [dataSource]="countries"
   [key]="'code'"
   [displayValue]="'name'"
   placeholder="Select country">
 </zt-select>
 
-<!-- With clear button -->
+<!-- Material Style -->
 <zt-select
+  inputStyle="material"
   [dataSource]="options"
-  [showClearButton]="true"
+  [key]="'id'"
+  [displayValue]="'name'"
   placeholder="Choose option">
+</zt-select>
+
+<!-- Bootstrap Style (with proper placeholder support) -->
+<zt-select
+  inputStyle="bs"
+  [dataSource]="options"
+  [key]="'id'"
+  [displayValue]="'name'"
+  placeholder="Choose option">
+</zt-select>
+
+<!-- With clear button and value binding -->
+<zt-select
+  inputStyle="bs"
+  [dataSource]="options"
+  [key]="'id'"
+  [displayValue]="'name'"
+  [(value)]="selectedValue"
+  [showClearButton]="true"
+  placeholder="Choose option"
+  (valueChange)="onSelectionChange($event)">
 </zt-select>
 ```
 
@@ -736,16 +771,22 @@ Dropdown select component with data binding and customizable display.
 
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
-| `dataSource` | `any[]` | `[]` | Array of options |
-| `key` | `any` | - | Property for option value |
-| `displayValue` | `any` | `''` | Property for display text |
-| `value` | `any` | - | Selected value |
-| `placeholder` | `string` | `'label'` | Placeholder text |
-| `inputStyle` | `'zt' \| 'material' \| 'bs'` | `'zt'` | Visual style |
+| `dataSource` | `any[]` | `[]` | Array of options to display |
+| `key` | `any` | - | Property name to use as option value |
+| `displayValue` | `any` | `''` | Property name to display as option text |
+| `value` | `any` | - | Selected value (supports two-way binding) |
+| `placeholder` | `string` | `'Choose an option'` | Placeholder text (only effective with `inputStyle="bs"`) |
+| `inputStyle` | `'zt' \| 'material' \| 'bs'` | `'zt'` | Visual style with different placeholder behaviors |
 | `size` | `'zt-sm' \| 'zt-md' \| 'zt-lg'` | `'zt-md'` | Component size |
 | `showClearButton` | `boolean` | `true` | Show clear/reset button |
-| `theme` | `'light' \| 'dark' \| 'bootstrap' \| 'material'` | `'light'` | Legacy theme property |
+| `theme` | `'light' \| 'dark' \| 'bootstrap' \| 'material'` | `'light'` | Legacy theme property (use global theming) |
 | `ztTheme` | `Partial<ThemeConfig>` | - | Local theme override |
+
+#### Select Events
+
+| Event | Type | Description |
+|-------|------|-------------|
+| `(valueChange)` | `any` | Emitted when selection changes |
 
 ### Card Component (`<zt-card>`)
 

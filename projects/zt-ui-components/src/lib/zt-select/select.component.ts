@@ -15,15 +15,48 @@ import { FormsModule } from '@angular/forms';
  * A customizable select dropdown component that supports various styles, themes, and data binding.
  * It allows users to select from a list of options with configurable display and value properties.
  *
+ * ## Style-Specific Behaviors:
+ *
+ * - **ZT Style** (`inputStyle="zt"`): Traditional select with `value=""` placeholder option
+ * - **Material Style** (`inputStyle="material"`): Material Design select with `value=""` placeholder option
+ * - **Bootstrap Style** (`inputStyle="bs"`): Bootstrap-styled select with `[ngValue]="null"` placeholder option
+ *
+ * ## Placeholder Handling:
+ *
+ * - ZT & Material styles: Use `value=""` for placeholder, clear to `-1`
+ * - Bootstrap style: Uses `[ngValue]="null"` for placeholder, clears to `null`
+ *
  * @example
+ * <!-- ZT Style (default) -->
  * <zt-select
  *   [dataSource]="options"
  *   [key]="'id'"
  *   [displayValue]="'name'"
  *   [value]="selectedValue"
- *   placeholder="Choose an option"
- *   size="zt-md"
- *   theme="light">
+ *   inputStyle="zt"
+ *   placeholder="Choose an option">
+ * </zt-select>
+ *
+ * @example
+ * <!-- Material Style -->
+ * <zt-select
+ *   [dataSource]="options"
+ *   [key]="'id'"
+ *   [displayValue]="'name'"
+ *   [value]="selectedValue"
+ *   inputStyle="material"
+ *   placeholder="Choose an option">
+ * </zt-select>
+ *
+ * @example
+ * <!-- Bootstrap Style (with proper placeholder support) -->
+ * <zt-select
+ *   [dataSource]="options"
+ *   [key]="'id'"
+ *   [displayValue]="'name'"
+ *   [value]="selectedValue"
+ *   inputStyle="bs"
+ *   placeholder="Choose an option">
  * </zt-select>
  */
 @Component({
@@ -42,12 +75,21 @@ export class SelectComponent implements OnInit {
 
   /**
    * Placeholder text displayed when no option is selected.
+   *
+   * **Note**: Only effective with `inputStyle="bs"`. ZT and Material styles
+   * use the `message` property for their placeholder text display.
+   *
    * @default 'Choose an option'
    */
   @Input() placeholder? = 'Choose an option';
 
   /**
    * The visual style of the select component.
+   *
+   * - `'zt'`: Traditional ZT styling with `value=""` placeholder option
+   * - `'material'`: Material Design styling with `value=""` placeholder option
+   * - `'bs'`: Bootstrap styling with `[ngValue]="null"` placeholder option (recommended for placeholder functionality)
+   *
    * @default 'zt'
    */
   @Input() inputStyle?: 'zt' | 'material' | 'bs' = 'zt';

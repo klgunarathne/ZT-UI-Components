@@ -48,7 +48,9 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'bootstrap',\r\n    inputStyle: 'bs',\r\n    placeholder: 'Bootstrap style select',\r\n    dataSource: [\r\n      { id: 1, firstName: 'Eve' },\r\n      { id: 2, firstName: 'Frank' },\r\n      { id: 3, firstName: 'Grace' },\r\n    ],\r\n    key: 'id',\r\n    displayValue: 'firstName',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-select [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\" [dataSource]=\"dataSource\" [key]=\"key\" [displayValue]=\"displayValue\"></zt-select>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'bootstrap',\r\n    inputStyle: 'bs',\r\n    placeholder: 'Choose an option',\r\n    dataSource: [\r\n      { id: 1, firstName: 'Eve' },\r\n      { id: 2, firstName: 'Frank' },\r\n      { id: 3, firstName: 'Grace' },\r\n    ],\r\n    key: 'id',\r\n    displayValue: 'firstName',\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Bootstrap Style uses `[ngValue]=\"null\"` for placeholder option and properly displays `placeholder` property text. This is the recommended style for placeholder functionality.',\r\n      },\r\n    },\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-select [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\" [dataSource]=\"dataSource\" [key]=\"key\" [displayValue]=\"displayValue\"></zt-select>\r\n    `,\r\n    props: args,\r\n  }),\r\n}",
+                "rawdescription": "Bootstrap Style Select - Bootstrap styling with `[ngValue]=\"null\"` placeholder option.\r\n**This is the only style that properly supports placeholder functionality.**\r\nUses the `placeholder` property for placeholder text display.",
+                "description": "<p>Bootstrap Style Select - Bootstrap styling with <code>[ngValue]=&quot;null&quot;</code> placeholder option.\n<strong>This is the only style that properly supports placeholder functionality.</strong>\nUses the <code>placeholder</code> property for placeholder text display.</p>\n"
             },
             {
                 "name": "Bootstrap_Textarea",
@@ -208,7 +210,9 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'light',\r\n    inputStyle: 'material',\r\n    placeholder: 'Material style select',\r\n    dataSource: [\r\n      { id: 1, firstName: 'Alice' },\r\n      { id: 2, firstName: 'Charlie' },\r\n      { id: 3, firstName: 'David' },\r\n    ],\r\n    key: 'id',\r\n    displayValue: 'firstName',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-select [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\" [dataSource]=\"dataSource\" [key]=\"key\" [displayValue]=\"displayValue\"></zt-select>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'light',\r\n    inputStyle: 'material',\r\n    placeholder: 'Material style select',\r\n    dataSource: [\r\n      { id: 1, firstName: 'Alice' },\r\n      { id: 2, firstName: 'Charlie' },\r\n      { id: 3, firstName: 'David' },\r\n    ],\r\n    key: 'id',\r\n    displayValue: 'firstName',\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Material Style uses `value=\"\"` for placeholder option with no display text in the option element.',\r\n      },\r\n    },\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-select [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\" [dataSource]=\"dataSource\" [key]=\"key\" [displayValue]=\"displayValue\"></zt-select>\r\n    `,\r\n    props: args,\r\n  }),\r\n}",
+                "rawdescription": "Material Style Select - Material Design styling with `value=\"\"` placeholder option.\r\nUses the `message` property for placeholder text display (empty in template).",
+                "description": "<p>Material Style Select - Material Design styling with <code>value=&quot;&quot;</code> placeholder option.\nUses the <code>message</code> property for placeholder text display (empty in template).</p>\n"
             },
             {
                 "name": "Material_Textarea",
@@ -308,7 +312,9 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<SelectComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Select',\r\n  component: SelectComponent,\r\n  argTypes: {\r\n    size: {\r\n      options: ['zt-md', 'zt-sm', 'zt-lg'],\r\n      control: { type: 'select' },\r\n      default: 'zt-md',\r\n    },\r\n    theme: {\r\n      options: ['light', 'dark', 'bootstrap', 'material'],\r\n      control: { type: 'select' },\r\n      default: 'light',\r\n    },\r\n    inputStyle: {\r\n      options: ['zt', 'material', 'bs'],\r\n      control: { type: 'select' },\r\n      default: 'zt',\r\n    },\r\n  },\r\n}"
+                "defaultValue": "{\r\n  title: 'Components/Select',\r\n  component: SelectComponent,\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        component: `\r\n## Select Component\r\n\r\nA versatile select dropdown component with multiple styling options.\r\n\r\n### Style-Specific Behaviors:\r\n\r\n- **ZT Style** (\\`inputStyle=\"zt\"\\`): Uses \\`value=\"\"\\` for placeholder option\r\n- **Material Style** (\\`inputStyle=\"material\"\\`): Uses \\`value=\"\"\\` for placeholder option\r\n- **Bootstrap Style** (\\`inputStyle=\"bs\"\\`): Uses \\`[ngValue]=\"null\"\\` for placeholder option (recommended)\r\n\r\n### Placeholder Handling:\r\n\r\n- ZT & Material styles: Clear to \\`-1\\`, use \\`message\\` property for placeholder text\r\n- Bootstrap style: Clears to \\`null\\`, uses \\`placeholder\\` property for placeholder text\r\n\r\n### Usage Examples:\r\n\r\n\\`\\`\\`typescript\r\n// ZT Style (default)\r\n<zt-select inputStyle=\"zt\" [dataSource]=\"options\" [key]=\"'id'\" [displayValue]=\"'name'\"></zt-select>\r\n\r\n// Material Style\r\n<zt-select inputStyle=\"material\" [dataSource]=\"options\" [key]=\"'id'\" [displayValue]=\"'name'\"></zt-select>\r\n\r\n// Bootstrap Style (with proper placeholder support)\r\n<zt-select inputStyle=\"bs\" [dataSource]=\"options\" [key]=\"'id'\" [displayValue]=\"'name'\" placeholder=\"Choose option\"></zt-select>\r\n\\`\\`\\`\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    size: {\r\n      options: ['zt-md', 'zt-sm', 'zt-lg'],\r\n      control: { type: 'select' },\r\n      description: 'Size of the select component',\r\n    },\r\n    theme: {\r\n      options: ['light', 'dark', 'bootstrap', 'material'],\r\n      control: { type: 'select' },\r\n      description: 'Theme of the select component',\r\n    },\r\n    inputStyle: {\r\n      options: ['zt', 'material', 'bs'],\r\n      control: { type: 'select' },\r\n      description: 'Visual style with different placeholder behaviors',\r\n    },\r\n    placeholder: {\r\n      control: { type: 'text' },\r\n      description: 'Placeholder text (only effective with inputStyle=\"bs\")',\r\n    },\r\n  },\r\n}",
+                "rawdescription": "Select component stories demonstrating different input styles and their behaviors.\r\n\r\n## Style Behaviors:\r\n- **ZT Style**: Traditional select with `value=\"\"` placeholder option\r\n- **Material Style**: Material Design styling with `value=\"\"` placeholder option\r\n- **Bootstrap Style**: Bootstrap styling with `[ngValue]=\"null\"` placeholder option (recommended for placeholder functionality)",
+                "description": "<p>Select component stories demonstrating different input styles and their behaviors.</p>\n<h2>Style Behaviors:</h2>\n<ul>\n<li><strong>ZT Style</strong>: Traditional select with <code>value=&quot;&quot;</code> placeholder option</li>\n<li><strong>Material Style</strong>: Material Design styling with <code>value=&quot;&quot;</code> placeholder option</li>\n<li><strong>Bootstrap Style</strong>: Bootstrap styling with <code>[ngValue]=&quot;null&quot;</code> placeholder option (recommended for placeholder functionality)</li>\n</ul>\n"
             },
             {
                 "name": "meta",
@@ -428,7 +434,9 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'light',\r\n    inputStyle: 'zt',\r\n    placeholder: 'Choose an option',\r\n    dataSource: [\r\n      { id: 1, firstName: 'John' },\r\n      { id: 2, firstName: 'Jane' },\r\n      { id: 3, firstName: 'Bob' },\r\n    ],\r\n    key: 'id',\r\n    displayValue: 'firstName',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-select [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\" [dataSource]=\"dataSource\" [key]=\"key\" [displayValue]=\"displayValue\"></zt-select>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'light',\r\n    inputStyle: 'zt',\r\n    placeholder: 'Choose an option',\r\n    dataSource: [\r\n      { id: 1, firstName: 'John' },\r\n      { id: 2, firstName: 'Jane' },\r\n      { id: 3, firstName: 'Bob' },\r\n    ],\r\n    key: 'id',\r\n    displayValue: 'firstName',\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'ZT Style uses `value=\"\"` for placeholder option and displays `message` property text.',\r\n      },\r\n    },\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-select [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\" [dataSource]=\"dataSource\" [key]=\"key\" [displayValue]=\"displayValue\"></zt-select>\r\n    `,\r\n    props: args,\r\n  }),\r\n}",
+                "rawdescription": "ZT Style Select - Traditional styling with `value=\"\"` placeholder option.\r\nUses the `message` property for placeholder text display.",
+                "description": "<p>ZT Style Select - Traditional styling with <code>value=&quot;&quot;</code> placeholder option.\nUses the <code>message</code> property for placeholder text display.</p>\n"
             },
             {
                 "name": "SizeVariations",
@@ -738,7 +746,9 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'bootstrap',\r\n    inputStyle: 'bs',\r\n    placeholder: 'Bootstrap style select',\r\n    dataSource: [\r\n      { id: 1, firstName: 'Eve' },\r\n      { id: 2, firstName: 'Frank' },\r\n      { id: 3, firstName: 'Grace' },\r\n    ],\r\n    key: 'id',\r\n    displayValue: 'firstName',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-select [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\" [dataSource]=\"dataSource\" [key]=\"key\" [displayValue]=\"displayValue\"></zt-select>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                    "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'bootstrap',\r\n    inputStyle: 'bs',\r\n    placeholder: 'Choose an option',\r\n    dataSource: [\r\n      { id: 1, firstName: 'Eve' },\r\n      { id: 2, firstName: 'Frank' },\r\n      { id: 3, firstName: 'Grace' },\r\n    ],\r\n    key: 'id',\r\n    displayValue: 'firstName',\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Bootstrap Style uses `[ngValue]=\"null\"` for placeholder option and properly displays `placeholder` property text. This is the recommended style for placeholder functionality.',\r\n      },\r\n    },\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-select [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\" [dataSource]=\"dataSource\" [key]=\"key\" [displayValue]=\"displayValue\"></zt-select>\r\n    `,\r\n    props: args,\r\n  }),\r\n}",
+                    "rawdescription": "Bootstrap Style Select - Bootstrap styling with `[ngValue]=\"null\"` placeholder option.\r\n**This is the only style that properly supports placeholder functionality.**\r\nUses the `placeholder` property for placeholder text display.",
+                    "description": "<p>Bootstrap Style Select - Bootstrap styling with <code>[ngValue]=&quot;null&quot;</code> placeholder option.\n<strong>This is the only style that properly supports placeholder functionality.</strong>\nUses the <code>placeholder</code> property for placeholder text display.</p>\n"
                 },
                 {
                     "name": "Material_Select",
@@ -748,7 +758,9 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'light',\r\n    inputStyle: 'material',\r\n    placeholder: 'Material style select',\r\n    dataSource: [\r\n      { id: 1, firstName: 'Alice' },\r\n      { id: 2, firstName: 'Charlie' },\r\n      { id: 3, firstName: 'David' },\r\n    ],\r\n    key: 'id',\r\n    displayValue: 'firstName',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-select [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\" [dataSource]=\"dataSource\" [key]=\"key\" [displayValue]=\"displayValue\"></zt-select>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                    "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'light',\r\n    inputStyle: 'material',\r\n    placeholder: 'Material style select',\r\n    dataSource: [\r\n      { id: 1, firstName: 'Alice' },\r\n      { id: 2, firstName: 'Charlie' },\r\n      { id: 3, firstName: 'David' },\r\n    ],\r\n    key: 'id',\r\n    displayValue: 'firstName',\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Material Style uses `value=\"\"` for placeholder option with no display text in the option element.',\r\n      },\r\n    },\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-select [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\" [dataSource]=\"dataSource\" [key]=\"key\" [displayValue]=\"displayValue\"></zt-select>\r\n    `,\r\n    props: args,\r\n  }),\r\n}",
+                    "rawdescription": "Material Style Select - Material Design styling with `value=\"\"` placeholder option.\r\nUses the `message` property for placeholder text display (empty in template).",
+                    "description": "<p>Material Style Select - Material Design styling with <code>value=&quot;&quot;</code> placeholder option.\nUses the <code>message</code> property for placeholder text display (empty in template).</p>\n"
                 },
                 {
                     "name": "meta",
@@ -758,7 +770,9 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<SelectComponent>",
-                    "defaultValue": "{\r\n  title: 'Components/Select',\r\n  component: SelectComponent,\r\n  argTypes: {\r\n    size: {\r\n      options: ['zt-md', 'zt-sm', 'zt-lg'],\r\n      control: { type: 'select' },\r\n      default: 'zt-md',\r\n    },\r\n    theme: {\r\n      options: ['light', 'dark', 'bootstrap', 'material'],\r\n      control: { type: 'select' },\r\n      default: 'light',\r\n    },\r\n    inputStyle: {\r\n      options: ['zt', 'material', 'bs'],\r\n      control: { type: 'select' },\r\n      default: 'zt',\r\n    },\r\n  },\r\n}"
+                    "defaultValue": "{\r\n  title: 'Components/Select',\r\n  component: SelectComponent,\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        component: `\r\n## Select Component\r\n\r\nA versatile select dropdown component with multiple styling options.\r\n\r\n### Style-Specific Behaviors:\r\n\r\n- **ZT Style** (\\`inputStyle=\"zt\"\\`): Uses \\`value=\"\"\\` for placeholder option\r\n- **Material Style** (\\`inputStyle=\"material\"\\`): Uses \\`value=\"\"\\` for placeholder option\r\n- **Bootstrap Style** (\\`inputStyle=\"bs\"\\`): Uses \\`[ngValue]=\"null\"\\` for placeholder option (recommended)\r\n\r\n### Placeholder Handling:\r\n\r\n- ZT & Material styles: Clear to \\`-1\\`, use \\`message\\` property for placeholder text\r\n- Bootstrap style: Clears to \\`null\\`, uses \\`placeholder\\` property for placeholder text\r\n\r\n### Usage Examples:\r\n\r\n\\`\\`\\`typescript\r\n// ZT Style (default)\r\n<zt-select inputStyle=\"zt\" [dataSource]=\"options\" [key]=\"'id'\" [displayValue]=\"'name'\"></zt-select>\r\n\r\n// Material Style\r\n<zt-select inputStyle=\"material\" [dataSource]=\"options\" [key]=\"'id'\" [displayValue]=\"'name'\"></zt-select>\r\n\r\n// Bootstrap Style (with proper placeholder support)\r\n<zt-select inputStyle=\"bs\" [dataSource]=\"options\" [key]=\"'id'\" [displayValue]=\"'name'\" placeholder=\"Choose option\"></zt-select>\r\n\\`\\`\\`\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    size: {\r\n      options: ['zt-md', 'zt-sm', 'zt-lg'],\r\n      control: { type: 'select' },\r\n      description: 'Size of the select component',\r\n    },\r\n    theme: {\r\n      options: ['light', 'dark', 'bootstrap', 'material'],\r\n      control: { type: 'select' },\r\n      description: 'Theme of the select component',\r\n    },\r\n    inputStyle: {\r\n      options: ['zt', 'material', 'bs'],\r\n      control: { type: 'select' },\r\n      description: 'Visual style with different placeholder behaviors',\r\n    },\r\n    placeholder: {\r\n      control: { type: 'text' },\r\n      description: 'Placeholder text (only effective with inputStyle=\"bs\")',\r\n    },\r\n  },\r\n}",
+                    "rawdescription": "Select component stories demonstrating different input styles and their behaviors.\r\n\r\n## Style Behaviors:\r\n- **ZT Style**: Traditional select with `value=\"\"` placeholder option\r\n- **Material Style**: Material Design styling with `value=\"\"` placeholder option\r\n- **Bootstrap Style**: Bootstrap styling with `[ngValue]=\"null\"` placeholder option (recommended for placeholder functionality)",
+                    "description": "<p>Select component stories demonstrating different input styles and their behaviors.</p>\n<h2>Style Behaviors:</h2>\n<ul>\n<li><strong>ZT Style</strong>: Traditional select with <code>value=&quot;&quot;</code> placeholder option</li>\n<li><strong>Material Style</strong>: Material Design styling with <code>value=&quot;&quot;</code> placeholder option</li>\n<li><strong>Bootstrap Style</strong>: Bootstrap styling with <code>[ngValue]=&quot;null&quot;</code> placeholder option (recommended for placeholder functionality)</li>\n</ul>\n"
                 },
                 {
                     "name": "Select",
@@ -768,7 +782,9 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'light',\r\n    inputStyle: 'zt',\r\n    placeholder: 'Choose an option',\r\n    dataSource: [\r\n      { id: 1, firstName: 'John' },\r\n      { id: 2, firstName: 'Jane' },\r\n      { id: 3, firstName: 'Bob' },\r\n    ],\r\n    key: 'id',\r\n    displayValue: 'firstName',\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-select [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\" [dataSource]=\"dataSource\" [key]=\"key\" [displayValue]=\"displayValue\"></zt-select>\r\n    `,\r\n    props: args,\r\n  }),\r\n}"
+                    "defaultValue": "{\r\n  args: {\r\n    size: 'zt-md',\r\n    theme: 'light',\r\n    inputStyle: 'zt',\r\n    placeholder: 'Choose an option',\r\n    dataSource: [\r\n      { id: 1, firstName: 'John' },\r\n      { id: 2, firstName: 'Jane' },\r\n      { id: 3, firstName: 'Bob' },\r\n    ],\r\n    key: 'id',\r\n    displayValue: 'firstName',\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'ZT Style uses `value=\"\"` for placeholder option and displays `message` property text.',\r\n      },\r\n    },\r\n  },\r\n  render: (args) => ({\r\n    template: `\r\n    <zt-select [size]=\"size\" [theme]=\"theme\" [inputStyle]=\"inputStyle\" [placeholder]=\"placeholder\" [dataSource]=\"dataSource\" [key]=\"key\" [displayValue]=\"displayValue\"></zt-select>\r\n    `,\r\n    props: args,\r\n  }),\r\n}",
+                    "rawdescription": "ZT Style Select - Traditional styling with `value=\"\"` placeholder option.\r\nUses the `message` property for placeholder text display.",
+                    "description": "<p>ZT Style Select - Traditional styling with <code>value=&quot;&quot;</code> placeholder option.\nUses the <code>message</code> property for placeholder text display.</p>\n"
                 }
             ],
             "projects/zt-ui-components/src/stories/textarea.stories.ts": [
@@ -1184,7 +1200,7 @@
         "children": []
     },
     "coverage": {
-        "count": 0,
+        "count": 7,
         "status": "low",
         "files": [
             {
@@ -1643,9 +1659,9 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Bootstrap_Select",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
+                "coveragePercent": 100,
+                "coverageCount": "1/1",
+                "status": "very-good"
             },
             {
                 "filePath": "projects/zt-ui-components/src/stories/select.stories.ts",
@@ -1653,9 +1669,9 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Material_Select",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
+                "coveragePercent": 100,
+                "coverageCount": "1/1",
+                "status": "very-good"
             },
             {
                 "filePath": "projects/zt-ui-components/src/stories/select.stories.ts",
@@ -1663,9 +1679,9 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "meta",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
+                "coveragePercent": 100,
+                "coverageCount": "1/1",
+                "status": "very-good"
             },
             {
                 "filePath": "projects/zt-ui-components/src/stories/select.stories.ts",
@@ -1673,9 +1689,9 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Select",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
+                "coveragePercent": 100,
+                "coverageCount": "1/1",
+                "status": "very-good"
             },
             {
                 "filePath": "projects/zt-ui-components/src/stories/select.stories.ts",
