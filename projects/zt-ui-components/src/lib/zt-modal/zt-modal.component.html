@@ -1,0 +1,48 @@
+<!-- Modal Backdrop -->
+<div
+  class="zt-modal-backdrop"
+  [class.show]="isOpen"
+  [style.z-index]="zIndex"
+  (click)="onBackdropClick($event)"
+  role="dialog"
+  aria-modal="true"
+  [attr.aria-labelledby]="title ? 'modal-title' : null"
+  [attr.aria-describedby]="'modal-body'"
+>
+
+  <!-- Modal Dialog -->
+  <div
+    class="zt-modal-dialog"
+    [class.show]="isOpen"
+    [class]="getModalSizeClass()"
+    [class]="'theme-' + theme"
+    role="document"
+  >
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header" *ngIf="title || closable">
+        <h5 class="modal-title" id="modal-title" *ngIf="title">{{ title }}</h5>
+        <button
+          type="button"
+          class="btn-close"
+          *ngIf="closable"
+          (click)="onCloseClick()"
+          aria-label="Close modal"
+        ></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body" id="modal-body">
+        <ng-content select="[modal-body]"></ng-content>
+        <ng-content *ngIf="!hasBodyContent()"></ng-content>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer" *ngIf="hasFooterContent()">
+        <ng-content select="[modal-footer]"></ng-content>
+      </div>
+
+    </div>
+  </div>
+</div>

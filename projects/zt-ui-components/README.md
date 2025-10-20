@@ -17,6 +17,7 @@ npm install zt-ui-components
 
 ### Interactive Components
 - **`<zt-button>`** - Versatile button component with variants, sizes, and states
+- **`<zt-modal>`** - Flexible modal dialog with theming support and accessibility features
 - **`<zt-paginator>`** - Pagination component for data tables and lists
 
 ### Layout Components
@@ -873,6 +874,105 @@ Pagination component for navigating through data pages.
 | Event | Type | Description |
 |-------|------|-------------|
 | `(onPageChange)` | `number` | Emitted when page changes |
+
+### Modal Component (`<zt-modal>`)
+
+Flexible modal dialog with theming support, accessibility features, and customizable content areas.
+
+```html
+<!-- Basic modal -->
+<zt-modal
+  [isOpen]="showModal"
+  [title]="'Confirmation'"
+  [size]="'md'"
+  [closable]="true"
+  [backdropClosable]="true"
+  (onClose)="handleClose()"
+  (onOpen)="handleOpen()">
+
+  <div modal-body>
+    <p>Modal content goes here...</p>
+  </div>
+
+  <div modal-footer>
+    <button (click)="closeModal()">Close</button>
+    <button (click)="confirmAction()">Confirm</button>
+  </div>
+
+</zt-modal>
+
+<!-- Small confirmation dialog -->
+<zt-modal
+  [isOpen]="confirmDialog"
+  [title]="'Delete Item'"
+  [size]="'sm'"
+  [theme]="'dark'"
+  [backdropClosable]="false">
+
+  <div modal-body>
+    <p>Are you sure you want to delete this item? This action cannot be undone.</p>
+  </div>
+
+  <div modal-footer>
+    <button class="btn btn-secondary" (click)="cancelDelete()">Cancel</button>
+    <button class="btn btn-danger" (click)="confirmDelete()">Delete</button>
+  </div>
+
+</zt-modal>
+
+<!-- Large modal with custom content -->
+<zt-modal
+  [isOpen]="largeModal"
+  [title]="'User Settings'"
+  [size]="'lg'"
+  [customClass]="'custom-modal'"
+  [ztTheme]="customModalTheme">
+
+  <div modal-body>
+    <h4>Settings</h4>
+    <p>Configure your preferences and settings here.</p>
+    <!-- Complex content can go here -->
+  </div>
+
+</zt-modal>
+```
+
+#### Modal Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `isOpen` | `boolean` | `false` | Controls modal visibility |
+| `title` | `string` | `''` | Modal title text |
+| `size` | `'sm' \| 'md' \| 'lg' \| 'xl' \| 'fullscreen'` | `'md'` | Modal size |
+| `theme` | `'light' \| 'dark' \| 'bootstrap' \| 'material'` | `'light'` | Theme variant |
+| `closable` | `boolean` | `true` | Allow modal to be closed via close button or escape key |
+| `backdropClosable` | `boolean` | `true` | Allow modal to be closed by clicking backdrop |
+| `customClass` | `string` | `''` | Custom CSS classes for styling |
+| `zIndex` | `number` | `1050` | Z-index for the modal overlay |
+| `ztTheme` | `Partial<ThemeConfig>` | - | Local theme override |
+
+#### Modal Events
+
+| Event | Type | Description |
+|-------|------|-------------|
+| `(onClose)` | `void` | Emitted when modal is closed |
+| `(onOpen)` | `void` | Emitted when modal is opened |
+| `(onBeforeClose)` | `void` | Emitted before modal is closed |
+
+#### Modal Content Projection
+
+| Selector | Description |
+|----------|-------------|
+| `[modal-body]` | Main modal content area |
+| `[modal-footer]` | Modal footer with action buttons |
+
+#### Modal Accessibility Features
+
+- **Keyboard Navigation**: Full keyboard support with focus management
+- **Focus Trap**: Focus is contained within the modal when open
+- **ARIA Support**: Proper ARIA attributes for screen readers
+- **Escape Key**: Close modal with Escape key (when closable)
+- **Backdrop Click**: Close modal by clicking backdrop (when backdropClosable)
 
 ### Data Grid Component (`<zt-data-grid>`)
 
