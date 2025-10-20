@@ -67,7 +67,7 @@
         #select
         [(ngModel)]="value"
         >
-        <option value="" class="select-message" selected disabled>
+        <option [ngValue]="null" class="select-message" selected disabled>
           {{ placeholder }}
         </option>
         @for (obj of dataSource; track obj; let i = $index) {
