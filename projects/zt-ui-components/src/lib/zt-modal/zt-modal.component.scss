@@ -1,5 +1,5 @@
-@import '../../assets/variables';
-@import '../../assets/themes';
+@use '../../assets/variables';
+@use '../../assets/themes';
 
 // Modal backdrop
 .zt-modal-backdrop {
@@ -84,29 +84,33 @@
 }
 
 // Modal header
+// Optimized for reduced height: reduced padding from 0.5rem to 0.25rem,
+// decreased title font-size from 1.25rem to 1.1rem, and line-height from 1.5 to 1.2
 .modal-header {
   display: flex;
   flex-shrink: 0;
   align-items: center;
   justify-content: space-between;
-  padding: var(--zt-modal-header-padding, 1rem 1rem);
+  padding: var(--zt-modal-header-padding, 0.25rem 0.5rem);
   border-bottom: var(--zt-modal-header-border-width, 1px) solid var(--zt-modal-header-border-color, #dee2e6);
   border-top-left-radius: calc(var(--zt-modal-border-radius, 0.375rem) - var(--zt-modal-inner-border-radius, 0px));
   border-top-right-radius: calc(var(--zt-modal-border-radius, 0.375rem) - var(--zt-modal-inner-border-radius, 0px));
 
   .modal-title {
     margin-bottom: 0;
-    line-height: var(--zt-modal-title-line-height, 1.5);
-    font-size: var(--zt-modal-title-font-size, 1.25rem);
+    line-height: var(--zt-modal-title-line-height, 1.2);
+    font-size: var(--zt-modal-title-font-size, 1.1rem);
     font-weight: var(--zt-modal-title-font-weight, 500);
     color: var(--zt-modal-title-color, #212529);
   }
 
+  // Close button optimized for reduced header height
+  // Font-size reduced from 1.25rem to 1.1rem to match title scaling
   .btn-close {
     padding: 0;
     background: none;
     border: 0;
-    font-size: var(--zt-modal-header-close-font-size, 1.25rem);
+    font-size: var(--zt-modal-header-close-font-size, 1.1rem);
     width: var(--zt-modal-header-close-width, 1em);
     height: var(--zt-modal-header-close-height, 1em);
     color: var(--zt-modal-header-close-color, #000);
