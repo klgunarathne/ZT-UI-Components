@@ -1,0 +1,991 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Tutorial" />
+
+# ZT-UI Components Tutorial
+
+Welcome to the comprehensive tutorial for ZT-UI Components! This guide will walk you through everything you need to know to effectively use this powerful Angular component library, from basic setup to advanced customization.
+
+## Introduction
+
+ZT-UI Components is a comprehensive collection of reusable UI components for Angular applications. Built with modern Angular patterns, it features:
+
+- 🎨 **Robust Theming System** - Global themes with local overrides and dynamic switching
+- ♿ **Accessibility First** - WCAG 2.1 AA compliant components
+- 🔧 **Developer Experience** - TypeScript support, comprehensive documentation, and Storybook integration
+- 📱 **Responsive Design** - Mobile-first approach with flexible layouts
+- ⚡ **Performance Optimized** - OnPush change detection and efficient rendering
+- 🧩 **Modular Architecture** - Standalone components for optimal tree-shaking
+
+The library includes form components, interactive elements, layout components, and data display widgets, all designed to work seamlessly together.
+
+## UI Components
+
+ZT-UI Components provides a rich set of components organized into the following categories:
+
+### Form Components
+- **`<zt-input>`** - Advanced text input with validation, character counting, and multiple visual styles
+- **`<zt-textarea>`** - Multi-line text input with length validation and character counting
+- **`<zt-select>`** - Dropdown select with data binding, search capabilities, and customizable styles
+
+### Interactive Components
+- **`<zt-button>`** - Versatile button with variants, sizes, states, and interaction handling
+- **`<zt-modal>`** - Flexible modal dialogs with theming, accessibility, and customizable content
+- **`<zt-paginator>`** - Pagination component for navigating data tables and lists
+
+### Layout Components
+- **`<zt-card>`** - Flexible container with headers, bodies, footers, variants, and hover effects
+
+### Data Display Components
+- **`<zt-data-grid>`** - Advanced data table with sorting, filtering, pagination, and row selection
+
+## Installation
+
+Getting started with ZT-UI Components is straightforward. Follow these steps to add it to your Angular project.
+
+### Prerequisites
+
+- Angular 16+
+- Node.js 18+
+- npm or yarn
+
+### Install the Package
+
+```bash
+npm install zt-ui-components
+```
+
+### Verify Installation
+
+After installation, you should see `zt-ui-components` in your `package.json` dependencies.
+
+## Available Components
+
+ZT-UI Components provides a rich set of components organized into categories:
+
+### Form Components
+- **`<zt-input>`** - Advanced text input with validation and character counting
+- **`<zt-textarea>`** - Multi-line text input with length validation
+- **`<zt-select>`** - Dropdown select with data binding and search
+
+### Interactive Components
+- **`<zt-button>`** - Versatile button with variants and states
+- **`<zt-modal>`** - Accessible modal dialogs with theming
+- **`<zt-paginator>`** - Pagination for data tables and lists
+
+### Layout Components
+- **`<zt-card>`** - Flexible container with headers, bodies, and variants
+
+### Data Display Components
+- **`<zt-data-grid>`** - Advanced data table with sorting, filtering, and pagination
+
+## Quick Start
+
+Let's get you up and running with your first ZT-UI Components in just a few minutes.
+
+### 1. Import Components
+
+For standalone Angular applications (recommended):
+
+```typescript
+import { Component } from '@angular/core';
+import { ZtButton, ZtInput, ZtCard, ZTThemeService } from 'zt-ui-components';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [ZtButton, ZtInput, ZtCard],
+  template: `
+    <zt-card cardStyle="elevated" size="md">
+      <div class="card-header">
+        <h3>Welcome to ZT-UI</h3>
+      </div>
+      <div class="card-body">
+        <zt-input
+          placeholder="Enter your name"
+          size="zt-md"
+          [textlength]="50">
+        </zt-input>
+        <zt-button variant="primary" size="zt-md">
+          Get Started
+        </zt-button>
+      </div>
+    </zt-card>
+  `,
+})
+export class AppComponent {
+  constructor(private themeService: ZTThemeService) {
+    // Set a theme (optional)
+    this.themeService.setThemeByName('light');
+  }
+}
+```
+
+For module-based applications:
+
+```typescript
+// app.module.ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { ZtButtonModule, ZtInputModule, ZtCardModule } from 'zt-ui-components';
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    ZtButtonModule,
+    ZtInputModule,
+    ZtCardModule,
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+### 2. Add Global Styles
+
+Include the component styles in your global stylesheet:
+
+```scss
+// styles.scss
+@import '~zt-ui-components/styles';
+```
+
+### 3. Configure Theme (Optional)
+
+Set up a global theme in your `app.config.ts`:
+
+```typescript
+import { ApplicationConfig } from '@angular/core';
+import { THEME_CONFIG } from 'zt-ui-components';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    {
+      provide: THEME_CONFIG,
+      useValue: {
+        name: 'custom-brand',
+        colors: {
+          primary: '#007bff',
+          success: '#28a745',
+          danger: '#dc3545',
+        },
+        borderRadius: 8,
+      }
+    }
+  ]
+};
+```
+
+## Basic Usage Examples
+
+Let's explore basic usage patterns for each component type.
+
+### Button Component
+
+```html
+<!-- Basic buttons -->
+<zt-button variant="primary">Primary Button</zt-button>
+<zt-button variant="secondary">Secondary Button</zt-button>
+<zt-button variant="success">Success Button</zt-button>
+<zt-button variant="danger">Danger Button</zt-button>
+
+<!-- Button with click handler -->
+<zt-button variant="primary" (click)="handleSubmit()">
+  Submit Form
+</zt-button>
+
+<!-- Disabled button -->
+<zt-button variant="primary" [disabled]="isLoading">
+  {{ isLoading ? 'Loading...' : 'Submit' }}
+</zt-button>
+
+<!-- Outline style -->
+<zt-button variant="primary" [outline]="true">
+  Outline Button
+</zt-button>
+```
+
+```typescript
+export class MyComponent {
+  isLoading = false;
+
+  handleSubmit() {
+    this.isLoading = true;
+    // Handle form submission
+    setTimeout(() => this.isLoading = false, 2000);
+  }
+}
+```
+
+### Input Component
+
+```html
+<!-- Basic text input -->
+<zt-input
+  placeholder="Enter your name"
+  size="zt-md">
+</zt-input>
+
+<!-- Email input with validation -->
+<zt-input
+  placeholder="Email address"
+  inputType="email"
+  [textlength]="100"
+  [showCharCounter]="true">
+</zt-input>
+
+<!-- Password input -->
+<zt-input
+  placeholder="Password"
+  inputType="password"
+  [textlength]="50">
+</zt-input>
+
+<!-- Two-way binding -->
+<zt-input
+  placeholder="Username"
+  [(ngModel)]="username"
+  [textlength]="30"
+  [showCharCounter]="true">
+</zt-input>
+
+<p>Username: {{ username }}</p>
+```
+
+```typescript
+export class MyComponent {
+  username = '';
+}
+```
+
+### Card Component
+
+```html
+<!-- Basic card -->
+<zt-card cardStyle="elevated" size="md">
+  <div class="card-header">
+    <h3>Card Title</h3>
+  </div>
+  <div class="card-body">
+    <p>Card content goes here. You can put any content inside the card body.</p>
+  </div>
+  <div class="card-footer">
+    <zt-button variant="primary">Action</zt-button>
+  </div>
+</zt-card>
+
+<!-- Outlined card -->
+<zt-card cardStyle="outlined" variant="primary">
+  <div class="card-body">
+    <h4>Primary Outlined Card</h4>
+    <p>This card has an outlined style with primary color variant.</p>
+  </div>
+</zt-card>
+```
+
+### Select Component
+
+```html
+<!-- Basic select -->
+<zt-select
+  inputStyle="zt"
+  [dataSource]="countries"
+  [key]="'code'"
+  [displayValue]="'name'"
+  placeholder="Select country">
+</zt-select>
+
+<!-- With two-way binding -->
+<zt-select
+  inputStyle="bs"
+  [dataSource]="options"
+  [key]="'id'"
+  [displayValue]="'name'"
+  [(value)]="selectedValue"
+  placeholder="Choose option"
+  (valueChange)="onSelectionChange($event)">
+</zt-select>
+```
+
+```typescript
+export class MyComponent {
+  countries = [
+    { code: 'US', name: 'United States' },
+    { code: 'CA', name: 'Canada' },
+    { code: 'UK', name: 'United Kingdom' }
+  ];
+
+  options = [
+    { id: 1, name: 'Option 1' },
+    { id: 2, name: 'Option 2' },
+    { id: 3, name: 'Option 3' }
+  ];
+
+  selectedValue: any;
+
+  onSelectionChange(value: any) {
+    console.log('Selected value:', value);
+  }
+}
+```
+
+## Advanced Features
+
+### Reactive Forms Integration
+
+ZT-UI Components work seamlessly with Angular Reactive Forms:
+
+```typescript
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+export class ContactFormComponent {
+  contactForm: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.contactForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(2)]],
+      email: ['', [Validators.required, Validators.email]],
+      message: ['', [Validators.required, Validators.maxLength(500)]]
+    });
+  }
+
+  onSubmit() {
+    if (this.contactForm.valid) {
+      console.log('Form data:', this.contactForm.value);
+    }
+  }
+}
+```
+
+```html
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+  <zt-input
+    formControlName="name"
+    placeholder="Full Name"
+    [textlength]="50">
+  </zt-input>
+
+  <zt-input
+    formControlName="email"
+    placeholder="Email Address"
+    inputType="email">
+  </zt-input>
+
+  <zt-textarea
+    formControlName="message"
+    placeholder="Your message"
+    [textlength]="500"
+    [showCharCount]="true"
+    [rows]="4">
+  </zt-textarea>
+
+  <zt-button
+    type="submit"
+    variant="primary"
+    [disabled]="contactForm.invalid">
+    Send Message
+  </zt-button>
+</form>
+```
+
+### Data Grid with Advanced Features
+
+```html
+<zt-data-grid
+  [dataSource]="users"
+  [columns]="gridColumns"
+  [sortable]="true"
+  [filterable]="true"
+  [pagination]="true"
+  [pageSize]="10"
+  (onRowClick)="onRowClick($event)">
+</zt-data-grid>
+```
+
+```typescript
+export class UserManagementComponent {
+  users = [
+    { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin', status: 'Active' },
+    { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User', status: 'Inactive' },
+    // ... more users
+  ];
+
+  gridColumns = [
+    { field: 'name', header: 'Name', sortable: true, filterable: true },
+    { field: 'email', header: 'Email', sortable: true, filterable: true },
+    { field: 'role', header: 'Role', sortable: true },
+    { field: 'status', header: 'Status', sortable: true }
+  ];
+
+  onRowClick(row: any) {
+    console.log('Row clicked:', row);
+  }
+}
+```
+
+### Modal Dialogs
+
+```html
+<!-- Trigger button -->
+<zt-button variant="primary" (click)="openModal()">
+  Open Modal
+</zt-button>
+
+<!-- Modal -->
+<zt-modal
+  [isOpen]="showModal"
+  [title]="'Confirm Action'"
+  [size]="'md'"
+  [closable]="true"
+  [backdropClosable]="true"
+  (onClose)="closeModal()">
+
+  <div modal-body>
+    <p>Are you sure you want to perform this action? This cannot be undone.</p>
+  </div>
+
+  <div modal-footer>
+    <zt-button variant="secondary" (click)="closeModal()">
+      Cancel
+    </zt-button>
+    <zt-button variant="danger" (click)="confirmAction()">
+      Confirm
+    </zt-button>
+  </div>
+
+</zt-modal>
+```
+
+```typescript
+export class MyComponent {
+  showModal = false;
+
+  openModal() {
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
+  }
+
+  confirmAction() {
+    // Perform action
+    console.log('Action confirmed');
+    this.closeModal();
+  }
+}
+```
+
+## Theming System
+
+### Global Theme Setup
+
+Set a global theme that applies to all components:
+
+```typescript
+import { ZTThemeService, LIGHT_THEME } from 'zt-ui-components';
+
+@Component({...})
+export class AppComponent implements OnInit {
+  constructor(private themeService: ZTThemeService) {}
+
+  ngOnInit() {
+    // Set predefined theme
+    this.themeService.setThemeByName('dark');
+
+    // Or set custom theme
+    this.themeService.setTheme({
+      name: 'brand-theme',
+      colors: {
+        primary: '#FF6B35',
+        success: '#4CAF50',
+        danger: '#F44336',
+        textBlack: '#2D3748',
+        default: '#FFFFFF',
+      },
+      borderRadius: 12,
+      borderSize: 2,
+      fontFamily: '"Inter", sans-serif'
+    });
+  }
+}
+```
+
+### Local Theme Overrides
+
+Override theme properties for individual components:
+
+```html
+<!-- Component with local theme override -->
+<zt-card [ztTheme]="cardTheme" cardStyle="elevated">
+  <div class="card-body">
+    <h3>Custom Themed Card</h3>
+    <zt-input
+      [ztTheme]="inputTheme"
+      placeholder="Custom styled input">
+    </zt-input>
+  </div>
+</zt-card>
+```
+
+```typescript
+export class MyComponent {
+  cardTheme: Partial<ThemeConfig> = {
+    colors: {
+      primary: '#FF6B35',
+      borderRadius: 16,
+    },
+    borderSize: 3
+  };
+
+  inputTheme: Partial<ThemeConfig> = {
+    colors: {
+      primary: '#4ECDC4',
+      textBlack: '#2C3E50'
+    },
+    borderRadius: 8
+  };
+}
+```
+
+### Dynamic Theme Switching
+
+Implement runtime theme switching:
+
+```typescript
+export class ThemeSwitcherComponent {
+  availableThemes = ['light', 'dark', 'bootstrap', 'material'];
+  currentTheme$ = this.themeService.currentTheme$;
+
+  constructor(private themeService: ZTThemeService) {}
+
+  setTheme(themeName: string) {
+    this.themeService.setThemeByName(themeName as any);
+  }
+
+  toggleDarkMode() {
+    this.themeService.toggleDarkMode();
+  }
+}
+```
+
+## API Reference
+
+### Button Component API
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | HTML button type |
+| `disabled` | `boolean` | `false` | Whether the button is disabled |
+| `variant` | `'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info' \| 'dark'` | `'primary'` | Visual style variant |
+| `outline` | `boolean` | `false` | Display as outline style |
+| `size` | `'zt-sm' \| 'zt-md' \| 'zt-lg'` | `'zt-md'` | Button size |
+| `ztTheme` | `Partial<ThemeConfig>` | - | Local theme override |
+
+**Events:**
+- `(click)` - Emitted when button is clicked
+
+### Input Component API
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `value` | `string` | `''` | Input value (supports two-way binding) |
+| `placeholder` | `string` | `'Enter text'` | Placeholder text |
+| `textlength` | `number` | `255` | Maximum character length |
+| `inputType` | `'text' \| 'number' \| 'email' \| 'password'` | `'text'` | HTML input type |
+| `inputStyle` | `'zt' \| 'material' \| 'bs'` | `'zt'` | Visual style |
+| `size` | `'zt-sm' \| 'zt-md' \| 'zt-lg'` | `'zt-md'` | Component size |
+| `disabled` | `boolean` | `false` | Whether input is disabled |
+| `showCharCounter` | `boolean` | `false` | Show character counter |
+| `errorMessage` | `string` | - | Error message to display |
+| `ztTheme` | `Partial<ThemeConfig>` | - | Local theme override |
+
+**Events:**
+- `(valueChange)` - Emitted when value changes
+- `(focus)` - Emitted when input gains focus
+- `(blur)` - Emitted when input loses focus
+
+### Card Component API
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `cardStyle` | `'elevated' \| 'outlined' \| 'flat'` | `'elevated'` | Card visual style |
+| `variant` | `'default' \| 'primary' \| 'info' \| 'danger' \| 'warning' \| 'dark'` | `'default'` | Color variant |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Card size/padding |
+| `hoverable` | `boolean` | `false` | Enable hover effects |
+| `ztTheme` | `Partial<ThemeConfig>` | - | Local theme override |
+
+### Select Component API
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `dataSource` | `any[]` | `[]` | Array of options |
+| `key` | `string` | - | Property name for option value |
+| `displayValue` | `string` | `''` | Property name for display text |
+| `value` | `any` | - | Selected value (two-way binding) |
+| `placeholder` | `string` | `'Choose an option'` | Placeholder text |
+| `inputStyle` | `'zt' \| 'material' \| 'bs'` | `'zt'` | Visual style |
+| `size` | `'zt-sm' \| 'zt-md' \| 'zt-lg'` | `'zt-md'` | Component size |
+| `showClearButton` | `boolean` | `true` | Show clear/reset button |
+| `ztTheme` | `Partial<ThemeConfig>` | - | Local theme override |
+
+**Events:**
+- `(valueChange)` - Emitted when selection changes
+
+### Data Grid Component API
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `dataSource` | `any[]` | `[]` | Data array |
+| `columns` | `DataGridColumn[]` | `[]` | Column definitions |
+| `sortable` | `boolean` | `false` | Enable column sorting |
+| `filterable` | `boolean` | `false` | Enable column filtering |
+| `pagination` | `boolean` | `false` | Enable pagination |
+| `pageSize` | `number` | `10` | Items per page |
+| `ztTheme` | `Partial<ThemeConfig>` | - | Local theme override |
+
+### Modal Component API
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `isOpen` | `boolean` | `false` | Controls modal visibility |
+| `title` | `string` | `''` | Modal title text |
+| `size` | `'sm' \| 'md' \| 'lg' \| 'xl' \| 'fullscreen'` | `'md'` | Modal size |
+| `closable` | `boolean` | `true` | Allow modal to be closed |
+| `backdropClosable` | `boolean` | `true` | Close on backdrop click |
+| `ztTheme` | `Partial<ThemeConfig>` | - | Local theme override |
+
+**Events:**
+- `(onClose)` - Emitted when modal closes
+- `(onOpen)` - Emitted when modal opens
+
+## Customization Options
+
+### Creating Custom Themes
+
+```typescript
+import { ThemeConfig } from 'zt-ui-components';
+
+const CUSTOM_BRAND_THEME: ThemeConfig = {
+  name: 'brand-theme',
+  colors: {
+    textBlack: '#1a1a1a',
+    textWhite: '#ffffff',
+    textPrimary: '#0066cc',
+    default: '#f8f9fa',
+    defaultHoverBg: '#e9ecef',
+    primary: '#0066cc',
+    primaryHoverBg: '#0052a3',
+    success: '#28a745',
+    danger: '#dc3545',
+    // ... complete color palette
+  },
+  borderRadius: 8,
+  borderSize: 1,
+  fontFamily: '"Inter", -apple-system, sans-serif',
+  fontSize: {
+    small: '14px',
+    medium: '16px',
+    large: '18px'
+  },
+  spacing: {
+    small: '8px',
+    medium: '16px',
+    large: '24px'
+  }
+};
+```
+
+### CSS Custom Properties
+
+Components support extensive customization through CSS custom properties:
+
+```scss
+:host {
+  // Input customization
+  --zt-input-height: 48px;
+  --zt-input-padding: 12px;
+  --zt-input-border-radius: 8px;
+  --zt-input-border-size: 2px;
+  --zt-input-bg: #ffffff;
+  --zt-input-color: #212529;
+  --zt-input-border: #ced4da;
+  --zt-input-border-focus: #007bff;
+
+  // Button customization
+  --zt-button-padding: 12px 24px;
+  --zt-button-border-radius: 8px;
+  --zt-button-font-size: 16px;
+
+  // Card customization
+  --zt-card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --zt-card-border-radius: 12px;
+}
+```
+
+### Component Styling Hooks
+
+Use CSS classes for advanced styling:
+
+```scss
+// Custom button styles
+.my-custom-button {
+  .zt-button {
+    background: linear-gradient(45deg, #FF6B35, #F7931E);
+    border: none;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+    }
+  }
+}
+
+// Custom input styles
+.custom-input {
+  --zt-input-border-focus: #FF6B35;
+  --zt-input-border-radius: 12px;
+
+  .zt-input.error input {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+  }
+}
+```
+
+## Troubleshooting
+
+### Common Issues and Solutions
+
+#### 1. Components Not Rendering
+
+**Problem:** Components appear as plain HTML elements.
+
+**Solution:** Ensure components are properly imported:
+
+```typescript
+// For standalone components
+imports: [ZtButton, ZtInput, ZtCard]
+
+// For modules
+imports: [ZtButtonModule, ZtInputModule, ZtCardModule]
+```
+
+#### 2. Theme Not Applying
+
+**Problem:** Theme changes don't take effect.
+
+**Solutions:**
+- Check that `ZTThemeService` is injected correctly
+- Ensure theme is set before component initialization
+- Verify theme configuration is valid
+
+```typescript
+// Correct theme application
+constructor(private themeService: ZTThemeService) {}
+
+ngOnInit() {
+  this.themeService.setThemeByName('dark');
+}
+```
+
+#### 3. Form Validation Issues
+
+**Problem:** Form controls not validating properly.
+
+**Solution:** Ensure proper `ControlValueAccessor` implementation:
+
+```typescript
+// In component with reactive forms
+this.form = this.fb.group({
+  email: ['', [Validators.required, Validators.email]]
+});
+```
+
+```html
+<zt-input
+  formControlName="email"
+  placeholder="Email"
+  inputType="email">
+</zt-input>
+```
+
+#### 4. Performance Issues
+
+**Problem:** Components causing performance problems.
+
+**Solutions:**
+- Use `OnPush` change detection
+- Avoid complex expressions in templates
+- Implement proper trackBy functions for `*ngFor`
+
+#### 5. Accessibility Warnings
+
+**Problem:** Screen reader or keyboard navigation issues.
+
+**Solution:** Ensure proper ARIA attributes:
+
+```html
+<zt-input
+  placeholder="Search"
+  aria-label="Search products"
+  [textlength]="100">
+</zt-input>
+```
+
+### Debug Mode
+
+Enable debug logging for troubleshooting:
+
+```typescript
+import { ZTThemeService } from 'zt-ui-components';
+
+// Enable theme debugging
+this.themeService.enableDebugMode();
+
+// Check current theme
+console.log('Current theme:', this.themeService.getCurrentTheme());
+```
+
+### Browser Compatibility
+
+ZT-UI Components support:
+- Chrome 90+
+- Firefox 88+
+- Safari 14+
+- Edge 90+
+
+For older browsers, consider using polyfills.
+
+## Contribution Guidelines
+
+We welcome contributions to ZT-UI Components! Here's how to get involved:
+
+### Development Setup
+
+1. **Fork and Clone** the repository
+2. **Install Dependencies**
+   ```bash
+   npm install
+   ```
+3. **Start Development Server**
+   ```bash
+   ng build zt-ui-components --watch
+   ```
+4. **Run Tests**
+   ```bash
+   ng test zt-ui-components
+   ```
+
+### Adding New Components
+
+Follow this step-by-step process:
+
+1. **Generate Component Structure**
+   ```bash
+   ng generate component zt-new-component --project=zt-ui-components --style=scss --standalone
+   ```
+
+2. **Implement Component Logic**
+   ```typescript
+   @Component({
+     selector: 'zt-new-component',
+     standalone: true,
+     imports: [CommonModule],
+     templateUrl: './zt-new-component.component.html',
+     styleUrls: ['./zt-new-component.component.scss'],
+     changeDetection: ChangeDetectionStrategy.OnPush,
+   })
+   export class ZtNewComponent implements OnInit {
+     @Input() title = '';
+     @Input() size: 'sm' | 'md' | 'lg' = 'md';
+     @Input() ztTheme?: Partial<ThemeConfig>;
+   }
+   ```
+
+3. **Add Theme Support**
+   ```scss
+   @use "../../assets/themes" as themes;
+
+   :host {
+     --zt-component-bg: var(--zt-default, #ffffff);
+     --zt-component-color: var(--zt-text-black, #212529);
+   }
+   ```
+
+4. **Write Unit Tests**
+   ```typescript
+   describe('ZtNewComponent', () => {
+     it('should create', () => {
+       expect(component).toBeTruthy();
+     });
+   });
+   ```
+
+5. **Create Storybook Stories**
+   ```typescript
+   const meta: Meta<ZtNewComponent> = {
+     title: 'Components/New Component',
+     component: ZtNewComponent,
+     tags: ['autodocs'],
+   };
+   ```
+
+6. **Update Documentation**
+   - Add component to README.md
+   - Update API reference
+   - Add usage examples
+
+### Code Standards
+
+- **TypeScript:** Strict mode enabled
+- **SCSS:** BEM methodology
+- **Testing:** 80%+ code coverage required
+- **Accessibility:** WCAG 2.1 AA compliance
+- **Performance:** OnPush change detection
+
+### Pull Request Process
+
+1. Create a feature branch: `git checkout -b feature/new-component`
+2. Make your changes with tests
+3. Run the full test suite: `npm test`
+4. Update documentation
+5. Submit pull request with detailed description
+
+### Reporting Issues
+
+When reporting bugs:
+- Use the issue template
+- Include Angular version and browser info
+- Provide minimal reproduction case
+- Include error messages and stack traces
+
+## Next Steps
+
+Now that you've completed this tutorial, you should be able to:
+
+- ✅ Install and configure ZT-UI Components
+- ✅ Use all major components effectively
+- ✅ Implement custom theming
+- ✅ Integrate with reactive forms
+- ✅ Handle advanced use cases
+- ✅ Troubleshoot common issues
+- ✅ Contribute to the library
+
+### Additional Resources
+
+- **Storybook:** Interactive component playground
+- **API Documentation:** Complete reference guide
+- **GitHub Repository:** Source code and issues
+- **Changelog:** Version history and updates
+
+### Getting Help
+
+- **Documentation:** Check the README.md for detailed API docs
+- **GitHub Issues:** Search existing issues or create new ones
+- **Stack Overflow:** Tag questions with `zt-ui-components`
+- **Discord/Slack:** Join our community channels
+
+Happy coding with ZT-UI Components! 🎉
