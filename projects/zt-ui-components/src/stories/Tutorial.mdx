@@ -32,6 +32,7 @@ ZT-UI Components provides a rich set of components organized into the following 
 - **`<zt-button>`** - Versatile button with variants, sizes, states, and interaction handling
 - **`<zt-modal>`** - Flexible modal dialogs with theming, accessibility, and customizable content
 - **`<zt-paginator>`** - Pagination component for navigating data tables and lists
+- **`<zt-toast>`** - Toast notification system with multiple types, positions, and customizable options
 
 ### Layout Components
 - **`<zt-card>`** - Flexible container with headers, bodies, footers, variants, and hover effects
@@ -477,6 +478,83 @@ export class MyComponent {
 }
 ```
 
+### Toast Notifications
+
+Toast notifications provide non-intrusive feedback to users about actions, errors, or information:
+
+```html
+<!-- Basic toast component -->
+<zt-toast position="top-right"></zt-toast>
+```
+
+```typescript
+import { ZtToastService } from 'zt-ui-components';
+
+export class NotificationComponent {
+  constructor(private toastService: ZtToastService) {}
+
+  performAction() {
+    // Simulate an action
+    this.toastService.success('Action completed successfully!', 'Success', {
+      duration: 3000,
+      dismissible: true,
+      showProgress: true
+    });
+  }
+
+  handleError() {
+    this.toastService.error('Something went wrong!', 'Error', {
+      duration: 5000,
+      dismissible: true
+    });
+  }
+
+  showInfo() {
+    this.toastService.info('Here is some useful information.', 'Info');
+  }
+
+  showWarning() {
+    this.toastService.warning('Please review your input.', 'Warning');
+  }
+}
+```
+
+#### Toast Types
+
+- **Success**: Green styling with checkmark icon
+- **Error**: Red styling with error icon
+- **Info**: Blue styling with info icon
+- **Warning**: Yellow styling with warning icon
+
+#### Toast Positions
+
+Toasts can appear in different positions on the screen:
+
+```html
+<!-- Different positions -->
+<zt-toast position="top-right"></zt-toast>
+<zt-toast position="top-left"></zt-toast>
+<zt-toast position="bottom-right"></zt-toast>
+<zt-toast position="bottom-left"></zt-toast>
+<zt-toast position="top-center"></zt-toast>
+<zt-toast position="bottom-center"></zt-toast>
+```
+
+#### Customization Options
+
+```typescript
+// Custom toast with all options
+this.toastService.show({
+  type: 'success',
+  title: 'Custom Toast',
+  message: 'This is a fully customized toast notification',
+  duration: 4000,
+  position: 'top-center',
+  dismissible: true,
+  showProgress: true
+});
+```
+
 ## Theming System
 
 ### Global Theme Setup
@@ -659,6 +737,31 @@ export class ThemeSwitcherComponent {
 **Events:**
 - `(onClose)` - Emitted when modal closes
 - `(onOpen)` - Emitted when modal opens
+
+### Toast Component API
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `position` | `'top-right' \| 'top-left' \| 'bottom-right' \| 'bottom-left' \| 'top-center' \| 'bottom-center'` | `'top-right'` | Toast container position |
+| `showDemoButtons` | `boolean` | `false` | Show demo buttons for testing |
+| `ztTheme` | `Partial<ThemeConfig>` | - | Local theme override |
+
+**Toast Service Methods:**
+- `success(message: string, title?: string, options?: Partial<ZtToast>)` - Show success toast
+- `error(message: string, title?: string, options?: Partial<ZtToast>)` - Show error toast
+- `info(message: string, title?: string, options?: Partial<ZtToast>)` - Show info toast
+- `warning(message: string, title?: string, options?: Partial<ZtToast>)` - Show warning toast
+- `show(toast: Omit<ZtToast, 'id'>)` - Show custom toast
+- `remove(id: string)` - Remove specific toast
+- `clear()` - Remove all toasts
+
+**Toast Options:**
+- `duration?: number` - Auto-hide duration in milliseconds (default: 5000)
+- `dismissible?: boolean` - Allow manual dismissal (default: true)
+- `showProgress?: boolean` - Show progress bar (default: false)
+- `position?: ToastPosition` - Toast position
+- `title?: string` - Toast title
+- `type: 'success' \| 'error' \| 'info' \| 'warning'` - Toast type
 
 ## Customization Options
 
