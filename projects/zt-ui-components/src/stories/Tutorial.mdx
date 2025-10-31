@@ -503,18 +503,18 @@ export class NotificationComponent {
   }
 
   handleError() {
-    this.toastService.error('Something went wrong!', 'Error', {
+    this.toastService.error('Something went wrong!', 'Error Occurred', {
       duration: 5000,
       dismissible: true
     });
   }
 
   showInfo() {
-    this.toastService.info('Here is some useful information.', 'Info');
+    this.toastService.info('Here is some useful information.', 'Information');
   }
 
   showWarning() {
-    this.toastService.warning('Please review your input.', 'Warning');
+    this.toastService.warning('Please review your input.', 'Caution');
   }
 }
 ```
