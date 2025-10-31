@@ -5,6 +5,8 @@
 
 A comprehensive, standalone toast notification component for Angular applications. Built from scratch without external dependencies, providing a complete toast notification system with multiple types, positions, and customization options.
 
+**🎉 Now Available on npm!** `npm install zt-toast-x`
+
 ## ✨ Features
 
 - 🎨 **Multiple Toast Types**: Success, error, info, and warning notifications with distinct styling
@@ -141,13 +143,14 @@ this.toastService.info('New message received', 'Notification', {
   showProgress: true
 });
 
-// Custom toast
+// Custom toast with full configuration
 this.toastService.show({
   type: 'warning',
   message: 'Please review your input',
   title: 'Validation Warning',
   duration: 0, // Never auto-dismiss
-  dismissible: true
+  dismissible: true,
+  showProgress: false
 });
 ```
 
@@ -177,25 +180,29 @@ zt-toast-x {
 
 ## 🏗️ Building from Source
 
+This component is part of the [ZT-UI-Components](https://github.com/klgunarathne/ZT-UI-Components) monorepo.
+
 ```bash
 # Clone the repository
-git clone https://github.com/your-repo/zt-toast-x.git
-cd zt-toast-x
+git clone https://github.com/klgunarathne/ZT-UI-Components.git
+cd ZT-UI-Components
 
 # Install dependencies
 npm install
 
-# Build the library
-ng build zt-toast-x
+# Build the ZT-Toast-X library
+npx ng build zt-toast-x --configuration production
 
 # The build artifacts will be stored in the `dist/zt-toast-x/` directory
 ```
 
 ## 📦 Publishing
 
-After building:
+The package is automatically built and published to npm from the monorepo:
 
 ```bash
+# Build and publish (from project root)
+npx ng build zt-toast-x --configuration production
 cd dist/zt-toast-x
 npm publish
 ```
@@ -205,23 +212,27 @@ npm publish
 ### Running Tests
 
 ```bash
-ng test zt-toast-x
+# From the monorepo root
+npx ng test zt-toast-x
 ```
 
 ### Storybook
 
-The library includes Storybook stories for development and testing:
+The component is showcased in the main ZT-UI-Components Storybook:
 
 ```bash
-ng run zt-toast-x:storybook
+# From the monorepo root
+npx ng run zt-ui-components:storybook
 ```
+
+Navigate to "UI Components > ZT-Toast-X" to see the interactive documentation and demos.
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
+1. Fork the [ZT-UI-Components](https://github.com/klgunarathne/ZT-UI-Components) repository
+2. Create your feature branch (`git checkout -b feature/amazing-toast-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing toast feature'`)
+4. Push to the branch (`git push origin feature/amazing-toast-feature`)
 5. Open a Pull Request
 
 ## 📄 License
@@ -231,9 +242,18 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - Built with [Angular](https://angular.io/)
+- Part of the [ZT-UI-Components](https://github.com/klgunarathne/ZT-UI-Components) library
 - Inspired by modern toast notification patterns
 - Designed for developer experience and accessibility
 
 ## 📞 Support
 
-If you have any questions or issues, please open an issue on GitHub or contact the maintainers.
+If you have any questions or issues, please:
+
+- Check the [ZT-UI-Components Storybook](https://github.com/klgunarathne/ZT-UI-Components) for interactive examples
+- Open an issue on [GitHub](https://github.com/klgunarathne/ZT-UI-Components/issues)
+- Contact the maintainers
+
+---
+
+**🎉 Happy toasting with ZT-Toast-X!**
