@@ -150,6 +150,26 @@
           }
         }
       }
+    },
+    "zt-toast-x": {
+      "projectType": "library",
+      "root": "projects/zt-toast-x",
+      "sourceRoot": "projects/zt-toast-x/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/zt-toast-x/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/zt-toast-x/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        }
+      }
     }
   }
 }

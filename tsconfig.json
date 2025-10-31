@@ -15,6 +15,9 @@
     "target": "ES2022",
     "module": "preserve",
     "paths": {
+      "zt-toast-x": [
+        "./dist/zt-toast-x"
+      ],
       "zt-ui-components": [
         "./dist/zt-ui-components"
       ]
@@ -40,6 +43,12 @@
     },
     {
       "path": "./projects/test-app/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/zt-toast-x/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/zt-toast-x/tsconfig.spec.json"
     }
   ]
 }
