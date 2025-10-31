@@ -1,6 +1,6 @@
 {
   "name": "zt-toast-x",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A standalone toast notification component for Angular applications",
   "keywords": [
     "angular",
@@ -14,12 +14,20 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-repo/zt-toast-x.git"
+    "url": "https://github.com/klgunarathne/ZT-UI-Components.git",
+    "directory": "projects/zt-toast-x"
   },
   "peerDependencies": {
     "@angular/common": "^20.3.0",
     "@angular/core": "^20.3.0",
     "rxjs": "^7.8.0"
+  },
+  "main": "./src/public-api.ts",
+  "exports": {
+    ".": {
+      "import": "./src/public-api.ts",
+      "default": "./src/public-api.ts"
+    }
   },
   "dependencies": {
     "tslib": "^2.3.0"
