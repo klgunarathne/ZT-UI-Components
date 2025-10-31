@@ -1,6 +1,6 @@
 {
   "name": "zt-toast-x",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A standalone toast notification component for Angular applications",
   "keywords": [
     "angular",
