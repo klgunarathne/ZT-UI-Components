@@ -405,7 +405,7 @@ export class ZtToastComponent implements OnInit, OnDestroy {
    * Used in Storybook and development environments for testing
    */
   showSuccess(): void {
-    this.toastService.success('Operation completed successfully!', 'Success');
+    this.toastService.success('Operation completed successfully!', 'Operation Complete');
   }
 
   /**
@@ -413,7 +413,7 @@ export class ZtToastComponent implements OnInit, OnDestroy {
    * Used in Storybook and development environments for testing
    */
   showError(): void {
-    this.toastService.error('An error occurred while processing your request.', 'Error');
+    this.toastService.error('An error occurred while processing your request.', 'Error Occurred');
   }
 
   /**
@@ -421,7 +421,7 @@ export class ZtToastComponent implements OnInit, OnDestroy {
    * Used in Storybook and development environments for testing
    */
   showInfo(): void {
-    this.toastService.info('Here is some information for you.', 'Info');
+    this.toastService.info('Here is some information for you.', 'Information');
   }
 
   /**
@@ -429,6 +429,6 @@ export class ZtToastComponent implements OnInit, OnDestroy {
    * Used in Storybook and development environments for testing
    */
   showWarning(): void {
-    this.toastService.warning('Please be cautious with this action.', 'Warning');
+    this.toastService.warning('Please be cautious with this action.', 'Caution');
   }
 }
