@@ -16,6 +16,7 @@ ZT-UI Components provides a rich set of components organized into the following 
 - **`<zt-modal>`** - Flexible modal dialogs with theming, accessibility, and customizable content
 - **`<zt-paginator>`** - Pagination component for navigating data tables and lists
 - **`<zt-toast>`** - Toast notification system with multiple types, positions, and customizable options
+- **`<zt-toggle>`** - Toggle switch component with customizable styles, labels, and states
 
 ### Layout Components
 - **`<zt-card>`** - Flexible container with headers, bodies, footers, variants, and hover effects
@@ -266,6 +267,20 @@ export class MyComponent {
 |----------|------|---------|-------------|
 | `position` | `'top-right' \| 'top-left' \| 'bottom-right' \| 'bottom-left' \| 'top-center' \| 'bottom-center'` | `'top-right'` | Toast container position |
 | `showDemoButtons` | `boolean` | `false` | Show demo buttons for testing |
+
+### Toggle Component
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `checked` | `boolean` | `false` | Toggle state |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `label` | `string` | `''` | Label text |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Toggle size |
+| `variant` | `'default' \| 'rounded' \| 'square'` | `'default'` | Visual style |
+| `theme` | `string` | `'light'` | Theme variant |
+
+**Events:**
+- `(checkedChange)` - Emitted when toggle state changes
 
 **Toast Service Methods:**
 - `success(message, title?, options?)` - Show success toast

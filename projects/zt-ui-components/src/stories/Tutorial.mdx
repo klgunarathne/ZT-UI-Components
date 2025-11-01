@@ -27,6 +27,8 @@ ZT-UI Components provides a rich set of components organized into the following 
 - **`<zt-input>`** - Advanced text input with validation, character counting, and multiple visual styles
 - **`<zt-textarea>`** - Multi-line text input with length validation and character counting
 - **`<zt-select>`** - Dropdown select with data binding, search capabilities, and customizable styles
+- **`<zt-toggle>`** - Toggle switch component with customizable styles, labels, and states
+
 
 ### Interactive Components
 - **`<zt-button>`** - Versatile button with variants, sizes, states, and interaction handling
@@ -73,6 +75,55 @@ ZT-UI Components provides a rich set of components organized into categories:
 - **`<zt-button>`** - Versatile button with variants and states
 - **`<zt-modal>`** - Accessible modal dialogs with theming
 - **`<zt-paginator>`** - Pagination for data tables and lists
+- **`<zt-toggle>`** - Toggle switch component with customizable styles and states
+
+### Toggle Component Usage
+
+```html
+<!-- Basic toggle -->
+<zt-toggle [(checked)]="isEnabled"></zt-toggle>
+
+<!-- Toggle with label -->
+<zt-toggle
+  label="Enable notifications"
+  [(checked)]="notificationsEnabled"
+  size="md">
+</zt-toggle>
+
+<!-- Disabled toggle -->
+<zt-toggle
+  label="System setting"
+  [checked]="true"
+  [disabled]="true">
+</zt-toggle>
+
+<!-- Custom styled toggle -->
+<zt-toggle
+  label="Dark mode"
+  [(checked)]="darkMode"
+  variant="rounded"
+  size="lg">
+</zt-toggle>
+```
+
+```typescript
+export class SettingsComponent {
+  isEnabled = false;
+  notificationsEnabled = true;
+  darkMode = false;
+
+  constructor(private themeService: ZTThemeService) {}
+
+  ngOnInit() {
+    // Sync toggle with theme
+    this.darkMode = this.themeService.getCurrentTheme()?.name === 'dark';
+  }
+
+  onToggleChange(value: boolean) {
+    console.log('Toggle changed:', value);
+  }
+}
+```
 
 ### Layout Components
 - **`<zt-card>`** - Flexible container with headers, bodies, and variants
@@ -745,6 +796,21 @@ export class ThemeSwitcherComponent {
 | `position` | `'top-right' \| 'top-left' \| 'bottom-right' \| 'bottom-left' \| 'top-center' \| 'bottom-center'` | `'top-right'` | Toast container position |
 | `showDemoButtons` | `boolean` | `false` | Show demo buttons for testing |
 | `ztTheme` | `Partial<ThemeConfig>` | - | Local theme override |
+
+### Toggle Component API
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `checked` | `boolean` | `false` | Toggle state (two-way binding) |
+| `disabled` | `boolean` | `false` | Whether toggle is disabled |
+| `label` | `string` | `''` | Label text displayed next to toggle |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Toggle size |
+| `variant` | `'default' \| 'rounded' \| 'square'` | `'default'` | Visual style variant |
+| `theme` | `string` | `'light'` | Theme variant |
+| `ztTheme` | `Partial<ThemeConfig>` | - | Local theme override |
+
+**Events:**
+- `(checkedChange)` - Emitted when toggle state changes
 
 **Toast Service Methods:**
 - `success(message: string, title?: string, options?: Partial<ZtToast>)` - Show success toast
