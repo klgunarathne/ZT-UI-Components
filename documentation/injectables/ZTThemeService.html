@@ -1,0 +1,1422 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>zt-ui-components documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">zt-ui-components documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >ZTThemeService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>projects/zt-ui-components/src/lib/theme/theme.service.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Service for managing global theme state and switching</p>
+
+            </p>
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#currentTheme$" >currentTheme$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#themeOverrides$" >themeOverrides$</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#clearThemeOverrides" >clearThemeOverrides</a>
+                            </li>
+                            <li>
+                                <a href="#exportTheme" >exportTheme</a>
+                            </li>
+                            <li>
+                                <a href="#getAvailableThemes" >getAvailableThemes</a>
+                            </li>
+                            <li>
+                                <a href="#getThemeContext" >getThemeContext</a>
+                            </li>
+                            <li>
+                                <a href="#importTheme" >importTheme</a>
+                            </li>
+                            <li>
+                                <a href="#resetToDefault" >resetToDefault</a>
+                            </li>
+                            <li>
+                                <a href="#setTheme" >setTheme</a>
+                            </li>
+                            <li>
+                                <a href="#setThemeByName" >setThemeByName</a>
+                            </li>
+                            <li>
+                                <a href="#setThemeOverrides" >setThemeOverrides</a>
+                            </li>
+                            <li>
+                                <a href="#toggleDarkMode" >toggleDarkMode</a>
+                            </li>
+                            <li>
+                                <a href="#updateTheme" >updateTheme</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#currentTheme" >currentTheme</a>
+                                </li>
+                                <li>
+                                    <a href="#themeOverrides" >themeOverrides</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(validationService: <a href="../injectables/ThemeValidationService.html" target="_self">ThemeValidationService</a>, config?: <a href="../interfaces/ThemeConfig.html" target="_self">Partial&lt;ThemeConfig&gt;</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">projects/zt-ui-components/src/lib/theme/theme.service.ts:30</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>validationService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ThemeValidationService.html" target="_self" >ThemeValidationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>config</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/ThemeConfig.html" target="_self" >Partial&lt;ThemeConfig&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            Yes
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clearThemeOverrides"></a>
+                    <span class="name">
+                        <span ><b>clearThemeOverrides</b></span>
+                        <a href="#clearThemeOverrides"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clearThemeOverrides()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="125"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/theme/theme.service.ts:125</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Clears theme overrides</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportTheme"></a>
+                    <span class="name">
+                        <span ><b>exportTheme</b></span>
+                        <a href="#exportTheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>exportTheme()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="214"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/theme/theme.service.ts:214</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Exports current theme configuration</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/ThemeConfig.html" target="_self" >ThemeConfig</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAvailableThemes"></a>
+                    <span class="name">
+                        <span ><b>getAvailableThemes</b></span>
+                        <a href="#getAvailableThemes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAvailableThemes()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="207"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/theme/theme.service.ts:207</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Gets available theme names</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#ThemeName" target="_self" >ThemeName[]</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getThemeContext"></a>
+                    <span class="name">
+                        <span ><b>getThemeContext</b></span>
+                        <a href="#getThemeContext"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getThemeContext(componentOverrides?: <a href="../interfaces/ThemeConfig.html" target="_self">Partial&lt;ThemeConfig&gt;</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="134"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/theme/theme.service.ts:134</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Gets the effective theme context for a component</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>componentOverrides</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ThemeConfig.html" target="_self" >Partial&lt;ThemeConfig&gt;</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Optional component-specific overrides</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/ThemeContext.html" target="_self" >ThemeContext</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Theme context with global theme and overrides</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="importTheme"></a>
+                    <span class="name">
+                        <span ><b>importTheme</b></span>
+                        <a href="#importTheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>importTheme(themeConfig: <a href="../interfaces/ThemeConfig.html" target="_self">ThemeConfig</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="222"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/theme/theme.service.ts:222</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Imports a theme configuration</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>themeConfig</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ThemeConfig.html" target="_self" >ThemeConfig</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The theme configuration to import</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetToDefault"></a>
+                    <span class="name">
+                        <span ><b>resetToDefault</b></span>
+                        <a href="#resetToDefault"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>resetToDefault()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="185"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/theme/theme.service.ts:185</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Resets theme to default</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setTheme"></a>
+                    <span class="name">
+                        <span ><b>setTheme</b></span>
+                        <a href="#setTheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setTheme(theme: <a href="../interfaces/ThemeConfig.html" target="_self">ThemeConfig</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="74"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/theme/theme.service.ts:74</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Sets the global theme</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>theme</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ThemeConfig.html" target="_self" >ThemeConfig</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The theme configuration to set</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setThemeByName"></a>
+                    <span class="name">
+                        <span ><b>setThemeByName</b></span>
+                        <a href="#setThemeByName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setThemeByName(themeName: <a href="../undefineds/ThemeName.html" target="_self">ThemeName</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="94"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/theme/theme.service.ts:94</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Sets the theme by name</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>themeName</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#ThemeName" target="_self" >ThemeName</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The predefined theme name</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setThemeOverrides"></a>
+                    <span class="name">
+                        <span ><b>setThemeOverrides</b></span>
+                        <a href="#setThemeOverrides"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setThemeOverrides(overrides: <a href="../interfaces/ThemeConfig.html" target="_self">Partial&lt;ThemeConfig&gt;</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="117"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/theme/theme.service.ts:117</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Sets temporary theme overrides for a component</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>overrides</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ThemeConfig.html" target="_self" >Partial&lt;ThemeConfig&gt;</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Theme overrides</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Function to clear overrides</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleDarkMode"></a>
+                    <span class="name">
+                        <span ><b>toggleDarkMode</b></span>
+                        <a href="#toggleDarkMode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleDarkMode()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="192"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/theme/theme.service.ts:192</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Toggles between light and dark themes</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateTheme"></a>
+                    <span class="name">
+                        <span ><b>updateTheme</b></span>
+                        <a href="#updateTheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateTheme(overrides: <a href="../interfaces/ThemeConfig.html" target="_self">Partial&lt;ThemeConfig&gt;</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="103"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/theme/theme.service.ts:103</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Updates the current theme with partial overrides</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>overrides</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ThemeConfig.html" target="_self" >Partial&lt;ThemeConfig&gt;</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Partial theme configuration</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentTheme$"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>currentTheme$</b></span>
+                        <a href="#currentTheme$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ThemeConfig.html" target="_self" >Observable&lt;ThemeConfig&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.currentThemeSubject.asObservable()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">projects/zt-ui-components/src/lib/theme/theme.service.ts:25</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Observable for the current global theme</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="themeOverrides$"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>themeOverrides$</b></span>
+                        <a href="#themeOverrides$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;Partial | null&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.themeOverridesSubject.asObservable()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">projects/zt-ui-components/src/lib/theme/theme.service.ts:30</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Observable for theme overrides</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="currentTheme"></a>
+                        <span class="name"><b>currentTheme</b><a href="#currentTheme"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>currentTheme()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">projects/zt-ui-components/src/lib/theme/theme.service.ts:42</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Gets the current global theme</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="../interfaces/ThemeConfig.html" target="_self" >ThemeConfig</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="themeOverrides"></a>
+                        <span class="name"><b>themeOverrides</b><a href="#themeOverrides"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>themeOverrides()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">projects/zt-ui-components/src/lib/theme/theme.service.ts:49</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Gets the current theme overrides</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>Partial | null</code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Inject, Optional, InjectionToken } from &#x27;@angular/core&#x27;;
+import { BehaviorSubject, Observable } from &#x27;rxjs&#x27;;
+import { ThemeConfig, ThemeName, ThemeContext } from &#x27;./theme.types&#x27;;
+import { LIGHT_THEME, getThemeByName } from &#x27;./default-themes&#x27;;
+import { ThemeValidationService } from &#x27;./theme-validation.service&#x27;;
+
+/**
+ * Injection token for theme configuration
+ */
+export const THEME_CONFIG &#x3D; new InjectionToken&lt;Partial&lt;ThemeConfig&gt;&gt;(&#x27;THEME_CONFIG&#x27;);
+
+/**
+ * Service for managing global theme state and switching
+ */
+@Injectable({
+  providedIn: &#x27;root&#x27;,
+})
+export class ZTThemeService {
+  private currentThemeSubject &#x3D; new BehaviorSubject&lt;ThemeConfig&gt;(LIGHT_THEME);
+  private themeOverridesSubject &#x3D; new BehaviorSubject&lt;Partial&lt;ThemeConfig&gt; | null&gt;(null);
+
+  /**
+   * Observable for the current global theme
+   */
+  public currentTheme$: Observable&lt;ThemeConfig&gt; &#x3D; this.currentThemeSubject.asObservable();
+
+  /**
+   * Observable for theme overrides
+   */
+  public themeOverrides$: Observable&lt;Partial&lt;ThemeConfig&gt; | null&gt; &#x3D; this.themeOverridesSubject.asObservable();
+
+  constructor(
+    private validationService: ThemeValidationService,
+    @Optional() @Inject(THEME_CONFIG) private config?: Partial&lt;ThemeConfig&gt;
+  ) {
+    this.initializeTheme();
+  }
+
+  /**
+   * Gets the current global theme
+   */
+  get currentTheme(): ThemeConfig {
+    return this.currentThemeSubject.value;
+  }
+
+  /**
+   * Gets the current theme overrides
+   */
+  get themeOverrides(): Partial&lt;ThemeConfig&gt; | null {
+    return this.themeOverridesSubject.value;
+  }
+
+  /**
+   * Initializes the theme from configuration or defaults
+   */
+  private initializeTheme(): void {
+    if (this.config) {
+      const mergedTheme &#x3D; this.validationService.mergeThemes(LIGHT_THEME, this.config);
+      if (mergedTheme) {
+        this.setTheme(mergedTheme);
+      } else {
+        console.warn(&#x27;Invalid theme configuration provided, falling back to default theme&#x27;);
+        this.setTheme(LIGHT_THEME);
+      }
+    } else {
+      this.setTheme(LIGHT_THEME);
+    }
+  }
+
+  /**
+   * Sets the global theme
+   * @param theme The theme configuration to set
+   */
+  setTheme(theme: ThemeConfig): void {
+    const validation &#x3D; this.validationService.validateTheme(theme);
+
+    if (!validation.isValid) {
+      console.error(&#x27;Invalid theme configuration:&#x27;, validation.errors);
+      throw new Error(&#x60;Theme validation failed: ${validation.errors.join(&#x27;, &#x27;)}&#x60;);
+    }
+
+    if (validation.warnings.length &gt; 0) {
+      console.warn(&#x27;Theme validation warnings:&#x27;, validation.warnings);
+    }
+
+    this.currentThemeSubject.next(theme);
+    this.applyThemeToDocument(theme);
+  }
+
+  /**
+   * Sets the theme by name
+   * @param themeName The predefined theme name
+   */
+  setThemeByName(themeName: ThemeName): void {
+    const theme &#x3D; getThemeByName(themeName);
+    this.setTheme(theme);
+  }
+
+  /**
+   * Updates the current theme with partial overrides
+   * @param overrides Partial theme configuration
+   */
+  updateTheme(overrides: Partial&lt;ThemeConfig&gt;): void {
+    const mergedTheme &#x3D; this.validationService.mergeThemes(this.currentTheme, overrides);
+    if (mergedTheme) {
+      this.setTheme(mergedTheme);
+    } else {
+      console.error(&#x27;Failed to merge theme overrides&#x27;);
+    }
+  }
+
+  /**
+   * Sets temporary theme overrides for a component
+   * @param overrides Theme overrides
+   * @returns Function to clear overrides
+   */
+  setThemeOverrides(overrides: Partial&lt;ThemeConfig&gt;): () &#x3D;&gt; void {
+    this.themeOverridesSubject.next(overrides);
+    return () &#x3D;&gt; this.clearThemeOverrides();
+  }
+
+  /**
+   * Clears theme overrides
+   */
+  clearThemeOverrides(): void {
+    this.themeOverridesSubject.next(null);
+  }
+
+  /**
+   * Gets the effective theme context for a component
+   * @param componentOverrides Optional component-specific overrides
+   * @returns Theme context with global theme and overrides
+   */
+  getThemeContext(componentOverrides?: Partial&lt;ThemeConfig&gt;): ThemeContext {
+    return {
+      globalTheme: this.currentTheme,
+      componentOverrides: componentOverrides || this.themeOverrides || undefined,
+    };
+  }
+
+  /**
+   * Applies theme CSS custom properties to the document root
+   * @param theme The theme to apply
+   */
+  private applyThemeToDocument(theme: ThemeConfig): void {
+    if (typeof document &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27;) return;
+
+    const root &#x3D; document.documentElement;
+    const colors &#x3D; theme.colors;
+
+    // Apply color variables
+    Object.entries(colors).forEach(([key, value]) &#x3D;&gt; {
+      const cssVar &#x3D; &#x60;--zt-${key.replace(/([A-Z])/g, &#x27;-$1&#x27;).toLowerCase()}&#x60;;
+      root.style.setProperty(cssVar, value);
+    });
+
+    // Apply other theme properties
+    root.style.setProperty(&#x27;--zt-border-radius&#x27;, &#x60;${theme.borderRadius}px&#x60;);
+    root.style.setProperty(&#x27;--zt-border-size&#x27;, &#x60;${theme.borderSize}px&#x60;);
+
+    if (theme.fontFamily) {
+      root.style.setProperty(&#x27;--zt-font-family&#x27;, theme.fontFamily);
+    }
+
+    if (theme.fontSize) {
+      root.style.setProperty(&#x27;--zt-font-size-small&#x27;, theme.fontSize.small);
+      root.style.setProperty(&#x27;--zt-font-size-medium&#x27;, theme.fontSize.medium);
+      root.style.setProperty(&#x27;--zt-font-size-large&#x27;, theme.fontSize.large);
+    }
+
+    if (theme.spacing) {
+      root.style.setProperty(&#x27;--zt-spacing-small&#x27;, theme.spacing.small);
+      root.style.setProperty(&#x27;--zt-spacing-medium&#x27;, theme.spacing.medium);
+      root.style.setProperty(&#x27;--zt-spacing-large&#x27;, theme.spacing.large);
+    }
+
+    // Set theme class on body for CSS selectors
+    document.body.className &#x3D; document.body.className.replace(/theme-\w+/g, &#x27;&#x27;);
+    document.body.classList.add(&#x60;theme-${theme.name}&#x60;);
+  }
+
+  /**
+   * Resets theme to default
+   */
+  resetToDefault(): void {
+    this.setTheme(LIGHT_THEME);
+  }
+
+  /**
+   * Toggles between light and dark themes
+   */
+  toggleDarkMode(): void {
+    const currentName &#x3D; this.currentTheme.name;
+    if (currentName &#x3D;&#x3D;&#x3D; &#x27;light&#x27;) {
+      this.setThemeByName(&#x27;dark&#x27;);
+    } else if (currentName &#x3D;&#x3D;&#x3D; &#x27;dark&#x27;) {
+      this.setThemeByName(&#x27;light&#x27;);
+    } else {
+      // For other themes, toggle to dark if current is light-like, or light if dark-like
+      this.setThemeByName(&#x27;dark&#x27;);
+    }
+  }
+
+  /**
+   * Gets available theme names
+   */
+  getAvailableThemes(): ThemeName[] {
+    return [&#x27;light&#x27;, &#x27;dark&#x27;, &#x27;bootstrap&#x27;, &#x27;material&#x27;];
+  }
+
+  /**
+   * Exports current theme configuration
+   */
+  exportTheme(): ThemeConfig {
+    return { ...this.currentTheme };
+  }
+
+  /**
+   * Imports a theme configuration
+   * @param themeConfig The theme configuration to import
+   */
+  importTheme(themeConfig: ThemeConfig): void {
+    this.setTheme(themeConfig);
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'ZTThemeService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

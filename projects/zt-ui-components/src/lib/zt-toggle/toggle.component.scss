@@ -1,0 +1,192 @@
+// Light theme (default)
+:host(.theme-light) {
+  --zt-toggle-track-bg: #e9ecef;
+  --zt-toggle-track-checked-bg: #007bff;
+  --zt-toggle-thumb-bg: #ffffff;
+  --zt-toggle-thumb-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  --zt-toggle-border-radius: 12px;
+  --zt-toggle-label-color: #495057;
+}
+
+// Dark theme
+:host(.theme-dark) {
+  --zt-toggle-track-bg: #495057;
+  --zt-toggle-track-checked-bg: #4dabf7;
+  --zt-toggle-thumb-bg: #ffffff;
+  --zt-toggle-thumb-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --zt-toggle-border-radius: 12px;
+  --zt-toggle-label-color: #adb5bd;
+}
+
+// Bootstrap theme
+:host(.theme-bootstrap) {
+  --zt-toggle-track-bg: #dee2e6;
+  --zt-toggle-track-checked-bg: #007bff;
+  --zt-toggle-thumb-bg: #ffffff;
+  --zt-toggle-thumb-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  --zt-toggle-border-radius: 12px;
+  --zt-toggle-label-color: #495057;
+}
+
+// Material theme
+:host(.theme-material) {
+  --zt-toggle-track-bg: #bdbdbd;
+  --zt-toggle-track-checked-bg: #6200ee;
+  --zt-toggle-thumb-bg: #ffffff;
+  --zt-toggle-thumb-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --zt-toggle-border-radius: 16px;
+  --zt-toggle-label-color: #424242;
+}
+
+:host {
+  display: inline-block;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+
+  .zt-toggle-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    outline: none;
+
+    &:focus-visible {
+      outline: 2px solid var(--zt-primary, #007bff);
+      outline-offset: 2px;
+    }
+  }
+
+  .zt-toggle-track {
+    position: relative;
+    background-color: var(--zt-toggle-track-bg);
+    border-radius: var(--zt-toggle-border-radius);
+    transition: background-color 0.2s ease;
+
+    .zt-toggle-thumb {
+      background-color: var(--zt-toggle-thumb-bg);
+      border-radius: 50%;
+      box-shadow: var(--zt-toggle-thumb-shadow);
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      transition: transform 0.2s ease;
+    }
+  }
+
+  .zt-toggle-label {
+    margin-left: 8px;
+    color: var(--zt-toggle-label-color);
+    font-size: 14px;
+    font-family: inherit;
+  }
+
+  // Checked state
+  &.zt-toggle-checked {
+    .zt-toggle-track {
+      background-color: var(--zt-toggle-track-checked-bg);
+    }
+  }
+
+  // Disabled state
+  &.zt-toggle-disabled {
+    .zt-toggle-container {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .zt-toggle-track {
+      background-color: var(--zt-toggle-track-bg);
+    }
+  }
+
+  // Size variants
+  &.zt-sm {
+    .zt-toggle-track {
+      width: 36px;
+      height: 20px;
+
+      .zt-toggle-thumb {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    &.zt-toggle-checked .zt-toggle-thumb {
+      transform: translateX(16px);
+    }
+  }
+
+  &.zt-md {
+    .zt-toggle-track {
+      width: 44px;
+      height: 24px;
+
+      .zt-toggle-thumb {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    &.zt-toggle-checked .zt-toggle-thumb {
+      transform: translateX(20px);
+    }
+  }
+
+  &.zt-lg {
+    .zt-toggle-track {
+      width: 52px;
+      height: 28px;
+
+      .zt-toggle-thumb {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    &.zt-toggle-checked .zt-toggle-thumb {
+      transform: translateX(24px);
+    }
+  }
+
+  // Variant styles
+  &.zt-toggle-rounded {
+    .zt-toggle-track {
+      border-radius: 50px;
+    }
+
+    .zt-toggle-thumb {
+      border-radius: 50px;
+    }
+  }
+
+  &.zt-toggle-square {
+    .zt-toggle-track {
+      border-radius: 4px;
+    }
+
+    .zt-toggle-thumb {
+      border-radius: 2px;
+    }
+  }
+
+  // Hover states
+  &:not(.zt-toggle-disabled):hover {
+    .zt-toggle-track {
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    }
+  }
+
+  &.zt-toggle-checked:not(.zt-toggle-disabled):hover {
+    .zt-toggle-track {
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    }
+  }
+
+  // Focus states
+  .zt-toggle-container:focus-visible {
+    .zt-toggle-track {
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+    }
+  }
+}

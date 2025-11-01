@@ -1,0 +1,1725 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>zt-ui-components documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">zt-ui-components documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ZtToastComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>projects/zt-ui-components/src/lib/zt-toast/zt-toast.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Toast notification component that displays messages in various positions on the screen</p>
+<p>This component subscribes to the ZtToastService to receive toast notifications and
+displays them with appropriate styling, animations, and interactive elements.
+It handles the complete lifecycle of toasts including display, progress tracking,
+and cleanup.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+                <code>OnDestroy</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>zt-toast</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">styles</td>
+                <td class="col-md-9"><code>
+    .toast-container {
+      position: fixed;
+      z-index: 9999;
+      pointer-events: none;
+      max-width: 400px;
+    }
+
+    .toast-container.toast-top-right {
+      top: 20px;
+      right: 20px;
+    }
+
+    .toast-container.toast-top-left {
+      top: 20px;
+      left: 20px;
+    }
+
+    .toast-container.toast-bottom-right {
+      bottom: 20px;
+      right: 20px;
+    }
+
+    .toast-container.toast-bottom-left {
+      bottom: 20px;
+      left: 20px;
+    }
+
+    .toast-container.toast-top-center {
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .toast-container.toast-bottom-center {
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .toast {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      padding: 16px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      color: white;
+      pointer-events: auto;
+      position: relative;
+      overflow: hidden;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    .toast-success {
+      background-color: #28a745;
+    }
+
+    .toast-error {
+      background-color: #dc3545;
+    }
+
+    .toast-info {
+      background-color: #17a2b8;
+    }
+
+    .toast-warning {
+      background-color: #ffc107;
+      color: #212529;
+    }
+
+    .toast-icon {
+      margin-right: 12px;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .icon-success::before {
+      content: &#x27;✓&#x27;;
+    }
+
+    .icon-error::before {
+      content: &#x27;✕&#x27;;
+    }
+
+    .icon-info::before {
+      content: &#x27;ℹ&#x27;;
+    }
+
+    .icon-warning::before {
+      content: &#x27;⚠&#x27;;
+    }
+
+    .toast-content {
+      flex: 1;
+    }
+
+    .toast-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .toast-message {
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .toast-close {
+      background: none;
+      border: none;
+      color: inherit;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 0;
+      margin-left: 12px;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .toast-close:hover {
+      opacity: 1;
+    }
+
+    .toast-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 4px;
+      background-color: rgba(255, 255, 255, 0.3);
+      transition: width 0.1s linear;
+    }
+
+    .demo-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .demo-buttons button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .demo-buttons button:nth-child(1) {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .demo-buttons button:nth-child(2) {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    .demo-buttons button:nth-child(3) {
+      background-color: #17a2b8;
+      color: white;
+    }
+
+    .demo-buttons button:nth-child(4) {
+      background-color: #ffc107;
+      color: #212529;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .toast-container {
+        left: 10px;
+        right: 10px;
+        max-width: none;
+        transform: none !important;
+      }
+
+      .toast {
+        margin-bottom: 8px;
+      }
+    }
+  </code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">template</td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;toast-container&quot; [ngClass]&#x3D;&quot;&#x27;toast-&#x27; + position&quot;&gt;
+  &lt;div
+    *ngFor&#x3D;&quot;let toast of toasts&quot;
+    class&#x3D;&quot;toast&quot;
+    [ngClass]&#x3D;&quot;&#x27;toast-&#x27; + toast.type&quot;
+  &gt;
+    &lt;div class&#x3D;&quot;toast-icon&quot; [ngClass]&#x3D;&quot;&#x27;icon-&#x27; + toast.type&quot;&gt;&lt;/div&gt;
+    &lt;div class&#x3D;&quot;toast-content&quot;&gt;
+      &lt;div class&#x3D;&quot;toast-title&quot; *ngIf&#x3D;&quot;toast.title&quot;&gt;{{ toast.title }}&lt;/div&gt;
+      &lt;div class&#x3D;&quot;toast-message&quot;&gt;{{ toast.message }}&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;button
+      *ngIf&#x3D;&quot;toast.dismissible&quot;
+      class&#x3D;&quot;toast-close&quot;
+      (click)&#x3D;&quot;removeToast(toast.id)&quot;
+      aria-label&#x3D;&quot;Close toast&quot;
+    &gt;
+      ×
+    &lt;/button&gt;
+    &lt;div
+      *ngIf&#x3D;&quot;toast.showProgress&quot;
+      class&#x3D;&quot;toast-progress&quot;
+      [style.width.%]&#x3D;&quot;getProgress(toast)&quot;
+    &gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Demo buttons for Storybook --&gt;
+&lt;div class&#x3D;&quot;demo-buttons&quot; *ngIf&#x3D;&quot;showDemoButtons&quot;&gt;
+  &lt;button (click)&#x3D;&quot;showSuccess()&quot;&gt;Success&lt;/button&gt;
+  &lt;button (click)&#x3D;&quot;showError()&quot;&gt;Error&lt;/button&gt;
+  &lt;button (click)&#x3D;&quot;showInfo()&quot;&gt;Info&lt;/button&gt;
+  &lt;button (click)&#x3D;&quot;showWarning()&quot;&gt;Warning&lt;/button&gt;
+&lt;/div&gt;
+</code></pre></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#toasts" >toasts</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getProgress" >getProgress</a>
+                            </li>
+                            <li>
+                                <a href="#removeToast" >removeToast</a>
+                            </li>
+                            <li>
+                                <a href="#showError" >showError</a>
+                            </li>
+                            <li>
+                                <a href="#showInfo" >showInfo</a>
+                            </li>
+                            <li>
+                                <a href="#showSuccess" >showSuccess</a>
+                            </li>
+                            <li>
+                                <a href="#showWarning" >showWarning</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#position" >position</a>
+                            </li>
+                            <li>
+                                <a href="#showDemoButtons" >showDemoButtons</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(toastService: <a href="../injectables/ZtToastService.html" target="_self">ZtToastService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="314" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toast/zt-toast.component.ts:314</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor - injects the toast service for managing notifications</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>toastService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ZtToastService.html" target="_self" >ZtToastService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="position"></a>
+                        <b>position</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;top-right&quot; | &quot;top-left&quot; | &quot;bottom-right&quot; | &quot;bottom-left&quot; | &quot;top-center&quot; | &quot;bottom-center&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;top-right&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="314" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toast/zt-toast.component.ts:314</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Position where toasts should appear on the screen
+Affects the CSS classes applied to the toast container</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="showDemoButtons"></a>
+                        <b>showDemoButtons</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="308" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toast/zt-toast.component.ts:308</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Show demo buttons for testing toast functionality
+Useful in development and Storybook environments</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getProgress"></a>
+                    <span class="name">
+                        <span ><b>getProgress</b></span>
+                        <a href="#getProgress"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getProgress(toast: <a href="../interfaces/ZtToast.html" target="_self">ZtToast</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="386"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-toast/zt-toast.component.ts:386</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Calculate progress percentage for a toast</p>
+<p>Used to display a progress bar showing how much time is remaining
+before the toast auto-dismisses. Returns 0-100 percentage value.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>toast</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ZtToast.html" target="_self" >ZtToast</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Toast object to calculate progress for</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Progress percentage (0-100)</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeToast"></a>
+                    <span class="name">
+                        <span ><b>removeToast</b></span>
+                        <a href="#removeToast"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeToast(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="372"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-toast/zt-toast.component.ts:372</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Manually remove a toast notification</p>
+<p>Called when user clicks the close button on a dismissible toast.
+Also cleans up the associated timer.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Unique identifier of the toast to remove</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showError"></a>
+                    <span class="name">
+                        <span ><b>showError</b></span>
+                        <a href="#showError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showError()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="415"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-toast/zt-toast.component.ts:415</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Demo method to show an error toast
+Used in Storybook and development environments for testing</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showInfo"></a>
+                    <span class="name">
+                        <span ><b>showInfo</b></span>
+                        <a href="#showInfo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showInfo()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="423"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-toast/zt-toast.component.ts:423</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Demo method to show an info toast
+Used in Storybook and development environments for testing</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showSuccess"></a>
+                    <span class="name">
+                        <span ><b>showSuccess</b></span>
+                        <a href="#showSuccess"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showSuccess()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="407"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-toast/zt-toast.component.ts:407</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Demo method to show a success toast
+Used in Storybook and development environments for testing</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showWarning"></a>
+                    <span class="name">
+                        <span ><b>showWarning</b></span>
+                        <a href="#showWarning"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showWarning()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="431"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-toast/zt-toast.component.ts:431</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Demo method to show a warning toast
+Used in Storybook and development environments for testing</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toasts"></a>
+                    <span class="name">
+                        <span ><b>toasts</b></span>
+                        <a href="#toasts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ZtToast.html" target="_self" >ZtToast[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="296" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toast/zt-toast.component.ts:296</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Array of currently active toasts to display</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, OnDestroy, Input } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { ZtToastService, ZtToast } from &#x27;./zt-toast.service&#x27;;
+import { Subject } from &#x27;rxjs&#x27;;
+import { takeUntil } from &#x27;rxjs/operators&#x27;;
+
+/**
+ * Toast notification component that displays messages in various positions on the screen
+ *
+ * This component subscribes to the ZtToastService to receive toast notifications and
+ * displays them with appropriate styling, animations, and interactive elements.
+ * It handles the complete lifecycle of toasts including display, progress tracking,
+ * and cleanup.
+ */
+@Component({
+  selector: &#x27;zt-toast&#x27;,
+  standalone: true,
+  imports: [CommonModule],
+  template: &#x60;
+    &lt;div class&#x3D;&quot;toast-container&quot; [ngClass]&#x3D;&quot;&#x27;toast-&#x27; + position&quot;&gt;
+      &lt;div
+        *ngFor&#x3D;&quot;let toast of toasts&quot;
+        class&#x3D;&quot;toast&quot;
+        [ngClass]&#x3D;&quot;&#x27;toast-&#x27; + toast.type&quot;
+      &gt;
+        &lt;div class&#x3D;&quot;toast-icon&quot; [ngClass]&#x3D;&quot;&#x27;icon-&#x27; + toast.type&quot;&gt;&lt;/div&gt;
+        &lt;div class&#x3D;&quot;toast-content&quot;&gt;
+          &lt;div class&#x3D;&quot;toast-title&quot; *ngIf&#x3D;&quot;toast.title&quot;&gt;{{ toast.title }}&lt;/div&gt;
+          &lt;div class&#x3D;&quot;toast-message&quot;&gt;{{ toast.message }}&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;button
+          *ngIf&#x3D;&quot;toast.dismissible&quot;
+          class&#x3D;&quot;toast-close&quot;
+          (click)&#x3D;&quot;removeToast(toast.id)&quot;
+          aria-label&#x3D;&quot;Close toast&quot;
+        &gt;
+          ×
+        &lt;/button&gt;
+        &lt;div
+          *ngIf&#x3D;&quot;toast.showProgress&quot;
+          class&#x3D;&quot;toast-progress&quot;
+          [style.width.%]&#x3D;&quot;getProgress(toast)&quot;
+        &gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Demo buttons for Storybook --&gt;
+    &lt;div class&#x3D;&quot;demo-buttons&quot; *ngIf&#x3D;&quot;showDemoButtons&quot;&gt;
+      &lt;button (click)&#x3D;&quot;showSuccess()&quot;&gt;Success&lt;/button&gt;
+      &lt;button (click)&#x3D;&quot;showError()&quot;&gt;Error&lt;/button&gt;
+      &lt;button (click)&#x3D;&quot;showInfo()&quot;&gt;Info&lt;/button&gt;
+      &lt;button (click)&#x3D;&quot;showWarning()&quot;&gt;Warning&lt;/button&gt;
+    &lt;/div&gt;
+  &#x60;,
+  styles: [&#x60;
+    .toast-container {
+      position: fixed;
+      z-index: 9999;
+      pointer-events: none;
+      max-width: 400px;
+    }
+
+    .toast-container.toast-top-right {
+      top: 20px;
+      right: 20px;
+    }
+
+    .toast-container.toast-top-left {
+      top: 20px;
+      left: 20px;
+    }
+
+    .toast-container.toast-bottom-right {
+      bottom: 20px;
+      right: 20px;
+    }
+
+    .toast-container.toast-bottom-left {
+      bottom: 20px;
+      left: 20px;
+    }
+
+    .toast-container.toast-top-center {
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .toast-container.toast-bottom-center {
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .toast {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      padding: 16px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      color: white;
+      pointer-events: auto;
+      position: relative;
+      overflow: hidden;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    .toast-success {
+      background-color: #28a745;
+    }
+
+    .toast-error {
+      background-color: #dc3545;
+    }
+
+    .toast-info {
+      background-color: #17a2b8;
+    }
+
+    .toast-warning {
+      background-color: #ffc107;
+      color: #212529;
+    }
+
+    .toast-icon {
+      margin-right: 12px;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .icon-success::before {
+      content: &#x27;✓&#x27;;
+    }
+
+    .icon-error::before {
+      content: &#x27;✕&#x27;;
+    }
+
+    .icon-info::before {
+      content: &#x27;ℹ&#x27;;
+    }
+
+    .icon-warning::before {
+      content: &#x27;⚠&#x27;;
+    }
+
+    .toast-content {
+      flex: 1;
+    }
+
+    .toast-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .toast-message {
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .toast-close {
+      background: none;
+      border: none;
+      color: inherit;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 0;
+      margin-left: 12px;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .toast-close:hover {
+      opacity: 1;
+    }
+
+    .toast-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 4px;
+      background-color: rgba(255, 255, 255, 0.3);
+      transition: width 0.1s linear;
+    }
+
+    .demo-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .demo-buttons button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .demo-buttons button:nth-child(1) {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .demo-buttons button:nth-child(2) {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    .demo-buttons button:nth-child(3) {
+      background-color: #17a2b8;
+      color: white;
+    }
+
+    .demo-buttons button:nth-child(4) {
+      background-color: #ffc107;
+      color: #212529;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .toast-container {
+        left: 10px;
+        right: 10px;
+        max-width: none;
+        transform: none !important;
+      }
+
+      .toast {
+        margin-bottom: 8px;
+      }
+    }
+  &#x60;]
+})
+/**
+ * Toast component implementation class
+ *
+ * Manages the display and lifecycle of toast notifications. This component:
+ * - Subscribes to toast service updates
+ * - Tracks progress for each toast
+ * - Handles manual dismissal
+ * - Provides demo functionality for development
+ * - Manages cleanup on component destruction
+ */
+export class ZtToastComponent implements OnInit, OnDestroy {
+  /** Array of currently active toasts to display */
+  toasts: ZtToast[] &#x3D; [];
+
+  /** Subject for managing subscription cleanup */
+  private destroy$ &#x3D; new Subject&lt;void&gt;();
+
+  /** Map tracking timing information for progress calculation */
+  private toastTimers: Map&lt;string, { startTime: number; duration: number }&gt; &#x3D; new Map();
+
+  /**
+   * Show demo buttons for testing toast functionality
+   * Useful in development and Storybook environments
+   */
+  @Input() showDemoButtons &#x3D; false;
+
+  /**
+   * Position where toasts should appear on the screen
+   * Affects the CSS classes applied to the toast container
+   */
+  @Input() position: &#x27;top-right&#x27; | &#x27;top-left&#x27; | &#x27;bottom-right&#x27; | &#x27;bottom-left&#x27; | &#x27;top-center&#x27; | &#x27;bottom-center&#x27; &#x3D; &#x27;top-right&#x27;;
+
+  /**
+   * Constructor - injects the toast service for managing notifications
+   */
+  constructor(private toastService: ZtToastService) {}
+
+  /**
+   * Component initialization lifecycle hook
+   *
+   * Sets up subscription to the toast service and initializes progress tracking
+   * for any existing toasts. Uses takeUntil pattern for proper cleanup.
+   */
+  ngOnInit(): void {
+    this.toastService.toasts
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(toasts &#x3D;&gt; {
+        // Track new toasts for progress calculation
+        toasts.forEach(toast &#x3D;&gt; {
+          if (!this.toastTimers.has(toast.id) &amp;&amp; toast.duration &amp;&amp; toast.duration &gt; 0) {
+            this.toastTimers.set(toast.id, {
+              startTime: Date.now(),
+              duration: toast.duration
+            });
+          }
+        });
+
+        // Remove timers for toasts that are no longer present
+        this.toastTimers.forEach((_, id) &#x3D;&gt; {
+          if (!toasts.find(t &#x3D;&gt; t.id &#x3D;&#x3D;&#x3D; id)) {
+            this.toastTimers.delete(id);
+          }
+        });
+
+        this.toasts &#x3D; toasts;
+      });
+  }
+
+  /**
+   * Component destruction lifecycle hook
+   *
+   * Cleans up all subscriptions and timers to prevent memory leaks.
+   * This is crucial for proper component lifecycle management.
+   */
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+    this.toastTimers.clear();
+  }
+
+  /**
+   * Manually remove a toast notification
+   *
+   * Called when user clicks the close button on a dismissible toast.
+   * Also cleans up the associated timer.
+   *
+   * @param id - Unique identifier of the toast to remove
+   */
+  removeToast(id: string): void {
+    this.toastService.remove(id);
+    this.toastTimers.delete(id);
+  }
+
+  /**
+   * Calculate progress percentage for a toast
+   *
+   * Used to display a progress bar showing how much time is remaining
+   * before the toast auto-dismisses. Returns 0-100 percentage value.
+   *
+   * @param toast - Toast object to calculate progress for
+   * @returns Progress percentage (0-100)
+   */
+  getProgress(toast: ZtToast): number {
+    if (!toast.duration || toast.duration &lt;&#x3D; 0) {
+      return 0;
+    }
+
+    const timer &#x3D; this.toastTimers.get(toast.id);
+    if (!timer) {
+      return 100;
+    }
+
+    const elapsed &#x3D; Date.now() - timer.startTime;
+    const progress &#x3D; Math.max(0, 100 - (elapsed / timer.duration) * 100);
+    return Math.round(progress);
+  }
+
+  // Demo methods for Storybook and development testing
+
+  /**
+   * Demo method to show a success toast
+   * Used in Storybook and development environments for testing
+   */
+  showSuccess(): void {
+    this.toastService.success(&#x27;Operation completed successfully!&#x27;, &#x27;Operation Complete&#x27;);
+  }
+
+  /**
+   * Demo method to show an error toast
+   * Used in Storybook and development environments for testing
+   */
+  showError(): void {
+    this.toastService.error(&#x27;An error occurred while processing your request.&#x27;, &#x27;Error Occurred&#x27;);
+  }
+
+  /**
+   * Demo method to show an info toast
+   * Used in Storybook and development environments for testing
+   */
+  showInfo(): void {
+    this.toastService.info(&#x27;Here is some information for you.&#x27;, &#x27;Information&#x27;);
+  }
+
+  /**
+   * Demo method to show a warning toast
+   * Used in Storybook and development environments for testing
+   */
+  showWarning(): void {
+    this.toastService.warning(&#x27;Please be cautious with this action.&#x27;, &#x27;Caution&#x27;);
+  }
+}
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="styleData">
+            <pre class="line-numbers"><code class="language-scss">
+    .toast-container {
+      position: fixed;
+      z-index: 9999;
+      pointer-events: none;
+      max-width: 400px;
+    }
+
+    .toast-container.toast-top-right {
+      top: 20px;
+      right: 20px;
+    }
+
+    .toast-container.toast-top-left {
+      top: 20px;
+      left: 20px;
+    }
+
+    .toast-container.toast-bottom-right {
+      bottom: 20px;
+      right: 20px;
+    }
+
+    .toast-container.toast-bottom-left {
+      bottom: 20px;
+      left: 20px;
+    }
+
+    .toast-container.toast-top-center {
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .toast-container.toast-bottom-center {
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .toast {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      padding: 16px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      color: white;
+      pointer-events: auto;
+      position: relative;
+      overflow: hidden;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    .toast-success {
+      background-color: #28a745;
+    }
+
+    .toast-error {
+      background-color: #dc3545;
+    }
+
+    .toast-info {
+      background-color: #17a2b8;
+    }
+
+    .toast-warning {
+      background-color: #ffc107;
+      color: #212529;
+    }
+
+    .toast-icon {
+      margin-right: 12px;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .icon-success::before {
+      content: &#x27;✓&#x27;;
+    }
+
+    .icon-error::before {
+      content: &#x27;✕&#x27;;
+    }
+
+    .icon-info::before {
+      content: &#x27;ℹ&#x27;;
+    }
+
+    .icon-warning::before {
+      content: &#x27;⚠&#x27;;
+    }
+
+    .toast-content {
+      flex: 1;
+    }
+
+    .toast-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .toast-message {
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .toast-close {
+      background: none;
+      border: none;
+      color: inherit;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 0;
+      margin-left: 12px;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .toast-close:hover {
+      opacity: 1;
+    }
+
+    .toast-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 4px;
+      background-color: rgba(255, 255, 255, 0.3);
+      transition: width 0.1s linear;
+    }
+
+    .demo-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .demo-buttons button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .demo-buttons button:nth-child(1) {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .demo-buttons button:nth-child(2) {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    .demo-buttons button:nth-child(3) {
+      background-color: #17a2b8;
+      color: white;
+    }
+
+    .demo-buttons button:nth-child(4) {
+      background-color: #ffc107;
+      color: #212529;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .toast-container {
+        left: 10px;
+        right: 10px;
+        max-width: none;
+        transform: none !important;
+      }
+
+      .toast {
+        margin-bottom: 8px;
+      }
+    }
+  
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="toast-container" [ngClass]="\'toast-\' + position">  <div    *ngFor="let toast of toasts"    class="toast"    [ngClass]="\'toast-\' + toast.type"  >    <div class="toast-icon" [ngClass]="\'icon-\' + toast.type"></div>    <div class="toast-content">      <div class="toast-title" *ngIf="toast.title">{{ toast.title }}</div>      <div class="toast-message">{{ toast.message }}</div>    </div>    <button      *ngIf="toast.dismissible"      class="toast-close"      (click)="removeToast(toast.id)"      aria-label="Close toast"    >      ×    </button>    <div      *ngIf="toast.showProgress"      class="toast-progress"      [style.width.%]="getProgress(toast)"    ></div>  </div></div><!-- Demo buttons for Storybook --><div class="demo-buttons" *ngIf="showDemoButtons">  <button (click)="showSuccess()">Success</button>  <button (click)="showError()">Error</button>  <button (click)="showInfo()">Info</button>  <button (click)="showWarning()">Warning</button></div></div>'
+    var COMPONENTS = [{'name': 'ButtonComponent', 'selector': 'storybook-button'},{'name': 'ButtonComponent', 'selector': 'zt-button'},{'name': 'CardComponent', 'selector': 'zt-card'},{'name': 'HeaderComponent', 'selector': 'storybook-header'},{'name': 'InputComponent', 'selector': 'zt-input'},{'name': 'PageComponent', 'selector': 'storybook-page'},{'name': 'SelectComponent', 'selector': 'zt-select'},{'name': 'TextareaComponent', 'selector': 'zt-textarea'},{'name': 'ToggleComponent', 'selector': 'zt-toggle'},{'name': 'ZtDataGridComponent', 'selector': 'zt-data-grid'},{'name': 'ZtModalComponent', 'selector': 'zt-modal'},{'name': 'ZtPaginatorComponent', 'selector': 'zt-paginator'},{'name': 'ZtPaginatorXComponent', 'selector': 'zt-paginator-x'},{'name': 'ZtToastComponent', 'selector': 'zt-toast'},{'name': 'ZtUiComponents', 'selector': 'lib-zt-ui-components'}];
+    var DIRECTIVES = [{'name': 'ThemeDirective', 'selector': '[ztTheme]'}];
+    var ACTUAL_COMPONENT = {'name': 'ZtToastComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ZtToastComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

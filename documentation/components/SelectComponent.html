@@ -148,18 +148,51 @@
     <p class="comment">
         <p>A customizable select dropdown component that supports various styles, themes, and data binding.
 It allows users to select from a list of options with configurable display and value properties.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;zt-select
+<h2>Style-Specific Behaviors:</h2>
+<ul>
+<li><strong>ZT Style</strong> (<code>inputStyle=&quot;zt&quot;</code>): Traditional select with <code>value=&quot;&quot;</code> placeholder option</li>
+<li><strong>Material Style</strong> (<code>inputStyle=&quot;material&quot;</code>): Material Design select with <code>value=&quot;&quot;</code> placeholder option</li>
+<li><strong>Bootstrap Style</strong> (<code>inputStyle=&quot;bs&quot;</code>): Bootstrap-styled select with <code>[ngValue]=&quot;null&quot;</code> placeholder option</li>
+</ul>
+<h2>Placeholder Handling:</h2>
+<ul>
+<li>ZT &amp; Material styles: Use <code>value=&quot;&quot;</code> for placeholder, clear to <code>-1</code></li>
+<li>Bootstrap style: Uses <code>[ngValue]=&quot;null&quot;</code> for placeholder, clears to <code>null</code></li>
+</ul>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;!-- ZT Style (default) --&gt;
+&lt;zt-select
   [dataSource]=&quot;options&quot;
   [key]=&quot;&#39;id&#39;&quot;
   [displayValue]=&quot;&#39;name&#39;&quot;
   [value]=&quot;selectedValue&quot;
-  placeholder=&quot;Choose an option&quot;
-  size=&quot;zt-md&quot;
-  theme=&quot;light&quot;&gt;
+  inputStyle=&quot;zt&quot;
+  placeholder=&quot;Choose an option&quot;&gt;
+&lt;/zt-select&gt;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;!-- Material Style --&gt;
+&lt;zt-select
+  [dataSource]=&quot;options&quot;
+  [key]=&quot;&#39;id&#39;&quot;
+  [displayValue]=&quot;&#39;name&#39;&quot;
+  [value]=&quot;selectedValue&quot;
+  inputStyle=&quot;material&quot;
+  placeholder=&quot;Choose an option&quot;&gt;
+&lt;/zt-select&gt;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;!-- Bootstrap Style (with proper placeholder support) --&gt;
+&lt;zt-select
+  [dataSource]=&quot;options&quot;
+  [key]=&quot;&#39;id&#39;&quot;
+  [displayValue]=&quot;&#39;name&#39;&quot;
+  [value]=&quot;selectedValue&quot;
+  inputStyle=&quot;bs&quot;
+  placeholder=&quot;Choose an option&quot;&gt;
 &lt;/zt-select&gt;</code></pre></div>
     </p>
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
 
 
 <section data-compodoc="block-metadata">
@@ -300,6 +333,20 @@ It allows users to select from a list of options with configurable display and v
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#valueChange" >valueChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -373,7 +420,7 @@ It allows users to select from a list of options with configurable display and v
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:113</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -405,7 +452,7 @@ It allows users to select from a list of options with configurable display and v
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:80</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:125</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -437,12 +484,17 @@ It allows users to select from a list of options with configurable display and v
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:95</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>The visual style of the select component.</p>
+<ul>
+<li><code>&#39;zt&#39;</code>: Traditional ZT styling with <code>value=&quot;&quot;</code> placeholder option</li>
+<li><code>&#39;material&#39;</code>: Material Design styling with <code>value=&quot;&quot;</code> placeholder option</li>
+<li><code>&#39;bs&#39;</code>: Bootstrap styling with <code>[ngValue]=&quot;null&quot;</code> placeholder option (recommended for placeholder functionality)</li>
+</ul>
 </div>
                     </td>
                 </tr>
@@ -464,7 +516,7 @@ It allows users to select from a list of options with configurable display and v
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:74</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:119</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -492,17 +544,19 @@ Used for binding the selected value.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;label&#x27;</code>
+                        <i>Default value : </i><code>&#x27;Choose an option&#x27;</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:84</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Placeholder text displayed when no option is selected.</p>
+<p><strong>Note</strong>: Only effective with <code>inputStyle=&quot;bs&quot;</code>. ZT and Material styles
+use the <code>message</code> property for their placeholder text display.</p>
 </div>
                     </td>
                 </tr>
@@ -529,7 +583,7 @@ Used for binding the selected value.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:91</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:136</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -561,7 +615,7 @@ Used for binding the selected value.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:62</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:107</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -593,7 +647,7 @@ Used for binding the selected value.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:101</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -620,7 +674,7 @@ Used for binding the selected value.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:130</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -632,7 +686,36 @@ Used for binding the selected value.</p>
             </tbody>
         </table>
 </section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="valueChange"></a>
+                        <b>valueChange</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
 
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:141</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Event emitted when the selected value changes.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
     <section data-compodoc="block-properties">
     <h3>HostBindings</h3>    <table class="table table-sm table-bordered">
         <tbody>
@@ -653,7 +736,7 @@ Used for binding the selected value.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:97</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:147</a></div>
                         </td>
                     </tr>
 
@@ -694,8 +777,8 @@ Used for binding the selected value.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="107"
-                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:107</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="157"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:157</a></div>
                         </td>
                     </tr>
 
@@ -773,8 +856,8 @@ Updates the value property with the selected option&#39;s value.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="107"
-                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:107</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="157"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:157</a></div>
                         </td>
                     </tr>
 
@@ -848,15 +931,15 @@ Updates the value property with the selected option&#39;s value.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="115"
-                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:115</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="166"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:166</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Clears the current selection by setting the value to -1.</p>
+                        <div class="io-description"><p>Clears the current selection by setting the value to null for bs style, -1 for others.</p>
 </div>
 
                         <div class="io-description">
@@ -897,7 +980,7 @@ Updates the value property with the selected option&#39;s value.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:38</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:74</a></div>
                         </td>
                     </tr>
 
@@ -932,7 +1015,7 @@ Updates the value property with the selected option&#39;s value.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:97</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">projects/zt-ui-components/src/lib/zt-select/select.component.ts:147</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -962,6 +1045,9 @@ Updates the value property with the selected option&#39;s value.</p>
   HostBinding,
   HostListener,
   Input,
+  Output,
+  EventEmitter,
+  OnInit,
 } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { FormsModule } from &#x27;@angular/forms&#x27;;
@@ -970,15 +1056,48 @@ import { FormsModule } from &#x27;@angular/forms&#x27;;
  * A customizable select dropdown component that supports various styles, themes, and data binding.
  * It allows users to select from a list of options with configurable display and value properties.
  *
+ * ## Style-Specific Behaviors:
+ *
+ * - **ZT Style** (&#x60;inputStyle&#x3D;&quot;zt&quot;&#x60;): Traditional select with &#x60;value&#x3D;&quot;&quot;&#x60; placeholder option
+ * - **Material Style** (&#x60;inputStyle&#x3D;&quot;material&quot;&#x60;): Material Design select with &#x60;value&#x3D;&quot;&quot;&#x60; placeholder option
+ * - **Bootstrap Style** (&#x60;inputStyle&#x3D;&quot;bs&quot;&#x60;): Bootstrap-styled select with &#x60;[ngValue]&#x3D;&quot;null&quot;&#x60; placeholder option
+ *
+ * ## Placeholder Handling:
+ *
+ * - ZT &amp; Material styles: Use &#x60;value&#x3D;&quot;&quot;&#x60; for placeholder, clear to &#x60;-1&#x60;
+ * - Bootstrap style: Uses &#x60;[ngValue]&#x3D;&quot;null&quot;&#x60; for placeholder, clears to &#x60;null&#x60;
+ *
  * @example
+ * &lt;!-- ZT Style (default) --&gt;
  * &lt;zt-select
  *   [dataSource]&#x3D;&quot;options&quot;
  *   [key]&#x3D;&quot;&#x27;id&#x27;&quot;
  *   [displayValue]&#x3D;&quot;&#x27;name&#x27;&quot;
  *   [value]&#x3D;&quot;selectedValue&quot;
- *   placeholder&#x3D;&quot;Choose an option&quot;
- *   size&#x3D;&quot;zt-md&quot;
- *   theme&#x3D;&quot;light&quot;&gt;
+ *   inputStyle&#x3D;&quot;zt&quot;
+ *   placeholder&#x3D;&quot;Choose an option&quot;&gt;
+ * &lt;/zt-select&gt;
+ *
+ * @example
+ * &lt;!-- Material Style --&gt;
+ * &lt;zt-select
+ *   [dataSource]&#x3D;&quot;options&quot;
+ *   [key]&#x3D;&quot;&#x27;id&#x27;&quot;
+ *   [displayValue]&#x3D;&quot;&#x27;name&#x27;&quot;
+ *   [value]&#x3D;&quot;selectedValue&quot;
+ *   inputStyle&#x3D;&quot;material&quot;
+ *   placeholder&#x3D;&quot;Choose an option&quot;&gt;
+ * &lt;/zt-select&gt;
+ *
+ * @example
+ * &lt;!-- Bootstrap Style (with proper placeholder support) --&gt;
+ * &lt;zt-select
+ *   [dataSource]&#x3D;&quot;options&quot;
+ *   [key]&#x3D;&quot;&#x27;id&#x27;&quot;
+ *   [displayValue]&#x3D;&quot;&#x27;name&#x27;&quot;
+ *   [value]&#x3D;&quot;selectedValue&quot;
+ *   inputStyle&#x3D;&quot;bs&quot;
+ *   placeholder&#x3D;&quot;Choose an option&quot;&gt;
  * &lt;/zt-select&gt;
  */
 @Component({
@@ -989,7 +1108,7 @@ import { FormsModule } from &#x27;@angular/forms&#x27;;
   standalone: true,
   imports: [CommonModule, FormsModule],
 })
-export class SelectComponent {
+export class SelectComponent implements OnInit {
   /**
    * Default message displayed in the component.
    */
@@ -997,12 +1116,21 @@ export class SelectComponent {
 
   /**
    * Placeholder text displayed when no option is selected.
-   * @default &#x27;label&#x27;
+   *
+   * **Note**: Only effective with &#x60;inputStyle&#x3D;&quot;bs&quot;&#x60;. ZT and Material styles
+   * use the &#x60;message&#x60; property for their placeholder text display.
+   *
+   * @default &#x27;Choose an option&#x27;
    */
-  @Input() placeholder? &#x3D; &#x27;label&#x27;;
+  @Input() placeholder? &#x3D; &#x27;Choose an option&#x27;;
 
   /**
    * The visual style of the select component.
+   *
+   * - &#x60;&#x27;zt&#x27;&#x60;: Traditional ZT styling with &#x60;value&#x3D;&quot;&quot;&#x60; placeholder option
+   * - &#x60;&#x27;material&#x27;&#x60;: Material Design styling with &#x60;value&#x3D;&quot;&quot;&#x60; placeholder option
+   * - &#x60;&#x27;bs&#x27;&#x60;: Bootstrap styling with &#x60;[ngValue]&#x3D;&quot;null&quot;&#x60; placeholder option (recommended for placeholder functionality)
+   *
    * @default &#x27;zt&#x27;
    */
   @Input() inputStyle?: &#x27;zt&#x27; | &#x27;material&#x27; | &#x27;bs&#x27; &#x3D; &#x27;zt&#x27;;
@@ -1049,6 +1177,11 @@ export class SelectComponent {
   @Input() showClearButton &#x3D; true;
 
   /**
+   * Event emitted when the selected value changes.
+   */
+  @Output() valueChange &#x3D; new EventEmitter&lt;any&gt;();
+
+  /**
    * Dynamically applies CSS classes to the select element based on size and theme.
    * @returns A string of CSS classes.
    */
@@ -1064,15 +1197,29 @@ export class SelectComponent {
   @HostListener(&#x27;change&#x27;, [&#x27;$event&#x27;])
   onChange(event: any) {
     this.value &#x3D; event.target.value;
+    this.valueChange.emit(this.value);
     console.log(this.key, this.value);
   }
 
   /**
-   * Clears the current selection by setting the value to -1.
+   * Clears the current selection by setting the value to null for bs style, -1 for others.
    */
   onClear() {
     console.log(this.value);
-    this.value &#x3D; -1;
+    // Use null for bs style (which has [ngValue]&#x3D;&quot;null&quot; placeholder), -1 for others
+    this.value &#x3D; this.inputStyle &#x3D;&#x3D;&#x3D; &#x27;bs&#x27; ? null : -1;
+    this.valueChange.emit(this.value);
+  }
+
+  /**
+   * Initializes the component and ensures placeholder is shown when no value is set.
+   */
+  ngOnInit() {
+    // If no value is provided, set appropriate default based on input style
+    // bs style uses null for placeholder, others use -1
+    if (this.value &#x3D;&#x3D;&#x3D; undefined) {
+      this.value &#x3D; this.inputStyle &#x3D;&#x3D;&#x3D; &#x27;bs&#x27; ? null : -1;
+    }
   }
 }
 </code></pre>
@@ -1148,7 +1295,7 @@ export class SelectComponent {
         #select
         [(ngModel)]&#x3D;&quot;value&quot;
         &gt;
-        &lt;option value&#x3D;&quot;&quot; class&#x3D;&quot;select-message&quot; selected disabled&gt;
+        &lt;option [ngValue]&#x3D;&quot;null&quot; class&#x3D;&quot;select-message&quot; selected disabled&gt;
           {{ placeholder }}
         &lt;/option&gt;
         @for (obj of dataSource; track obj; let i &#x3D; $index) {
@@ -1177,7 +1324,7 @@ export class SelectComponent {
                 <p class="comment">
                     <code>./select.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">@import &quot;../../assets/variables&quot;;
+                <pre class="line-numbers"><code class="language-scss">@use &quot;../../assets/variables&quot; as vars;
 
 // Light theme (default)
 :host(.theme-light) {
@@ -1264,7 +1411,7 @@ export class SelectComponent {
     select,
     .label .text {
       font-family: &quot;Segoe UI&quot;;
-      font-size: $font-size-input;
+      font-size: vars.$font-size-input;
     }
 
     select:focus {
@@ -1274,7 +1421,7 @@ export class SelectComponent {
 
     select:focus + .label .text,
     :not(select[value&#x3D;&quot;&quot;]) + .label .text {
-      font-size: $font-size-input-label-sm;
+      font-size: vars.$font-size-input-label-sm;
       transform: translate(0, -150%);
       background-color: var(--zt-bg-white);
       padding-left: 4px;
@@ -1286,7 +1433,7 @@ export class SelectComponent {
     }
 
     .select-message {
-      color: $text-gray;
+      color: vars.$text-gray;
     }
 
     .close-icon {
@@ -1317,7 +1464,7 @@ export class SelectComponent {
       text-align: center;
       color: var(--zt-text-black);
       font-weight: normal;
-      font-size: $font-size-input-label-sm;
+      font-size: vars.$font-size-input-label-sm;
       cursor: pointer;
     }
   }
@@ -1336,10 +1483,10 @@ export class SelectComponent {
       background-color: transparent;
       width: 100%;
       padding: 10px 10px 10px 0;
-      font-size: $font-size-input;
+      font-size: vars.$font-size-input;
       border-radius: 0;
       border: none;
-      border-bottom: 1px solid $border-color;
+      border-bottom: 1px solid vars.$border-color;
     }
 
     .select-message {
@@ -1381,7 +1528,7 @@ export class SelectComponent {
     /* LABEL &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; */
     .select-label {
       color: var(--zt-text-gray);
-      font-size: $font-size-input;
+      font-size: vars.$font-size-input;
       font-weight: normal;
       position: absolute;
       pointer-events: none;
@@ -1396,7 +1543,7 @@ export class SelectComponent {
       color: var(--zt-border-focus);
       top: -10px;
       transition: 0.2s ease all;
-      font-size: $font-size-input-label-sm;
+      font-size: vars.$font-size-input-label-sm;
     }
 
     /* BOTTOM BARS &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; */
@@ -1470,7 +1617,7 @@ export class SelectComponent {
       text-align: center;
       color: var(--zt-text-black);
       font-weight: normal;
-      font-size: $font-size-input-label-sm;
+      font-size: vars.$font-size-input-label-sm;
       cursor: pointer;
     }
   }
@@ -1489,7 +1636,7 @@ export class SelectComponent {
       box-sizing: border-box;
       transition: 0.3s;
       color: var(--zt-text-select);
-      font-size: $font-size-input;
+      font-size: vars.$font-size-input;
     }
 
     .form__field:focus {
@@ -1529,7 +1676,7 @@ export class SelectComponent {
       text-align: center;
       color: var(--zt-text-black);
       font-weight: normal;
-      font-size: $font-size-input-label-sm;
+      font-size: vars.$font-size-input-label-sm;
       cursor: pointer;
     }
   }
@@ -1562,9 +1709,9 @@ export class SelectComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>@if (inputStyle === \'zt\') {  <div>    <div class="box_select">      <div class="form__group">        <select          id="box_select"          aria-labelledby="label-fname"          class=""          #select          [(ngModel)]="value"          >          <option value="" class="select-message" selected disabled>            {{ message }}          </option>          @for (obj of dataSource; track obj; let i = $index) {            <option              [id]="key ? key : i"              class="select-option"              >              {{ displayValue ? obj[displayValue] : obj }}            </option>          }        </select>        @if (showClearButton) {          <button class="close-icon" type="reset"></button>        }        <label class="label" for="fname" id="label-fname">          <div class="text">{{ placeholder }}</div>        </label>      </div>    </div>  </div>}@if (inputStyle === \'material\') {  <div>    <div class="material_select">      <div class="select select-items">        <select class="select-text" required #select [(ngModel)]="value">          <option value="" class="select-message" selected disabled></option>          @for (obj of dataSource; track obj; let i = $index) {            <option              [id]="key ? key : i"              class="select-option"              >              {{ displayValue ? obj[displayValue] : obj }}            </option>          }        </select>        @if (showClearButton) {          <button class="close-icon" type="reset"></button>        }        <span class="select-highlight"></span>        <span class="select-bar"></span>        <label class="select-label">{{ placeholder }}</label>      </div>    </div>  </div>}@if (inputStyle === \'bs\') {  <div>    <div class="bs_select">      <select        type="text"        class="form__field"        id="bs_select"        #select        [(ngModel)]="value"        >        <option value="" class="select-message" selected disabled>          {{ placeholder }}        </option>        @for (obj of dataSource; track obj; let i = $index) {          <option            [id]="key ? key : i"            class="select-option"            >            {{ displayValue ? obj[displayValue] : obj }}          </option>        }      </select>      @if (showClearButton) {        <button          class="close-icon"          type="button"          (click)="onClear()"        ></button>      }    </div>  </div>}</div>'
-    var COMPONENTS = [{'name': 'ButtonComponent', 'selector': 'storybook-button'},{'name': 'ButtonComponent', 'selector': 'zt-button'},{'name': 'HeaderComponent', 'selector': 'storybook-header'},{'name': 'InputComponent', 'selector': 'zt-input'},{'name': 'PageComponent', 'selector': 'storybook-page'},{'name': 'SelectComponent', 'selector': 'zt-select'},{'name': 'TextareaComponent', 'selector': 'zt-textarea'},{'name': 'ZtDataGridComponent', 'selector': 'zt-data-grid'},{'name': 'ZtPaginatorComponent', 'selector': 'zt-paginator'},{'name': 'ZtPaginatorXComponent', 'selector': 'zt-paginator-x'},{'name': 'ZtUiComponents', 'selector': 'lib-zt-ui-components'}];
-    var DIRECTIVES = [];
+        var COMPONENT_TEMPLATE = '<div>@if (inputStyle === \'zt\') {  <div>    <div class="box_select">      <div class="form__group">        <select          id="box_select"          aria-labelledby="label-fname"          class=""          #select          [(ngModel)]="value"          >          <option value="" class="select-message" selected disabled>            {{ message }}          </option>          @for (obj of dataSource; track obj; let i = $index) {            <option              [id]="key ? key : i"              class="select-option"              >              {{ displayValue ? obj[displayValue] : obj }}            </option>          }        </select>        @if (showClearButton) {          <button class="close-icon" type="reset"></button>        }        <label class="label" for="fname" id="label-fname">          <div class="text">{{ placeholder }}</div>        </label>      </div>    </div>  </div>}@if (inputStyle === \'material\') {  <div>    <div class="material_select">      <div class="select select-items">        <select class="select-text" required #select [(ngModel)]="value">          <option value="" class="select-message" selected disabled></option>          @for (obj of dataSource; track obj; let i = $index) {            <option              [id]="key ? key : i"              class="select-option"              >              {{ displayValue ? obj[displayValue] : obj }}            </option>          }        </select>        @if (showClearButton) {          <button class="close-icon" type="reset"></button>        }        <span class="select-highlight"></span>        <span class="select-bar"></span>        <label class="select-label">{{ placeholder }}</label>      </div>    </div>  </div>}@if (inputStyle === \'bs\') {  <div>    <div class="bs_select">      <select        type="text"        class="form__field"        id="bs_select"        #select        [(ngModel)]="value"        >        <option [ngValue]="null" class="select-message" selected disabled>          {{ placeholder }}        </option>        @for (obj of dataSource; track obj; let i = $index) {          <option            [id]="key ? key : i"            class="select-option"            >            {{ displayValue ? obj[displayValue] : obj }}          </option>        }      </select>      @if (showClearButton) {        <button          class="close-icon"          type="button"          (click)="onClear()"        ></button>      }    </div>  </div>}</div>'
+    var COMPONENTS = [{'name': 'ButtonComponent', 'selector': 'storybook-button'},{'name': 'ButtonComponent', 'selector': 'zt-button'},{'name': 'CardComponent', 'selector': 'zt-card'},{'name': 'HeaderComponent', 'selector': 'storybook-header'},{'name': 'InputComponent', 'selector': 'zt-input'},{'name': 'PageComponent', 'selector': 'storybook-page'},{'name': 'SelectComponent', 'selector': 'zt-select'},{'name': 'TextareaComponent', 'selector': 'zt-textarea'},{'name': 'ToggleComponent', 'selector': 'zt-toggle'},{'name': 'ZtDataGridComponent', 'selector': 'zt-data-grid'},{'name': 'ZtModalComponent', 'selector': 'zt-modal'},{'name': 'ZtPaginatorComponent', 'selector': 'zt-paginator'},{'name': 'ZtPaginatorXComponent', 'selector': 'zt-paginator-x'},{'name': 'ZtToastComponent', 'selector': 'zt-toast'},{'name': 'ZtUiComponents', 'selector': 'lib-zt-ui-components'}];
+    var DIRECTIVES = [{'name': 'ThemeDirective', 'selector': '[ztTheme]'}];
     var ACTUAL_COMPONENT = {'name': 'SelectComponent'};
 </script>
 <script src="../js/tree.js"></script>

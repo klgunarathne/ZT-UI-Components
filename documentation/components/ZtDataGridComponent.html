@@ -273,18 +273,6 @@ Supports various themes and customizable columns with templates.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#applyPagination" >applyPagination</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#applySorting" >applySorting</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#capitalizeFirstLetter" >capitalizeFirstLetter</a>
-                            </li>
-                            <li>
                                 <a href="#getPageNo" >getPageNo</a>
                             </li>
                             <li>
@@ -292,16 +280,6 @@ Supports various themes and customizable columns with templates.</p>
                             </li>
                             <li>
                                 <a href="#getPageSizeOptionsFromString" >getPageSizeOptionsFromString</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#initializeColumns" >initializeColumns</a>
-                            </li>
-                            <li>
-                                <a href="#ngOnChanges" >ngOnChanges</a>
-                            </li>
-                            <li>
-                                <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
                                 <a href="#onPageChangeEvent" >onPageChangeEvent</a>
@@ -317,10 +295,6 @@ Supports various themes and customizable columns with templates.</p>
                             </li>
                             <li>
                                 <a href="#onSort" >onSort</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#processData" >processData</a>
                             </li>
                         </ul>
                     </td>
@@ -1141,237 +1115,6 @@ default = &#39;page;</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="applyPagination"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>applyPagination</b></span>
-                        <a href="#applyPagination"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>applyPagination(data: any[])</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="299"
-                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-data-grid/zt-data-grid.component.ts:299</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Applies pagination to the data array.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>data</td>
-                                            <td>
-                                                        <code>any[]</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The data array to paginate.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>any[]</code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>The paginated data array.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="applySorting"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>applySorting</b></span>
-                        <a href="#applySorting"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>applySorting(data: any[])</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="276"
-                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-data-grid/zt-data-grid.component.ts:276</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Applies sorting to the data array based on the current sort state.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>data</td>
-                                            <td>
-                                                        <code>any[]</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The data array to sort.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>any[]</code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>The sorted data array.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="capitalizeFirstLetter"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>capitalizeFirstLetter</b></span>
-                        <a href="#capitalizeFirstLetter"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>capitalizeFirstLetter(str: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="243"
-                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-data-grid/zt-data-grid.component.ts:243</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Capitalizes the first letter of a string.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>str</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The string to capitalize.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>The capitalized string.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="getPageNo"></a>
                     <span class="name">
                         <span ><b>getPageNo</b></span>
@@ -1510,164 +1253,6 @@ default = &#39;page;</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Parses the page size options string into an array of numbers.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="initializeColumns"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>initializeColumns</b></span>
-                        <a href="#initializeColumns"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>initializeColumns()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="218"
-                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-data-grid/zt-data-grid.component.ts:218</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Initializes columns for the data grid.
-Auto-generates columns from data source if none are provided.
-Updates existing columns with global sorting settings.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ngOnChanges"></a>
-                    <span class="name">
-                        <span ><b>ngOnChanges</b></span>
-                        <a href="#ngOnChanges"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngOnChanges(changes: SimpleChanges)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="318"
-                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-data-grid/zt-data-grid.component.ts:318</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Lifecycle hook that responds to input property changes.
-Updates selection mode, recalculates pages, and reprocesses data as needed.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>changes</td>
-                                            <td>
-                                                        <code>SimpleChanges</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>Object containing changed properties.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ngOnInit"></a>
-                    <span class="name">
-                        <span ><b>ngOnInit</b></span>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngOnInit()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="204"
-                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-data-grid/zt-data-grid.component.ts:204</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Lifecycle hook that initializes the component.
-Sets up selection mode, page size options, columns, and processes initial data.</p>
 </div>
 
                         <div class="io-description">
@@ -2044,48 +1629,6 @@ Sets up selection mode, page size options, columns, and processes initial data.<
                             <div class="io-description">
                                 
                             </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="processData"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>processData</b></span>
-                        <a href="#processData"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>processData()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="251"
-                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-data-grid/zt-data-grid.component.ts:251</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Processes the data source by applying sorting and pagination.
-Creates DataGridRow objects for display.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
                 </td>
             </tr>
         </tbody>
@@ -3436,8 +2979,8 @@ export class ZtDataGridComponent implements OnInit, OnChanges {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="dx-datagrid-wrapper">  <div    class="dx-datagrid"    [ngClass]="{      \'dx-datagrid-striped\': striped,      \'dx-datagrid-borders\': showBorders    }"  >    <table      class="dx-datagrid-table"      cellpadding="0"      cellspacing="0"      border="0"    >      <thead class="dx-datagrid-headers">        <tr class="dx-datagrid-header-row">          @for (column of columns; track column.field) {            @if (column.visible !== false) {              <th                class="dx-datagrid-header"                [style.width]="column.width"                [style.min-width]="column.minWidth"                [style.max-width]="column.maxWidth"                [style.text-align]="column.alignment || \'left\'"                [ngClass]="{                  \'dx-datagrid-header-sortable\': column.sortable && allowSorting,                  \'dx-datagrid-header-sorted-asc\': column.sortDirection === \'asc\',                  \'dx-datagrid-header-sorted-desc\': column.sortDirection === \'desc\'                }"                (click)="column.sortable && allowSorting && onSort(column)"              >                <div class="dx-datagrid-text-content">                  <span class="dx-datagrid-header-text">                    {{ column.title || column.field }}                  </span>                  @if (column.sortable && allowSorting) {                    <div class="dx-datagrid-sort-indicator">                      @if (column.sortDirection === \'asc\') {                        <div class="dx-datagrid-sort-up"></div>                      } @else if (column.sortDirection === \'desc\') {                        <div class="dx-datagrid-sort-down"></div>                      } @else {                        <div class="dx-datagrid-sort-none">                          <div class="dx-datagrid-sort-up"></div>                          <div class="dx-datagrid-sort-down"></div>                        </div>                      }                    </div>                  }                </div>              </th>            }          }          @if (showEdit || showDelete) {            <th class="dx-datagrid-header">              <div class="dx-datagrid-text-content">                <span class="dx-datagrid-header-text">Actions</span>              </div>            </th>          }        </tr>      </thead>      <tbody class="dx-datagrid-rows">        @for (row of processedData; track row.key) {          <tr             class="dx-datagrid-row"             [ngClass]="{               \'dx-datagrid-row-selected\': row.selected,               \'dx-datagrid-row-hover\': allowSelection && selectionMode !== \'none\'             }"             (click)="allowSelection && selectionMode !== \'none\' && onRowClick(row)"           >            @for (column of columns; track column.field) {              @if (column.visible !== false) {                <td                  class="dx-datagrid-cell"                  [style.text-align]="column.alignment || \'left\'"                >                  <div class="dx-datagrid-cell-content">                    {{ row.data[column.field] }}                  </div>                </td>              }            }            @if (showEdit || showDelete) {              <td class="dx-datagrid-cell">                <div class="dx-datagrid-cell-content">                  <div class="dx-datagrid-actions">                    @if (showEdit) {                      <zt-button                        [ngClass]="{                          \'dx-datagrid-action-button\': editButtonType === \'button\',                          \'dx-datagrid-action-link\': editButtonType === \'link\'                        }"                        style="margin-right: 8px;"                      >                        Edit                      </zt-button>                    }                    @if (showDelete) {                      <zt-button                        [ngClass]="{                          \'dx-datagrid-action-button\': deleteButtonType === \'button\',                          \'dx-datagrid-action-link\': deleteButtonType === \'link\'                        }"                        style="margin-right: 8px;"                      >                        Delete                      </zt-button>                    }                  </div>                </div>              </td>            }          </tr>        }      </tbody>    </table>    <!-- Pagination Section -->    <div class="dx-datagrid-pager">      <div class="dx-datagrid-pager-container">        <!-- Page Size Selector -->        <div class="dx-datagrid-pager-page-size">          <span class="dx-datagrid-pager-label">Show:</span>          <div class="dx-datagrid-pager-page-size-selector">            @for (size of pageSizes; track size) {              <button                class="dx-datagrid-pager-page-size-item"                [ngClass]="{\'dx-datagrid-pager-page-size-selected\': size === currentPageSize}"                (click)="onPageSize(size)"              >                {{ size }}              </button>            }          </div>        </div>        <!-- Page Info -->        <div class="dx-datagrid-pager-info">          <span class="dx-datagrid-pager-info-text">            {{ (currentPage - 1) * currentPageSize + 1 }} - {{ (currentPage * currentPageSize) < dataSource.length ? (currentPage * currentPageSize) : dataSource.length }} of {{ dataSource.length }} items          </span>        </div>        <!-- ZT Paginator Component -->        <div class="dx-datagrid-pager-navigation">          <zt-paginator-x            [pages]="pages"            [paginatorStyle]="paginatorStyle"            [theme]="theme"            (onPageChange)="onPaginatorPageChange($event)"          ></zt-paginator-x>        </div>      </div>    </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'ButtonComponent', 'selector': 'storybook-button'},{'name': 'ButtonComponent', 'selector': 'zt-button'},{'name': 'HeaderComponent', 'selector': 'storybook-header'},{'name': 'InputComponent', 'selector': 'zt-input'},{'name': 'PageComponent', 'selector': 'storybook-page'},{'name': 'SelectComponent', 'selector': 'zt-select'},{'name': 'TextareaComponent', 'selector': 'zt-textarea'},{'name': 'ZtDataGridComponent', 'selector': 'zt-data-grid'},{'name': 'ZtPaginatorComponent', 'selector': 'zt-paginator'},{'name': 'ZtPaginatorXComponent', 'selector': 'zt-paginator-x'},{'name': 'ZtUiComponents', 'selector': 'lib-zt-ui-components'}];
-    var DIRECTIVES = [];
+    var COMPONENTS = [{'name': 'ButtonComponent', 'selector': 'storybook-button'},{'name': 'ButtonComponent', 'selector': 'zt-button'},{'name': 'CardComponent', 'selector': 'zt-card'},{'name': 'HeaderComponent', 'selector': 'storybook-header'},{'name': 'InputComponent', 'selector': 'zt-input'},{'name': 'PageComponent', 'selector': 'storybook-page'},{'name': 'SelectComponent', 'selector': 'zt-select'},{'name': 'TextareaComponent', 'selector': 'zt-textarea'},{'name': 'ToggleComponent', 'selector': 'zt-toggle'},{'name': 'ZtDataGridComponent', 'selector': 'zt-data-grid'},{'name': 'ZtModalComponent', 'selector': 'zt-modal'},{'name': 'ZtPaginatorComponent', 'selector': 'zt-paginator'},{'name': 'ZtPaginatorXComponent', 'selector': 'zt-paginator-x'},{'name': 'ZtToastComponent', 'selector': 'zt-toast'},{'name': 'ZtUiComponents', 'selector': 'lib-zt-ui-components'}];
+    var DIRECTIVES = [{'name': 'ThemeDirective', 'selector': '[ztTheme]'}];
     var ACTUAL_COMPONENT = {'name': 'ZtDataGridComponent'};
 </script>
 <script src="../js/tree.js"></script>

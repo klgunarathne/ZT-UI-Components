@@ -36,11 +36,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </a>
                             </li>
                                 <li class="link">
-                                    <a href="dependencies.html" data-type="chapter-link">
-                                        <span class="icon ion-ios-list"></span>Dependencies
-                                    </a>
-                                </li>
-                                <li class="link">
                                     <a href="properties.html" data-type="chapter-link">
                                         <span class="icon ion-ios-apps"></span>Properties
                                     </a>
@@ -59,10 +54,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </a>
                         <ul class="links collapse " ${ isNormalMode ? 'id="modules-links"' : 'id="xs-modules-links"' }>
                             <li class="link">
+                                <a href="modules/ZtCardModule.html" data-type="entity-link" >ZtCardModule</a>
+                            </li>
+                            <li class="link">
                                 <a href="modules/ZtDataGridModule.html" data-type="entity-link" >ZtDataGridModule</a>
                             </li>
                             <li class="link">
                                 <a href="modules/ZtInputModule.html" data-type="entity-link" >ZtInputModule</a>
+                            </li>
+                            <li class="link">
+                                <a href="modules/ZtModalModule.html" data-type="entity-link" >ZtModalModule</a>
                             </li>
                             <li class="link">
                                 <a href="modules/ZtPaginatorModule.html" data-type="entity-link" >ZtPaginatorModule</a>
@@ -72,6 +73,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="modules/ZtTextareaModule.html" data-type="entity-link" >ZtTextareaModule</a>
+                            </li>
+                            <li class="link">
+                                <a href="modules/ZtToastModule.html" data-type="entity-link" >ZtToastModule</a>
                             </li>
                 </ul>
                 </li>
@@ -90,6 +94,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/ButtonComponent-1.html" data-type="entity-link" >ButtonComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/CardComponent.html" data-type="entity-link" >CardComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/HeaderComponent.html" data-type="entity-link" >HeaderComponent</a>
                             </li>
                             <li class="link">
@@ -102,10 +109,54 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/SelectComponent.html" data-type="entity-link" >SelectComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/ToggleComponent.html" data-type="entity-link" >ToggleComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ZtDataGridComponent.html" data-type="entity-link" >ZtDataGridComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ZtModalComponent.html" data-type="entity-link" >ZtModalComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ZtToastComponent.html" data-type="entity-link" >ZtToastComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/ZtUiComponents.html" data-type="entity-link" >ZtUiComponents</a>
                             </li>
                         </ul>
                     </li>
+                        <li class="chapter">
+                            <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#directives-links"' :
+                                'data-bs-target="#xs-directives-links"' }>
+                                <span class="icon ion-md-code-working"></span>
+                                <span>Directives</span>
+                                <span class="icon ion-ios-arrow-down"></span>
+                            </div>
+                            <ul class="links collapse " ${ isNormalMode ? 'id="directives-links"' : 'id="xs-directives-links"' }>
+                                <li class="link">
+                                    <a href="directives/ThemeDirective.html" data-type="entity-link" >ThemeDirective</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="chapter">
+                            <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#injectables-links"' :
+                                'data-bs-target="#xs-injectables-links"' }>
+                                <span class="icon ion-md-arrow-round-down"></span>
+                                <span>Injectables</span>
+                                <span class="icon ion-ios-arrow-down"></span>
+                            </div>
+                            <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
+                                <li class="link">
+                                    <a href="injectables/ThemeValidationService.html" data-type="entity-link" >ThemeValidationService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/ZTThemeService.html" data-type="entity-link" >ZTThemeService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/ZtToastService.html" data-type="entity-link" >ZtToastService</a>
+                                </li>
+                            </ul>
+                        </li>
                     <li class="chapter">
                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#interfaces-links"' :
                             'data-bs-target="#xs-interfaces-links"' }>
@@ -148,7 +199,22 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/DataGridSummary.html" data-type="entity-link" >DataGridSummary</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/ThemeColors.html" data-type="entity-link" >ThemeColors</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ThemeConfig.html" data-type="entity-link" >ThemeConfig</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ThemeContext.html" data-type="entity-link" >ThemeContext</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ThemeValidationResult.html" data-type="entity-link" >ThemeValidationResult</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/User.html" data-type="entity-link" >User</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ZtToast.html" data-type="entity-link" >ZtToast</a>
                             </li>
                         </ul>
                     </li>
@@ -162,6 +228,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         <ul class="links collapse " ${ isNormalMode ? 'id="miscellaneous-links"' : 'id="xs-miscellaneous-links"' }>
                             <li class="link">
                                 <a href="miscellaneous/enumerations.html" data-type="entity-link">Enums</a>
+                            </li>
+                            <li class="link">
+                                <a href="miscellaneous/functions.html" data-type="entity-link">Functions</a>
                             </li>
                             <li class="link">
                                 <a href="miscellaneous/typealiases.html" data-type="entity-link">Type aliases</a>

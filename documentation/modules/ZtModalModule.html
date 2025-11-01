@@ -104,7 +104,7 @@
 
 <ol class="breadcrumb">
     <li class="breadcrumb-item">Modules</li>
-    <li class="breadcrumb-item" >ZtInputModule</li>
+    <li class="breadcrumb-item" >ZtModalModule</li>
 </ol>
 
 <div class="text-center module-graph-container">
@@ -132,44 +132,44 @@
 <polygon fill="#fb8072" stroke="transparent" points="406,-10 406,-30 426,-30 426,-10 406,-10"/>
 <text text-anchor="start" x="429.73" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Exports</text>
 <g id="clust1" class="cluster">
-<title>cluster_ZtInputModule</title>
-<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="175,-70 175,-268 321,-268 321,-70 175,-70"/>
+<title>cluster_ZtModalModule</title>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="165,-70 165,-268 331,-268 331,-70 165,-70"/>
 </g>
 <g id="clust3" class="cluster">
-<title>cluster_ZtInputModule_imports</title>
-<polygon fill="none" stroke="black" points="185,-78 185,-130 311,-130 311,-78 185,-78"/>
+<title>cluster_ZtModalModule_imports</title>
+<polygon fill="none" stroke="black" points="175,-78 175,-130 321,-130 321,-78 175,-78"/>
 </g>
 <g id="clust4" class="cluster">
-<title>cluster_ZtInputModule_exports</title>
-<polygon fill="none" stroke="black" points="183,-208 183,-260 313,-260 313,-208 183,-208"/>
+<title>cluster_ZtModalModule_exports</title>
+<polygon fill="none" stroke="black" points="173,-208 173,-260 323,-260 323,-208 173,-208"/>
 </g>
-<!-- InputComponent -->
+<!-- ZtModalComponent -->
 <g id="node1" class="node">
-<title>InputComponent</title>
-<polygon fill="#8dd3c7" stroke="black" points="303.38,-122 300.38,-126 279.38,-126 276.38,-122 192.62,-122 192.62,-86 303.38,-86 303.38,-122"/>
-<text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00">InputComponent</text>
+<title>ZtModalComponent</title>
+<polygon fill="#8dd3c7" stroke="black" points="313.33,-122 310.33,-126 289.33,-126 286.33,-122 182.67,-122 182.67,-86 313.33,-86 313.33,-122"/>
+<text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00">ZtModalComponent</text>
 </g>
-<!-- ZtInputModule -->
+<!-- ZtModalModule -->
 <g id="node2" class="node">
-<title>ZtInputModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="298.55,-187 295.55,-191 274.55,-191 271.55,-187 197.45,-187 197.45,-151 298.55,-151 298.55,-187"/>
-<text text-anchor="middle" x="248" y="-164.8" font-family="Times,serif" font-size="14.00">ZtInputModule</text>
+<title>ZtModalModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="302.04,-187 299.04,-191 278.04,-191 275.04,-187 193.96,-187 193.96,-151 302.04,-151 302.04,-187"/>
+<text text-anchor="middle" x="248" y="-164.8" font-family="Times,serif" font-size="14.00">ZtModalModule</text>
 </g>
-<!-- InputComponent&#45;&gt;ZtInputModule -->
+<!-- ZtModalComponent&#45;&gt;ZtModalModule -->
 <g id="edge1" class="edge">
-<title>InputComponent&#45;&gt;ZtInputModule</title>
+<title>ZtModalComponent&#45;&gt;ZtModalModule</title>
 <path fill="none" stroke="black" d="M248,-122.11C248,-122.11 248,-140.99 248,-140.99"/>
 <polygon fill="black" stroke="black" points="244.5,-140.99 248,-150.99 251.5,-140.99 244.5,-140.99"/>
 </g>
-<!-- InputComponent  -->
+<!-- ZtModalComponent  -->
 <g id="node3" class="node">
-<title>InputComponent </title>
-<polygon fill="#fb8072" stroke="black" points="305.38,-252 190.62,-252 190.62,-216 305.38,-216 305.38,-252"/>
-<text text-anchor="middle" x="248" y="-229.8" font-family="Times,serif" font-size="14.00">InputComponent </text>
+<title>ZtModalComponent </title>
+<polygon fill="#fb8072" stroke="black" points="314.83,-252 181.17,-252 181.17,-216 314.83,-216 314.83,-252"/>
+<text text-anchor="middle" x="248" y="-229.8" font-family="Times,serif" font-size="14.00">ZtModalComponent </text>
 </g>
-<!-- ZtInputModule&#45;&gt;InputComponent  -->
+<!-- ZtModalModule&#45;&gt;ZtModalComponent  -->
 <g id="edge2" class="edge">
-<title>ZtInputModule&#45;&gt;InputComponent </title>
+<title>ZtModalModule&#45;&gt;ZtModalComponent </title>
 <path fill="none" stroke="black" stroke-dasharray="5,2" d="M248,-187.11C248,-187.11 248,-205.99 248,-205.99"/>
 <polygon fill="black" stroke="black" points="244.5,-205.99 248,-215.99 251.5,-205.99 244.5,-205.99"/>
 </g>
@@ -209,11 +209,34 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>projects/zt-ui-components/src/lib/zt-input/zt-input.module.ts</code>
+            <code>projects/zt-ui-components/src/lib/zt-modal/zt-modal.module.ts</code>
         </p>
 
 
 
+        <p class="comment">
+            <h3>Description</h3>
+        </p>
+        <p class="comment">
+            <p>ZT Modal Module</p>
+<p>This module provides modal dialog functionality for the ZT UI Components library.
+It includes a flexible modal component with theming support, accessibility features,
+and customizable content areas.</p>
+<p>Note: ZtModalComponent is a standalone component. This module serves as a
+convenience for importing the component in non-standalone applications.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">// For standalone applications, import directly:
+import { ZtModalComponent } from &#39;zt-ui-components&#39;;
+
+
+// For module-based applications:
+import { ZtModalModule } from &#39;zt-ui-components&#39;;
+
+
+&#64;NgModule({
+  imports: [ZtModalModule],
+})
+export class AppModule {}</code></pre></div>
+        </p>
 
 
         <div class="container-fluid module">
@@ -224,7 +247,7 @@
                                 class="icon ion-ios-information-circle-outline"></a></h3>
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <a href="../modules/InputComponent.html">InputComponent</a>
+                            <a href="../modules/ZtModalComponent.html">ZtModalComponent</a>
                         </li>
                     </ul>
                 </div>
@@ -234,150 +257,50 @@
                                 class="icon ion-ios-information-circle-outline"></a></h3>
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <a href="../components/InputComponent.html">InputComponent</a>
+                            <a href="../components/ZtModalComponent.html">ZtModalComponent</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <section data-compodoc="block-methods">
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="forChild"></a>
-                    <span class="name">
-                            <span class="modifier">Static</span>
-                        <span ><b>forChild</b></span>
-                        <a href="#forChild"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>forChild()</code>
-                </td>
-            </tr>
 
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="38"
-                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/zt-input.module.ts:38</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Provides the ZtInputModule for feature modules.
-Use this method when importing the module in feature modules.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../modules/ZtInputModule.html" target="_self" >ModuleWithProviders&lt;ZtInputModule&gt;</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="forRoot"></a>
-                    <span class="name">
-                            <span class="modifier">Static</span>
-                        <span ><b>forRoot</b></span>
-                        <a href="#forRoot"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>forRoot()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="25"
-                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/zt-input.module.ts:25</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Provides the ZtInputModule with optional configuration.
-Use this method when importing the module in your root application module.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../modules/ZtInputModule.html" target="_self" >ModuleWithProviders&lt;ZtInputModule&gt;</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { InputComponent } from &#x27;./input.component&#x27;;
-import { NgModule, ModuleWithProviders } from &#x27;@angular/core&#x27;;
-import { CommonModule } from &#x27;@angular/common&#x27;;
-import { ReactiveFormsModule, FormsModule } from &#x27;@angular/forms&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
+import { ZtModalComponent } from &#x27;./zt-modal.component&#x27;;
 
+/**
+ * ZT Modal Module
+ *
+ * This module provides modal dialog functionality for the ZT UI Components library.
+ * It includes a flexible modal component with theming support, accessibility features,
+ * and customizable content areas.
+ *
+ * Note: ZtModalComponent is a standalone component. This module serves as a
+ * convenience for importing the component in non-standalone applications.
+ *
+ * @example
+ * &#x60;&#x60;&#x60;typescript
+ * // For standalone applications, import directly:
+ * import { ZtModalComponent } from &#x27;zt-ui-components&#x27;;
+ *
+ * // For module-based applications:
+ * import { ZtModalModule } from &#x27;zt-ui-components&#x27;;
+ *
+ * @NgModule({
+ *   imports: [ZtModalModule],
+ * })
+ * export class AppModule {}
+ * &#x60;&#x60;&#x60;
+ */
 @NgModule({
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    InputComponent
-  ],
-  exports: [
-    InputComponent,
-    ReactiveFormsModule,
-    FormsModule
-  ],
-  providers: []
+  imports: [ZtModalComponent],
+  exports: [ZtModalComponent],
 })
-export class ZtInputModule {
-  /**
-   * Provides the ZtInputModule with optional configuration.
-   * Use this method when importing the module in your root application module.
-   */
-  static forRoot(): ModuleWithProviders&lt;ZtInputModule&gt; {
-    return {
-      ngModule: ZtInputModule,
-      providers: [
-        // Add any global providers here if needed
-      ]
-    };
-  }
-
-  /**
-   * Provides the ZtInputModule for feature modules.
-   * Use this method when importing the module in feature modules.
-   */
-  static forChild(): ModuleWithProviders&lt;ZtInputModule&gt; {
-    return {
-      ngModule: ZtInputModule
-    };
-  }
-}
+export class ZtModalModule {}
 </code></pre>
     </div>
 </div>
@@ -424,7 +347,7 @@ export class ZtInputModule {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
-            var COMPODOC_CURRENT_PAGE_URL = 'ZtInputModule.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'ZtModalModule.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

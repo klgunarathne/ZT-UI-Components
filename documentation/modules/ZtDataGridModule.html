@@ -135,18 +135,18 @@
 <title>cluster_ZtDataGridModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="157,-70 157,-268 339,-268 339,-70 157,-70"/>
 </g>
-<g id="clust5" class="cluster">
+<g id="clust4" class="cluster">
 <title>cluster_ZtDataGridModule_exports</title>
 <polygon fill="none" stroke="black" points="165,-208 165,-260 331,-260 331,-208 165,-208"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_ZtDataGridModule_declarations</title>
+<g id="clust3" class="cluster">
+<title>cluster_ZtDataGridModule_imports</title>
 <polygon fill="none" stroke="black" points="167,-78 167,-130 329,-130 329,-78 167,-78"/>
 </g>
 <!-- ZtDataGridComponent -->
 <g id="node1" class="node">
 <title>ZtDataGridComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="320.86,-122 175.14,-122 175.14,-86 320.86,-86 320.86,-122"/>
+<polygon fill="#8dd3c7" stroke="black" points="320.86,-122 317.86,-126 296.86,-126 293.86,-122 175.14,-122 175.14,-86 320.86,-86 320.86,-122"/>
 <text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00">ZtDataGridComponent</text>
 </g>
 <!-- ZtDataGridModule -->
@@ -219,11 +219,12 @@
         <div class="container-fluid module">
             <div class="row">
                 <div class="col-sm-3">
-                    <h3>Declarations<a href="https://angular.io/api/core/NgModule#declarations" target="_blank" rel="noopener noreferrer"
-                            title="Official documentation about module declarations"><span class="icon ion-ios-information-circle-outline"></span></a></h3>
+                    <h3>Imports<a href="https://angular.io/api/core/NgModule#imports" target="_blank" rel="noopener noreferrer"
+                            title="Official documentation about module imports"><span
+                                class="icon ion-ios-information-circle-outline"></a></h3>
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <a href="../components/ZtDataGridComponent.html">ZtDataGridComponent</a>
+                            <a href="../modules/ZtDataGridComponent.html">ZtDataGridComponent</a>
                         </li>
                     </ul>
                 </div>
@@ -245,14 +246,12 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ZtButtonModule } from &#x27;./../button/zt-button.module&#x27;;
-import { ZtDataGridComponent } from &#x27;./zt-data-grid.component&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ZtDataGridComponent } from &#x27;./zt-data-grid.component&#x27;;
 import { NgModule } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 
 @NgModule({
-  declarations: [ZtDataGridComponent],
-  imports: [CommonModule, ZtButtonModule],
+  imports: [CommonModule, ZtDataGridComponent],
   exports: [ZtDataGridComponent],
 })
 export class ZtDataGridModule {}

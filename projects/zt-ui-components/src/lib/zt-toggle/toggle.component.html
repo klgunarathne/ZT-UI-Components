@@ -1,0 +1,8 @@
+<div class="zt-toggle-container" (click)="onToggleClick()" (keydown)="onKeyDown($event)" (focus)="onFocus()" (blur)="onBlur()">
+  <div class="zt-toggle-track">
+    <div class="zt-toggle-thumb"></div>
+  </div>
+  @if (showLabel && label) {
+    <span class="zt-toggle-label">{{ label }}</span>
+  }
+</div>

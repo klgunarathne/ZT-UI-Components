@@ -1,0 +1,1965 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>zt-ui-components documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">zt-ui-components documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ToggleComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>A modern toggle switch component that provides on/off functionality with various styles, themes, and accessibility features.</p>
+<p>The toggle component supports multiple visual variants (default, rounded, square), sizes (small, medium, large),
+and integrates seamlessly with the ZT-UI-Components theming system. It provides full accessibility support
+with ARIA attributes, keyboard navigation, and screen reader compatibility.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;!-- Basic usage with two-way binding --&gt;
+&lt;zt-toggle [(checked)]=&quot;isEnabled&quot; label=&quot;Enable notifications&quot;&gt;&lt;/zt-toggle&gt;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;!-- Advanced usage with event handling --&gt;
+&lt;zt-toggle
+  [checked]=&quot;settings.darkMode&quot;
+  [variant]=&quot;&#39;rounded&#39;&quot;
+  [size]=&quot;&#39;zt-lg&#39;&quot;
+  [theme]=&quot;&#39;dark&#39;&quot;
+  [disabled]=&quot;false&quot;
+  [showLabel]=&quot;true&quot;
+  label=&quot;Dark Mode&quot;
+  (toggleChange)=&quot;onToggleChange($event)&quot;
+  (focus)=&quot;onFocus()&quot;
+  (blur)=&quot;onBlur()&quot;&gt;
+&lt;/zt-toggle&gt;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;!-- With theme override --&gt;
+&lt;zt-toggle [ztTheme]=&quot;customTheme&quot; [checked]=&quot;true&quot; label=&quot;Custom themed toggle&quot;&gt;&lt;/zt-toggle&gt;</code></pre></div>
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>zt-toggle</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./toggle.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./toggle.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#onBlur" >onBlur</a>
+                            </li>
+                            <li>
+                                <a href="#onFocus" >onFocus</a>
+                            </li>
+                            <li>
+                                <a href="#onKeyDown" >onKeyDown</a>
+                            </li>
+                            <li>
+                                <a href="#onToggleClick" >onToggleClick</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#checked" >checked</a>
+                            </li>
+                            <li>
+                                <a href="#disabled" >disabled</a>
+                            </li>
+                            <li>
+                                <a href="#label" >label</a>
+                            </li>
+                            <li>
+                                <a href="#showLabel" >showLabel</a>
+                            </li>
+                            <li>
+                                <a href="#size" >size</a>
+                            </li>
+                            <li>
+                                <a href="#theme" class="deprecated-name">theme</a>
+                            </li>
+                            <li>
+                                <a href="#variant" >variant</a>
+                            </li>
+                            <li>
+                                <a href="#ztTheme" >ztTheme</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#blur" >blur</a>
+                            </li>
+                            <li>
+                                <a href="#focus" >focus</a>
+                            </li>
+                            <li>
+                                <a href="#toggleChange" >toggleChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostBindings</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#attr.aria-checked" >attr.aria-checked</a>
+                            </li>
+                            <li>
+                                <a href="#attr.aria-disabled" >attr.aria-disabled</a>
+                            </li>
+                            <li>
+                                <a href="#attr.aria-label" >attr.aria-label</a>
+                            </li>
+                            <li>
+                                <a href="#attr.role" >attr.role</a>
+                            </li>
+                            <li>
+                                <a href="#attr.tabindex" >attr.tabindex</a>
+                            </li>
+                            <li>
+                                <a href="#class" >class</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#toggleClass" >toggleClass</a>
+                                </li>
+                                <li>
+                                    <a href="#tabIndex" >tabIndex</a>
+                                </li>
+                                <li>
+                                    <a href="#role" >role</a>
+                                </li>
+                                <li>
+                                    <a href="#ariaChecked" >ariaChecked</a>
+                                </li>
+                                <li>
+                                    <a href="#ariaDisabled" >ariaDisabled</a>
+                                </li>
+                                <li>
+                                    <a href="#ariaLabel" >ariaLabel</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(elementRef: ElementRef)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:51</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>elementRef</td>
+                                                  
+                                                        <td>
+                                                                    <code>ElementRef</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="checked"></a>
+                        <b>checked</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:59</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether the toggle is checked (on state).
+Controls the visual state and determines if the toggle is active.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="disabled"></a>
+                        <b>disabled</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:66</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether the toggle is disabled.
+When disabled, the toggle cannot be interacted with and appears visually muted.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="label"></a>
+                        <b>label</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:106</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Label text for the toggle (accessibility).
+Used for screen readers and as fallback text when showLabel is false.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="showLabel"></a>
+                        <b>showLabel</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:113</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether to show the label text visually next to the toggle.
+When true, displays the label text beside the toggle switch.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="size"></a>
+                        <b>size</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;zt-sm&quot; | &quot;zt-md&quot; | &quot;zt-lg&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;zt-md&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:84</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The size of the toggle.</p>
+<ul>
+<li>&#39;zt-sm&#39;: Small size (36px width)</li>
+<li>&#39;zt-md&#39;: Medium size (44px width) - default</li>
+<li>&#39;zt-lg&#39;: Large size (52px width)</li>
+</ul>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="theme"></a>
+                        <b>theme</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;light&quot; | &quot;dark&quot; | &quot;bootstrap&quot; | &quot;material&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;light&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:92</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The theme of the toggle.
+Supports predefined themes: light, dark, bootstrap, material.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="variant"></a>
+                        <b>variant</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;default&quot; | &quot;rounded&quot; | &quot;square&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;default&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:75</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The visual variant of the toggle.</p>
+<ul>
+<li>&#39;default&#39;: Standard toggle with rounded corners</li>
+<li>&#39;rounded&#39;: Fully rounded toggle (pill-shaped)</li>
+<li>&#39;square&#39;: Square toggle with minimal rounding</li>
+</ul>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ztTheme"></a>
+                        <b>ztTheme</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ThemeConfig.html" target="_self" >Partial&lt;ThemeConfig&gt;</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:99</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Local theme override for this toggle component.
+Allows customizing colors, border radius, and other theme properties for this specific instance.
+Takes precedence over the global theme.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="blur"></a>
+                        <b>blur</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:131</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emitted when the toggle loses focus.
+Useful for validation, saving state, or triggering side effects.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="focus"></a>
+                        <b>focus</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:125</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emitted when the toggle receives focus.
+Useful for tracking user interaction and implementing custom focus behaviors.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="toggleChange"></a>
+                        <b>toggleChange</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:119</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emitted when the toggle state changes.
+Provides the new checked state (true for on, false for off).</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-properties">
+    <h3>HostBindings</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="attr.aria-checked"></a>
+                    <span class="name">
+                        <span ><b>attr.aria-checked</b></span>
+                        <a href="#attr.aria-checked"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:164</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sets the aria-checked attribute for screen readers</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="attr.aria-disabled"></a>
+                    <span class="name">
+                        <span ><b>attr.aria-disabled</b></span>
+                        <a href="#attr.aria-disabled"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:171</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sets the aria-disabled attribute for screen readers</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="attr.aria-label"></a>
+                    <span class="name">
+                        <span ><b>attr.aria-label</b></span>
+                        <a href="#attr.aria-label"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:178</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sets the aria-label attribute if no label is provided</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="attr.role"></a>
+                    <span class="name">
+                        <span ><b>attr.role</b></span>
+                        <a href="#attr.role"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:157</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sets the role attribute for screen readers</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="attr.tabindex"></a>
+                    <span class="name">
+                        <span ><b>attr.tabindex</b></span>
+                        <a href="#attr.tabindex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:150</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sets the tabindex attribute for keyboard navigation</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="class"></a>
+                    <span class="name">
+                        <span ><b>class</b></span>
+                        <a href="#class"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:136</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Dynamically applies CSS classes to the toggle element</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onBlur"></a>
+                    <span class="name">
+                        <span ><b>onBlur</b></span>
+                        <a href="#onBlur"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onBlur()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="220"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:220</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handles blur events</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onFocus"></a>
+                    <span class="name">
+                        <span ><b>onFocus</b></span>
+                        <a href="#onFocus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onFocus()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="213"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:213</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handles focus events</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onKeyDown"></a>
+                    <span class="name">
+                        <span ><b>onKeyDown</b></span>
+                        <a href="#onKeyDown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onKeyDown(event: KeyboardEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="201"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:201</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handles keyboard events for accessibility</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>KeyboardEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onToggleClick"></a>
+                    <span class="name">
+                        <span ><b>onToggleClick</b></span>
+                        <a href="#onToggleClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onToggleClick()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="191"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:191</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handles toggle click events</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="toggleClass"></a>
+                        <span class="name"><b>toggleClass</b><a href="#toggleClass"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>toggleClass()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:136</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Dynamically applies CSS classes to the toggle element</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tabIndex"></a>
+                        <span class="name"><b>tabIndex</b><a href="#tabIndex"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>tabIndex()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:150</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Sets the tabindex attribute for keyboard navigation</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="role"></a>
+                        <span class="name"><b>role</b><a href="#role"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>role()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:157</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Sets the role attribute for screen readers</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ariaChecked"></a>
+                        <span class="name"><b>ariaChecked</b><a href="#ariaChecked"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>ariaChecked()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:164</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Sets the aria-checked attribute for screen readers</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ariaDisabled"></a>
+                        <span class="name"><b>ariaDisabled</b><a href="#ariaDisabled"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>ariaDisabled()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:171</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Sets the aria-disabled attribute for screen readers</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ariaLabel"></a>
+                        <span class="name"><b>ariaLabel</b><a href="#ariaLabel"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>ariaLabel()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">projects/zt-ui-components/src/lib/zt-toggle/toggle.component.ts:178</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Sets the aria-label attribute if no label is provided</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>string | null</code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  HostBinding,
+  Input,
+  OnInit,
+  Output,
+  ElementRef,
+} from &#x27;@angular/core&#x27;;
+import { ThemeConfig } from &#x27;../theme/theme.types&#x27;;
+
+/**
+ * A modern toggle switch component that provides on/off functionality with various styles, themes, and accessibility features.
+ *
+ * The toggle component supports multiple visual variants (default, rounded, square), sizes (small, medium, large),
+ * and integrates seamlessly with the ZT-UI-Components theming system. It provides full accessibility support
+ * with ARIA attributes, keyboard navigation, and screen reader compatibility.
+ *
+ * @example
+ * &lt;!-- Basic usage with two-way binding --&gt;
+ * &lt;zt-toggle [(checked)]&#x3D;&quot;isEnabled&quot; label&#x3D;&quot;Enable notifications&quot;&gt;&lt;/zt-toggle&gt;
+ *
+ * @example
+ * &lt;!-- Advanced usage with event handling --&gt;
+ * &lt;zt-toggle
+ *   [checked]&#x3D;&quot;settings.darkMode&quot;
+ *   [variant]&#x3D;&quot;&#x27;rounded&#x27;&quot;
+ *   [size]&#x3D;&quot;&#x27;zt-lg&#x27;&quot;
+ *   [theme]&#x3D;&quot;&#x27;dark&#x27;&quot;
+ *   [disabled]&#x3D;&quot;false&quot;
+ *   [showLabel]&#x3D;&quot;true&quot;
+ *   label&#x3D;&quot;Dark Mode&quot;
+ *   (toggleChange)&#x3D;&quot;onToggleChange($event)&quot;
+ *   (focus)&#x3D;&quot;onFocus()&quot;
+ *   (blur)&#x3D;&quot;onBlur()&quot;&gt;
+ * &lt;/zt-toggle&gt;
+ *
+ * @example
+ * &lt;!-- With theme override --&gt;
+ * &lt;zt-toggle [ztTheme]&#x3D;&quot;customTheme&quot; [checked]&#x3D;&quot;true&quot; label&#x3D;&quot;Custom themed toggle&quot;&gt;&lt;/zt-toggle&gt;
+ */
+@Component({
+  selector: &#x27;zt-toggle&#x27;,
+  templateUrl: &#x27;./toggle.component.html&#x27;,
+  styleUrls: [&#x27;./toggle.component.scss&#x27;],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [],
+})
+export class ToggleComponent implements OnInit {
+  constructor(private elementRef: ElementRef) {}
+
+  /**
+   * Whether the toggle is checked (on state).
+   * Controls the visual state and determines if the toggle is active.
+   * @default false
+   */
+  @Input() checked &#x3D; false;
+
+  /**
+   * Whether the toggle is disabled.
+   * When disabled, the toggle cannot be interacted with and appears visually muted.
+   * @default false
+   */
+  @Input() disabled &#x3D; false;
+
+  /**
+   * The visual variant of the toggle.
+   * - &#x27;default&#x27;: Standard toggle with rounded corners
+   * - &#x27;rounded&#x27;: Fully rounded toggle (pill-shaped)
+   * - &#x27;square&#x27;: Square toggle with minimal rounding
+   * @default &#x27;default&#x27;
+   */
+  @Input() variant: &#x27;default&#x27; | &#x27;rounded&#x27; | &#x27;square&#x27; &#x3D; &#x27;default&#x27;;
+
+  /**
+   * The size of the toggle.
+   * - &#x27;zt-sm&#x27;: Small size (36px width)
+   * - &#x27;zt-md&#x27;: Medium size (44px width) - default
+   * - &#x27;zt-lg&#x27;: Large size (52px width)
+   * @default &#x27;zt-md&#x27;
+   */
+  @Input() size: &#x27;zt-sm&#x27; | &#x27;zt-md&#x27; | &#x27;zt-lg&#x27; &#x3D; &#x27;zt-md&#x27;;
+
+  /**
+   * The theme of the toggle.
+   * Supports predefined themes: light, dark, bootstrap, material.
+   * @default &#x27;light&#x27;
+   * @deprecated Use global theming or ztTheme directive for local overrides
+   */
+  @Input() theme: &#x27;light&#x27; | &#x27;dark&#x27; | &#x27;bootstrap&#x27; | &#x27;material&#x27; &#x3D; &#x27;light&#x27;;
+
+  /**
+   * Local theme override for this toggle component.
+   * Allows customizing colors, border radius, and other theme properties for this specific instance.
+   * Takes precedence over the global theme.
+   */
+  @Input() ztTheme?: Partial&lt;ThemeConfig&gt;;
+
+  /**
+   * Label text for the toggle (accessibility).
+   * Used for screen readers and as fallback text when showLabel is false.
+   * @default &#x27;&#x27;
+   */
+  @Input() label &#x3D; &#x27;&#x27;;
+
+  /**
+   * Whether to show the label text visually next to the toggle.
+   * When true, displays the label text beside the toggle switch.
+   * @default false
+   */
+  @Input() showLabel &#x3D; false;
+
+  /**
+   * Emitted when the toggle state changes.
+   * Provides the new checked state (true for on, false for off).
+   */
+  @Output() toggleChange &#x3D; new EventEmitter&lt;boolean&gt;();
+
+  /**
+   * Emitted when the toggle receives focus.
+   * Useful for tracking user interaction and implementing custom focus behaviors.
+   */
+  @Output() focus &#x3D; new EventEmitter&lt;void&gt;();
+
+  /**
+   * Emitted when the toggle loses focus.
+   * Useful for validation, saving state, or triggering side effects.
+   */
+  @Output() blur &#x3D; new EventEmitter&lt;void&gt;();
+
+  /**
+   * Dynamically applies CSS classes to the toggle element
+   */
+  @HostBinding(&#x27;class&#x27;) get toggleClass(): string {
+    let classes &#x3D; [this.size, &#x60;theme-${this.theme}&#x60;, &#x60;zt-toggle-${this.variant}&#x60;];
+    if (this.checked) {
+      classes.push(&#x27;zt-toggle-checked&#x27;);
+    }
+    if (this.disabled) {
+      classes.push(&#x27;zt-toggle-disabled&#x27;);
+    }
+    return classes.join(&#x27; &#x27;);
+  }
+
+  /**
+   * Sets the tabindex attribute for keyboard navigation
+   */
+  @HostBinding(&#x27;attr.tabindex&#x27;) get tabIndex(): number {
+    return this.disabled ? -1 : 0;
+  }
+
+  /**
+   * Sets the role attribute for screen readers
+   */
+  @HostBinding(&#x27;attr.role&#x27;) get role(): string {
+    return &#x27;switch&#x27;;
+  }
+
+  /**
+   * Sets the aria-checked attribute for screen readers
+   */
+  @HostBinding(&#x27;attr.aria-checked&#x27;) get ariaChecked(): boolean {
+    return this.checked;
+  }
+
+  /**
+   * Sets the aria-disabled attribute for screen readers
+   */
+  @HostBinding(&#x27;attr.aria-disabled&#x27;) get ariaDisabled(): boolean {
+    return this.disabled;
+  }
+
+  /**
+   * Sets the aria-label attribute if no label is provided
+   */
+  @HostBinding(&#x27;attr.aria-label&#x27;) get ariaLabel(): string | null {
+    return this.label || null;
+  }
+
+  ngOnInit(): void {
+    if (this.ztTheme) {
+      this.applyLocalTheme();
+    }
+  }
+
+  /**
+   * Handles toggle click events
+   */
+  onToggleClick(): void {
+    if (this.disabled) return;
+
+    this.checked &#x3D; !this.checked;
+    this.toggleChange.emit(this.checked);
+  }
+
+  /**
+   * Handles keyboard events for accessibility
+   */
+  onKeyDown(event: KeyboardEvent): void {
+    if (this.disabled) return;
+
+    if (event.key &#x3D;&#x3D;&#x3D; &#x27; &#x27; || event.key &#x3D;&#x3D;&#x3D; &#x27;Enter&#x27;) {
+      event.preventDefault();
+      this.onToggleClick();
+    }
+  }
+
+  /**
+   * Handles focus events
+   */
+  onFocus(): void {
+    this.focus.emit();
+  }
+
+  /**
+   * Handles blur events
+   */
+  onBlur(): void {
+    this.blur.emit();
+  }
+
+  /**
+   * Applies local theme override to the component
+   */
+  private applyLocalTheme(): void {
+    if (!this.ztTheme) return;
+
+    const hostElement &#x3D; this.elementRef.nativeElement;
+
+    if (this.ztTheme.colors) {
+      Object.entries(this.ztTheme.colors).forEach(([key, value]) &#x3D;&gt; {
+        const cssVar &#x3D; &#x60;--zt-${key.replace(/([A-Z])/g, &#x27;-$1&#x27;).toLowerCase()}&#x60;;
+        hostElement.style.setProperty(cssVar, value);
+      });
+    }
+
+    if (this.ztTheme.borderRadius !&#x3D;&#x3D; undefined) {
+      hostElement.style.setProperty(&#x27;--zt-border-radius&#x27;, &#x60;${this.ztTheme.borderRadius}px&#x60;);
+    }
+
+    if (this.ztTheme.borderSize !&#x3D;&#x3D; undefined) {
+      hostElement.style.setProperty(&#x27;--zt-border-size&#x27;, &#x60;${this.ztTheme.borderSize}px&#x60;);
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;zt-toggle-container&quot; (click)&#x3D;&quot;onToggleClick()&quot; (keydown)&#x3D;&quot;onKeyDown($event)&quot; (focus)&#x3D;&quot;onFocus()&quot; (blur)&#x3D;&quot;onBlur()&quot;&gt;
+  &lt;div class&#x3D;&quot;zt-toggle-track&quot;&gt;
+    &lt;div class&#x3D;&quot;zt-toggle-thumb&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  @if (showLabel &amp;&amp; label) {
+    &lt;span class&#x3D;&quot;zt-toggle-label&quot;&gt;{{ label }}&lt;/span&gt;
+  }
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./toggle.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">// Light theme (default)
+:host(.theme-light) {
+  --zt-toggle-track-bg: #e9ecef;
+  --zt-toggle-track-checked-bg: #007bff;
+  --zt-toggle-thumb-bg: #ffffff;
+  --zt-toggle-thumb-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  --zt-toggle-border-radius: 12px;
+  --zt-toggle-label-color: #495057;
+}
+
+// Dark theme
+:host(.theme-dark) {
+  --zt-toggle-track-bg: #495057;
+  --zt-toggle-track-checked-bg: #4dabf7;
+  --zt-toggle-thumb-bg: #ffffff;
+  --zt-toggle-thumb-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --zt-toggle-border-radius: 12px;
+  --zt-toggle-label-color: #adb5bd;
+}
+
+// Bootstrap theme
+:host(.theme-bootstrap) {
+  --zt-toggle-track-bg: #dee2e6;
+  --zt-toggle-track-checked-bg: #007bff;
+  --zt-toggle-thumb-bg: #ffffff;
+  --zt-toggle-thumb-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  --zt-toggle-border-radius: 12px;
+  --zt-toggle-label-color: #495057;
+}
+
+// Material theme
+:host(.theme-material) {
+  --zt-toggle-track-bg: #bdbdbd;
+  --zt-toggle-track-checked-bg: #6200ee;
+  --zt-toggle-thumb-bg: #ffffff;
+  --zt-toggle-thumb-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --zt-toggle-border-radius: 16px;
+  --zt-toggle-label-color: #424242;
+}
+
+:host {
+  display: inline-block;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+
+  .zt-toggle-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    outline: none;
+
+    &amp;:focus-visible {
+      outline: 2px solid var(--zt-primary, #007bff);
+      outline-offset: 2px;
+    }
+  }
+
+  .zt-toggle-track {
+    position: relative;
+    background-color: var(--zt-toggle-track-bg);
+    border-radius: var(--zt-toggle-border-radius);
+    transition: background-color 0.2s ease;
+
+    .zt-toggle-thumb {
+      background-color: var(--zt-toggle-thumb-bg);
+      border-radius: 50%;
+      box-shadow: var(--zt-toggle-thumb-shadow);
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      transition: transform 0.2s ease;
+    }
+  }
+
+  .zt-toggle-label {
+    margin-left: 8px;
+    color: var(--zt-toggle-label-color);
+    font-size: 14px;
+    font-family: inherit;
+  }
+
+  // Checked state
+  &amp;.zt-toggle-checked {
+    .zt-toggle-track {
+      background-color: var(--zt-toggle-track-checked-bg);
+    }
+  }
+
+  // Disabled state
+  &amp;.zt-toggle-disabled {
+    .zt-toggle-container {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .zt-toggle-track {
+      background-color: var(--zt-toggle-track-bg);
+    }
+  }
+
+  // Size variants
+  &amp;.zt-sm {
+    .zt-toggle-track {
+      width: 36px;
+      height: 20px;
+
+      .zt-toggle-thumb {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    &amp;.zt-toggle-checked .zt-toggle-thumb {
+      transform: translateX(16px);
+    }
+  }
+
+  &amp;.zt-md {
+    .zt-toggle-track {
+      width: 44px;
+      height: 24px;
+
+      .zt-toggle-thumb {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    &amp;.zt-toggle-checked .zt-toggle-thumb {
+      transform: translateX(20px);
+    }
+  }
+
+  &amp;.zt-lg {
+    .zt-toggle-track {
+      width: 52px;
+      height: 28px;
+
+      .zt-toggle-thumb {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    &amp;.zt-toggle-checked .zt-toggle-thumb {
+      transform: translateX(24px);
+    }
+  }
+
+  // Variant styles
+  &amp;.zt-toggle-rounded {
+    .zt-toggle-track {
+      border-radius: 50px;
+    }
+
+    .zt-toggle-thumb {
+      border-radius: 50px;
+    }
+  }
+
+  &amp;.zt-toggle-square {
+    .zt-toggle-track {
+      border-radius: 4px;
+    }
+
+    .zt-toggle-thumb {
+      border-radius: 2px;
+    }
+  }
+
+  // Hover states
+  &amp;:not(.zt-toggle-disabled):hover {
+    .zt-toggle-track {
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    }
+  }
+
+  &amp;.zt-toggle-checked:not(.zt-toggle-disabled):hover {
+    .zt-toggle-track {
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    }
+  }
+
+  // Focus states
+  .zt-toggle-container:focus-visible {
+    .zt-toggle-track {
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="zt-toggle-container" (click)="onToggleClick()" (keydown)="onKeyDown($event)" (focus)="onFocus()" (blur)="onBlur()">  <div class="zt-toggle-track">    <div class="zt-toggle-thumb"></div>  </div>  @if (showLabel && label) {    <span class="zt-toggle-label">{{ label }}</span>  }</div></div>'
+    var COMPONENTS = [{'name': 'ButtonComponent', 'selector': 'storybook-button'},{'name': 'ButtonComponent', 'selector': 'zt-button'},{'name': 'CardComponent', 'selector': 'zt-card'},{'name': 'HeaderComponent', 'selector': 'storybook-header'},{'name': 'InputComponent', 'selector': 'zt-input'},{'name': 'PageComponent', 'selector': 'storybook-page'},{'name': 'SelectComponent', 'selector': 'zt-select'},{'name': 'TextareaComponent', 'selector': 'zt-textarea'},{'name': 'ToggleComponent', 'selector': 'zt-toggle'},{'name': 'ZtDataGridComponent', 'selector': 'zt-data-grid'},{'name': 'ZtModalComponent', 'selector': 'zt-modal'},{'name': 'ZtPaginatorComponent', 'selector': 'zt-paginator'},{'name': 'ZtPaginatorXComponent', 'selector': 'zt-paginator-x'},{'name': 'ZtToastComponent', 'selector': 'zt-toast'},{'name': 'ZtUiComponents', 'selector': 'lib-zt-ui-components'}];
+    var DIRECTIVES = [{'name': 'ThemeDirective', 'selector': '[ztTheme]'}];
+    var ACTUAL_COMPONENT = {'name': 'ToggleComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ToggleComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

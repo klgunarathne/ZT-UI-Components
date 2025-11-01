@@ -146,13 +146,100 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>A customizable input component that supports various input types, styles, and themes.
-It provides features like character length validation and different visual appearances.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;zt-input placeholder=&quot;Enter text&quot; inputType=&quot;text&quot; size=&quot;zt-md&quot; theme=&quot;light&quot;&gt;&lt;/zt-input&gt;
-&lt;zt-input [textlength]=&quot;50&quot; inputStyle=&quot;material&quot; [value]=&quot;inputValue&quot;&gt;&lt;/zt-input&gt;</code></pre></div>
+        <p>A feature-rich, accessible input component with advanced validation, multiple visual styles, and comprehensive theming support.</p>
+<h2>Key Features</h2>
+<ul>
+<li>🎨 <strong>Multiple Visual Styles</strong>: ZT (default), Material Design, and Bootstrap styles</li>
+<li>📝 <strong>Advanced Validation</strong>: Character limits with real-time feedback and visual indicators</li>
+<li>♿ <strong>Full Accessibility</strong>: WCAG 2.1 AA compliant with proper ARIA attributes and keyboard navigation</li>
+<li>🔗 <strong>Two-Way Data Binding</strong>: Seamless integration with <code>[(ngModel)]</code> and reactive forms</li>
+<li>🎯 <strong>ControlValueAccessor</strong>: Native Angular forms support for reactive and template-driven forms</li>
+<li>📊 <strong>Character Counter</strong>: Real-time character counting with warning and error states</li>
+<li>🎨 <strong>Theme Integration</strong>: Global and local theme overrides with CSS custom properties</li>
+<li>⚡ <strong>Performance Optimized</strong>: OnPush change detection and efficient DOM manipulation</li>
+<li>🛡️ <strong>Type Safe</strong>: Full TypeScript support with strict typing and IntelliSense</li>
+</ul>
+<h2>Usage Examples</h2>
+<h3>Basic Usage</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;zt-input
+  placeholder=&quot;Enter your name&quot;
+  size=&quot;zt-md&quot;&gt;
+&lt;/zt-input&gt;</code></pre></div><h3>Two-Way Data Binding</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;zt-input
+  placeholder=&quot;Enter name&quot;
+  [(ngModel)]=&quot;userName&quot;
+  [textlength]=&quot;50&quot;
+  [showCharCounter]=&quot;true&quot;&gt;
+&lt;/zt-input&gt;</code></pre></div><h3>Reactive Forms Integration</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;zt-input
+  formControlName=&quot;email&quot;
+  placeholder=&quot;Email address&quot;
+  inputType=&quot;email&quot;
+  [showCharCounter]=&quot;true&quot;&gt;
+&lt;/zt-input&gt;</code></pre></div><h3>Event Handling</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;zt-input
+  placeholder=&quot;Interactive input&quot;
+  (valueChange)=&quot;onValueChange($event)&quot;
+  (focus)=&quot;onFocus($event)&quot;
+  (blur)=&quot;onBlur($event)&quot;
+  [textlength]=&quot;100&quot;
+  [showCharCounter]=&quot;true&quot;&gt;
+&lt;/zt-input&gt;</code></pre></div><h3>Advanced Configuration</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;zt-input
+  placeholder=&quot;Advanced input example&quot;
+  inputType=&quot;text&quot;
+  inputStyle=&quot;zt&quot;
+  size=&quot;zt-md&quot;
+  [value]=&quot;initialValue&quot;
+  [textlength]=&quot;200&quot;
+  [showCharCounter]=&quot;true&quot;
+  [disabled]=&quot;isDisabled&quot;
+  [errorMessage]=&quot;validationError&quot;
+  [ztTheme]=&quot;customTheme&quot;
+  (valueChange)=&quot;onValueChange($event)&quot;
+  (blur)=&quot;validateInput($event)&quot;&gt;
+&lt;/zt-input&gt;</code></pre></div><h3>Theme Customization</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;zt-input
+  [ztTheme]=&quot;brandInputTheme&quot;
+  placeholder=&quot;Brand styled input&quot;
+  [showCharCounter]=&quot;true&quot;&gt;
+&lt;/zt-input&gt;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">brandInputTheme: Partial&lt;ThemeConfig&gt; = {
+  colors: {
+    primary: &#39;#FF6B35&#39;,        // Brand orange
+    textBlack: &#39;#2D3748&#39;,      // Dark gray text
+    default: &#39;#FFFFFF&#39;,        // White background
+  },
+  borderRadius: 8,             // Rounded corners
+  borderSize: 2,              // Thicker borders
+  fontFamily: &#39;&quot;Inter&quot;, sans-serif&#39;
+};</code></pre></div><h2>Accessibility Features</h2>
+<ul>
+<li>Unique IDs for proper label association</li>
+<li>ARIA attributes for screen reader support</li>
+<li>Keyboard navigation support</li>
+<li>Focus management with visual indicators</li>
+<li>Character counter with proper announcements</li>
+<li>Error states with role=&quot;alert&quot;</li>
+</ul>
+<h2>Performance Considerations</h2>
+<ul>
+<li>Uses OnPush change detection strategy</li>
+<li>Efficient event handling with input events instead of keydown</li>
+<li>Renderer2 for optimal DOM manipulation</li>
+<li>CSS custom properties for theme switching without style recalculation</li>
+</ul>
+
     </p>
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+                <code>OnDestroy</code>
+                <code>ControlValueAccessor</code>
+    </p>
 
 
 <section data-compodoc="block-metadata">
@@ -169,10 +256,20 @@ It provides features like character length validation and different visual appea
 
 
 
+            <tr>
+                <td class="col-md-3">host</td>
+                <td class="col-md-9"><code>{<br>}</code></td>
+            </tr>
 
 
 
 
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                            <code>)</code>
+                </td>
+            </tr>
 
 
             <tr>
@@ -232,6 +329,10 @@ It provides features like character length validation and different visual appea
                                     <span class="modifier">Optional</span>
                                 <a href="#textInput" >textInput</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#uniqueId" >uniqueId</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -246,7 +347,31 @@ It provides features like character length validation and different visual appea
                         <ul class="index-list">
                             <li>
                                     <span class="modifier"></span>
+                                <a href="#onBlur" >onBlur</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#onFocus" >onFocus</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#onInput" >onInput</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
                                 <a href="#onKeydown" >onKeydown</a>
+                            </li>
+                            <li>
+                                <a href="#registerOnChange" >registerOnChange</a>
+                            </li>
+                            <li>
+                                <a href="#registerOnTouched" >registerOnTouched</a>
+                            </li>
+                            <li>
+                                <a href="#setDisabledState" >setDisabledState</a>
+                            </li>
+                            <li>
+                                <a href="#writeValue" >writeValue</a>
                             </li>
                         </ul>
                     </td>
@@ -261,6 +386,12 @@ It provides features like character length validation and different visual appea
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#disabled" >disabled</a>
+                            </li>
+                            <li>
+                                <a href="#errorMessage" >errorMessage</a>
+                            </li>
+                            <li>
                                 <a href="#inputStyle" >inputStyle</a>
                             </li>
                             <li>
@@ -270,21 +401,47 @@ It provides features like character length validation and different visual appea
                                 <a href="#placeholder" >placeholder</a>
                             </li>
                             <li>
+                                <a href="#showCharCounter" >showCharCounter</a>
+                            </li>
+                            <li>
                                 <a href="#size" >size</a>
                             </li>
                             <li>
                                 <a href="#textlength" >textlength</a>
                             </li>
                             <li>
-                                <a href="#theme" >theme</a>
+                                <a href="#theme" class="deprecated-name">theme</a>
                             </li>
                             <li>
                                 <a href="#value" >value</a>
+                            </li>
+                            <li>
+                                <a href="#ztTheme" >ztTheme</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#blur" >blur</a>
+                            </li>
+                            <li>
+                                <a href="#focus" >focus</a>
+                            </li>
+                            <li>
+                                <a href="#valueChange" >valueChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -310,6 +467,15 @@ It provides features like character length validation and different visual appea
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#blur" >blur</a>
+                            </li>
+                            <li>
+                                <a href="#focus" >focus</a>
+                            </li>
+                            <li>
+                                <a href="#input" >input</a>
+                            </li>
+                            <li>
                                 <a href="#keydown" >keydown</a>
                             </li>
                         </ul>
@@ -325,6 +491,18 @@ It provides features like character length validation and different visual appea
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
+                                    <a href="#currentLength" >currentLength</a>
+                                </li>
+                                <li>
+                                    <a href="#hasError" >hasError</a>
+                                </li>
+                                <li>
+                                    <a href="#counterClass" >counterClass</a>
+                                </li>
+                                <li>
+                                    <a href="#ariaDescribedBy" >ariaDescribedBy</a>
+                                </li>
+                                <li>
                                     <a href="#inputClass" >inputClass</a>
                                 </li>
                             </ul>
@@ -334,9 +512,161 @@ It provides features like character length validation and different visual appea
     </table>
 </section>
 
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(elementRef: ElementRef, renderer: Renderer2)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="614" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:614</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>elementRef</td>
+                                                  
+                                                        <td>
+                                                                    <code>ElementRef</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>renderer</td>
+                                                  
+                                                        <td>
+                                                                    <code>Renderer2</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
     <section data-compodoc="block-inputs">
     <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="disabled"></a>
+                        <b>disabled</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="393" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:393</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether the input is disabled and prevents user interaction.</p>
+<p>Disabled inputs cannot be focused, edited, or submitted. They are visually
+distinguished and include appropriate ARIA attributes for accessibility.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;!-- Regular input --&gt;
+&lt;zt-input placeholder=&quot;Editable input&quot;&gt;&lt;/zt-input&gt;
+
+
+&lt;!-- Disabled input --&gt;
+&lt;zt-input placeholder=&quot;Disabled input&quot; [disabled]=&quot;true&quot;&gt;&lt;/zt-input&gt;
+
+
+&lt;!-- Conditionally disabled --&gt;
+&lt;zt-input
+  placeholder=&quot;Conditional input&quot;
+  [disabled]=&quot;isFormDisabled&quot;&gt;
+&lt;/zt-input&gt;</code></pre></div></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="errorMessage"></a>
+                        <b>errorMessage</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="368" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:368</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Error message to display when validation fails or character limit is exceeded.</p>
+<p>The message is displayed below the input with appropriate styling and ARIA attributes.
+Use clear, actionable error messages to help users correct their input.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;zt-input
+  placeholder=&quot;Email&quot;
+  inputType=&quot;email&quot;
+  [errorMessage]=&quot;emailError&quot;
+  [textlength]=&quot;100&quot;&gt;
+&lt;/zt-input&gt;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">emailError: string;
+
+validateEmail() {
+  if (this.emailFormControl.invalid) {
+    if (this.emailFormControl.errors?.[&#39;required&#39;]) {
+      this.emailError = &#39;Email is required&#39;;
+    } else if (this.emailFormControl.errors?.[&#39;email&#39;]) {
+      this.emailError = &#39;Please enter a valid email address&#39;;
+    }
+  } else {
+    this.emailError = undefined;
+  }
+}</code></pre></div></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -358,13 +688,28 @@ It provides features like character length validation and different visual appea
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:62</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="268" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:268</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>The visual style of the input (zt, material, bs for Bootstrap).</p>
-</div>
+                        <div class="io-description"><p>Visual style variant that changes the appearance and behavior of the input.</p>
+<ul>
+<li><code>zt</code>: Default ZT-UI style with floating labels and modern aesthetics</li>
+<li><code>material</code>: Material Design style with bottom-border focus and label animation</li>
+<li><code>bs</code>: Bootstrap-style input with traditional form styling</li>
+</ul>
+<p>Each style maintains consistent functionality while providing different visual experiences.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;!-- Default ZT style --&gt;
+&lt;zt-input inputStyle=&quot;zt&quot; placeholder=&quot;ZT Style&quot;&gt;&lt;/zt-input&gt;
+
+
+&lt;!-- Material Design style --&gt;
+&lt;zt-input inputStyle=&quot;material&quot; placeholder=&quot;Material Style&quot;&gt;&lt;/zt-input&gt;
+
+
+&lt;!-- Bootstrap style --&gt;
+&lt;zt-input inputStyle=&quot;bs&quot; placeholder=&quot;Bootstrap Style&quot;&gt;&lt;/zt-input&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -390,13 +735,21 @@ It provides features like character length validation and different visual appea
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="243" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:243</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>The type of input element (text, number, email, password).</p>
-</div>
+                        <div class="io-description"><p>The type attribute of the HTML input element, determining input behavior and validation.</p>
+<ul>
+<li><code>text</code>: Standard text input (default)</li>
+<li><code>email</code>: Email input with built-in validation UI on supported browsers</li>
+<li><code>password</code>: Password input with text masking</li>
+<li><code>number</code>: Numeric input with increment/decrement controls on supported browsers</li>
+</ul>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;zt-input inputType=&quot;email&quot; placeholder=&quot;Email address&quot;&gt;&lt;/zt-input&gt;
+&lt;zt-input inputType=&quot;password&quot; placeholder=&quot;Password&quot;&gt;&lt;/zt-input&gt;
+&lt;zt-input inputType=&quot;number&quot; placeholder=&quot;Age&quot;&gt;&lt;/zt-input&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -417,18 +770,65 @@ It provides features like character length validation and different visual appea
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;label&#x27;</code>
+                        <i>Default value : </i><code>&#x27;Enter text&#x27;</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="205" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:205</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Placeholder text displayed when the input is empty.</p>
-</div>
+                        <div class="io-description"><p>Placeholder text displayed when the input is empty. Provides context about expected input.</p>
+<p>For accessibility, ensure placeholder text is not the only way to identify the input&#39;s purpose.
+Use proper labeling with <code>&lt;label&gt;</code> elements or <code>aria-labelledby</code> when possible.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;zt-input placeholder=&quot;Enter your full name&quot;&gt;&lt;/zt-input&gt;</code></pre></div></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="showCharCounter"></a>
+                        <b>showCharCounter</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="416" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:416</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether to show a real-time character counter below the input.</p>
+<p>The counter displays current character count vs. maximum allowed characters.
+Visual styling changes based on input state:</p>
+<ul>
+<li>Normal: Default text color</li>
+<li>Warning: When &gt; 80% of limit (orange/warning color)</li>
+<li>Error: When limit exceeded (red/error color)</li>
+</ul>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;!-- Without counter --&gt;
+&lt;zt-input [textlength]=&quot;100&quot; placeholder=&quot;No counter&quot;&gt;&lt;/zt-input&gt;
+
+
+&lt;!-- With counter --&gt;
+&lt;zt-input [textlength]=&quot;100&quot; [showCharCounter]=&quot;true&quot; placeholder=&quot;With counter&quot;&gt;&lt;/zt-input&gt;
+&lt;!-- Displays: &quot;0/100&quot; --&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -454,13 +854,20 @@ It provides features like character length validation and different visual appea
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:74</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="334" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:334</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>The size of the input component.</p>
-</div>
+                        <div class="io-description"><p>Size variant that controls the overall scale of the input component.</p>
+<ul>
+<li><code>zt-sm</code>: Small size for compact layouts</li>
+<li><code>zt-md</code>: Medium size (default) for standard forms</li>
+<li><code>zt-lg</code>: Large size for emphasis or touch interfaces</li>
+</ul>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;zt-input size=&quot;zt-sm&quot; placeholder=&quot;Small input&quot;&gt;&lt;/zt-input&gt;
+&lt;zt-input size=&quot;zt-md&quot; placeholder=&quot;Medium input&quot;&gt;&lt;/zt-input&gt;
+&lt;zt-input size=&quot;zt-lg&quot; placeholder=&quot;Large input&quot;&gt;&lt;/zt-input&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -486,13 +893,20 @@ It provides features like character length validation and different visual appea
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="224" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:224</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Maximum allowed character length for the input.</p>
-</div>
+                        <div class="io-description"><p>Maximum allowed character length for the input. When exceeded, further typing is prevented.</p>
+<p>Use with <code>[showCharCounter]=&quot;true&quot;</code> to provide visual feedback to users about character limits.
+The component automatically handles validation and provides appropriate ARIA attributes.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;!-- Short input for names --&gt;
+&lt;zt-input [textlength]=&quot;50&quot; [showCharCounter]=&quot;true&quot; placeholder=&quot;Name&quot;&gt;&lt;/zt-input&gt;
+
+
+&lt;!-- Long input for descriptions --&gt;
+&lt;zt-input [textlength]=&quot;500&quot; [showCharCounter]=&quot;true&quot; placeholder=&quot;Description&quot;&gt;&lt;/zt-input&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -518,13 +932,19 @@ It provides features like character length validation and different visual appea
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="287" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:287</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>The theme of the input component.</p>
-</div>
+                        <div class="io-description"><p>Legacy theme property for backward compatibility.</p>
+<p>This property will be removed in a future major version.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">// ❌ Deprecated - avoid using
+&lt;zt-input theme=&quot;dark&quot; placeholder=&quot;Dark theme&quot;&gt;&lt;/zt-input&gt;
+
+
+// ✅ Recommended approach
+&lt;zt-input [ztTheme]=&quot;darkTheme&quot; placeholder=&quot;Dark theme&quot;&gt;&lt;/zt-input&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -550,19 +970,174 @@ It provides features like character length validation and different visual appea
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:189</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>The current value of the input field.</p>
-</div>
+                        <div class="io-description"><p>The current value of the input field. Supports two-way data binding with <code>[(ngModel)]</code>.</p>
+<p>When used with reactive forms, this property is automatically synchronized with the FormControl value.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;!-- Template-driven form --&gt;
+&lt;zt-input [(ngModel)]=&quot;userName&quot; placeholder=&quot;Enter name&quot;&gt;&lt;/zt-input&gt;
+
+
+&lt;!-- Reactive form --&gt;
+&lt;zt-input formControlName=&quot;email&quot; placeholder=&quot;Email&quot;&gt;&lt;/zt-input&gt;</code></pre></div></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ztTheme"></a>
+                        <b>ztTheme</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ThemeConfig.html" target="_self" >Partial&lt;ThemeConfig&gt;</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="316" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:316</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Local theme override for this input component. Takes precedence over global theme settings.</p>
+<p>Use this for component-specific styling that differs from your global theme.
+For consistent theming across your application, prefer global theme configuration.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;zt-input
+  [ztTheme]=&quot;brandInputTheme&quot;
+  placeholder=&quot;Brand styled input&quot;&gt;
+&lt;/zt-input&gt;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">brandInputTheme: Partial&lt;ThemeConfig&gt; = {
+  colors: {
+    primary: &#39;#FF6B35&#39;,        // Brand orange
+    textBlack: &#39;#2D3748&#39;,      // Dark gray text
+    default: &#39;#FFFFFF&#39;,        // White background
+  },
+  borderRadius: 8,             // Rounded corners
+  borderSize: 2,              // Thicker borders
+  fontFamily: &#39;&quot;Inter&quot;, sans-serif&#39;
+};</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
         </table>
 </section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="blur"></a>
+                        <b>blur</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
 
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="481" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:481</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Output event emitted when the input loses focus (blur event).</p>
+<p>Useful for validation triggers, saving data, or updating UI state.
+Provides the native FocusEvent for advanced use cases.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;zt-input
+  placeholder=&quot;Email&quot;
+  (blur)=&quot;validateEmail()&quot;
+  inputType=&quot;email&quot;&gt;
+&lt;/zt-input&gt;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">validateEmail() {
+  if (this.emailFormControl.invalid) {
+    this.showEmailError = true;
+  }
+}</code></pre></div></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="focus"></a>
+                        <b>focus</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="498" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:498</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Output event emitted when the input gains focus (focus event).</p>
+<p>Useful for showing help text, highlighting related fields, or analytics tracking.
+Provides the native FocusEvent for advanced use cases.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;zt-input
+  placeholder=&quot;Search&quot;
+  (focus)=&quot;showSearchHelp = true&quot;
+  (blur)=&quot;showSearchHelp = false&quot;&gt;
+&lt;/zt-input&gt;</code></pre></div></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="valueChange"></a>
+                        <b>valueChange</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="456" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:456</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Output event emitted whenever the input value changes.</p>
+<p>Used for two-way data binding with <code>[(ngModel)]</code> and reactive forms integration.
+Emitted after character validation and limit enforcement.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;zt-input
+  placeholder=&quot;Name&quot;
+  (valueChange)=&quot;onNameChange($event)&quot;
+  [(ngModel)]=&quot;userName&quot;&gt;
+&lt;/zt-input&gt;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">onNameChange(newValue: string) {
+  console.log(&#39;Name changed to:&#39;, newValue);
+  this.userName = newValue;
+}</code></pre></div></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
     <section data-compodoc="block-properties">
     <h3>HostBindings</h3>    <table class="table table-sm table-bordered">
         <tbody>
@@ -583,14 +1158,24 @@ It provides features like character length validation and different visual appea
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:80</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="612" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:612</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Dynamically applies CSS classes to the input element based on size and theme.</p>
-</div>
+                    <div class="io-description"><p>Dynamically applies CSS classes to the host element for styling and state management.</p>
+<p>Combines multiple class sources:</p>
+<ul>
+<li>Input style variant (<code>zt-${inputStyle}</code>)</li>
+<li>Size variant (<code>${size}</code>)</li>
+<li>Legacy theme class (<code>theme-${theme}</code>)</li>
+<li>Disabled state (<code>disabled</code> when <code>disabled</code> is true)</li>
+<li>Error state (<code>error</code> when character limit exceeded)</li>
+</ul>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;!-- Input with multiple classes --&gt;
+&lt;zt-input inputStyle=&quot;material&quot; size=&quot;zt-lg&quot; [disabled]=&quot;true&quot;&gt;&lt;/zt-input&gt;
+&lt;!-- Applied classes: &quot;zt-material zt-lg theme-light disabled&quot; --&gt;</code></pre></div></div>
                 </td>
             </tr>
 
@@ -603,6 +1188,204 @@ It provides features like character length validation and different visual appea
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="blur"></a>
+                    <span class="name">
+                        <span ><b>blur</b></span>
+                        <a href="#blur"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <i>Arguments : </i><code>'$event' </code>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>blur(event: FocusEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="835"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:835</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handles blur events for validation triggers and user interaction tracking.</p>
+<p>Emits the blur event for parent components. Commonly used to trigger validation,
+save data, or update UI state when user finishes editing.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;zt-input (blur)=&quot;onInputBlur($event)&quot;&gt;&lt;/zt-input&gt;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">onInputBlur(event: FocusEvent) {
+  console.log(&#39;Input blurred at:&#39;, event.timeStamp);
+  // Validate field, save data, hide help text, etc.
+}</code></pre></div></div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The native blur event</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="focus"></a>
+                    <span class="name">
+                        <span ><b>focus</b></span>
+                        <a href="#focus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <i>Arguments : </i><code>'$event' </code>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>focus(event: FocusEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="809"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:809</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handles focus events for accessibility and user interaction tracking.</p>
+<p>Emits the focus event for parent components and marks the control as touched
+for Angular forms validation (triggers validation on blur).</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;zt-input (focus)=&quot;onInputFocus($event)&quot;&gt;&lt;/zt-input&gt;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">onInputFocus(event: FocusEvent) {
+  console.log(&#39;Input focused at:&#39;, event.timeStamp);
+  // Show help text, highlight field, etc.
+}</code></pre></div></div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The native focus event</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="input"></a>
+                    <span class="name">
+                        <span ><b>input</b></span>
+                        <a href="#input"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>input()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="743"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:743</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handles native input events for character validation and value synchronization.</p>
+<p>This method is called on every input event and performs several critical functions:</p>
+<ul>
+<li>Enforces character limits by truncating input if necessary</li>
+<li>Updates the component&#39;s value property</li>
+<li>Notifies Angular forms of value changes (ControlValueAccessor)</li>
+<li>Emits valueChange event for two-way binding</li>
+</ul>
+<p>Uses <code>@HostListener(&#39;input&#39;)</code> for better performance than keydown events.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">// User types &quot;Hello World&quot; in input
+// 1. Input event fires
+// 2. onInput() called
+// 3. Value updated to &quot;Hello World&quot;
+// 4. onChange() callback invoked
+// 5. valueChange.emit(&#39;Hello World&#39;) fired</code></pre></div></div>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="keydown"></a>
                     <span class="name">
                         <span ><b>keydown</b></span>
@@ -612,25 +1395,65 @@ It provides features like character length validation and different visual appea
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>keydown()</code>
+                    <i>Arguments : </i><code>'$event' </code>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>keydown(event: KeyboardEvent)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="88"
-                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:88</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="776"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:776</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Handles keydown events to enforce character length limits.
-Updates the value if within the allowed length.</p>
-</div>
+                        <div class="io-description"><p>Handles keydown events to prevent input when character limit is reached.</p>
+<p>Provides real-time input prevention for better user experience.
+Allows navigation and editing keys (Backspace, Delete, arrows) even at limit.
+Prevents input of regular characters when limit is reached.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">// User types at character limit (textlength = 10)
+// Current value: &quot;Hello Worl&quot; (10 chars)
+// User presses &#39;d&#39; -&gt; onKeydown() prevents input
+// User presses Backspace -&gt; onKeydown() allows deletion</code></pre></div></div>
 
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The keyboard event containing information about the pressed key</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -641,6 +1464,250 @@ Updates the value if within the allowed length.</p>
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onBlur"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>onBlur</b></span>
+                        <a href="#onBlur"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onBlur(event: FocusEvent)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;blur&#x27;, [&#x27;$event&#x27;])<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="835"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:835</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handles blur events for validation triggers and user interaction tracking.</p>
+<p>Emits the blur event for parent components. Commonly used to trigger validation,
+save data, or update UI state when user finishes editing.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;zt-input (blur)=&quot;onInputBlur($event)&quot;&gt;&lt;/zt-input&gt;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">onInputBlur(event: FocusEvent) {
+  console.log(&#39;Input blurred at:&#39;, event.timeStamp);
+  // Validate field, save data, hide help text, etc.
+}</code></pre></div></div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>FocusEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The native blur event</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onFocus"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>onFocus</b></span>
+                        <a href="#onFocus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onFocus(event: FocusEvent)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;focus&#x27;, [&#x27;$event&#x27;])<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="809"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:809</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handles focus events for accessibility and user interaction tracking.</p>
+<p>Emits the focus event for parent components and marks the control as touched
+for Angular forms validation (triggers validation on blur).</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;zt-input (focus)=&quot;onInputFocus($event)&quot;&gt;&lt;/zt-input&gt;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">onInputFocus(event: FocusEvent) {
+  console.log(&#39;Input focused at:&#39;, event.timeStamp);
+  // Show help text, highlight field, etc.
+}</code></pre></div></div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>FocusEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The native focus event</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onInput"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>onInput</b></span>
+                        <a href="#onInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onInput()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;input&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="743"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:743</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handles native input events for character validation and value synchronization.</p>
+<p>This method is called on every input event and performs several critical functions:</p>
+<ul>
+<li>Enforces character limits by truncating input if necessary</li>
+<li>Updates the component&#39;s value property</li>
+<li>Notifies Angular forms of value changes (ControlValueAccessor)</li>
+<li>Emits valueChange event for two-way binding</li>
+</ul>
+<p>Uses <code>@HostListener(&#39;input&#39;)</code> for better performance than keydown events.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">// User types &quot;Hello World&quot; in input
+// 1. Input event fires
+// 2. onInput() called
+// 3. Value updated to &quot;Hello World&quot;
+// 4. onChange() callback invoked
+// 5. valueChange.emit(&#39;Hello World&#39;) fired</code></pre></div></div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -656,7 +1723,7 @@ Updates the value if within the allowed length.</p>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>onKeydown()</code>
+                    <code>onKeydown(event: KeyboardEvent)</code>
                 </td>
             </tr>
 
@@ -664,28 +1731,385 @@ Updates the value if within the allowed length.</p>
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@HostListener(&#x27;keydown&#x27;)<br /></code>
+                    <code>@HostListener(&#x27;keydown&#x27;, [&#x27;$event&#x27;])<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="88"
-                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:88</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="776"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:776</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Handles keydown events to enforce character length limits.
-Updates the value if within the allowed length.</p>
-</div>
+                        <div class="io-description"><p>Handles keydown events to prevent input when character limit is reached.</p>
+<p>Provides real-time input prevention for better user experience.
+Allows navigation and editing keys (Backspace, Delete, arrows) even at limit.
+Prevents input of regular characters when limit is reached.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">// User types at character limit (textlength = 10)
+// Current value: &quot;Hello Worl&quot; (10 chars)
+// User presses &#39;d&#39; -&gt; onKeydown() prevents input
+// User presses Backspace -&gt; onKeydown() allows deletion</code></pre></div></div>
 
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>KeyboardEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The keyboard event containing information about the pressed key</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registerOnChange"></a>
+                    <span class="name">
+                        <span ><b>registerOnChange</b></span>
+                        <a href="#registerOnChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>registerOnChange(fn: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="657"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:657</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>ControlValueAccessor: Register a callback function to call when the value changes.</p>
+<p>Called by Angular forms to register the FormControl&#39;s value change listener.
+The registered function is called whenever the input value changes.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fn</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Callback function to register for value changes</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registerOnTouched"></a>
+                    <span class="name">
+                        <span ><b>registerOnTouched</b></span>
+                        <a href="#registerOnTouched"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>registerOnTouched(fn: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="669"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:669</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>ControlValueAccessor: Register a callback function to call when the input is touched.</p>
+<p>Called by Angular forms to register the FormControl&#39;s touch listener.
+The registered function is called when the input loses focus.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fn</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Callback function to register for touch events</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setDisabledState"></a>
+                    <span class="name">
+                        <span ><b>setDisabledState</b></span>
+                        <a href="#setDisabledState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setDisabledState(isDisabled: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="688"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:688</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>ControlValueAccessor: Disable or enable the input element.</p>
+<p>Called by Angular forms when the FormControl is disabled/enabled.
+Updates the disabled state and triggers change detection.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">// Angular forms automatically calls this method
+this.form.get(&#39;email&#39;).disable();
+// Triggers: setDisabledState(true)</code></pre></div></div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>isDisabled</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Whether to disable the input</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="writeValue"></a>
+                    <span class="name">
+                        <span ><b>writeValue</b></span>
+                        <a href="#writeValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>writeValue(value: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="645"
+                                    class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:645</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>ControlValueAccessor: Write a new value to the element.</p>
+<p>Called by Angular forms when the FormControl value changes.
+Updates the component&#39;s value property and triggers change detection.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">// Angular forms automatically calls this method
+```html</code></pre></div></div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The new value to write (null/undefined becomes empty string)</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -711,7 +2135,7 @@ Updates the value if within the allowed length.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>ElementRef</code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#Input" target="_self" >ElementRef&lt;HTMLInputElement&gt;</a></code>
 
                     </td>
                 </tr>
@@ -726,14 +2150,55 @@ Updates the value if within the allowed length.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:171</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Reference to the input element for direct DOM manipulation.</p>
-</div>
+                    <div class="io-description"><p>Reference to the native input element for advanced DOM manipulation if needed.
+Most use cases should use the value property and events instead.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">// Access native element (advanced usage)
+if (this.textInput) {
+  this.textInput.nativeElement.focus();
+}</code></pre></div></div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="uniqueId"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>uniqueId</b></span>
+                        <a href="#uniqueId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x60;zt-input-${Math.random().toString(36).substr(2, 9)}&#x60;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="432" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:432</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Unique identifier for this input instance, used for accessibility and proper label association.</p>
+<p>Automatically generated to ensure uniqueness across multiple input instances on the same page.
+Used internally for <code>id</code>, <code>for</code>, <code>aria-labelledby</code>, and <code>aria-describedby</code> attributes.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;!-- Input with uniqueId: &quot;zt-input-a1b2c3d4&quot; --&gt;
+&lt;zt-input placeholder=&quot;Name&quot;&gt;&lt;/zt-input&gt;
+&lt;!-- Renders as: &lt;input id=&quot;zt-input-a1b2c3d4&quot; ...&gt; --&gt;
+&lt;!-- With label: &lt;label for=&quot;zt-input-a1b2c3d4&quot; ...&gt; --&gt;</code></pre></div></div>
                 </td>
             </tr>
 
@@ -745,6 +2210,208 @@ Updates the value if within the allowed length.</p>
     <h3 id="accessors">
         Accessors
     </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="currentLength"></a>
+                        <span class="name"><b>currentLength</b><a href="#currentLength"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>currentLength()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="516" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:516</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Current character count of the input value.</p>
+<p>Computed property that returns the length of the current value.
+Used by the character counter display and validation logic.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">// In component class
+get progressPercentage(): number {
+  return (this.inputComponent.currentLength / this.inputComponent.textlength) * 100;
+}</code></pre></div></div>
+
+                                <div>
+                                        <b>Example :</b>
+                                            <div>
+                                                <pre class="line-numbers"><code class="language-html">&lt;b&gt;Example :&lt;/b&gt;&lt;div&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;code class=&quot;language-typescript&quot;&gt;// In component class
+get progressPercentage(): number {
+  return (this.inputComponent.currentLength / this.inputComponent.textlength) * 100;
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</code></pre>
+                                            </div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="hasError"></a>
+                        <span class="name"><b>hasError</b><a href="#hasError"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>hasError()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="537" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:537</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Whether the input has exceeded the character limit.</p>
+<p>Computed property used for validation states and visual feedback.
+Affects CSS classes, ARIA attributes, and error display logic.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-scss">.my-form {
+  .zt-input.error input {
+    border-color: red;
+  }
+}</code></pre></div></div>
+
+                                <div>
+                                        <b>Example :</b>
+                                            <div>
+                                                <pre class="line-numbers"><code class="language-html">&lt;b&gt;Example :&lt;/b&gt;&lt;div&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;code class=&quot;language-scss&quot;&gt;.my-form {
+  .zt-input.error input {
+    border-color: red;
+  }
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</code></pre>
+                                            </div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="counterClass"></a>
+                        <span class="name"><b>counterClass</b><a href="#counterClass"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>counterClass()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="558" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:558</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>CSS class name for the character counter based on current input state.</p>
+<p>Returns appropriate class for styling the counter:</p>
+<ul>
+<li><code>&#39;&#39;</code> (empty): Normal state, within limits</li>
+<li><code>&#39;warning&#39;</code>: Approaching limit (&gt; 80% of textlength)</li>
+<li><code>&#39;error&#39;</code>: Exceeded limit</li>
+</ul>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;div class=&quot;char-counter&quot; [ngClass]=&quot;counterClass&quot;&gt;
+  {{ currentLength }}/{{ textlength }}
+&lt;/div&gt;</code></pre></div></div>
+
+                                <div>
+                                        <b>Example :</b>
+                                            <div>
+                                                <pre class="line-numbers"><code class="language-html">&lt;b&gt;Example :&lt;/b&gt;&lt;div&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;div class=&amp;quot;char-counter&amp;quot; [ngClass]=&amp;quot;counterClass&amp;quot;&amp;gt;
+  {{ currentLength }}/{{ textlength }}
+&amp;lt;/div&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</code></pre>
+                                            </div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ariaDescribedBy"></a>
+                        <span class="name"><b>ariaDescribedBy</b><a href="#ariaDescribedBy"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>ariaDescribedBy()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="586" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:586</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Space-separated list of element IDs that describe this input for accessibility.</p>
+<p>Used with <code>aria-describedby</code> attribute to associate the input with:</p>
+<ul>
+<li>Character counter (when <code>showCharCounter</code> is true)</li>
+<li>Error message (when <code>errorMessage</code> is provided)</li>
+</ul>
+<p>Enables screen readers to provide additional context about the input.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;!-- Input with counter and error message --&gt;
+&lt;zt-input
+  [showCharCounter]=&quot;true&quot;
+  [errorMessage]=&quot;validationError&quot;
+  aria-describedby=&quot;additional-help&quot;&gt;
+&lt;/zt-input&gt;
+&lt;!-- aria-describedby value: &quot;zt-input-a1b2c3d4-counter zt-input-a1b2c3d4-error additional-help&quot; --&gt;</code></pre></div></div>
+
+                                <div>
+                                        <b>Example :</b>
+                                            <div>
+                                                <pre class="line-numbers"><code class="language-html">&lt;b&gt;Example :&lt;/b&gt;&lt;div&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;!-- Input with counter and error message --&amp;gt;
+&amp;lt;zt-input
+  [showCharCounter]=&amp;quot;true&amp;quot;
+  [errorMessage]=&amp;quot;validationError&amp;quot;
+  aria-describedby=&amp;quot;additional-help&amp;quot;&amp;gt;
+&amp;lt;/zt-input&amp;gt;
+&amp;lt;!-- aria-describedby value: &amp;quot;zt-input-a1b2c3d4-counter zt-input-a1b2c3d4-error additional-help&amp;quot; --&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</code></pre>
+                                            </div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -761,15 +2428,31 @@ Updates the value if within the allowed length.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:80</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="612" class="link-to-prism">projects/zt-ui-components/src/lib/zt-input/input.component.ts:612</a></div>
                                 </td>
                             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Dynamically applies CSS classes to the input element based on size and theme.</p>
-</div>
+                                <div class="io-description"><p>Dynamically applies CSS classes to the host element for styling and state management.</p>
+<p>Combines multiple class sources:</p>
+<ul>
+<li>Input style variant (<code>zt-${inputStyle}</code>)</li>
+<li>Size variant (<code>${size}</code>)</li>
+<li>Legacy theme class (<code>theme-${theme}</code>)</li>
+<li>Disabled state (<code>disabled</code> when <code>disabled</code> is true)</li>
+<li>Error state (<code>error</code> when character limit exceeded)</li>
+</ul>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;!-- Input with multiple classes --&gt;
+&lt;zt-input inputStyle=&quot;material&quot; size=&quot;zt-lg&quot; [disabled]=&quot;true&quot;&gt;&lt;/zt-input&gt;
+&lt;!-- Applied classes: &quot;zt-material zt-lg theme-light disabled&quot; --&gt;</code></pre></div></div>
 
                                 <div>
+                                        <b>Example :</b>
+                                            <div>
+                                                <pre class="line-numbers"><code class="language-html">&lt;p&gt;&lt;b&gt;Example :&lt;/b&gt;&lt;div&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;!-- Input with multiple classes --&amp;gt;
+&amp;lt;zt-input inputStyle=&amp;quot;material&amp;quot; size=&amp;quot;zt-lg&amp;quot; [disabled]=&amp;quot;true&amp;quot;&amp;gt;&amp;lt;/zt-input&amp;gt;
+&amp;lt;!-- Applied classes: &amp;quot;zt-material zt-lg theme-light disabled&amp;quot; --&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;</code></pre>
+                                            </div>
                                 </div>
                                 <div class="io-description">
                                     <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
@@ -792,17 +2475,134 @@ Updates the value if within the allowed length.</p>
   HostBinding,
   HostListener,
   Input,
+  Output,
+  EventEmitter,
   ViewChild,
+  Optional,
+  OnInit,
+  OnDestroy,
+  Renderer2,
+  forwardRef,
 } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from &#x27;@angular/forms&#x27;;
+import { Subject, takeUntil } from &#x27;rxjs&#x27;;
+import { ThemeDirective } from &#x27;../theme/theme.directive&#x27;;
+import { ThemeConfig } from &#x27;../theme/theme.types&#x27;;
 
 /**
- * A customizable input component that supports various input types, styles, and themes.
- * It provides features like character length validation and different visual appearances.
+ * A feature-rich, accessible input component with advanced validation, multiple visual styles, and comprehensive theming support.
  *
- * @example
- * &lt;zt-input placeholder&#x3D;&quot;Enter text&quot; inputType&#x3D;&quot;text&quot; size&#x3D;&quot;zt-md&quot; theme&#x3D;&quot;light&quot;&gt;&lt;/zt-input&gt;
- * &lt;zt-input [textlength]&#x3D;&quot;50&quot; inputStyle&#x3D;&quot;material&quot; [value]&#x3D;&quot;inputValue&quot;&gt;&lt;/zt-input&gt;
+ * ## Key Features
+ * - 🎨 **Multiple Visual Styles**: ZT (default), Material Design, and Bootstrap styles
+ * - 📝 **Advanced Validation**: Character limits with real-time feedback and visual indicators
+ * - ♿ **Full Accessibility**: WCAG 2.1 AA compliant with proper ARIA attributes and keyboard navigation
+ * - 🔗 **Two-Way Data Binding**: Seamless integration with &#x60;[(ngModel)]&#x60; and reactive forms
+ * - 🎯 **ControlValueAccessor**: Native Angular forms support for reactive and template-driven forms
+ * - 📊 **Character Counter**: Real-time character counting with warning and error states
+ * - 🎨 **Theme Integration**: Global and local theme overrides with CSS custom properties
+ * - ⚡ **Performance Optimized**: OnPush change detection and efficient DOM manipulation
+ * - 🛡️ **Type Safe**: Full TypeScript support with strict typing and IntelliSense
+ *
+ * ## Usage Examples
+ *
+ * ### Basic Usage
+ * &#x60;&#x60;&#x60;html
+ * &lt;zt-input
+ *   placeholder&#x3D;&quot;Enter your name&quot;
+ *   size&#x3D;&quot;zt-md&quot;&gt;
+ * &lt;/zt-input&gt;
+ * &#x60;&#x60;&#x60;
+ *
+ * ### Two-Way Data Binding
+ * &#x60;&#x60;&#x60;html
+ * &lt;zt-input
+ *   placeholder&#x3D;&quot;Enter name&quot;
+ *   [(ngModel)]&#x3D;&quot;userName&quot;
+ *   [textlength]&#x3D;&quot;50&quot;
+ *   [showCharCounter]&#x3D;&quot;true&quot;&gt;
+ * &lt;/zt-input&gt;
+ * &#x60;&#x60;&#x60;
+ *
+ * ### Reactive Forms Integration
+ * &#x60;&#x60;&#x60;html
+ * &lt;zt-input
+ *   formControlName&#x3D;&quot;email&quot;
+ *   placeholder&#x3D;&quot;Email address&quot;
+ *   inputType&#x3D;&quot;email&quot;
+ *   [showCharCounter]&#x3D;&quot;true&quot;&gt;
+ * &lt;/zt-input&gt;
+ * &#x60;&#x60;&#x60;
+ *
+ * ### Event Handling
+ * &#x60;&#x60;&#x60;html
+ * &lt;zt-input
+ *   placeholder&#x3D;&quot;Interactive input&quot;
+ *   (valueChange)&#x3D;&quot;onValueChange($event)&quot;
+ *   (focus)&#x3D;&quot;onFocus($event)&quot;
+ *   (blur)&#x3D;&quot;onBlur($event)&quot;
+ *   [textlength]&#x3D;&quot;100&quot;
+ *   [showCharCounter]&#x3D;&quot;true&quot;&gt;
+ * &lt;/zt-input&gt;
+ * &#x60;&#x60;&#x60;
+ *
+ * ### Advanced Configuration
+ * &#x60;&#x60;&#x60;html
+ * &lt;zt-input
+ *   placeholder&#x3D;&quot;Advanced input example&quot;
+ *   inputType&#x3D;&quot;text&quot;
+ *   inputStyle&#x3D;&quot;zt&quot;
+ *   size&#x3D;&quot;zt-md&quot;
+ *   [value]&#x3D;&quot;initialValue&quot;
+ *   [textlength]&#x3D;&quot;200&quot;
+ *   [showCharCounter]&#x3D;&quot;true&quot;
+ *   [disabled]&#x3D;&quot;isDisabled&quot;
+ *   [errorMessage]&#x3D;&quot;validationError&quot;
+ *   [ztTheme]&#x3D;&quot;customTheme&quot;
+ *   (valueChange)&#x3D;&quot;onValueChange($event)&quot;
+ *   (blur)&#x3D;&quot;validateInput($event)&quot;&gt;
+ * &lt;/zt-input&gt;
+ * &#x60;&#x60;&#x60;
+ *
+ * ### Theme Customization
+ * &#x60;&#x60;&#x60;html
+ * &lt;zt-input
+ *   [ztTheme]&#x3D;&quot;brandInputTheme&quot;
+ *   placeholder&#x3D;&quot;Brand styled input&quot;
+ *   [showCharCounter]&#x3D;&quot;true&quot;&gt;
+ * &lt;/zt-input&gt;
+ * &#x60;&#x60;&#x60;
+ *
+ * &#x60;&#x60;&#x60;typescript
+ * brandInputTheme: Partial&lt;ThemeConfig&gt; &#x3D; {
+ *   colors: {
+ *     primary: &#x27;#FF6B35&#x27;,        // Brand orange
+ *     textBlack: &#x27;#2D3748&#x27;,      // Dark gray text
+ *     default: &#x27;#FFFFFF&#x27;,        // White background
+ *   },
+ *   borderRadius: 8,             // Rounded corners
+ *   borderSize: 2,              // Thicker borders
+ *   fontFamily: &#x27;&quot;Inter&quot;, sans-serif&#x27;
+ * };
+ * &#x60;&#x60;&#x60;
+ *
+ * ## Accessibility Features
+ * - Unique IDs for proper label association
+ * - ARIA attributes for screen reader support
+ * - Keyboard navigation support
+ * - Focus management with visual indicators
+ * - Character counter with proper announcements
+ * - Error states with role&#x3D;&quot;alert&quot;
+ *
+ * ## Performance Considerations
+ * - Uses OnPush change detection strategy
+ * - Efficient event handling with input events instead of keydown
+ * - Renderer2 for optimal DOM manipulation
+ * - CSS custom properties for theme switching without style recalculation
+ *
+ * @author ZT-UI-Components Team
+ * @version 2.0.0
+ * @since 1.0.0
  */
 @Component({
   selector: &#x27;zt-input&#x27;,
@@ -811,70 +2611,855 @@ import { CommonModule } from &#x27;@angular/common&#x27;;
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [CommonModule],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() &#x3D;&gt; InputComponent),
+      multi: true
+    }
+  ],
+  host: {
+    class: &#x27;zt-input&#x27;
+  }
 })
-export class InputComponent {
-  /**
-   * Reference to the input element for direct DOM manipulation.
-   */
-  @ViewChild(&#x27;textInput&#x27;) textInput?: ElementRef;
+export class InputComponent implements OnInit, OnDestroy, ControlValueAccessor {
+  private destroy$ &#x3D; new Subject&lt;void&gt;();
+  private renderer: Renderer2;
 
   /**
-   * The current value of the input field.
+   * Reference to the native input element for advanced DOM manipulation if needed.
+   * Most use cases should use the value property and events instead.
+   *
+   * @example
+   * &#x60;&#x60;&#x60;typescript
+   * // Access native element (advanced usage)
+   * if (this.textInput) {
+   *   this.textInput.nativeElement.focus();
+   * }
+   * &#x60;&#x60;&#x60;
+   */
+  @ViewChild(&#x27;textInput&#x27;) textInput?: ElementRef&lt;HTMLInputElement&gt;;
+
+  /**
+   * The current value of the input field. Supports two-way data binding with &#x60;[(ngModel)]&#x60;.
+   *
+   * When used with reactive forms, this property is automatically synchronized with the FormControl value.
+   *
+   * @example
+   * &#x60;&#x60;&#x60;html
+   * &lt;!-- Template-driven form --&gt;
+   * &lt;zt-input [(ngModel)]&#x3D;&quot;userName&quot; placeholder&#x3D;&quot;Enter name&quot;&gt;&lt;/zt-input&gt;
+   *
+   * &lt;!-- Reactive form --&gt;
+   * &lt;zt-input formControlName&#x3D;&quot;email&quot; placeholder&#x3D;&quot;Email&quot;&gt;&lt;/zt-input&gt;
+   * &#x60;&#x60;&#x60;
+   *
    * @default &#x27;&#x27;
    */
-  @Input() value? &#x3D; &#x27;&#x27;;
+  @Input() value &#x3D; &#x27;&#x27;;
 
   /**
-   * Placeholder text displayed when the input is empty.
-   * @default &#x27;label&#x27;
+   * Placeholder text displayed when the input is empty. Provides context about expected input.
+   *
+   * For accessibility, ensure placeholder text is not the only way to identify the input&#x27;s purpose.
+   * Use proper labeling with &#x60;&lt;label&gt;&#x60; elements or &#x60;aria-labelledby&#x60; when possible.
+   *
+   * @example
+   * &#x60;&#x60;&#x60;html
+   * &lt;zt-input placeholder&#x3D;&quot;Enter your full name&quot;&gt;&lt;/zt-input&gt;
+   * &lt;zt-input placeholder&#x3D;&quot;user@example.com&quot;&gt;&lt;/zt-input&gt;
+   * &#x60;&#x60;&#x60;
+   *
+   * @default &#x27;Enter text&#x27;
    */
-  @Input() placeholder? &#x3D; &#x27;label&#x27;;
+  @Input() placeholder &#x3D; &#x27;Enter text&#x27;;
 
   /**
-   * Maximum allowed character length for the input.
+   * Maximum allowed character length for the input. When exceeded, further typing is prevented.
+   *
+   * Use with &#x60;[showCharCounter]&#x3D;&quot;true&quot;&#x60; to provide visual feedback to users about character limits.
+   * The component automatically handles validation and provides appropriate ARIA attributes.
+   *
+   * @example
+   * &#x60;&#x60;&#x60;html
+   * &lt;!-- Short input for names --&gt;
+   * &lt;zt-input [textlength]&#x3D;&quot;50&quot; [showCharCounter]&#x3D;&quot;true&quot; placeholder&#x3D;&quot;Name&quot;&gt;&lt;/zt-input&gt;
+   *
+   * &lt;!-- Long input for descriptions --&gt;
+   * &lt;zt-input [textlength]&#x3D;&quot;500&quot; [showCharCounter]&#x3D;&quot;true&quot; placeholder&#x3D;&quot;Description&quot;&gt;&lt;/zt-input&gt;
+   * &#x60;&#x60;&#x60;
+   *
    * @default 255
    */
-  @Input() textlength? &#x3D; 255;
+  @Input() textlength &#x3D; 255;
 
   /**
-   * The type of input element (text, number, email, password).
+   * The type attribute of the HTML input element, determining input behavior and validation.
+   *
+   * - &#x60;text&#x60;: Standard text input (default)
+   * - &#x60;email&#x60;: Email input with built-in validation UI on supported browsers
+   * - &#x60;password&#x60;: Password input with text masking
+   * - &#x60;number&#x60;: Numeric input with increment/decrement controls on supported browsers
+   *
+   * @example
+   * &#x60;&#x60;&#x60;html
+   * &lt;zt-input inputType&#x3D;&quot;email&quot; placeholder&#x3D;&quot;Email address&quot;&gt;&lt;/zt-input&gt;
+   * &lt;zt-input inputType&#x3D;&quot;password&quot; placeholder&#x3D;&quot;Password&quot;&gt;&lt;/zt-input&gt;
+   * &lt;zt-input inputType&#x3D;&quot;number&quot; placeholder&#x3D;&quot;Age&quot;&gt;&lt;/zt-input&gt;
+   * &#x60;&#x60;&#x60;
+   *
    * @default &#x27;text&#x27;
    */
-  @Input() inputType?: &#x27;text&#x27; | &#x27;number&#x27; | &#x27;email&#x27; | &#x27;password&#x27; &#x3D; &#x27;text&#x27;;
+  @Input() inputType: &#x27;text&#x27; | &#x27;number&#x27; | &#x27;email&#x27; | &#x27;password&#x27; &#x3D; &#x27;text&#x27;;
 
   /**
-   * The visual style of the input (zt, material, bs for Bootstrap).
+   * Visual style variant that changes the appearance and behavior of the input.
+   *
+   * - &#x60;zt&#x60;: Default ZT-UI style with floating labels and modern aesthetics
+   * - &#x60;material&#x60;: Material Design style with bottom-border focus and label animation
+   * - &#x60;bs&#x60;: Bootstrap-style input with traditional form styling
+   *
+   * Each style maintains consistent functionality while providing different visual experiences.
+   *
+   * @example
+   * &#x60;&#x60;&#x60;html
+   * &lt;!-- Default ZT style --&gt;
+   * &lt;zt-input inputStyle&#x3D;&quot;zt&quot; placeholder&#x3D;&quot;ZT Style&quot;&gt;&lt;/zt-input&gt;
+   *
+   * &lt;!-- Material Design style --&gt;
+   * &lt;zt-input inputStyle&#x3D;&quot;material&quot; placeholder&#x3D;&quot;Material Style&quot;&gt;&lt;/zt-input&gt;
+   *
+   * &lt;!-- Bootstrap style --&gt;
+   * &lt;zt-input inputStyle&#x3D;&quot;bs&quot; placeholder&#x3D;&quot;Bootstrap Style&quot;&gt;&lt;/zt-input&gt;
+   * &#x60;&#x60;&#x60;
+   *
    * @default &#x27;zt&#x27;
    */
   @Input() inputStyle: &#x27;zt&#x27; | &#x27;material&#x27; | &#x27;bs&#x27; &#x3D; &#x27;zt&#x27;;
 
   /**
-   * The theme of the input component.
+   * Legacy theme property for backward compatibility.
+   *
+   * @deprecated 2.0.0 - Use global theming with &#x60;ZTThemeService&#x60; or local &#x60;ztTheme&#x60; overrides instead.
+   * This property will be removed in a future major version.
+   *
+   * @example
+   * &#x60;&#x60;&#x60;typescript
+   * // ❌ Deprecated - avoid using
+   * &lt;zt-input theme&#x3D;&quot;dark&quot; placeholder&#x3D;&quot;Dark theme&quot;&gt;&lt;/zt-input&gt;
+   *
+   * // ✅ Recommended approach
+   * &lt;zt-input [ztTheme]&#x3D;&quot;darkTheme&quot; placeholder&#x3D;&quot;Dark theme&quot;&gt;&lt;/zt-input&gt;
+   * &#x60;&#x60;&#x60;
+   *
    * @default &#x27;light&#x27;
    */
   @Input() theme: &#x27;light&#x27; | &#x27;dark&#x27; | &#x27;bootstrap&#x27; | &#x27;material&#x27; &#x3D; &#x27;light&#x27;;
 
   /**
-   * The size of the input component.
+   * Local theme override for this input component. Takes precedence over global theme settings.
+   *
+   * Use this for component-specific styling that differs from your global theme.
+   * For consistent theming across your application, prefer global theme configuration.
+   *
+   * @example
+   * &#x60;&#x60;&#x60;html
+   * &lt;zt-input
+   *   [ztTheme]&#x3D;&quot;brandInputTheme&quot;
+   *   placeholder&#x3D;&quot;Brand styled input&quot;&gt;
+   * &lt;/zt-input&gt;
+   * &#x60;&#x60;&#x60;
+   *
+   * &#x60;&#x60;&#x60;typescript
+   * brandInputTheme: Partial&lt;ThemeConfig&gt; &#x3D; {
+   *   colors: {
+   *     primary: &#x27;#FF6B35&#x27;,        // Brand orange
+   *     textBlack: &#x27;#2D3748&#x27;,      // Dark gray text
+   *     default: &#x27;#FFFFFF&#x27;,        // White background
+   *   },
+   *   borderRadius: 8,             // Rounded corners
+   *   borderSize: 2,              // Thicker borders
+   *   fontFamily: &#x27;&quot;Inter&quot;, sans-serif&#x27;
+   * };
+   * &#x60;&#x60;&#x60;
+   */
+  @Input() ztTheme?: Partial&lt;ThemeConfig&gt;;
+
+  /**
+   * Size variant that controls the overall scale of the input component.
+   *
+   * - &#x60;zt-sm&#x60;: Small size for compact layouts
+   * - &#x60;zt-md&#x60;: Medium size (default) for standard forms
+   * - &#x60;zt-lg&#x60;: Large size for emphasis or touch interfaces
+   *
+   * @example
+   * &#x60;&#x60;&#x60;html
+   * &lt;zt-input size&#x3D;&quot;zt-sm&quot; placeholder&#x3D;&quot;Small input&quot;&gt;&lt;/zt-input&gt;
+   * &lt;zt-input size&#x3D;&quot;zt-md&quot; placeholder&#x3D;&quot;Medium input&quot;&gt;&lt;/zt-input&gt;
+   * &lt;zt-input size&#x3D;&quot;zt-lg&quot; placeholder&#x3D;&quot;Large input&quot;&gt;&lt;/zt-input&gt;
+   * &#x60;&#x60;&#x60;
+   *
    * @default &#x27;zt-md&#x27;
    */
   @Input() size: &#x27;zt-md&#x27; | &#x27;zt-sm&#x27; | &#x27;zt-lg&#x27; &#x3D; &#x27;zt-md&#x27;;
 
   /**
-   * Dynamically applies CSS classes to the input element based on size and theme.
-   * @returns A string of CSS classes.
+   * Error message to display when validation fails or character limit is exceeded.
+   *
+   * The message is displayed below the input with appropriate styling and ARIA attributes.
+   * Use clear, actionable error messages to help users correct their input.
+   *
+   * @example
+   * &#x60;&#x60;&#x60;html
+   * &lt;zt-input
+   *   placeholder&#x3D;&quot;Email&quot;
+   *   inputType&#x3D;&quot;email&quot;
+   *   [errorMessage]&#x3D;&quot;emailError&quot;
+   *   [textlength]&#x3D;&quot;100&quot;&gt;
+   * &lt;/zt-input&gt;
+   * &#x60;&#x60;&#x60;
+   *
+   * &#x60;&#x60;&#x60;typescript
+   * emailError: string;
+   *
+   * validateEmail() {
+   *   if (this.emailFormControl.invalid) {
+   *     if (this.emailFormControl.errors?.[&#x27;required&#x27;]) {
+   *       this.emailError &#x3D; &#x27;Email is required&#x27;;
+   *     } else if (this.emailFormControl.errors?.[&#x27;email&#x27;]) {
+   *       this.emailError &#x3D; &#x27;Please enter a valid email address&#x27;;
+   *     }
+   *   } else {
+   *     this.emailError &#x3D; undefined;
+   *   }
+   * }
+   * &#x60;&#x60;&#x60;
    */
-  @HostBinding(&#x27;class&#x27;) get inputClass(): string {
-    return &#x60;${this.size} theme-${this.theme}&#x60;;
+  @Input() errorMessage?: string;
+
+  /**
+   * Whether the input is disabled and prevents user interaction.
+   *
+   * Disabled inputs cannot be focused, edited, or submitted. They are visually
+   * distinguished and include appropriate ARIA attributes for accessibility.
+   *
+   * @example
+   * &#x60;&#x60;&#x60;html
+   * &lt;!-- Regular input --&gt;
+   * &lt;zt-input placeholder&#x3D;&quot;Editable input&quot;&gt;&lt;/zt-input&gt;
+   *
+   * &lt;!-- Disabled input --&gt;
+   * &lt;zt-input placeholder&#x3D;&quot;Disabled input&quot; [disabled]&#x3D;&quot;true&quot;&gt;&lt;/zt-input&gt;
+   *
+   * &lt;!-- Conditionally disabled --&gt;
+   * &lt;zt-input
+   *   placeholder&#x3D;&quot;Conditional input&quot;
+   *   [disabled]&#x3D;&quot;isFormDisabled&quot;&gt;
+   * &lt;/zt-input&gt;
+   * &#x60;&#x60;&#x60;
+   *
+   * @default false
+   */
+  @Input() disabled &#x3D; false;
+
+  /**
+   * Whether to show a real-time character counter below the input.
+   *
+   * The counter displays current character count vs. maximum allowed characters.
+   * Visual styling changes based on input state:
+   * - Normal: Default text color
+   * - Warning: When &gt; 80% of limit (orange/warning color)
+   * - Error: When limit exceeded (red/error color)
+   *
+   * @example
+   * &#x60;&#x60;&#x60;html
+   * &lt;!-- Without counter --&gt;
+   * &lt;zt-input [textlength]&#x3D;&quot;100&quot; placeholder&#x3D;&quot;No counter&quot;&gt;&lt;/zt-input&gt;
+   *
+   * &lt;!-- With counter --&gt;
+   * &lt;zt-input [textlength]&#x3D;&quot;100&quot; [showCharCounter]&#x3D;&quot;true&quot; placeholder&#x3D;&quot;With counter&quot;&gt;&lt;/zt-input&gt;
+   * &lt;!-- Displays: &quot;0/100&quot; --&gt;
+   * &#x60;&#x60;&#x60;
+   *
+   * @default false
+   */
+  @Input() showCharCounter &#x3D; false;
+
+  /**
+   * Unique identifier for this input instance, used for accessibility and proper label association.
+   *
+   * Automatically generated to ensure uniqueness across multiple input instances on the same page.
+   * Used internally for &#x60;id&#x60;, &#x60;for&#x60;, &#x60;aria-labelledby&#x60;, and &#x60;aria-describedby&#x60; attributes.
+   *
+   * @example
+   * &#x60;&#x60;&#x60;html
+   * &lt;!-- Input with uniqueId: &quot;zt-input-a1b2c3d4&quot; --&gt;
+   * &lt;zt-input placeholder&#x3D;&quot;Name&quot;&gt;&lt;/zt-input&gt;
+   * &lt;!-- Renders as: &lt;input id&#x3D;&quot;zt-input-a1b2c3d4&quot; ...&gt; --&gt;
+   * &lt;!-- With label: &lt;label for&#x3D;&quot;zt-input-a1b2c3d4&quot; ...&gt; --&gt;
+   * &#x60;&#x60;&#x60;
+   */
+  readonly uniqueId &#x3D; &#x60;zt-input-${Math.random().toString(36).substr(2, 9)}&#x60;;
+
+  /**
+   * Output event emitted whenever the input value changes.
+   *
+   * Used for two-way data binding with &#x60;[(ngModel)]&#x60; and reactive forms integration.
+   * Emitted after character validation and limit enforcement.
+   *
+   * @example
+   * &#x60;&#x60;&#x60;html
+   * &lt;zt-input
+   *   placeholder&#x3D;&quot;Name&quot;
+   *   (valueChange)&#x3D;&quot;onNameChange($event)&quot;
+   *   [(ngModel)]&#x3D;&quot;userName&quot;&gt;
+   * &lt;/zt-input&gt;
+   * &#x60;&#x60;&#x60;
+   *
+   * &#x60;&#x60;&#x60;typescript
+   * onNameChange(newValue: string) {
+   *   console.log(&#x27;Name changed to:&#x27;, newValue);
+   *   this.userName &#x3D; newValue;
+   * }
+   * &#x60;&#x60;&#x60;
+   */
+  @Output() valueChange &#x3D; new EventEmitter&lt;string&gt;();
+
+  /**
+   * Output event emitted when the input loses focus (blur event).
+   *
+   * Useful for validation triggers, saving data, or updating UI state.
+   * Provides the native FocusEvent for advanced use cases.
+   *
+   * @example
+   * &#x60;&#x60;&#x60;html
+   * &lt;zt-input
+   *   placeholder&#x3D;&quot;Email&quot;
+   *   (blur)&#x3D;&quot;validateEmail()&quot;
+   *   inputType&#x3D;&quot;email&quot;&gt;
+   * &lt;/zt-input&gt;
+   * &#x60;&#x60;&#x60;
+   *
+   * &#x60;&#x60;&#x60;typescript
+   * validateEmail() {
+   *   if (this.emailFormControl.invalid) {
+   *     this.showEmailError &#x3D; true;
+   *   }
+   * }
+   * &#x60;&#x60;&#x60;
+   */
+  @Output() blur &#x3D; new EventEmitter&lt;FocusEvent&gt;();
+
+  /**
+   * Output event emitted when the input gains focus (focus event).
+   *
+   * Useful for showing help text, highlighting related fields, or analytics tracking.
+   * Provides the native FocusEvent for advanced use cases.
+   *
+   * @example
+   * &#x60;&#x60;&#x60;html
+   * &lt;zt-input
+   *   placeholder&#x3D;&quot;Search&quot;
+   *   (focus)&#x3D;&quot;showSearchHelp &#x3D; true&quot;
+   *   (blur)&#x3D;&quot;showSearchHelp &#x3D; false&quot;&gt;
+   * &lt;/zt-input&gt;
+   * &#x60;&#x60;&#x60;
+   */
+  @Output() focus &#x3D; new EventEmitter&lt;FocusEvent&gt;();
+
+  /**
+   * Current character count of the input value.
+   *
+   * Computed property that returns the length of the current value.
+   * Used by the character counter display and validation logic.
+   *
+   * @example
+   * &#x60;&#x60;&#x60;typescript
+   * // In component class
+   * get progressPercentage(): number {
+   *   return (this.inputComponent.currentLength / this.inputComponent.textlength) * 100;
+   * }
+   * &#x60;&#x60;&#x60;
+   *
+   * @returns The number of characters in the current value, or 0 if empty
+   */
+  get currentLength(): number {
+    return this.value?.length || 0;
   }
 
   /**
-   * Handles keydown events to enforce character length limits.
-   * Updates the value if within the allowed length.
+   * Whether the input has exceeded the character limit.
+   *
+   * Computed property used for validation states and visual feedback.
+   * Affects CSS classes, ARIA attributes, and error display logic.
+   *
+   * @example
+   * &#x60;&#x60;&#x60;scss
+   * .my-form {
+   *   .zt-input.error input {
+   *     border-color: red;
+   *   }
+   * }
+   * &#x60;&#x60;&#x60;
+   *
+   * @returns true if current length exceeds textlength limit
    */
-  @HostListener(&#x27;keydown&#x27;) onKeydown() {
-    if (Number(this.textlength) &gt; this.textInput?.nativeElement.value.length)
-      this.value &#x3D; this.textInput?.nativeElement.value;
+  get hasError(): boolean {
+    return this.currentLength &gt; this.textlength;
+  }
+
+  /**
+   * CSS class name for the character counter based on current input state.
+   *
+   * Returns appropriate class for styling the counter:
+   * - &#x60;&#x27;&#x27;&#x60; (empty): Normal state, within limits
+   * - &#x60;&#x27;warning&#x27;&#x60;: Approaching limit (&gt; 80% of textlength)
+   * - &#x60;&#x27;error&#x27;&#x60;: Exceeded limit
+   *
+   * @example
+   * &#x60;&#x60;&#x60;html
+   * &lt;div class&#x3D;&quot;char-counter&quot; [ngClass]&#x3D;&quot;counterClass&quot;&gt;
+   *   {{ currentLength }}/{{ textlength }}
+   * &lt;/div&gt;
+   * &#x60;&#x60;&#x60;
+   *
+   * @returns CSS class name for current counter state
+   */
+  get counterClass(): string {
+    if (this.hasError) return &#x27;error&#x27;;
+    if (this.currentLength &gt; this.textlength * 0.8) return &#x27;warning&#x27;;
+    return &#x27;&#x27;;
+  }
+
+  /**
+   * Space-separated list of element IDs that describe this input for accessibility.
+   *
+   * Used with &#x60;aria-describedby&#x60; attribute to associate the input with:
+   * - Character counter (when &#x60;showCharCounter&#x60; is true)
+   * - Error message (when &#x60;errorMessage&#x60; is provided)
+   *
+   * Enables screen readers to provide additional context about the input.
+   *
+   * @example
+   * &#x60;&#x60;&#x60;html
+   * &lt;!-- Input with counter and error message --&gt;
+   * &lt;zt-input
+   *   [showCharCounter]&#x3D;&quot;true&quot;
+   *   [errorMessage]&#x3D;&quot;validationError&quot;
+   *   aria-describedby&#x3D;&quot;additional-help&quot;&gt;
+   * &lt;/zt-input&gt;
+   * &lt;!-- aria-describedby value: &quot;zt-input-a1b2c3d4-counter zt-input-a1b2c3d4-error additional-help&quot; --&gt;
+   * &#x60;&#x60;&#x60;
+   *
+   * @returns Space-separated string of descriptive element IDs
+   */
+  get ariaDescribedBy(): string {
+    const descriptions &#x3D; [];
+    if (this.showCharCounter) descriptions.push(&#x60;${this.uniqueId}-counter&#x60;);
+    if (this.errorMessage) descriptions.push(&#x60;${this.uniqueId}-error&#x60;);
+    return descriptions.join(&#x27; &#x27;);
+  }
+
+  /**
+   * Dynamically applies CSS classes to the host element for styling and state management.
+   *
+   * Combines multiple class sources:
+   * - Input style variant (&#x60;zt-${inputStyle}&#x60;)
+   * - Size variant (&#x60;${size}&#x60;)
+   * - Legacy theme class (&#x60;theme-${theme}&#x60;)
+   * - Disabled state (&#x60;disabled&#x60; when &#x60;disabled&#x60; is true)
+   * - Error state (&#x60;error&#x60; when character limit exceeded)
+   *
+   * @example
+   * &#x60;&#x60;&#x60;html
+   * &lt;!-- Input with multiple classes --&gt;
+   * &lt;zt-input inputStyle&#x3D;&quot;material&quot; size&#x3D;&quot;zt-lg&quot; [disabled]&#x3D;&quot;true&quot;&gt;&lt;/zt-input&gt;
+   * &lt;!-- Applied classes: &quot;zt-material zt-lg theme-light disabled&quot; --&gt;
+   * &#x60;&#x60;&#x60;
+   *
+   * @returns Space-separated string of CSS classes
+   */
+  @HostBinding(&#x27;class&#x27;) get inputClass(): string {
+    return &#x60;zt-${this.inputStyle} ${this.size} theme-${this.theme} ${this.disabled ? &#x27;disabled&#x27; : &#x27;&#x27;} ${this.hasError ? &#x27;error&#x27; : &#x27;&#x27;}&#x60;;
+  }
+
+  constructor(
+    private elementRef: ElementRef,
+    renderer: Renderer2
+  ) {
+    this.renderer &#x3D; renderer;
+  }
+
+  /**
+   * ControlValueAccessor implementation - enables reactive forms support.
+   * These callbacks are registered by Angular&#x27;s forms module.
+   */
+  private onChange &#x3D; (value: any) &#x3D;&gt; {};
+  private onTouched &#x3D; () &#x3D;&gt; {};
+
+  /**
+   * ControlValueAccessor: Write a new value to the element.
+   *
+   * Called by Angular forms when the FormControl value changes.
+   * Updates the component&#x27;s value property and triggers change detection.
+   *
+   * @param value - The new value to write (null/undefined becomes empty string)
+   *
+   * @example
+   * &#x60;&#x60;&#x60;typescript
+   * // Angular forms automatically calls this method
+   * this.form.patchValue({ email: &#x27;user@example.com&#x27; });
+   * // Triggers: writeValue(&#x27;user@example.com&#x27;)
+   * &#x60;&#x60;&#x60;
+   */
+  writeValue(value: any): void {
+    this.value &#x3D; value || &#x27;&#x27;;
+  }
+
+  /**
+   * ControlValueAccessor: Register a callback function to call when the value changes.
+   *
+   * Called by Angular forms to register the FormControl&#x27;s value change listener.
+   * The registered function is called whenever the input value changes.
+   *
+   * @param fn - Callback function to register for value changes
+   */
+  registerOnChange(fn: any): void {
+    this.onChange &#x3D; fn;
+  }
+
+  /**
+   * ControlValueAccessor: Register a callback function to call when the input is touched.
+   *
+   * Called by Angular forms to register the FormControl&#x27;s touch listener.
+   * The registered function is called when the input loses focus.
+   *
+   * @param fn - Callback function to register for touch events
+   */
+  registerOnTouched(fn: any): void {
+    this.onTouched &#x3D; fn;
+  }
+
+  /**
+   * ControlValueAccessor: Disable or enable the input element.
+   *
+   * Called by Angular forms when the FormControl is disabled/enabled.
+   * Updates the disabled state and triggers change detection.
+   *
+   * @param isDisabled - Whether to disable the input
+   *
+   * @example
+   * &#x60;&#x60;&#x60;typescript
+   * // Angular forms automatically calls this method
+   * this.form.get(&#x27;email&#x27;).disable();
+   * // Triggers: setDisabledState(true)
+   * &#x60;&#x60;&#x60;
+   */
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled &#x3D; isDisabled;
+  }
+
+  /**
+   * Angular lifecycle hook called after component initialization.
+   *
+   * Applies local theme overrides if provided via the &#x60;ztTheme&#x60; input property.
+   * Theme application happens after view initialization to ensure DOM elements exist.
+   *
+   * @example
+   * &#x60;&#x60;&#x60;typescript
+   * // Component with local theme override
+   * &lt;zt-input [ztTheme]&#x3D;&quot;customTheme&quot;&gt;&lt;/zt-input&gt;
+   * // Triggers: ngOnInit() -&gt; applyLocalTheme()
+   * &#x60;&#x60;&#x60;
+   */
+  ngOnInit(): void {
+    if (this.ztTheme) {
+      this.applyLocalTheme();
+    }
+  }
+
+  /**
+   * Angular lifecycle hook called before component destruction.
+   *
+   * Cleans up subscriptions and prevents memory leaks.
+   * Completes the destroy subject to signal teardown of any RxJS subscriptions.
+   */
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  /**
+   * Handles native input events for character validation and value synchronization.
+   *
+   * This method is called on every input event and performs several critical functions:
+   * - Enforces character limits by truncating input if necessary
+   * - Updates the component&#x27;s value property
+   * - Notifies Angular forms of value changes (ControlValueAccessor)
+   * - Emits valueChange event for two-way binding
+   *
+   * Uses &#x60;@HostListener(&#x27;input&#x27;)&#x60; for better performance than keydown events.
+   *
+   * @example
+   * &#x60;&#x60;&#x60;typescript
+   * // User types &quot;Hello World&quot; in input
+   * // 1. Input event fires
+   * // 2. onInput() called
+   * // 3. Value updated to &quot;Hello World&quot;
+   * // 4. onChange() callback invoked
+   * // 5. valueChange.emit(&#x27;Hello World&#x27;) fired
+   * &#x60;&#x60;&#x60;
+   */
+  @HostListener(&#x27;input&#x27;) onInput() {
+    const input &#x3D; this.textInput?.nativeElement;
+    if (!input) return;
+
+    // Enforce character limit by truncating if exceeded
+    if (input.value.length &gt; this.textlength) {
+      input.value &#x3D; input.value.slice(0, this.textlength);
+    }
+
+    // Update component value and notify listeners
+    this.value &#x3D; input.value;
+    this.onChange(this.value);
+    this.valueChange.emit(this.value);
+  }
+
+  /**
+   * Handles keydown events to prevent input when character limit is reached.
+   *
+   * Provides real-time input prevention for better user experience.
+   * Allows navigation and editing keys (Backspace, Delete, arrows) even at limit.
+   * Prevents input of regular characters when limit is reached.
+   *
+   * @param event - The keyboard event containing information about the pressed key
+   *
+   * @example
+   * &#x60;&#x60;&#x60;typescript
+   * // User types at character limit (textlength &#x3D; 10)
+   * // Current value: &quot;Hello Worl&quot; (10 chars)
+   * // User presses &#x27;d&#x27; -&gt; onKeydown() prevents input
+   * // User presses Backspace -&gt; onKeydown() allows deletion
+   * &#x60;&#x60;&#x60;
+   */
+  @HostListener(&#x27;keydown&#x27;, [&#x27;$event&#x27;])
+  onKeydown(event: KeyboardEvent) {
+    const input &#x3D; this.textInput?.nativeElement;
+    if (!input) return;
+
+    // Allow navigation and editing keys even at character limit
+    const allowedKeys &#x3D; [&#x27;Backspace&#x27;, &#x27;Delete&#x27;, &#x27;ArrowLeft&#x27;, &#x27;ArrowRight&#x27;, &#x27;Tab&#x27;, &#x27;Enter&#x27;];
+    if (input.value.length &gt;&#x3D; this.textlength &amp;&amp; !allowedKeys.includes(event.key)) {
+      event.preventDefault();
+      return;
+    }
+  }
+
+  /**
+   * Handles focus events for accessibility and user interaction tracking.
+   *
+   * Emits the focus event for parent components and marks the control as touched
+   * for Angular forms validation (triggers validation on blur).
+   *
+   * @param event - The native focus event
+   *
+   * @example
+   * &#x60;&#x60;&#x60;html
+   * &lt;zt-input (focus)&#x3D;&quot;onInputFocus($event)&quot;&gt;&lt;/zt-input&gt;
+   * &#x60;&#x60;&#x60;
+   *
+   * &#x60;&#x60;&#x60;typescript
+   * onInputFocus(event: FocusEvent) {
+   *   console.log(&#x27;Input focused at:&#x27;, event.timeStamp);
+   *   // Show help text, highlight field, etc.
+   * }
+   * &#x60;&#x60;&#x60;
+   */
+  @HostListener(&#x27;focus&#x27;, [&#x27;$event&#x27;])
+  onFocus(event: FocusEvent) {
+    this.focus.emit(event);
+    this.onTouched();
+  }
+
+  /**
+   * Handles blur events for validation triggers and user interaction tracking.
+   *
+   * Emits the blur event for parent components. Commonly used to trigger validation,
+   * save data, or update UI state when user finishes editing.
+   *
+   * @param event - The native blur event
+   *
+   * @example
+   * &#x60;&#x60;&#x60;html
+   * &lt;zt-input (blur)&#x3D;&quot;onInputBlur($event)&quot;&gt;&lt;/zt-input&gt;
+   * &#x60;&#x60;&#x60;
+   *
+   * &#x60;&#x60;&#x60;typescript
+   * onInputBlur(event: FocusEvent) {
+   *   console.log(&#x27;Input blurred at:&#x27;, event.timeStamp);
+   *   // Validate field, save data, hide help text, etc.
+   * }
+   * &#x60;&#x60;&#x60;
+   */
+  @HostListener(&#x27;blur&#x27;, [&#x27;$event&#x27;])
+  onBlur(event: FocusEvent) {
+    this.blur.emit(event);
+  }
+
+  /**
+   * Applies local theme overrides to the component using Renderer2 for optimal performance.
+   *
+   * This method transforms theme configuration into CSS custom properties and applies them
+   * to the host element. The theme properties cascade down to all child elements,
+   * enabling efficient theme switching without component recreation.
+   *
+   * Features:
+   * - Batch style application to minimize layout thrashing
+   * - Automatic CSS custom property name conversion (camelCase to kebab-case)
+   * - Proper unit handling for dimensional properties
+   * - Renderer2 for security and Angular Universal compatibility
+   *
+   * @example
+   * &#x60;&#x60;&#x60;typescript
+   * // Define custom theme with all properties
+   * customTheme: Partial&lt;ThemeConfig&gt; &#x3D; {
+   *   colors: {
+   *     primary: &#x27;#FF6B35&#x27;,
+   *     textBlack: &#x27;#2D3748&#x27;,
+   *     default: &#x27;#FFFFFF&#x27;
+   *   },
+   *   borderRadius: 8,
+   *   borderSize: 2,
+   *   fontFamily: &#x27;Inter, sans-serif&#x27;
+   * };
+   *
+   * // Apply via input property
+   * &lt;zt-input [ztTheme]&#x3D;&quot;customTheme&quot;&gt;&lt;/zt-input&gt;
+   *
+   * // Results in these CSS custom properties on the host element:
+   * // --zt-primary: #FF6B35
+   * // --zt-text-black: #2D3748
+   * // --zt-default: #FFFFFF
+   * // --zt-border-radius: 8px
+   * // --zt-border-size: 2px
+   * // --zt-font-family: Inter, sans-serif
+   * &#x60;&#x60;&#x60;
+   *
+   * @performance Uses batch style application to minimize layout thrashing
+   * @security Renderer2 automatically sanitizes CSS values
+   * @compatibility Works with Angular Universal and server-side rendering
+   */
+  private applyLocalTheme(): void {
+    if (!this.ztTheme) return;
+
+    const hostElement &#x3D; this.elementRef.nativeElement;
+
+    // Clear any existing theme styles first for clean application
+    this.clearExistingThemeStyles();
+
+    // Apply new theme styles in batch
+    this.applyThemeStyles(hostElement);
+  }
+
+  /**
+   * Clears existing theme-related styles from the host element.
+   * This ensures clean theme application and prevents style conflicts.
+   */
+  private clearExistingThemeStyles(): void {
+    if (!this.ztTheme) return;
+
+    const hostElement &#x3D; this.elementRef.nativeElement;
+
+    // Remove existing theme-related CSS custom properties
+    const themeProperties &#x3D; [
+      &#x27;--zt-primary&#x27;, &#x27;--zt-text-black&#x27;, &#x27;--zt-text-gray&#x27;, &#x27;--zt-default&#x27;,
+      &#x27;--zt-default-hover-border&#x27;, &#x27;--zt-border-radius&#x27;, &#x27;--zt-border-size&#x27;,
+      &#x27;--zt-font-family&#x27;, &#x27;--zt-input-bg&#x27;, &#x27;--zt-input-color&#x27;, &#x27;--zt-input-border&#x27;,
+      &#x27;--zt-input-border-focus&#x27;, &#x27;--zt-input-placeholder&#x27;, &#x27;--zt-label-spacing&#x27;,
+      &#x27;--zt-label-transform&#x27;, &#x27;--zt-counter-spacing&#x27;
+    ];
+
+    themeProperties.forEach(property &#x3D;&gt; {
+      this.renderer.removeStyle(hostElement, property);
+    });
+  }
+
+  /**
+   * Applies theme styles to the host element using CSS custom properties.
+   *
+   * @param hostElement - The host element to apply styles to
+   */
+  private applyThemeStyles(hostElement: HTMLElement): void {
+    if (!this.ztTheme) return;
+
+    const styles: { [key: string]: string } &#x3D; {};
+
+    // Transform and apply color properties
+    if (this.ztTheme.colors) {
+      Object.entries(this.ztTheme.colors).forEach(([key, value]) &#x3D;&gt; {
+        const cssVar &#x3D; &#x60;--zt-${key.replace(/([A-Z])/g, &#x27;-$1&#x27;).toLowerCase()}&#x60;;
+        styles[cssVar] &#x3D; value;
+      });
+    }
+
+    // Apply dimensional properties with proper units
+    if (this.ztTheme.borderRadius !&#x3D;&#x3D; undefined) {
+      styles[&#x27;--zt-border-radius&#x27;] &#x3D; &#x60;${this.ztTheme.borderRadius}px&#x60;;
+    }
+
+    if (this.ztTheme.borderSize !&#x3D;&#x3D; undefined) {
+      styles[&#x27;--zt-border-size&#x27;] &#x3D; &#x60;${this.ztTheme.borderSize}px&#x60;;
+    }
+
+    // Apply typography properties
+    if (this.ztTheme.fontFamily) {
+      styles[&#x27;--zt-font-family&#x27;] &#x3D; this.ztTheme.fontFamily;
+    }
+
+    // Apply font size properties if specified
+    if (this.ztTheme.fontSize) {
+      if (this.ztTheme.fontSize.small) {
+        styles[&#x27;--zt-font-size-small&#x27;] &#x3D; this.ztTheme.fontSize.small;
+      }
+      if (this.ztTheme.fontSize.medium) {
+        styles[&#x27;--zt-font-size-medium&#x27;] &#x3D; this.ztTheme.fontSize.medium;
+      }
+      if (this.ztTheme.fontSize.large) {
+        styles[&#x27;--zt-font-size-large&#x27;] &#x3D; this.ztTheme.fontSize.large;
+      }
+    }
+
+    // Apply spacing properties if specified
+    if (this.ztTheme.spacing) {
+      if (this.ztTheme.spacing.small) {
+        styles[&#x27;--zt-spacing-small&#x27;] &#x3D; this.ztTheme.spacing.small;
+      }
+      if (this.ztTheme.spacing.medium) {
+        styles[&#x27;--zt-spacing-medium&#x27;] &#x3D; this.ztTheme.spacing.medium;
+      }
+      if (this.ztTheme.spacing.large) {
+        styles[&#x27;--zt-spacing-large&#x27;] &#x3D; this.ztTheme.spacing.large;
+      }
+    }
+
+    // Apply label and counter spacing using existing spacing properties
+    if (this.ztTheme.spacing) {
+      if (this.ztTheme.spacing.small) {
+        styles[&#x27;--zt-counter-spacing&#x27;] &#x3D; this.ztTheme.spacing.small;
+      }
+      if (this.ztTheme.spacing.medium) {
+        styles[&#x27;--zt-input-padding&#x27;] &#x3D; this.ztTheme.spacing.medium;
+      }
+      if (this.ztTheme.spacing.large) {
+        styles[&#x27;--zt-label-spacing&#x27;] &#x3D; this.ztTheme.spacing.large;
+      }
+    }
+
+    // Batch apply all styles using Renderer2 for optimal performance
+    // This approach minimizes layout thrashing compared to individual setProperty calls
+    Object.entries(styles).forEach(([property, value]) &#x3D;&gt; {
+      this.renderer.setStyle(hostElement, property, value);
+    });
   }
 }
 </code></pre>
@@ -882,51 +3467,97 @@ export class InputComponent {
 
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">@if (inputStyle &#x3D;&#x3D;&#x3D; &#x27;zt&#x27;) {
-  &lt;div&gt;
+  &lt;div class&#x3D;&quot;zt-input-container&quot;&gt;
     &lt;div class&#x3D;&quot;box_input&quot;&gt;
       &lt;div class&#x3D;&quot;form__group&quot;&gt;
         &lt;input
           [type]&#x3D;&quot;inputType&quot;
-          id&#x3D;&quot;input&quot;
-          aria-labelledby&#x3D;&quot;label-fname&quot;
+          [id]&#x3D;&quot;uniqueId&quot;
+          [attr.aria-describedby]&#x3D;&quot;ariaDescribedBy&quot;
+          [attr.aria-labelledby]&#x3D;&quot;uniqueId + &#x27;-label&#x27;&quot;
           [maxLength]&#x3D;&quot;textlength&quot;
+          [disabled]&#x3D;&quot;disabled&quot;
+          [value]&#x3D;&quot;value&quot;
           #textInput
-          /&gt;
-        &lt;label class&#x3D;&quot;label&quot; for&#x3D;&quot;fname&quot; id&#x3D;&quot;label-fname&quot;&gt;
+          [class.error]&#x3D;&quot;hasError&quot;
+        /&gt;
+        &lt;label class&#x3D;&quot;label&quot; [for]&#x3D;&quot;uniqueId&quot; [id]&#x3D;&quot;uniqueId + &#x27;-label&#x27;&quot;&gt;
           &lt;div class&#x3D;&quot;text&quot;&gt;{{ placeholder }}&lt;/div&gt;
         &lt;/label&gt;
       &lt;/div&gt;
+      @if (showCharCounter) {
+        &lt;div class&#x3D;&quot;char-counter&quot; [ngClass]&#x3D;&quot;counterClass&quot; [id]&#x3D;&quot;uniqueId + &#x27;-counter&#x27;&quot;&gt;
+          {{ currentLength }}/{{ textlength }}
+        &lt;/div&gt;
+      }
+      @if (errorMessage) {
+        &lt;div class&#x3D;&quot;error-message&quot; [id]&#x3D;&quot;uniqueId + &#x27;-error&#x27;&quot; role&#x3D;&quot;alert&quot;&gt;
+          {{ errorMessage }}
+        &lt;/div&gt;
+      }
     &lt;/div&gt;
   &lt;/div&gt;
 }
 
 @if (inputStyle &#x3D;&#x3D;&#x3D; &#x27;material&#x27;) {
-  &lt;div&gt;
+  &lt;div class&#x3D;&quot;zt-input-container&quot;&gt;
     &lt;div class&#x3D;&quot;material_input&quot;&gt;
       &lt;div class&#x3D;&quot;form__group&quot;&gt;
         &lt;input
           [type]&#x3D;&quot;inputType&quot;
-          id&#x3D;&quot;input_m&quot;
+          [id]&#x3D;&quot;uniqueId&quot;
+          [attr.aria-describedby]&#x3D;&quot;ariaDescribedBy&quot;
+          [attr.aria-labelledby]&#x3D;&quot;uniqueId + &#x27;-label&#x27;&quot;
           class&#x3D;&quot;form__field&quot;
           [placeholder]&#x3D;&quot;placeholder&quot;
+          [disabled]&#x3D;&quot;disabled&quot;
+          [value]&#x3D;&quot;value&quot;
           #textInput
-          /&gt;
-        &lt;label for&#x3D;&quot;email&quot; class&#x3D;&quot;form__label&quot;&gt;{{ placeholder }}&lt;/label&gt;
+          [class.error]&#x3D;&quot;hasError&quot;
+        /&gt;
+        &lt;label [for]&#x3D;&quot;uniqueId&quot; [id]&#x3D;&quot;uniqueId + &#x27;-label&#x27;&quot; class&#x3D;&quot;form__label&quot;&gt;
+          {{ placeholder }}
+        &lt;/label&gt;
       &lt;/div&gt;
+      @if (showCharCounter) {
+        &lt;div class&#x3D;&quot;char-counter&quot; [ngClass]&#x3D;&quot;counterClass&quot; [id]&#x3D;&quot;uniqueId + &#x27;-counter&#x27;&quot;&gt;
+          {{ currentLength }}/{{ textlength }}
+        &lt;/div&gt;
+      }
+      @if (errorMessage) {
+        &lt;div class&#x3D;&quot;error-message&quot; [id]&#x3D;&quot;uniqueId + &#x27;-error&#x27;&quot; role&#x3D;&quot;alert&quot;&gt;
+          {{ errorMessage }}
+        &lt;/div&gt;
+      }
     &lt;/div&gt;
   &lt;/div&gt;
 }
 
 @if (inputStyle &#x3D;&#x3D;&#x3D; &#x27;bs&#x27;) {
-  &lt;div&gt;
+  &lt;div class&#x3D;&quot;zt-input-container&quot;&gt;
     &lt;div class&#x3D;&quot;input_bs&quot;&gt;
       &lt;input
-        type&#x3D;&quot;text&quot;
-        class&#x3D;&quot;form__field&quot;
-        [placeholder]&#x3D;&quot;placeholder&quot;
         [type]&#x3D;&quot;inputType&quot;
-        id&#x3D;&quot;input_bs&quot;
-        /&gt;
+        [id]&#x3D;&quot;uniqueId&quot;
+        [attr.aria-describedby]&#x3D;&quot;ariaDescribedBy&quot;
+        [attr.aria-labelledby]&#x3D;&quot;uniqueId + &#x27;-label&#x27;&quot;
+        class&#x3D;&quot;form__field form-control&quot;
+        [placeholder]&#x3D;&quot;placeholder&quot;
+        [disabled]&#x3D;&quot;disabled&quot;
+        [value]&#x3D;&quot;value&quot;
+        #textInput
+        [class.error]&#x3D;&quot;hasError&quot;
+      /&gt;
+      @if (showCharCounter) {
+        &lt;div class&#x3D;&quot;char-counter&quot; [ngClass]&#x3D;&quot;counterClass&quot; [id]&#x3D;&quot;uniqueId + &#x27;-counter&#x27;&quot;&gt;
+          {{ currentLength }}/{{ textlength }}
+        &lt;/div&gt;
+      }
+      @if (errorMessage) {
+        &lt;div class&#x3D;&quot;error-message&quot; [id]&#x3D;&quot;uniqueId + &#x27;-error&#x27;&quot; role&#x3D;&quot;alert&quot;&gt;
+          {{ errorMessage }}
+        &lt;/div&gt;
+      }
     &lt;/div&gt;
   &lt;/div&gt;
 }
@@ -937,87 +3568,146 @@ export class InputComponent {
                 <p class="comment">
                     <code>./input.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">@import &quot;../../assets/variables&quot;;
+                <pre class="line-numbers"><code class="language-scss">@use &quot;../../assets/variables&quot; as vars;
 
-// Light theme (default)
-:host(.theme-light) {
-  --zt-border-color: #d2d2d2;
-  --zt-border-focus: #0275d8;
-  --zt-border-focus-out: #f30e0e;
-  --zt-bg-white: #ffffff;
-  --zt-text-black: #212121;
-  --zt-text-gray: #9b9b9b;
-}
-
-// Dark theme
-:host(.theme-dark) {
-  --zt-border-color: #4a5568;
-  --zt-border-focus: #4dabf7;
-  --zt-border-focus-out: #f56565;
-  --zt-bg-white: #2d3748;
-  --zt-text-black: #ffffff;
-  --zt-text-gray: #718096;
-
-  .label .text {
-    color: var(--zt-text-white);
-  }
-
-  input::placeholder {
-    color: var(--zt-text-white);
-  }
-}
-
-// Bootstrap theme
-:host(.theme-bootstrap) {
-  --zt-border-color: #d2d2d2;
-  --zt-border-focus: #007bff;
-  --zt-border-focus-out: #dc3545;
-  --zt-bg-white: #ffffff;
-  --zt-text-black: #212121;
-  --zt-text-gray: #6c757d;
-}
-
-// Material theme
-:host(.theme-material) {
-  --zt-border-color: #e0e0e0;
-  --zt-border-focus: #6200ee;
-  --zt-border-focus-out: #f44336;
-  --zt-bg-white: #ffffff;
-  --zt-text-black: #212121;
-  --zt-text-gray: #9e9e9e;
-}
-
+// CSS Custom Properties for consistent theming - properly scoped
 :host {
-  font-family: inherit;
+  // Input dimensions and spacing - optimized for better label alignment
+  --zt-input-height: 42px; // Optimized height for better proportions
+  --zt-input-padding: 12px;
+  --zt-input-border-radius: 4px;
+  --zt-input-border-size: 1px;
+  --zt-input-transition: 0.15s ease-out;
+
+  // Color scheme with proper fallbacks
+  --zt-input-bg: #ffffff;
+  --zt-input-color: #212529;
+  --zt-input-border: #ced4da;
+  --zt-input-border-focus: #007bff;
+  --zt-input-placeholder: #6c757d;
+  --zt-input-shadow: rgba(0, 123, 255, 0.25);
+
+  // Error states with fallbacks
+  --zt-input-error: #dc3545;
+  --zt-input-error-shadow: rgba(220, 53, 69, 0.25);
+  --zt-input-warning: #ffc107;
+  --zt-input-warning-shadow: rgba(255, 193, 7, 0.25);
+
+  // Character counter with fallbacks
+  --zt-counter-font-size: 0.875rem;
+  --zt-counter-spacing: 8px;
+
+  // Label positioning with fallbacks - optimized for better alignment
+  --zt-label-spacing: 8px;
+  --zt-label-transform: -90%; // Reduced from -100% for better visual balance
+  --zt-label-height: var(--zt-input-height); // Match input height by default
+  --zt-label-offset: calc(var(--zt-input-padding) * 0.3); // Position slightly above center
+
+  // Typography with fallbacks
+  --zt-font-family: &quot;Segoe UI&quot;, system-ui, sans-serif;
+  --zt-font-size-small: 0.875rem;
+  --zt-font-size-medium: 1rem;
+  --zt-font-size-large: 1.125rem;
+
+  // Spacing with fallbacks
+  --zt-spacing-small: 8px;
+  --zt-spacing-medium: 12px;
+  --zt-spacing-large: 16px;
+
+  // Border properties with fallbacks
+  --zt-border-radius: 4px;
+  --zt-border-size: 1px;
+
+  // Theme colors with fallbacks
+  --zt-primary: #007bff;
+  --zt-text-black: #212529;
+  --zt-text-gray: #6c757d;
+  --zt-default: #ffffff;
+  --zt-default-hover-border: #ced4da;
+}
+
+// Style-specific visibility
+:host(.zt-zt) {
+  .box_input {
+    display: block;
+  }
+  .material_input {
+    display: none;
+  }
+  .input_bs {
+    display: none;
+  }
+}
+
+:host(.zt-material) {
+  .box_input {
+    display: none;
+  }
+  .material_input {
+    display: block;
+  }
+  .input_bs {
+    display: none;
+  }
+}
+
+:host(.zt-bs) {
+  .box_input {
+    display: none;
+  }
+  .material_input {
+    display: none;
+  }
+  .input_bs {
+    display: block;
+  }
+}
+// Common styles for all input containers
+.zt-input-container {
+  position: relative;
+  width: 100%;
+}
+
+// Base ZT Style Input
+:host {
+  font-family: var(--zt-font-family);
 
   .box_input {
-    .outline {
-      border: 0;
-    }
-
-    .no-outline {
-      bottom: 0;
-      border-bottom: 1px solid var(--zt-border-color);
-      outline: 0;
-    }
-
     .form__group {
       position: relative;
     }
 
     input {
-      height: 48px;
       width: 100%;
-      border: 1px solid var(--zt-border-color);
-      border-radius: 4px;
+      border: var(--zt-input-border-size) solid var(--zt-input-border);
+      border-radius: var(--zt-input-border-radius);
       box-sizing: border-box;
-      padding: 16px;
-      background-color: var(--zt-bg-white);
-      color: var(--zt-text-black);
+      background-color: var(--zt-input-bg);
+      color: var(--zt-input-color);
+      font-family: var(--zt-font-family);
+      font-size: var(--zt-font-size-medium);
+      transition: var(--zt-input-transition);
 
       &amp;::placeholder {
-        color: var(--zt-text-gray);
+        color: var(--zt-input-placeholder);
         background-color: transparent;
+      }
+
+      &amp;:focus {
+        outline: none;
+        border-color: var(--zt-input-border-focus);
+        box-shadow: 0 0 0 calc(var(--zt-input-border-size) * 2) var(--zt-input-shadow);
+      }
+
+      &amp;:disabled {
+        background-color: var(--zt-input-bg-disabled, #e9ecef);
+        opacity: 0.65;
+        cursor: not-allowed;
+      }
+
+      &amp;.error {
+        border-color: var(--zt-input-error);
+        box-shadow: 0 0 0 calc(var(--zt-input-border-size) * 2) var(--zt-input-error-shadow);
       }
     }
 
@@ -1025,37 +3715,118 @@ export class InputComponent {
       position: absolute;
       top: 0;
       bottom: 0;
-      left: 16px;
+      left: var(--zt-input-padding);
+      height: var(--zt-label-height); // Match input height exactly
       display: flex;
-      align-items: center;
+      align-items: flex-start; // Changed from center to start
+      justify-content: flex-start;
+      pointer-events: none;
+      width: 100%;
+      padding-top: var(--zt-label-offset, calc(var(--zt-input-padding) * 0.3)); // Position slightly above center
     }
 
-    input,
     .label .text {
-      font-family: &quot;Segoe UI&quot;;
-      font-size: $font-size-input;
-    }
-
-    input:focus {
-      outline: none;
-      border: 2px solid var(--zt-border-focus);
+      font-family: var(--zt-font-family);
+      font-size: var(--zt-font-size-medium);
+      transition: var(--zt-input-transition);
+      color: var(--zt-input-color);
+      padding: 0 var(--zt-counter-spacing);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     input:focus + .label .text,
-    :not(input[value&#x3D;&quot;&quot;]) + .label .text {
-      font-size: $font-size-input-label-sm;
-      transform: translate(0, -150%);
-      background-color: var(--zt-bg-white);
-      padding-left: 4px;
-      padding-right: 4px;
-    }
-
-    .label .text {
-      transition: all 0.15s ease-out;
-      color: var(--zt-text-black);
+    input:not([value&#x3D;&quot;&quot;]) + .label .text {
+      font-size: var(--zt-counter-font-size);
+      transform: translateY(var(--zt-label-transform, -100%));
+      background-color: var(--zt-input-bg);
+      padding: 0 calc(var(--zt-counter-spacing) * 0.5);
     }
   }
+}
 
+// Size variants for ZT style - optimized ratios for perfect label alignment
+:host(.zt-sm) {
+  .box_input input {
+    height: calc(var(--zt-input-height) * 0.8); // 33.6px - proportional to new base
+    padding: calc(var(--zt-input-padding) * 0.8);
+    font-size: var(--zt-font-size-small);
+  }
+
+  .box_input .label {
+    left: calc(var(--zt-input-padding) * 0.8);
+    height: calc(var(--zt-input-height) * 0.8); // Match input height exactly
+    --zt-label-height: calc(var(--zt-input-height) * 0.8);
+    padding-top: calc(var(--zt-input-padding) * 0.25); // Slightly less offset for small
+  }
+
+  .box_input .label .text {
+    font-size: var(--zt-font-size-small);
+    padding: 0 calc(var(--zt-counter-spacing) * 0.8);
+  }
+
+  input:focus + .label .text,
+  input:not([value&#x3D;&quot;&quot;]) + .label .text {
+    padding: 0 calc(var(--zt-counter-spacing) * 0.6); // Optimized multiplier
+    transform: translateY(var(--zt-label-transform, -90%));
+  }
+}
+
+:host(.zt-md) {
+  .box_input input {
+    height: var(--zt-input-height); // 42px - new optimized base
+    padding: var(--zt-input-padding);
+    font-size: var(--zt-font-size-medium);
+  }
+
+  .box_input .label {
+    left: var(--zt-input-padding);
+    height: var(--zt-input-height); // Match input height exactly
+    --zt-label-height: var(--zt-input-height);
+    padding-top: var(--zt-label-offset, calc(var(--zt-input-padding) * 0.3)); // Standard offset
+  }
+
+  .box_input .label .text {
+    font-size: var(--zt-font-size-medium);
+    padding: 0 var(--zt-counter-spacing);
+  }
+
+  input:focus + .label .text,
+  input:not([value&#x3D;&quot;&quot;]) + .label .text {
+    padding: 0 calc(var(--zt-counter-spacing) * 0.6); // Consistent with small
+    transform: translateY(var(--zt-label-transform, -90%));
+  }
+}
+
+:host(.zt-lg) {
+  .box_input input {
+    height: 50px; // 50px - exactly as requested
+    padding: calc(var(--zt-input-padding) * 1.19); // Proportional to 50px height
+    font-size: var(--zt-font-size-large);
+  }
+
+  .box_input .label {
+    left: calc(var(--zt-input-padding) * 1.19);
+    height: 50px; // Match input height exactly
+    --zt-label-height: 50px;
+    padding-top: calc(var(--zt-input-padding) * 0.35); // Slightly more offset for large
+  }
+
+  .box_input .label .text {
+    font-size: var(--zt-font-size-large);
+    padding: 0 calc(var(--zt-counter-spacing) * 1.19);
+  }
+
+  input:focus + .label .text,
+  input:not([value&#x3D;&quot;&quot;]) + .label .text {
+    padding: 0 calc(var(--zt-counter-spacing) * 0.7); // Proportional multiplier
+    transform: translateY(var(--zt-label-transform, -90%));
+  }
+}
+
+// Material Style Input - Base styles
+:host(.zt-material) {
   .material_input {
     .form__group {
       position: relative;
@@ -1064,64 +3835,207 @@ export class InputComponent {
     }
 
     .form__field {
-      font-family: inherit;
+      font-family: var(--zt-font-family);
       width: 100%;
       border: 0;
-      border-bottom: 1px solid var(--zt-border-color);
+      border-bottom: var(--zt-input-border-size) solid var(--zt-input-border);
       outline: 0;
-      font-size: 16px;
-      color: var(--zt-text-black);
-      padding: 7px 0;
+      color: var(--zt-input-color);
+      padding: var(--zt-counter-spacing) 0;
       background: transparent;
-      transition: border-color 0.2s;
-    }
+      transition: var(--zt-input-transition);
 
-    .form__field::placeholder {
-      color: transparent;
+      &amp;::placeholder {
+        color: transparent;
+      }
+
+      &amp;:focus {
+        border-bottom-color: var(--zt-input-border-focus);
+        border-bottom-width: calc(var(--zt-input-border-size) * 2);
+      }
+
+      &amp;:disabled {
+        color: var(--zt-input-placeholder);
+        cursor: not-allowed;
+      }
+
+      &amp;.error {
+        border-bottom-color: var(--zt-input-error);
+        border-bottom-width: calc(var(--zt-input-border-size) * 2);
+      }
     }
 
     .form__field:placeholder-shown ~ .form__label {
-      font-size: 16px;
       cursor: text;
       top: 20px;
+      left: 0;
     }
 
-    label,
+    .form__label,
     .form__field:focus ~ .form__label {
       position: absolute;
       top: 0;
+      left: 0;
       display: block;
-      transition: 0.2s;
-      font-size: 12px;
-      color: var(--zt-text-gray);
+      transition: var(--zt-input-transition);
+      color: var(--zt-input-placeholder);
+      padding: 0 var(--zt-counter-spacing);
+      pointer-events: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
     }
 
     .form__field:focus ~ .form__label {
-      color: var(--zt-border-focus);
-    }
-
-    .form__field:focus {
-      padding-bottom: 6px;
-      border-bottom: 2px solid var(--zt-border-focus);
+      color: var(--zt-input-border-focus);
+      font-size: var(--zt-counter-font-size);
+      top: -8px;
     }
   }
+}
 
+// Material Style Size Variants - optimized for consistency
+:host(.zt-material.zt-sm) {
+  .material_input .form__field {
+    font-size: var(--zt-font-size-small);
+    padding: calc(var(--zt-counter-spacing) * 0.8) 0;
+  }
+
+  .material_input .form__field:placeholder-shown ~ .form__label {
+    font-size: var(--zt-font-size-small);
+    top: calc(20px * 0.8);
+    padding: 0 calc(var(--zt-counter-spacing) * 0.8);
+  }
+
+  .material_input .form__label {
+    font-size: calc(var(--zt-counter-font-size) * 0.9);
+    padding: 0 calc(var(--zt-counter-spacing) * 0.8);
+  }
+}
+
+:host(.zt-material.zt-md) {
+  .material_input .form__field {
+    font-size: var(--zt-font-size-medium);
+    padding: var(--zt-counter-spacing) 0;
+  }
+
+  .material_input .form__field:placeholder-shown ~ .form__label {
+    font-size: var(--zt-font-size-medium);
+    top: 20px;
+    padding: 0 var(--zt-counter-spacing);
+  }
+
+  .material_input .form__label {
+    font-size: var(--zt-counter-font-size);
+    padding: 0 var(--zt-counter-spacing);
+  }
+}
+
+:host(.zt-material.zt-lg) {
+  .material_input .form__field {
+    font-size: var(--zt-font-size-large);
+    padding: calc(var(--zt-counter-spacing) * 1.19) 0;
+  }
+
+  .material_input .form__field:placeholder-shown ~ .form__label {
+    font-size: var(--zt-font-size-large);
+    top: calc(20px * 1.19);
+    padding: 0 calc(var(--zt-counter-spacing) * 1.19);
+  }
+
+  .material_input .form__label {
+    font-size: calc(var(--zt-counter-font-size) * 1.05);
+    padding: 0 calc(var(--zt-counter-spacing) * 1.19);
+  }
+}
+
+// Bootstrap Style Input - Base styles
+:host(.zt-bs) {
   .input_bs {
-    .form__field {
+    .form__field.form-control {
       width: 100%;
-      border: 2px solid var(--zt-text-gray);
-      border-radius: 4px;
-      margin: 8px 0;
+      border: calc(var(--zt-input-border-size) * 2) solid var(--zt-input-border);
+      border-radius: var(--zt-input-border-radius);
+      margin: var(--zt-counter-spacing) 0;
       outline: none;
-      padding: 8px;
       box-sizing: border-box;
-      transition: 0.3s;
-    }
+      background-color: var(--zt-input-bg);
+      color: var(--zt-input-color);
+      font-family: var(--zt-font-family);
+      font-size: var(--zt-font-size-medium);
+      transition: var(--zt-input-transition);
 
-    .form__field:focus {
-      border-color: var(--zt-border-focus);
-      box-shadow: 0 0 8px 0 var(--zt-border-focus);
+      &amp;:focus {
+        border-color: var(--zt-input-border-focus);
+        box-shadow: 0 0 0 calc(var(--zt-counter-spacing) * 0.5) var(--zt-input-shadow);
+      }
+
+      &amp;:disabled {
+        background-color: var(--zt-input-bg-disabled, #e9ecef);
+        opacity: 0.65;
+        cursor: not-allowed;
+      }
+
+      &amp;.error {
+        border-color: var(--zt-input-error);
+        box-shadow: 0 0 0 calc(var(--zt-counter-spacing) * 0.5) var(--zt-input-error-shadow);
+      }
     }
+  }
+}
+
+// Bootstrap Style Size Variants - optimized for consistency
+:host(.zt-bs.zt-sm) {
+  .input_bs .form__field.form-control {
+    padding: calc(var(--zt-counter-spacing) * 0.8);
+    font-size: var(--zt-font-size-small);
+    margin: calc(var(--zt-counter-spacing) * 0.8) 0;
+  }
+}
+
+:host(.zt-bs.zt-md) {
+  .input_bs .form__field.form-control {
+    padding: var(--zt-counter-spacing);
+    font-size: var(--zt-font-size-medium);
+    margin: var(--zt-counter-spacing) 0;
+  }
+}
+
+:host(.zt-bs.zt-lg) {
+  .input_bs .form__field.form-control {
+    padding: calc(var(--zt-counter-spacing) * 1.19);
+    font-size: var(--zt-font-size-large);
+    margin: calc(var(--zt-counter-spacing) * 1.19) 0;
+  }
+}
+
+// Character Counter and Error Messages - Global styles
+.char-counter {
+  font-size: var(--zt-counter-font-size);
+  text-align: right;
+  margin-top: var(--zt-counter-spacing);
+  transition: var(--zt-input-transition);
+
+  &amp;.warning {
+    color: var(--zt-input-warning);
+  }
+
+  &amp;.error {
+    color: var(--zt-input-error);
+  }
+}
+
+.error-message {
+  font-size: var(--zt-counter-font-size);
+  color: var(--zt-input-error);
+  margin-top: var(--zt-counter-spacing);
+  display: flex;
+  align-items: center;
+
+  &amp;::before {
+    content: &quot;⚠&quot;;
+    margin-right: var(--zt-counter-spacing);
   }
 }
 </code></pre>
@@ -1152,9 +4066,9 @@ export class InputComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>@if (inputStyle === \'zt\') {  <div>    <div class="box_input">      <div class="form__group">        <input          [type]="inputType"          id="input"          aria-labelledby="label-fname"          [maxLength]="textlength"          #textInput          />        <label class="label" for="fname" id="label-fname">          <div class="text">{{ placeholder }}</div>        </label>      </div>    </div>  </div>}@if (inputStyle === \'material\') {  <div>    <div class="material_input">      <div class="form__group">        <input          [type]="inputType"          id="input_m"          class="form__field"          [placeholder]="placeholder"          #textInput          />        <label for="email" class="form__label">{{ placeholder }}</label>      </div>    </div>  </div>}@if (inputStyle === \'bs\') {  <div>    <div class="input_bs">      <input        type="text"        class="form__field"        [placeholder]="placeholder"        [type]="inputType"        id="input_bs"        />    </div>  </div>}</div>'
-    var COMPONENTS = [{'name': 'ButtonComponent', 'selector': 'storybook-button'},{'name': 'ButtonComponent', 'selector': 'zt-button'},{'name': 'HeaderComponent', 'selector': 'storybook-header'},{'name': 'InputComponent', 'selector': 'zt-input'},{'name': 'PageComponent', 'selector': 'storybook-page'},{'name': 'SelectComponent', 'selector': 'zt-select'},{'name': 'TextareaComponent', 'selector': 'zt-textarea'},{'name': 'ZtDataGridComponent', 'selector': 'zt-data-grid'},{'name': 'ZtPaginatorComponent', 'selector': 'zt-paginator'},{'name': 'ZtPaginatorXComponent', 'selector': 'zt-paginator-x'},{'name': 'ZtUiComponents', 'selector': 'lib-zt-ui-components'}];
-    var DIRECTIVES = [];
+        var COMPONENT_TEMPLATE = '<div>@if (inputStyle === \'zt\') {  <div class="zt-input-container">    <div class="box_input">      <div class="form__group">        <input          [type]="inputType"          [id]="uniqueId"          [attr.aria-describedby]="ariaDescribedBy"          [attr.aria-labelledby]="uniqueId + \'-label\'"          [maxLength]="textlength"          [disabled]="disabled"          [value]="value"          #textInput          [class.error]="hasError"        />        <label class="label" [for]="uniqueId" [id]="uniqueId + \'-label\'">          <div class="text">{{ placeholder }}</div>        </label>      </div>      @if (showCharCounter) {        <div class="char-counter" [ngClass]="counterClass" [id]="uniqueId + \'-counter\'">          {{ currentLength }}/{{ textlength }}        </div>      }      @if (errorMessage) {        <div class="error-message" [id]="uniqueId + \'-error\'" role="alert">          {{ errorMessage }}        </div>      }    </div>  </div>}@if (inputStyle === \'material\') {  <div class="zt-input-container">    <div class="material_input">      <div class="form__group">        <input          [type]="inputType"          [id]="uniqueId"          [attr.aria-describedby]="ariaDescribedBy"          [attr.aria-labelledby]="uniqueId + \'-label\'"          class="form__field"          [placeholder]="placeholder"          [disabled]="disabled"          [value]="value"          #textInput          [class.error]="hasError"        />        <label [for]="uniqueId" [id]="uniqueId + \'-label\'" class="form__label">          {{ placeholder }}        </label>      </div>      @if (showCharCounter) {        <div class="char-counter" [ngClass]="counterClass" [id]="uniqueId + \'-counter\'">          {{ currentLength }}/{{ textlength }}        </div>      }      @if (errorMessage) {        <div class="error-message" [id]="uniqueId + \'-error\'" role="alert">          {{ errorMessage }}        </div>      }    </div>  </div>}@if (inputStyle === \'bs\') {  <div class="zt-input-container">    <div class="input_bs">      <input        [type]="inputType"        [id]="uniqueId"        [attr.aria-describedby]="ariaDescribedBy"        [attr.aria-labelledby]="uniqueId + \'-label\'"        class="form__field form-control"        [placeholder]="placeholder"        [disabled]="disabled"        [value]="value"        #textInput        [class.error]="hasError"      />      @if (showCharCounter) {        <div class="char-counter" [ngClass]="counterClass" [id]="uniqueId + \'-counter\'">          {{ currentLength }}/{{ textlength }}        </div>      }      @if (errorMessage) {        <div class="error-message" [id]="uniqueId + \'-error\'" role="alert">          {{ errorMessage }}        </div>      }    </div>  </div>}</div>'
+    var COMPONENTS = [{'name': 'ButtonComponent', 'selector': 'storybook-button'},{'name': 'ButtonComponent', 'selector': 'zt-button'},{'name': 'CardComponent', 'selector': 'zt-card'},{'name': 'HeaderComponent', 'selector': 'storybook-header'},{'name': 'InputComponent', 'selector': 'zt-input'},{'name': 'PageComponent', 'selector': 'storybook-page'},{'name': 'SelectComponent', 'selector': 'zt-select'},{'name': 'TextareaComponent', 'selector': 'zt-textarea'},{'name': 'ToggleComponent', 'selector': 'zt-toggle'},{'name': 'ZtDataGridComponent', 'selector': 'zt-data-grid'},{'name': 'ZtModalComponent', 'selector': 'zt-modal'},{'name': 'ZtPaginatorComponent', 'selector': 'zt-paginator'},{'name': 'ZtPaginatorXComponent', 'selector': 'zt-paginator-x'},{'name': 'ZtToastComponent', 'selector': 'zt-toast'},{'name': 'ZtUiComponents', 'selector': 'lib-zt-ui-components'}];
+    var DIRECTIVES = [{'name': 'ThemeDirective', 'selector': '[ztTheme]'}];
     var ACTUAL_COMPONENT = {'name': 'InputComponent'};
 </script>
 <script src="../js/tree.js"></script>

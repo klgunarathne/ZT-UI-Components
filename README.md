@@ -13,6 +13,22 @@ A comprehensive collection of reusable Angular UI components built with Angular 
 
 ## Components
 
+### Toggle (`zt-toggle`)
+A modern toggle switch component with multiple variants and accessibility features.
+
+**Features:**
+- Multiple variants: default, rounded, square
+- Size options: small, medium, large
+- Theme support (Light, Dark, Bootstrap, Material)
+- Accessibility compliant (ARIA attributes, keyboard navigation)
+- Customizable labels
+
+**Basic Usage:**
+```html
+<zt-toggle [(checked)]="isEnabled" label="Enable notifications"></zt-toggle>
+<zt-toggle checked="true" variant="rounded" size="zt-lg" theme="dark"></zt-toggle>
+```
+
 ### Button (`zt-button`)
 A versatile button component with various styles, sizes, and variants.
 
