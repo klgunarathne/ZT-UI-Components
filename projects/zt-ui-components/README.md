@@ -282,6 +282,54 @@ export class MyComponent {
 **Events:**
 - `(checkedChange)` - Emitted when toggle state changes
 
+#### Toggle Component Usage Examples
+
+```html
+<!-- Basic toggle -->
+<zt-toggle [(checked)]="isEnabled"></zt-toggle>
+
+<!-- Toggle with label -->
+<zt-toggle
+  label="Enable notifications"
+  [(checked)]="notificationsEnabled"
+  size="md">
+</zt-toggle>
+
+<!-- Disabled toggle -->
+<zt-toggle
+  label="System setting"
+  [checked]="true"
+  [disabled]="true">
+</zt-toggle>
+
+<!-- Custom styled toggle -->
+<zt-toggle
+  label="Dark mode"
+  [(checked)]="darkMode"
+  variant="rounded"
+  size="lg">
+</zt-toggle>
+```
+
+```typescript
+export class SettingsComponent {
+  isEnabled = false;
+  notificationsEnabled = true;
+  darkMode = false;
+
+  constructor(private themeService: ZTThemeService) {}
+
+  ngOnInit() {
+    // Sync toggle with theme
+    this.darkMode = this.themeService.getCurrentTheme()?.name === 'dark';
+  }
+
+  onToggleChange(value: boolean) {
+    console.log('Toggle changed:', value);
+  }
+}
+```
+
 **Toast Service Methods:**
 - `success(message, title?, options?)` - Show success toast
 - `error(message, title?, options?)` - Show error toast
