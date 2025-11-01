@@ -1,6 +1,6 @@
 {
   "name": "zt-ui-components",
-  "version": "1.1.12",
+  "version": "1.1.13",
   "description": "Enterprise-grade Angular UI component library with advanced theming, accessibility compliance, and modern design patterns. Features reactive forms support, two-way data binding, comprehensive customization options, and toast notifications.",
   "author": "ZT-UI Team",
   "license": "MIT",
