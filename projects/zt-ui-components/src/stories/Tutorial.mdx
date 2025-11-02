@@ -446,31 +446,62 @@ export class ContactFormComponent {
 <zt-data-grid
   [dataSource]="users"
   [columns]="gridColumns"
-  [sortable]="true"
-  [filterable]="true"
-  [pagination]="true"
-  [pageSize]="10"
-  (onRowClick)="onRowClick($event)">
+  [allowSorting]="true"
+  [allowSelection]="true"
+  [selectionMode]="'single'"
+  [striped]="true"
+  [showEdit]="true"
+  [showDelete]="true"
+  [currentPageSize]="10"
+  [theme]="'light'"
+  (onDataGridEvent)="handleGridEvent($event)">
 </zt-data-grid>
 ```
 
 ```typescript
 export class UserManagementComponent {
   users = [
-    { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin', status: 'Active' },
-    { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User', status: 'Inactive' },
-    // ... more users
+    { id: 1, name: 'John Doe', age: 30, department: 'Engineering', salary: 75000, status: 'Active' },
+    { id: 2, name: 'Jane Smith', age: 25, department: 'Marketing', salary: 65000, status: 'Active' },
+    { id: 3, name: 'Bob Johnson', age: 35, department: 'Sales', salary: 55000, status: 'Inactive' },
   ];
 
-  gridColumns = [
-    { field: 'name', header: 'Name', sortable: true, filterable: true },
-    { field: 'email', header: 'Email', sortable: true, filterable: true },
-    { field: 'role', header: 'Role', sortable: true },
-    { field: 'status', header: 'Status', sortable: true }
+  gridColumns: DataGridColumn[] = [
+    { field: 'id', title: 'ID', width: '60px', sortable: true, alignment: 'center' },
+    { field: 'name', title: 'Full Name', sortable: true, minWidth: 150 },
+    { field: 'age', title: 'Age', width: '80px', sortable: true, alignment: 'center' },
+    { field: 'department', title: 'Department', sortable: true, minWidth: 120 },
+    { field: 'salary', title: 'Salary', width: '100px', sortable: true, alignment: 'right' },
+    { field: 'status', title: 'Status', width: '100px' }
   ];
 
-  onRowClick(row: any) {
-    console.log('Row clicked:', row);
+  handleGridEvent(event: DataGridEvent) {
+    switch(event.type) {
+      case 'sort':
+        console.log('Column sorted:', event.column?.field, event.value);
+        break;
+      case 'select':
+        console.log('Rows selected:', event.rows?.length);
+        break;
+      case 'edit':
+        this.editUser(event.row);
+        break;
+      case 'delete':
+        this.deleteUser(event.row);
+        break;
+    }
+  }
+
+  editUser(user: any) {
+    console.log('Edit user:', user);
+    // Open edit modal or navigate to edit page
+  }
+
+  deleteUser(user: any) {
+    if (confirm(`Delete user ${user.name}?`)) {
+      console.log('Delete user:', user);
+      // Remove from data source
+    }
   }
 }
 ```
@@ -766,12 +797,26 @@ export class ThemeSwitcherComponent {
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
 | `dataSource` | `any[]` | `[]` | Data array |
-| `columns` | `DataGridColumn[]` | `[]` | Column definitions |
-| `sortable` | `boolean` | `false` | Enable column sorting |
-| `filterable` | `boolean` | `false` | Enable column filtering |
-| `pagination` | `boolean` | `false` | Enable pagination |
-| `pageSize` | `number` | `10` | Items per page |
+| `columns` | `DataGridColumn[]` | `[]` | Column configuration |
+| `theme` | `'light' \| 'dark' \| 'bootstrap' \| 'material'` | `'light'` | Visual theme |
+| `allowSorting` | `boolean` | `true` | Enable column sorting |
+| `allowSelection` | `boolean` | `false` | Enable row selection |
+| `selectionMode` | `'none' \| 'single' \| 'multiple'` | `'none'` | Row selection behavior |
+| `striped` | `boolean` | `false` | Alternating row colors |
+| `showBorders` | `boolean` | `true` | Display cell borders |
+| `showEdit` | `boolean` | `false` | Show edit action buttons |
+| `showDelete` | `boolean` | `boolean` | Show delete action buttons |
+| `editButtonType` | `'button' \| 'link'` | `'link'` | Edit button style |
+| `deleteButtonType` | `'button' \| 'link'` | `'link'` | Delete button style |
+| `pages` | `number` | `1` | Total number of pages |
+| `currentPageSize` | `number` | `10` | Rows per page |
+| `pageSizeOptions` | `string` | `'5, 10, 20, 100'` | Available page sizes |
+| `paginatorStyle` | `'page' \| 'arrow'` | `'page'` | Pagination style |
 | `ztTheme` | `Partial<ThemeConfig>` | - | Local theme override |
+
+**Events:**
+- `(onDataGridEvent)` - Emitted for sort, select, and action events
+- `(onPageChange)` - Emitted when pagination changes
 
 ### Modal Component API
 

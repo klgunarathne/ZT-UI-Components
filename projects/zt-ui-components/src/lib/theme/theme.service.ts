@@ -34,6 +34,8 @@ export class ZTThemeService {
     @Optional() @Inject(THEME_CONFIG) private config?: Partial<ThemeConfig>
   ) {
     this.initializeTheme();
+    // Load persisted theme after initialization
+    this.loadPersistedTheme();
   }
 
   /**
@@ -85,6 +87,8 @@ export class ZTThemeService {
 
     this.currentThemeSubject.next(theme);
     this.applyThemeToDocument(theme);
+    // Persist theme automatically
+    this.persistTheme();
   }
 
   /**
@@ -148,6 +152,20 @@ export class ZTThemeService {
     const root = document.documentElement;
     const colors = theme.colors;
 
+    // Validate CSS custom properties before applying
+    const cssValidation = this.validationService.validateCssCustomProperties(theme);
+    if (!cssValidation.isValid) {
+      console.error('CSS Custom Property Validation Failed:', cssValidation.errors);
+      throw new Error(`Theme CSS validation failed: ${cssValidation.errors.join(', ')}`);
+    }
+
+    if (cssValidation.warnings.length > 0) {
+      console.warn('CSS Custom Property Validation Warnings:', cssValidation.warnings);
+    }
+
+    // Clear existing theme properties
+    this.clearExistingThemeProperties(root);
+
     // Apply color variables
     Object.entries(colors).forEach(([key, value]) => {
       const cssVar = `--zt-${key.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
@@ -169,14 +187,67 @@ export class ZTThemeService {
     }
 
     if (theme.spacing) {
-      root.style.setProperty('--zt-spacing-small', theme.spacing.small);
-      root.style.setProperty('--zt-spacing-medium', theme.spacing.medium);
-      root.style.setProperty('--zt-spacing-large', theme.spacing.large);
+      Object.entries(theme.spacing).forEach(([key, value]) => {
+        root.style.setProperty(`--zt-spacing-${key}`, value);
+      });
+    }
+
+    if (theme.shadows) {
+      Object.entries(theme.shadows).forEach(([key, value]) => {
+        root.style.setProperty(`--zt-shadow-${key}`, value);
+      });
+    }
+
+    if (theme.animations) {
+      Object.entries(theme.animations).forEach(([key, value]) => {
+        root.style.setProperty(`--zt-animation-${key}`, value);
+      });
+    }
+
+    if (theme.breakpoints) {
+      Object.entries(theme.breakpoints).forEach(([key, value]) => {
+        root.style.setProperty(`--zt-breakpoint-${key}`, value);
+      });
     }
 
     // Set theme class on body for CSS selectors
     document.body.className = document.body.className.replace(/theme-\w+/g, '');
     document.body.classList.add(`theme-${theme.name}`);
+  }
+
+  /**
+   * Clears existing theme-related CSS custom properties
+   * @param root The document root element
+   */
+  private clearExistingThemeProperties(root: HTMLElement): void {
+    const themeProperties = [
+      // Colors
+      '--zt-text-black', '--zt-text-white', '--zt-text-primary',
+      '--zt-default', '--zt-default-hover-bg', '--zt-default-hover-border', '--zt-default-pressed',
+      '--zt-primary', '--zt-primary-hover-bg', '--zt-primary-hover-border', '--zt-primary-pressed',
+      '--zt-success', '--zt-success-hover-bg', '--zt-success-hover-border', '--zt-success-pressed',
+      '--zt-info', '--zt-info-hover-bg', '--zt-info-hover-border', '--zt-info-pressed',
+      '--zt-warning', '--zt-warning-hover-bg', '--zt-warning-hover-border', '--zt-warning-pressed',
+      '--zt-danger', '--zt-danger-hover-bg', '--zt-danger-hover-border', '--zt-danger-pressed',
+      '--zt-dark', '--zt-dark-hover-bg', '--zt-dark-hover-border', '--zt-dark-pressed',
+      '--zt-link', '--zt-link-hover-bg', '--zt-link-hover-border', '--zt-link-pressed',
+      // Dimensions
+      '--zt-border-radius', '--zt-border-size',
+      // Typography
+      '--zt-font-family', '--zt-font-size-small', '--zt-font-size-medium', '--zt-font-size-large',
+      // Spacing
+      '--zt-spacing-xs', '--zt-spacing-sm', '--zt-spacing-md', '--zt-spacing-lg', '--zt-spacing-xl', '--zt-spacing-xxl',
+      // Shadows
+      '--zt-shadow-none', '--zt-shadow-xs', '--zt-shadow-sm', '--zt-shadow-md', '--zt-shadow-lg', '--zt-shadow-xl',
+      // Animations
+      '--zt-animation-fast', '--zt-animation-normal', '--zt-animation-slow', '--zt-animation-bounce',
+      // Breakpoints
+      '--zt-breakpoint-sm', '--zt-breakpoint-md', '--zt-breakpoint-lg', '--zt-breakpoint-xl'
+    ];
+
+    themeProperties.forEach(property => {
+      root.style.removeProperty(property);
+    });
   }
 
   /**
@@ -206,6 +277,45 @@ export class ZTThemeService {
    */
   getAvailableThemes(): ThemeName[] {
     return ['light', 'dark', 'bootstrap', 'material'];
+  }
+
+  /**
+   * Persists the current theme to localStorage
+   */
+  persistTheme(): void {
+    if (typeof localStorage !== 'undefined') {
+      try {
+        localStorage.setItem('zt-theme', JSON.stringify(this.currentTheme));
+      } catch (error) {
+        console.warn('Failed to persist theme to localStorage:', error);
+      }
+    }
+  }
+
+  /**
+   * Loads theme from localStorage
+   */
+  loadPersistedTheme(): void {
+    if (typeof localStorage !== 'undefined') {
+      try {
+        const persistedTheme = localStorage.getItem('zt-theme');
+        if (persistedTheme) {
+          const theme = JSON.parse(persistedTheme);
+          this.setTheme(theme);
+        }
+      } catch (error) {
+        console.warn('Failed to load persisted theme:', error);
+      }
+    }
+  }
+
+  /**
+   * Clears persisted theme from localStorage
+   */
+  clearPersistedTheme(): void {
+    if (typeof localStorage !== 'undefined') {
+      localStorage.removeItem('zt-theme');
+    }
   }
 
   /**

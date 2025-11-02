@@ -24,6 +24,7 @@
 
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { AriaLiveService } from '../theme/aria-live.service';
 
 /**
  * Toast notification configuration interface
@@ -65,6 +66,8 @@ export interface ZtToast {
 export class ZtToastService {
   /** Internal subject managing the current list of active toasts */
   private toasts$ = new BehaviorSubject<ZtToast[]>([]);
+
+  constructor(private ariaLiveService: AriaLiveService) {}
 
   /**
    * Observable stream of current toasts
@@ -134,6 +137,7 @@ export class ZtToastService {
    */
   success(message: string, title?: string, options?: Partial<ZtToast>): void {
     this.show({ ...options, type: 'success', message, title });
+    this.ariaLiveService.announceSuccess(`${title || 'Success'}: ${message}`);
   }
 
   /**
@@ -145,6 +149,7 @@ export class ZtToastService {
    */
   error(message: string, title?: string, options?: Partial<ZtToast>): void {
     this.show({ ...options, type: 'error', message, title });
+    this.ariaLiveService.announceError(`${title || 'Error'}: ${message}`);
   }
 
   /**
@@ -156,6 +161,7 @@ export class ZtToastService {
    */
   info(message: string, title?: string, options?: Partial<ZtToast>): void {
     this.show({ ...options, type: 'info', message, title });
+    this.ariaLiveService.announceStatus(`${title || 'Info'}: ${message}`);
   }
 
   /**
@@ -167,5 +173,6 @@ export class ZtToastService {
    */
   warning(message: string, title?: string, options?: Partial<ZtToast>): void {
     this.show({ ...options, type: 'warning', message, title });
+    this.ariaLiveService.announceStatus(`${title || 'Warning'}: ${message}`);
   }
 }

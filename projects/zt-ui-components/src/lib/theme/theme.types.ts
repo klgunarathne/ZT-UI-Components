@@ -52,6 +52,40 @@ export interface ThemeColors {
 }
 
 /**
+ * Theme spacing scale interface
+ */
+export interface ThemeSpacing {
+  xs: string;
+  sm: string;
+  md: string;
+  lg: string;
+  xl: string;
+  xxl: string;
+}
+
+/**
+ * Theme shadow/elevation system interface
+ */
+export interface ThemeShadows {
+  none: string;
+  xs: string;
+  sm: string;
+  md: string;
+  lg: string;
+  xl: string;
+}
+
+/**
+ * Theme animation timing interface
+ */
+export interface ThemeAnimations {
+  fast: string;
+  normal: string;
+  slow: string;
+  bounce: string;
+}
+
+/**
  * Theme configuration interface
  */
 export interface ThemeConfig {
@@ -65,10 +99,14 @@ export interface ThemeConfig {
     medium: string;
     large: string;
   };
-  spacing?: {
-    small: string;
-    medium: string;
-    large: string;
+  spacing?: ThemeSpacing;
+  shadows?: ThemeShadows;
+  animations?: ThemeAnimations;
+  breakpoints?: {
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
   };
 }
 

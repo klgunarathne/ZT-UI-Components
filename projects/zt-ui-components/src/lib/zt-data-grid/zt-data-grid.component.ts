@@ -10,6 +10,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ButtonComponent } from '../zt-button/button.component';
 import { ZtPaginatorXComponent } from '../zt-paginator/zt-paginator-x/zt-paginator-x.component';
 import {
@@ -26,15 +27,83 @@ import {
  * A comprehensive data grid component with sorting, filtering, selection, pagination, and editing capabilities.
  * Supports various themes and customizable columns with templates.
  *
- * @example
+ * ## Key Features
+ * - 🔄 **Sorting**: Click column headers to sort data (ascending/descending)
+ * - 📄 **Pagination**: Built-in pagination with customizable page sizes
+ * - ✅ **Selection**: Single or multiple row selection modes
+ * - 🎨 **Themes**: Light, Dark, Bootstrap, and Material Design themes
+ * - 📝 **Actions**: Edit and Delete action buttons with customizable styles
+ * - 📊 **Columns**: Flexible column configuration with alignment and sizing
+ * - ♿ **Accessibility**: Full keyboard navigation and ARIA support
+ * - 📱 **Responsive**: Adapts to different screen sizes
+ *
+ * ## Basic Usage
+ * ```html
  * <zt-data-grid
- *   [dataSource]="data"
+ *   [dataSource]="employees"
  *   [columns]="gridColumns"
  *   [allowSorting]="true"
  *   [allowSelection]="true"
  *   [theme]="'light'"
  *   (onDataGridEvent)="handleEvent($event)">
  * </zt-data-grid>
+ * ```
+ *
+ * ## Advanced Configuration
+ * ```typescript
+ * // Component class
+ * employees = [
+ *   { id: 1, name: 'John Doe', age: 30, department: 'Engineering', salary: 75000 },
+ *   { id: 2, name: 'Jane Smith', age: 25, department: 'Marketing', salary: 65000 }
+ * ];
+ *
+ * gridColumns: DataGridColumn[] = [
+ *   { field: 'id', title: 'ID', width: '60px', sortable: true, alignment: 'center' },
+ *   { field: 'name', title: 'Full Name', sortable: true, minWidth: 150 },
+ *   { field: 'age', title: 'Age', width: '80px', sortable: true, alignment: 'center' },
+ *   { field: 'department', title: 'Department', sortable: true, minWidth: 120 },
+ *   { field: 'salary', title: 'Salary', width: '100px', sortable: true, alignment: 'right' }
+ * ];
+ *
+ * handleEvent(event: DataGridEvent) {
+ *   switch(event.type) {
+ *     case 'sort':
+ *       console.log('Sorted by:', event.column?.field, event.value);
+ *       break;
+ *     case 'select':
+ *       console.log('Selected rows:', event.rows);
+ *       break;
+ *   }
+ * }
+ * ```
+ *
+ * ## With Actions
+ * ```html
+ * <zt-data-grid
+ *   [dataSource]="data"
+ *   [columns]="columns"
+ *   [showEdit]="true"
+ *   [showDelete]="true"
+ *   [editButtonType]="'link'"
+ *   [deleteButtonType]="'button'"
+ *   (onDataGridEvent)="onAction($event)">
+ * </zt-data-grid>
+ * ```
+ *
+ * ## Themes
+ * The component supports four built-in themes:
+ * - `'light'` - Clean, professional light theme (default)
+ * - `'dark'` - Dark theme for low-light environments
+ * - `'bootstrap'` - Bootstrap-inspired styling
+ * - `'material'` - Material Design theme
+ *
+ * ## Events
+ * - `onDataGridEvent`: Emitted for sort, select, and action events
+ * - `onPageChange`: Emitted when pagination changes
+ *
+ * @author ZT-UI-Components Team
+ * @version 1.0.0
+ * @since 1.0.0
  */
 @Component({
   selector: 'zt-data-grid',
@@ -42,21 +111,59 @@ import {
   styleUrls: ['./zt-data-grid.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [CommonModule, ButtonComponent, ZtPaginatorXComponent],
+  imports: [CommonModule, ScrollingModule, ButtonComponent, ZtPaginatorXComponent],
 })
 export class ZtDataGridComponent implements OnInit, OnChanges {
+  /**
+   * Visual theme for the data grid component.
+   *
+   * Available themes:
+   * - `'light'`: Clean, professional light theme (default)
+   * - `'dark'`: Dark theme optimized for low-light environments
+   * - `'bootstrap'`: Bootstrap-inspired styling with familiar aesthetics
+   * - `'material'`: Material Design theme with subtle shadows and modern look
+   *
+   * @example
+   * ```html
+   * <zt-data-grid [theme]="'dark'" [dataSource]="data"></zt-data-grid>
+   * ```
+   *
+   * @default 'light'
+   */
   @Input() theme: 'light' | 'dark' | 'bootstrap' | 'material' = 'light';
 
   @HostBinding('class') get dataGridClass(): string {
     return `theme-${this.theme}`;
   }
   /**
-   * Column configuration for the data grid
+   * Column configuration for the data grid.
+   *
+   * Defines the structure, appearance, and behavior of each column.
+   * If not provided, columns will be auto-generated from the data source.
+   *
+   * @example
+   * ```typescript
+   * columns: DataGridColumn[] = [
+   *   { field: 'id', title: 'ID', width: '60px', sortable: true },
+   *   { field: 'name', title: 'Name', sortable: true, minWidth: 150 },
+   *   { field: 'age', title: 'Age', alignment: 'center', sortable: true }
+   * ];
+   * ```
    */
   @Input() columns: DataGridColumn[] = [];
 
   /**
-   * Data source for the grid
+   * Data source array containing the rows to display in the grid.
+   *
+   * Each object in the array represents a row, with properties matching the column field names.
+   *
+   * @example
+   * ```typescript
+   * dataSource = [
+   *   { id: 1, name: 'John Doe', age: 30, department: 'Engineering' },
+   *   { id: 2, name: 'Jane Smith', age: 25, department: 'Marketing' }
+   * ];
+   * ```
    */
   @Input() dataSource: any[] = [];
 
@@ -71,27 +178,53 @@ export class ZtDataGridComponent implements OnInit, OnChanges {
   sortState: DataGridSortState[] = [];
 
   /**
-   * Key field for row identification
+   * Key field name used for row identification and selection tracking.
+   *
+   * This field should contain unique values for each row in the data source.
+   *
+   * @default 'id'
+   * @example 'id', 'uuid', 'employeeId'
    */
   @Input() keyField: string = 'id';
 
   /**
-   * Enable/disable sorting globally
+   * Enable or disable column sorting functionality globally.
+   *
+   * When enabled, sortable columns will show sort indicators and respond to header clicks.
+   * Individual columns can override this setting via their `sortable` property.
+   *
+   * @default true
    */
   @Input() allowSorting: boolean = true;
 
   /**
-   * Enable/disable filtering globally
+   * Enable or disable filtering functionality globally.
+   *
+   * **Note**: Filtering is not yet implemented in this version.
+   *
+   * @default false
    */
   @Input() allowFiltering: boolean = false;
 
   /**
-   * Enable/disable selection
+   * Enable or disable row selection functionality.
+   *
+   * When enabled, rows become clickable and can be selected based on the `selectionMode`.
+   *
+   * @default false
    */
   @Input() allowSelection: boolean = false;
 
   /**
-   * Selection mode
+   * Row selection behavior mode.
+   *
+   * - `'none'`: No selection allowed
+   * - `'single'`: Only one row can be selected at a time
+   * - `'multiple'`: Multiple rows can be selected simultaneously
+   *
+   * Automatically set to `'single'` when `allowSelection` is true and mode is `'none'`.
+   *
+   * @default 'none'
    */
   @Input() selectionMode: SelectionMode = 'none';
 
@@ -101,97 +234,188 @@ export class ZtDataGridComponent implements OnInit, OnChanges {
   selectedRows: any[] = [];
 
   /**
-   * Show striped rows
+   * Display alternating row colors (striped pattern).
+   *
+   * Creates a zebra-striped appearance that improves readability for large datasets.
+   *
+   * @default false
    */
   @Input() striped: boolean = false;
 
   /**
-   * Show borders
+   * Show borders around grid cells and headers.
+   *
+   * Provides visual separation between cells and improves the grid's structure appearance.
+   *
+   * @default true
    */
   @Input() showBorders: boolean = true;
 
   /**
-   * Show edit actions
+   * Display edit action buttons in the Actions column.
+   *
+   * When enabled, each row will show an Edit button that emits an event when clicked.
+   *
+   * @default false
    */
   @Input() showEdit: boolean = false;
 
   /**
-   * Show delete actions
+   * Display delete action buttons in the Actions column.
+   *
+   * When enabled, each row will show a Delete button that emits an event when clicked.
+   *
+   * @default false
    */
   @Input() showDelete: boolean = false;
 
   /**
-   * Edit button type
+   * Visual style for edit action buttons.
+   *
+   * - `'button'`: Filled button appearance
+   * - `'link'`: Link-style appearance (default)
+   *
+   * @default 'link'
    */
   @Input() editButtonType: 'button' | 'link' = 'link';
 
   /**
-   * Delete button type
+   * Visual style for delete action buttons.
+   *
+   * - `'button'`: Filled button appearance
+   * - `'link'`: Link-style appearance (default)
+   *
+   * @default 'link'
    */
   @Input() deleteButtonType: 'button' | 'link' = 'link';
 
   // pagination options
   currentPage: number = 1;
   display = '';
+
   /**
-   * Set number of pages
+   * Total number of pages available for pagination.
    *
-   * how to use
+   * This is automatically calculated based on `dataSource.length` and `currentPageSize`.
+   * Can be set manually for custom pagination logic.
    *
-   * <zt-paginator [pages] = "pages"></zt-paginator>
-   *
-   * @type {number}
-   * @memberof ZtPaginatorComponent
+   * @default 1
    */
   @Input() pages: number = 1;
 
-
   /**
-   * Change style of the paginator
+   * Visual style of the pagination controls.
    *
+   * - `'page'`: Shows page numbers (1, 2, 3...) with navigation arrows
+   * - `'arrow'`: Shows current page and total pages (e.g., "3 / 10") with arrows only
    *
-   * values = 'page' | 'arrow'
-   * default = 'page;
-   *
-   * how to use
-   *
-   * <zt-paginator paginatorStyle = "page"></zt-paginator>
-   * @type {(string)}
-   * @memberof ZtPaginatorXComponent
+   * @default 'page'
+   * @example 'page', 'arrow'
    */
   @Input() paginatorStyle: 'page' | 'arrow' = 'page';
+
   /**
-   * Return current page number
+   * Event emitted when the current page changes.
    *
-   * how to use
+   * Provides the new page number for external pagination handling.
    *
-   * <zt-paginator (onPageChange) = "onPageChange($event)"></zt-paginator>
-   *
-   * @type {EventEmitter<number>}
-   * @memberof ZtPaginatorComponent
+   * @example
+   * ```html
+   * <zt-data-grid (onPageChange)="handlePageChange($event)"></zt-data-grid>
+   * ```
+   * ```typescript
+   * handlePageChange(page: number) {
+   *   console.log('Navigated to page:', page);
+   *   // Load data for the new page
+   * }
+   * ```
    */
   @Output() onPageChange: EventEmitter<number> = new EventEmitter();
+
+  /**
+   * Event emitted for various data grid interactions.
+   *
+   * Emitted for sorting, selection, and action button clicks.
+   *
+   * @example
+   * ```html
+   * <zt-data-grid (onDataGridEvent)="handleGridEvent($event)"></zt-data-grid>
+   * ```
+   * ```typescript
+   * handleGridEvent(event: DataGridEvent) {
+   *   switch(event.type) {
+   *     case 'sort':
+   *       console.log('Sorted by:', event.column?.field, event.value);
+   *       break;
+   *     case 'select':
+   *       console.log('Selected rows:', event.rows);
+   *       break;
+   *   }
+   * }
+   * ```
+   */
   @Output() onDataGridEvent: EventEmitter<DataGridEvent> = new EventEmitter();
 
   /**
+   * Available page size options as a comma-separated string.
    *
-   * Page size options
+   * Users can select from these options to change how many rows are displayed per page.
+   * The paginator will show buttons for each option.
    *
-   * @type {number[]}
-   * @memberof ZtDataGridComponent
+   * @default '5, 10, 20, 100'
+   * @example '5, 10, 15, 20, 50, 100'
    */
   @Input() pageSizeOptions: string = '5, 10, 20, 100';
   pageSizes: number[] = [];
 
   /**
-   * Set current page size
+   * Current number of rows to display per page.
    *
-   * default value is 10
+   * Must be one of the values in `pageSizeOptions`.
+   * Changing this value will recalculate pagination and reset to page 1.
    *
-   * @type {number}
-   * @memberof ZtDataGridComponent
+   * @default 10
    */
   @Input() currentPageSize: number = 10;
+
+  /**
+   * Enable virtual scrolling for large datasets.
+   *
+   * When enabled, only visible rows are rendered in the DOM, improving performance
+   * with thousands of rows. Requires `@angular/cdk/scrolling`.
+   *
+   * **Note**: Virtual scrolling is not yet fully implemented in this version.
+   *
+   * @default false
+   */
+  @Input() virtualScroll: boolean = false;
+
+  /**
+   * Height of each row in pixels when virtual scrolling is enabled.
+   *
+   * Used to calculate which rows should be rendered based on scroll position.
+   *
+   * @default 40
+   */
+  @Input() itemSize: number = 40;
+
+  /**
+   * Minimum buffer size in pixels for virtual scrolling.
+   *
+   * Extra rows rendered outside the viewport to prevent flickering during scroll.
+   *
+   * @default 200
+   */
+  @Input() minBufferPx: number = 200;
+
+  /**
+   * Maximum buffer size in pixels for virtual scrolling.
+   *
+   * Maximum number of extra rows to render outside the viewport.
+   *
+   * @default 400
+   */
+  @Input() maxBufferPx: number = 400;
   /**
    * Constructor for the data grid component.
    */

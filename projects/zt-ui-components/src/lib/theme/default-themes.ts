@@ -51,9 +51,12 @@ export const LIGHT_THEME: ThemeConfig = {
     large: '16px',
   },
   spacing: {
-    small: '8px',
-    medium: '16px',
-    large: '24px',
+    xs: '4px',
+    sm: '8px',
+    md: '16px',
+    lg: '24px',
+    xl: '32px',
+    xxl: '48px',
   },
 };
 
@@ -108,9 +111,12 @@ export const DARK_THEME: ThemeConfig = {
     large: '16px',
   },
   spacing: {
-    small: '8px',
-    medium: '16px',
-    large: '24px',
+    xs: '4px',
+    sm: '8px',
+    md: '16px',
+    lg: '24px',
+    xl: '32px',
+    xxl: '48px',
   },
 };
 
@@ -165,9 +171,12 @@ export const BOOTSTRAP_THEME: ThemeConfig = {
     large: '16px',
   },
   spacing: {
-    small: '8px',
-    medium: '16px',
-    large: '24px',
+    xs: '4px',
+    sm: '8px',
+    md: '16px',
+    lg: '24px',
+    xl: '32px',
+    xxl: '48px',
   },
 };
 
@@ -222,9 +231,12 @@ export const MATERIAL_THEME: ThemeConfig = {
     large: '16px',
   },
   spacing: {
-    small: '8px',
-    medium: '16px',
-    large: '24px',
+    xs: '4px',
+    sm: '8px',
+    md: '16px',
+    lg: '24px',
+    xl: '32px',
+    xxl: '48px',
   },
 };
 

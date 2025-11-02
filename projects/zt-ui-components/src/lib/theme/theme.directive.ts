@@ -119,9 +119,12 @@ export class ThemeDirective implements OnInit, OnDestroy {
     }
 
     if (theme.spacing) {
-      this.renderer.setStyle(element, '--zt-spacing-small', theme.spacing.small);
-      this.renderer.setStyle(element, '--zt-spacing-medium', theme.spacing.medium);
-      this.renderer.setStyle(element, '--zt-spacing-large', theme.spacing.large);
+      this.renderer.setStyle(element, '--zt-spacing-xs', theme.spacing.xs);
+      this.renderer.setStyle(element, '--zt-spacing-sm', theme.spacing.sm);
+      this.renderer.setStyle(element, '--zt-spacing-md', theme.spacing.md);
+      this.renderer.setStyle(element, '--zt-spacing-lg', theme.spacing.lg);
+      this.renderer.setStyle(element, '--zt-spacing-xl', theme.spacing.xl);
+      this.renderer.setStyle(element, '--zt-spacing-xxl', theme.spacing.xxl);
     }
   }
 

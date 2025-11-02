@@ -9,6 +9,7 @@ import {
   ElementRef,
 } from '@angular/core';
 import { ThemeConfig } from '../theme/theme.types';
+import { KeyboardNavigationDirective } from '../theme/keyboard-navigation.directive';
 
 /**
  * A modern toggle switch component that provides on/off functionality with various styles, themes, and accessibility features.
@@ -46,7 +47,8 @@ import { ThemeConfig } from '../theme/theme.types';
   styleUrls: ['./toggle.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [],
+  imports: [KeyboardNavigationDirective],
+  hostDirectives: [KeyboardNavigationDirective],
 })
 export class ToggleComponent implements OnInit {
   constructor(private elementRef: ElementRef) {}

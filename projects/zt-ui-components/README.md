@@ -141,15 +141,48 @@ export class ContactFormComponent {
 </form>
 ```
 
-### Data Grid with Sorting and Filtering
+### Data Grid with Sorting and Selection
+
+```typescript
+export class UserListComponent {
+  users = [
+    { id: 1, name: 'John Doe', age: 30, department: 'Engineering', salary: 75000 },
+    { id: 2, name: 'Jane Smith', age: 25, department: 'Marketing', salary: 65000 },
+    { id: 3, name: 'Bob Johnson', age: 35, department: 'Sales', salary: 55000 },
+  ];
+
+  columns: DataGridColumn[] = [
+    { field: 'id', title: 'ID', width: '60px', sortable: true, alignment: 'center' },
+    { field: 'name', title: 'Full Name', sortable: true, minWidth: 150 },
+    { field: 'age', title: 'Age', width: '80px', sortable: true, alignment: 'center' },
+    { field: 'department', title: 'Department', sortable: true, minWidth: 120 },
+    { field: 'salary', title: 'Salary', width: '100px', sortable: true, alignment: 'right' }
+  ];
+
+  handleGridEvent(event: DataGridEvent) {
+    switch(event.type) {
+      case 'sort':
+        console.log('Sorted by:', event.column?.field, event.value);
+        break;
+      case 'select':
+        console.log('Selected rows:', event.rows);
+        break;
+    }
+  }
+}
+```
 
 ```html
 <zt-data-grid
   [dataSource]="users"
   [columns]="columns"
-  [sortable]="true"
-  [filterable]="true"
-  [pagination]="true">
+  [allowSorting]="true"
+  [allowSelection]="true"
+  [selectionMode]="'single'"
+  [striped]="true"
+  [showBorders]="true"
+  [theme]="'light'"
+  (onDataGridEvent)="handleGridEvent($event)">
 </zt-data-grid>
 ```
 
@@ -243,10 +276,25 @@ export class MyComponent {
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
 | `dataSource` | `any[]` | `[]` | Data array |
-| `columns` | `DataGridColumn[]` | `[]` | Column config |
-| `sortable` | `boolean` | `false` | Enable sorting |
-| `filterable` | `boolean` | `false` | Enable filtering |
-| `pagination` | `boolean` | `false` | Enable pagination |
+| `columns` | `DataGridColumn[]` | `[]` | Column configuration |
+| `theme` | `'light' \| 'dark' \| 'bootstrap' \| 'material'` | `'light'` | Visual theme |
+| `allowSorting` | `boolean` | `true` | Enable column sorting |
+| `allowSelection` | `boolean` | `false` | Enable row selection |
+| `selectionMode` | `'none' \| 'single' \| 'multiple'` | `'none'` | Row selection behavior |
+| `striped` | `boolean` | `false` | Alternating row colors |
+| `showBorders` | `boolean` | `true` | Display cell borders |
+| `showEdit` | `boolean` | `false` | Show edit action buttons |
+| `showDelete` | `boolean` | `false` | Show delete action buttons |
+| `editButtonType` | `'button' \| 'link'` | `'link'` | Edit button style |
+| `deleteButtonType` | `'button' \| 'link'` | `'link'` | Delete button style |
+| `pages` | `number` | `1` | Total number of pages |
+| `currentPageSize` | `number` | `10` | Rows per page |
+| `pageSizeOptions` | `string` | `'5, 10, 20, 100'` | Available page sizes |
+| `paginatorStyle` | `'page' \| 'arrow'` | `'page'` | Pagination style |
+
+**Events:**
+- `(onDataGridEvent)` - Emitted for sort, select, and action events
+- `(onPageChange)` - Emitted when pagination changes
 
 ### Modal Component
 
@@ -427,31 +475,45 @@ export class UserFormComponent {
 </form>
 ```
 
-### Data Table with Actions
+### Data Grid with Actions
 
 ```typescript
-export class UserListComponent {
+export class UserManagementComponent {
   users = [
-    { id: 1, name: 'John Doe', email: 'john@example.com', status: 'Active' },
-    { id: 2, name: 'Jane Smith', email: 'jane@example.com', status: 'Inactive' },
+    { id: 1, name: 'John Doe', age: 30, department: 'Engineering', status: 'Active' },
+    { id: 2, name: 'Jane Smith', age: 25, department: 'Marketing', status: 'Active' },
+    { id: 3, name: 'Bob Johnson', age: 35, department: 'Sales', status: 'Inactive' },
   ];
 
-  columns = [
-    { field: 'name', header: 'Name', sortable: true },
-    { field: 'email', header: 'Email', sortable: true },
-    { field: 'status', header: 'Status' },
-    {
-      field: 'actions',
-      header: 'Actions',
-      template: (row) => `
-        <zt-button size="zt-sm" (click)="editUser(row)">Edit</zt-button>
-        <zt-button variant="danger" size="zt-sm" (click)="deleteUser(row)">Delete</zt-button>
-      `
+  columns: DataGridColumn[] = [
+    { field: 'id', title: 'ID', width: '60px', sortable: true },
+    { field: 'name', title: 'Name', sortable: true, minWidth: 150 },
+    { field: 'department', title: 'Department', sortable: true },
+    { field: 'status', title: 'Status', width: '100px' }
+  ];
+
+  onEdit(user: any) {
+    console.log('Edit user:', user);
+    // Open edit modal or navigate to edit page
+  }
+
+  onDelete(user: any) {
+    if (confirm(`Delete user ${user.name}?`)) {
+      console.log('Delete user:', user);
+      // Remove user from data source
     }
-  ];
+  }
 
-  editUser(user: any) { /* handle edit */ }
-  deleteUser(user: any) { /* handle delete */ }
+  handleGridEvent(event: DataGridEvent) {
+    switch(event.type) {
+      case 'sort':
+        console.log('Column sorted:', event.column?.field);
+        break;
+      case 'select':
+        console.log('Rows selected:', event.rows?.length);
+        break;
+    }
+  }
 }
 ```
 
@@ -459,9 +521,18 @@ export class UserListComponent {
 <zt-data-grid
   [dataSource]="users"
   [columns]="columns"
-  [sortable]="true"
-  [pagination]="true"
-  [pageSize]="10">
+  [allowSorting]="true"
+  [allowSelection]="true"
+  [selectionMode]="'multiple'"
+  [showEdit]="true"
+  [showDelete]="true"
+  [editButtonType]="'link'"
+  [deleteButtonType]="'button'"
+  [striped]="true"
+  [currentPageSize]="5"
+  [pageSizeOptions]="'5, 10, 15'"
+  [theme]="'bootstrap'"
+  (onDataGridEvent)="handleGridEvent($event)">
 </zt-data-grid>
 ```
 

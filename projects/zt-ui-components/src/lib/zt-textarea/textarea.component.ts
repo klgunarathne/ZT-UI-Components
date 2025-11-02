@@ -9,6 +9,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { KeyboardNavigationDirective } from '../theme/keyboard-navigation.directive';
 
 /**
  * A customizable textarea component with character counting, length validation, and various styling options.
@@ -30,7 +31,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./textarea.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, KeyboardNavigationDirective],
+  hostDirectives: [KeyboardNavigationDirective],
 })
 export class TextareaComponent {
   /**

@@ -7,6 +7,7 @@ import {
   ElementRef,
 } from '@angular/core';
 import { ThemeConfig } from '../theme/theme.types';
+import { KeyboardNavigationDirective } from '../theme/keyboard-navigation.directive';
 
 /**
  * A customizable button component that supports various styles, sizes, themes, and variants.
@@ -22,7 +23,8 @@ import { ThemeConfig } from '../theme/theme.types';
   styleUrls: ['./button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [],
+  imports: [KeyboardNavigationDirective],
+  hostDirectives: [KeyboardNavigationDirective],
 })
 export class ButtonComponent implements OnInit {
   constructor(private elementRef: ElementRef) {}

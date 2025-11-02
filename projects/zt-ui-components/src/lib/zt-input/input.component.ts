@@ -961,27 +961,27 @@ export class InputComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
     // Apply spacing properties if specified
     if (this.ztTheme.spacing) {
-      if (this.ztTheme.spacing.small) {
-        styles['--zt-spacing-small'] = this.ztTheme.spacing.small;
+      if (this.ztTheme.spacing.sm) {
+        styles['--zt-spacing-small'] = this.ztTheme.spacing.sm;
       }
-      if (this.ztTheme.spacing.medium) {
-        styles['--zt-spacing-medium'] = this.ztTheme.spacing.medium;
+      if (this.ztTheme.spacing.md) {
+        styles['--zt-spacing-medium'] = this.ztTheme.spacing.md;
       }
-      if (this.ztTheme.spacing.large) {
-        styles['--zt-spacing-large'] = this.ztTheme.spacing.large;
+      if (this.ztTheme.spacing.lg) {
+        styles['--zt-spacing-large'] = this.ztTheme.spacing.lg;
       }
     }
 
     // Apply label and counter spacing using existing spacing properties
     if (this.ztTheme.spacing) {
-      if (this.ztTheme.spacing.small) {
-        styles['--zt-counter-spacing'] = this.ztTheme.spacing.small;
+      if (this.ztTheme.spacing.sm) {
+        styles['--zt-counter-spacing'] = this.ztTheme.spacing.sm;
       }
-      if (this.ztTheme.spacing.medium) {
-        styles['--zt-input-padding'] = this.ztTheme.spacing.medium;
+      if (this.ztTheme.spacing.md) {
+        styles['--zt-input-padding'] = this.ztTheme.spacing.md;
       }
-      if (this.ztTheme.spacing.large) {
-        styles['--zt-label-spacing'] = this.ztTheme.spacing.large;
+      if (this.ztTheme.spacing.lg) {
+        styles['--zt-label-spacing'] = this.ztTheme.spacing.lg;
       }
     }
 
