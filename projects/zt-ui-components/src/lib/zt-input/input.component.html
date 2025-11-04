@@ -7,11 +7,13 @@
           [id]="uniqueId"
           [attr.aria-describedby]="ariaDescribedBy"
           [attr.aria-labelledby]="uniqueId + '-label'"
+          [attr.aria-required]="required"
+          [attr.aria-invalid]="hasError || hasValidationError"
           [maxLength]="textlength"
           [disabled]="disabled"
           [value]="value"
           #textInput
-          [class.error]="hasError"
+          [class.error]="hasError || hasValidationError"
         />
         <label class="label" [for]="uniqueId" [id]="uniqueId + '-label'">
           <div class="text">{{ placeholder }}</div>
@@ -22,9 +24,14 @@
           {{ currentLength }}/{{ textlength }}
         </div>
       }
-      @if (errorMessage) {
+      @if (currentErrorMessage) {
         <div class="error-message" [id]="uniqueId + '-error'" role="alert">
-          {{ errorMessage }}
+          {{ currentErrorMessage }}
+        </div>
+      }
+      @if (required) {
+        <div class="required-indicator" [id]="uniqueId + '-required'" aria-hidden="true">
+          *
         </div>
       }
     </div>
@@ -40,12 +47,14 @@
           [id]="uniqueId"
           [attr.aria-describedby]="ariaDescribedBy"
           [attr.aria-labelledby]="uniqueId + '-label'"
+          [attr.aria-required]="required"
+          [attr.aria-invalid]="hasError || hasValidationError"
           class="form__field"
           [placeholder]="placeholder"
           [disabled]="disabled"
           [value]="value"
           #textInput
-          [class.error]="hasError"
+          [class.error]="hasError || hasValidationError"
         />
         <label [for]="uniqueId" [id]="uniqueId + '-label'" class="form__label">
           {{ placeholder }}
@@ -56,9 +65,14 @@
           {{ currentLength }}/{{ textlength }}
         </div>
       }
-      @if (errorMessage) {
+      @if (currentErrorMessage) {
         <div class="error-message" [id]="uniqueId + '-error'" role="alert">
-          {{ errorMessage }}
+          {{ currentErrorMessage }}
+        </div>
+      }
+      @if (required) {
+        <div class="required-indicator" [id]="uniqueId + '-required'" aria-hidden="true">
+          *
         </div>
       }
     </div>
@@ -73,21 +87,28 @@
         [id]="uniqueId"
         [attr.aria-describedby]="ariaDescribedBy"
         [attr.aria-labelledby]="uniqueId + '-label'"
+        [attr.aria-required]="required"
+        [attr.aria-invalid]="hasError || hasValidationError"
         class="form__field form-control"
         [placeholder]="placeholder"
         [disabled]="disabled"
         [value]="value"
         #textInput
-        [class.error]="hasError"
+        [class.error]="hasError || hasValidationError"
       />
       @if (showCharCounter) {
         <div class="char-counter" [ngClass]="counterClass" [id]="uniqueId + '-counter'">
           {{ currentLength }}/{{ textlength }}
         </div>
       }
-      @if (errorMessage) {
+      @if (currentErrorMessage) {
         <div class="error-message" [id]="uniqueId + '-error'" role="alert">
-          {{ errorMessage }}
+          {{ currentErrorMessage }}
+        </div>
+      }
+      @if (required) {
+        <div class="required-indicator" [id]="uniqueId + '-required'" aria-hidden="true">
+          *
         </div>
       }
     </div>

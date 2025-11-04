@@ -67,6 +67,14 @@ A versatile select dropdown component with multiple styling options.
       control: { type: 'text' },
       description: 'Placeholder text (only effective with inputStyle="bs")',
     },
+    required: {
+      control: { type: 'boolean' },
+      description: 'Whether the select field is required',
+    },
+    errorMessage: {
+      control: { type: 'text' },
+      description: 'Custom error message for validation failures',
+    },
   },
 };
 
@@ -101,6 +109,94 @@ export const Select: Story = {
   render: (args) => ({
     template: `
     <zt-select [size]="size" [theme]="theme" [inputStyle]="inputStyle" [placeholder]="placeholder" [dataSource]="dataSource" [key]="key" [displayValue]="displayValue"></zt-select>
+    `,
+    props: args,
+  }),
+};
+
+/**
+ * Required Select - Demonstrates required field validation with error states.
+ */
+export const Required_Select: Story = {
+  args: {
+    size: 'zt-md',
+    theme: 'light',
+    inputStyle: 'bs',
+    placeholder: 'Choose an option (required)',
+    required: true,
+    errorMessage: 'Please select an option',
+    dataSource: [
+      { id: 1, firstName: 'John' },
+      { id: 2, firstName: 'Jane' },
+      { id: 3, firstName: 'Bob' },
+    ],
+    key: 'id',
+    displayValue: 'firstName',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Required select field with validation error display. Shows red border and error message when no option is selected.',
+      },
+    },
+  },
+  render: (args) => ({
+    template: `
+    <zt-select
+      [size]="size"
+      [theme]="theme"
+      [inputStyle]="inputStyle"
+      [placeholder]="placeholder"
+      [required]="required"
+      [errorMessage]="errorMessage"
+      [dataSource]="dataSource"
+      [key]="key"
+      [displayValue]="displayValue">
+    </zt-select>
+    `,
+    props: args,
+  }),
+};
+
+/**
+ * Select with Custom Error Message - Shows custom validation error handling.
+ */
+export const Select_With_Custom_Error: Story = {
+  args: {
+    size: 'zt-md',
+    theme: 'bootstrap',
+    inputStyle: 'bs',
+    placeholder: 'Select your role',
+    required: true,
+    errorMessage: 'Role selection is mandatory for account creation',
+    dataSource: [
+      { id: 'admin', name: 'Administrator' },
+      { id: 'user', name: 'User' },
+      { id: 'guest', name: 'Guest' },
+    ],
+    key: 'id',
+    displayValue: 'name',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Select with custom error message. Demonstrates how to provide specific validation feedback to users.',
+      },
+    },
+  },
+  render: (args) => ({
+    template: `
+    <zt-select
+      [size]="size"
+      [theme]="theme"
+      [inputStyle]="inputStyle"
+      [placeholder]="placeholder"
+      [required]="required"
+      [errorMessage]="errorMessage"
+      [dataSource]="dataSource"
+      [key]="key"
+      [displayValue]="displayValue">
+    </zt-select>
     `,
     props: args,
   }),

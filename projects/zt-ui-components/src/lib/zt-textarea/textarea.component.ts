@@ -108,11 +108,56 @@ export class TextareaComponent {
   @Input() showCharCount? = true;
 
   /**
-   * Dynamically applies CSS classes to the textarea element based on size and theme.
+   * Whether the textarea field is required for form submission.
+   *
+   * When required, the component will validate that the field is not empty
+   * and display appropriate error messages if validation fails.
+   *
+   * @default false
+   */
+  @Input() required = false;
+
+  /**
+   * Custom error message to display when validation fails.
+   *
+   * If not provided, a default message will be shown for required field validation.
+   */
+  @Input() errorMessage?: string;
+
+  /**
+   * Dynamically applies CSS classes to the textarea element based on size, theme, and validation state.
    * @returns A string of CSS classes.
    */
   @HostBinding('class') get textareaClass(): string {
-    return `${this.size} theme-${this.theme}`;
+    let classes = `${this.size} theme-${this.theme}`;
+    if (this.hasValidationError) {
+      classes += ' error';
+    } else if (this.value && this.value.trim() !== '') {
+      classes += ' valid';
+    }
+    return classes;
+  }
+
+  /**
+   * Whether the textarea has validation errors.
+   *
+   * Computed property that checks required field validation.
+   */
+  get hasValidationError(): boolean {
+    if (this.required) {
+      return !this.value || this.value.trim() === '';
+    }
+    return false;
+  }
+
+  /**
+   * Gets the current error message to display.
+   */
+  get currentErrorMessage(): string | undefined {
+    if (this.hasValidationError) {
+      return this.errorMessage || 'This field is required';
+    }
+    return undefined;
   }
 
   /**

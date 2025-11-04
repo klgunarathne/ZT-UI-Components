@@ -393,6 +393,48 @@ export class InputComponent implements OnInit, OnDestroy, ControlValueAccessor {
   @Input() disabled = false;
 
   /**
+   * Whether the input field is required for form submission.
+   *
+   * When required, the component will validate that the field is not empty
+   * and display appropriate error messages if validation fails.
+   *
+   * @example
+   * ```html
+   * <!-- Required input -->
+   * <zt-input
+   *   placeholder="Required field"
+   *   [required]="true">
+   * </zt-input>
+   * ```
+   *
+   * @default false
+   */
+  @Input() required = false;
+
+  /**
+   * Array of custom validation functions that return error messages or null.
+   *
+   * Each validator function receives the current input value and should return
+   * a string error message if validation fails, or null if valid.
+   *
+   * @example
+   * ```typescript
+   * customValidators = [
+   *   (value: string) => value.length < 3 ? 'Minimum 3 characters required' : null,
+   *   (value: string) => !/\d/.test(value) ? 'Must contain at least one number' : null
+   * ];
+   * ```
+   *
+   * ```html
+   * <zt-input
+   *   [customValidators]="customValidators"
+   *   placeholder="Custom validated input">
+   * </zt-input>
+   * ```
+   */
+  @Input() customValidators: ((value: string) => string | null)[] = [];
+
+  /**
    * Whether to show a real-time character counter below the input.
    *
    * The counter displays current character count vs. maximum allowed characters.
@@ -481,6 +523,30 @@ export class InputComponent implements OnInit, OnDestroy, ControlValueAccessor {
   @Output() blur = new EventEmitter<FocusEvent>();
 
   /**
+   * Output event emitted when validation state changes.
+   *
+   * Emitted whenever the validation state of the input changes (valid/invalid).
+   * Useful for form-level validation coordination and UI updates.
+   *
+   * @example
+   * ```html
+   * <zt-input
+   *   placeholder="Required field"
+   *   [required]="true"
+   *   (validationChange)="onValidationChange($event)">
+   * </zt-input>
+   * ```
+   *
+   * ```typescript
+   * onValidationChange(isValid: boolean) {
+   *   console.log('Field is valid:', isValid);
+   *   this.updateFormValidity();
+   * }
+   * ```
+   */
+  @Output() validationChange = new EventEmitter<boolean>();
+
+  /**
    * Output event emitted when the input gains focus (focus event).
    *
    * Useful for showing help text, highlighting related fields, or analytics tracking.
@@ -535,7 +601,53 @@ export class InputComponent implements OnInit, OnDestroy, ControlValueAccessor {
    * @returns true if current length exceeds textlength limit
    */
   get hasError(): boolean {
-    return this.currentLength > this.textlength;
+    return this.currentLength > this.textlength || this.hasValidationError;
+  }
+
+  /**
+   * Whether the input has validation errors (required field or custom validators).
+   *
+   * Computed property that checks required field validation and custom validators.
+   * Used to determine overall validation state of the component.
+   *
+   * @returns true if validation fails
+   */
+  get hasValidationError(): boolean {
+    // Check required field validation
+    if (this.required && (!this.value || this.value.trim() === '')) {
+      return true;
+    }
+
+    // Check custom validators
+    if (this.customValidators && this.customValidators.length > 0) {
+      for (const validator of this.customValidators) {
+        const error = validator(this.value || '');
+        if (error) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
+  /**
+   * Gets the current validation error message from custom validators.
+   *
+   * Returns the first error message from custom validators, or null if all pass.
+   *
+   * @returns Error message string or null
+   */
+  get validationErrorMessage(): string | null {
+    if (this.customValidators && this.customValidators.length > 0) {
+      for (const validator of this.customValidators) {
+        const error = validator(this.value || '');
+        if (error) {
+          return error;
+        }
+      }
+    }
+    return null;
   }
 
   /**
@@ -566,7 +678,8 @@ export class InputComponent implements OnInit, OnDestroy, ControlValueAccessor {
    *
    * Used with `aria-describedby` attribute to associate the input with:
    * - Character counter (when `showCharCounter` is true)
-   * - Error message (when `errorMessage` is provided)
+   * - Error message (when `errorMessage` or validation errors exist)
+   * - Required field indicator
    *
    * Enables screen readers to provide additional context about the input.
    *
@@ -576,9 +689,10 @@ export class InputComponent implements OnInit, OnDestroy, ControlValueAccessor {
    * <zt-input
    *   [showCharCounter]="true"
    *   [errorMessage]="validationError"
+   *   [required]="true"
    *   aria-describedby="additional-help">
    * </zt-input>
-   * <!-- aria-describedby value: "zt-input-a1b2c3d4-counter zt-input-a1b2c3d4-error additional-help" -->
+   * <!-- aria-describedby value: "zt-input-a1b2c3d4-counter zt-input-a1b2c3d4-error zt-input-a1b2c3d4-required additional-help" -->
    * ```
    *
    * @returns Space-separated string of descriptive element IDs
@@ -586,8 +700,23 @@ export class InputComponent implements OnInit, OnDestroy, ControlValueAccessor {
   get ariaDescribedBy(): string {
     const descriptions = [];
     if (this.showCharCounter) descriptions.push(`${this.uniqueId}-counter`);
-    if (this.errorMessage) descriptions.push(`${this.uniqueId}-error`);
+    if (this.errorMessage || this.hasValidationError) descriptions.push(`${this.uniqueId}-error`);
+    if (this.required) descriptions.push(`${this.uniqueId}-required`);
     return descriptions.join(' ');
+  }
+
+  /**
+   * Gets the appropriate ARIA attributes for the input element.
+   *
+   * Includes aria-required for required fields and aria-invalid for validation errors.
+   *
+   * @returns Object with ARIA attributes
+   */
+  get ariaAttributes(): { [key: string]: any } {
+    return {
+      'aria-required': this.required,
+      'aria-invalid': this.hasValidationError || this.hasError
+    };
   }
 
   /**
@@ -598,19 +727,32 @@ export class InputComponent implements OnInit, OnDestroy, ControlValueAccessor {
    * - Size variant (`${size}`)
    * - Legacy theme class (`theme-${theme}`)
    * - Disabled state (`disabled` when `disabled` is true)
-   * - Error state (`error` when character limit exceeded)
+   * - Error state (`error` when validation fails)
+   * - Valid state (`valid` when input is valid and has content)
    *
    * @example
    * ```html
    * <!-- Input with multiple classes -->
-   * <zt-input inputStyle="material" size="zt-lg" [disabled]="true"></zt-input>
-   * <!-- Applied classes: "zt-material zt-lg theme-light disabled" -->
+   * <zt-input inputStyle="material" size="zt-lg" [disabled]="true" [required]="true"></zt-input>
+   * <!-- Applied classes: "zt-material zt-lg theme-light disabled error" -->
    * ```
    *
    * @returns Space-separated string of CSS classes
    */
   @HostBinding('class') get inputClass(): string {
-    return `zt-${this.inputStyle} ${this.size} theme-${this.theme} ${this.disabled ? 'disabled' : ''} ${this.hasError ? 'error' : ''}`;
+    let classes = `zt-${this.inputStyle} ${this.size} theme-${this.theme}`;
+
+    if (this.disabled) {
+      classes += ' disabled';
+    }
+
+    if (this.hasError || this.hasValidationError) {
+      classes += ' error';
+    } else if (this.value && this.value.trim() !== '' && !this.hasValidationError) {
+      classes += ' valid';
+    }
+
+    return classes;
   }
 
   constructor(
@@ -834,6 +976,50 @@ export class InputComponent implements OnInit, OnDestroy, ControlValueAccessor {
   @HostListener('blur', ['$event'])
   onBlur(event: FocusEvent) {
     this.blur.emit(event);
+    // Trigger validation on blur for better UX
+    this.validate();
+  }
+
+  /**
+   * Programmatically validates the input and updates validation state.
+   *
+   * Checks all validation rules (required, custom validators, character limits)
+   * and emits validation change events. Useful for manual validation triggers.
+   *
+   * @returns true if input is valid, false otherwise
+   *
+   * @example
+   * ```typescript
+   * // Manual validation
+   * if (!this.inputComponent.validate()) {
+   *   console.log('Validation failed');
+   * }
+   * ```
+   */
+  validate(): boolean {
+    const isValid = !this.hasError && !this.hasValidationError;
+    this.validationChange.emit(isValid);
+    return isValid;
+  }
+
+  /**
+   * Gets the current error message to display, prioritizing custom validation errors.
+   *
+   * Returns validation error message if present, otherwise falls back to the errorMessage input.
+   *
+   * @returns Error message string or undefined
+   */
+  get currentErrorMessage(): string | undefined {
+    const validationError = this.validationErrorMessage;
+    if (validationError) {
+      return validationError;
+    }
+
+    if (this.required && (!this.value || this.value.trim() === '')) {
+      return 'This field is required';
+    }
+
+    return this.errorMessage;
   }
 
   /**

@@ -253,6 +253,16 @@ export class MyComponent {
 | `inputType` | `'text' \| 'email' \| 'password'` | `'text'` | Input type |
 | `textlength` | `number` | `255` | Max length |
 | `showCharCounter` | `boolean` | `false` | Show counter |
+| `required` | `boolean` | `false` | Required field validation |
+| `customValidators` | `((value: string) => string \| null)[]` | `[]` | Custom validation functions |
+| `errorMessage` | `string` | - | Custom error message |
+| `disabled` | `boolean` | `false` | Disabled state |
+
+**Events:**
+- `(valueChange)` - Emitted when input value changes
+- `(blur)` - Emitted on input blur
+- `(focus)` - Emitted on input focus
+- `(validationChange)` - Emitted when validation state changes
 
 ### Card Component
 
@@ -460,8 +470,8 @@ export class UserFormComponent {
 
 ```html
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  <zt-input formControlName="name" placeholder="Full Name"></zt-input>
-  <zt-input formControlName="email" inputType="email" placeholder="Email"></zt-input>
+  <zt-input formControlName="name" placeholder="Full Name" [required]="true"></zt-input>
+  <zt-input formControlName="email" inputType="email" placeholder="Email" [required]="true"></zt-input>
   <zt-select
     formControlName="role"
     [dataSource]="roles"
@@ -472,6 +482,50 @@ export class UserFormComponent {
   <zt-button type="submit" variant="primary" [disabled]="userForm.invalid">
     Create User
   </zt-button>
+</form>
+```
+
+### Advanced Validation Example
+
+```typescript
+export class AdvancedFormComponent {
+  customValidators = [
+    (value: string) => value.length < 3 ? 'Minimum 3 characters required' : null,
+    (value: string) => !/\d/.test(value) ? 'Must contain at least one number' : null,
+    (value: string) => !/[A-Z]/.test(value) ? 'Must contain at least one uppercase letter' : null
+  ];
+
+  onValidationChange(isValid: boolean) {
+    console.log('Form validation state:', isValid);
+  }
+}
+```
+
+```html
+<form>
+  <!-- Required field with character counter -->
+  <zt-input
+    placeholder="Username (required)"
+    [required]="true"
+    [textlength]="20"
+    [showCharCounter]="true">
+  </zt-input>
+
+  <!-- Custom validation -->
+  <zt-input
+    placeholder="Password"
+    inputType="password"
+    [customValidators]="customValidators"
+    (validationChange)="onValidationChange($event)">
+  </zt-input>
+
+  <!-- Field with custom error message -->
+  <zt-input
+    placeholder="Email"
+    inputType="email"
+    [errorMessage]="'Please enter a valid email address'"
+    [required]="true">
+  </zt-input>
 </form>
 ```
 

@@ -190,6 +190,63 @@
     }
   }
 
+  // Error and validation styles
+  :host(.error) {
+    textarea {
+      border-color: #dc3545 !important;
+      box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.25) !important;
+    }
+
+    .material_input textarea {
+      border-bottom-color: #dc3545 !important;
+      border-bottom-width: 2px !important;
+    }
+
+    .bs_textarea .form__field {
+      border-color: #dc3545 !important;
+      box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.25) !important;
+    }
+  }
+
+  :host(.valid) {
+    textarea {
+      border-color: #28a745;
+      box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.25);
+    }
+
+    .material_input textarea {
+      border-bottom-color: #28a745;
+    }
+
+    .bs_textarea .form__field {
+      border-color: #28a745;
+      box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.25);
+    }
+  }
+
+  .error-message {
+    font-size: 0.875rem;
+    color: #dc3545;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+
+    &::before {
+      content: "⚠";
+      margin-right: 8px;
+    }
+  }
+
+  .required-indicator {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    color: #dc3545;
+    font-size: 1rem;
+    font-weight: bold;
+    pointer-events: none;
+  }
+
   // bootstrap textarea
   .bs_textarea {
     .form__field {

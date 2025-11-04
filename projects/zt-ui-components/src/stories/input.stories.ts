@@ -20,6 +20,18 @@ const meta: Meta<InputComponent> = {
       control: { type: 'select' },
       default: 'zt',
     },
+    required: {
+      control: { type: 'boolean' },
+      default: false,
+    },
+    showCharCounter: {
+      control: { type: 'boolean' },
+      default: false,
+    },
+    disabled: {
+      control: { type: 'boolean' },
+      default: false,
+    },
   },
 };
 
@@ -66,6 +78,101 @@ export const Bootstrap_Input: Story = {
   render: (args) => ({
     template: `
     <zt-input [size]="size" [theme]="theme" [inputStyle]="inputStyle" [placeholder]="placeholder"></zt-input>
+    `,
+    props: args,
+  }),
+};
+
+export const Required_Field: Story = {
+  args: {
+    size: 'zt-md',
+    theme: 'light',
+    inputStyle: 'zt',
+    placeholder: 'Required field',
+    required: true,
+  },
+  render: (args) => ({
+    template: `
+    <zt-input
+      [size]="size"
+      [theme]="theme"
+      [inputStyle]="inputStyle"
+      [placeholder]="placeholder"
+      [required]="required">
+    </zt-input>
+    `,
+    props: args,
+  }),
+};
+
+export const With_Character_Counter: Story = {
+  args: {
+    size: 'zt-md',
+    theme: 'light',
+    inputStyle: 'zt',
+    placeholder: 'Enter text with counter',
+    textlength: 100,
+    showCharCounter: true,
+  },
+  render: (args) => ({
+    template: `
+    <zt-input
+      [size]="size"
+      [theme]="theme"
+      [inputStyle]="inputStyle"
+      [placeholder]="placeholder"
+      [textlength]="textlength"
+      [showCharCounter]="showCharCounter">
+    </zt-input>
+    `,
+    props: args,
+  }),
+};
+
+export const Custom_Validation: Story = {
+  args: {
+    size: 'zt-md',
+    theme: 'light',
+    inputStyle: 'zt',
+    placeholder: 'Enter email with custom validation',
+    customValidators: [
+      (value: string) => !value.includes('@') ? 'Must contain @ symbol' : null,
+      (value: string) => value.length < 5 ? 'Minimum 5 characters required' : null
+    ],
+  },
+  render: (args) => ({
+    template: `
+    <zt-input
+      [size]="size"
+      [theme]="theme"
+      [inputStyle]="inputStyle"
+      [placeholder]="placeholder"
+      [customValidators]="customValidators">
+    </zt-input>
+    `,
+    props: args,
+  }),
+};
+
+export const Validation_With_Error_Message: Story = {
+  args: {
+    size: 'zt-md',
+    theme: 'light',
+    inputStyle: 'zt',
+    placeholder: 'Field with custom error message',
+    errorMessage: 'This field has a custom error message',
+    required: true,
+  },
+  render: (args) => ({
+    template: `
+    <zt-input
+      [size]="size"
+      [theme]="theme"
+      [inputStyle]="inputStyle"
+      [placeholder]="placeholder"
+      [errorMessage]="errorMessage"
+      [required]="required">
+    </zt-input>
     `,
     props: args,
   }),

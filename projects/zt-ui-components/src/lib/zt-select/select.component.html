@@ -5,6 +5,8 @@
         <select
           id="box_select"
           aria-labelledby="label-fname"
+          [attr.aria-required]="required"
+          [attr.aria-invalid]="hasValidationError"
           class=""
           #select
           [(ngModel)]="value"
@@ -36,7 +38,7 @@
   <div>
     <div class="material_select">
       <div class="select select-items">
-        <select class="select-text" required #select [(ngModel)]="value">
+        <select class="select-text" [attr.aria-required]="required" [attr.aria-invalid]="hasValidationError" #select [(ngModel)]="value">
           <option value="" class="select-message" selected disabled></option>
           @for (obj of dataSource; track obj; let i = $index) {
             <option
@@ -55,6 +57,16 @@
         <label class="select-label">{{ placeholder }}</label>
       </div>
     </div>
+    @if (currentErrorMessage) {
+      <div class="error-message" role="alert">
+        {{ currentErrorMessage }}
+      </div>
+    }
+    @if (required) {
+      <div class="required-indicator" aria-hidden="true">
+        *
+      </div>
+    }
   </div>
 }
 @if (inputStyle === 'bs') {
@@ -64,6 +76,8 @@
         type="text"
         class="form__field"
         id="bs_select"
+        [attr.aria-required]="required"
+        [attr.aria-invalid]="hasValidationError"
         #select
         [(ngModel)]="value"
         >

@@ -136,28 +136,94 @@ export class SelectComponent implements OnInit {
   @Input() showClearButton = true;
 
   /**
+   * Whether the select field is required for form submission.
+   *
+   * When required, the component will validate that an option is selected
+   * and display appropriate error messages if validation fails.
+   *
+   * @default false
+   */
+  @Input() required = false;
+
+  /**
+   * Custom error message to display when validation fails.
+   *
+   * If not provided, a default message will be shown for required field validation.
+   */
+  @Input() errorMessage?: string;
+
+  /**
    * Event emitted when the selected value changes.
    */
   @Output() valueChange = new EventEmitter<any>();
 
   /**
-   * Dynamically applies CSS classes to the select element based on size and theme.
+   * Event emitted when validation state changes.
+   *
+   * Emitted whenever the validation state of the select changes (valid/invalid).
+   * Useful for form-level validation coordination.
+   */
+  @Output() validationChange = new EventEmitter<boolean>();
+
+  /**
+   * Dynamically applies CSS classes to the select element based on size, theme, and validation state.
    * @returns A string of CSS classes.
    */
   @HostBinding('class') get selectClass(): string {
-    return `${this.size} theme-${this.theme}`;
+    let classes = `${this.size} theme-${this.theme}`;
+    if (this.hasValidationError) {
+      classes += ' error';
+    } else if (this.value && this.value !== (this.inputStyle === 'bs' ? null : -1)) {
+      classes += ' valid';
+    }
+    return classes;
+  }
+
+  /**
+   * Whether the select has validation errors.
+   *
+   * Computed property that checks required field validation.
+   */
+  get hasValidationError(): boolean {
+    if (this.required) {
+      const placeholderValue = this.inputStyle === 'bs' ? null : -1;
+      return !this.value || this.value === placeholderValue;
+    }
+    return false;
+  }
+
+  /**
+   * Gets the current error message to display.
+   */
+  get currentErrorMessage(): string | undefined {
+    if (this.hasValidationError) {
+      return this.errorMessage || 'This field is required';
+    }
+    return undefined;
   }
 
   /**
    * Handles the change event when a user selects an option.
-   * Updates the value property with the selected option's value.
+   * Updates the value property with the selected option's value and validates.
    * @param event The change event from the select element.
    */
   @HostListener('change', ['$event'])
   onChange(event: any) {
     this.value = event.target.value;
     this.valueChange.emit(this.value);
+    this.validate();
     console.log(this.key, this.value);
+  }
+
+  /**
+   * Programmatically validates the select and updates validation state.
+   *
+   * @returns true if select is valid, false otherwise
+   */
+  validate(): boolean {
+    const isValid = !this.hasValidationError;
+    this.validationChange.emit(isValid);
+    return isValid;
   }
 
   /**

@@ -6,6 +6,8 @@
           [cols]="cols"
           [rows]="rows"
           [maxLength]="textlength"
+          [attr.aria-required]="required"
+          [attr.aria-invalid]="hasValidationError"
           id="box-textarea"
           #textareaInput
         ></textarea>
@@ -30,6 +32,8 @@
           <textarea
             [cols]="cols"
             [rows]="rows"
+            [attr.aria-required]="required"
+            [attr.aria-invalid]="hasValidationError"
             id="material-textarea"
             #textareaInput
           ></textarea>
@@ -45,6 +49,16 @@
         </div>
       </div>
     }
+    @if (currentErrorMessage) {
+      <div class="error-message" role="alert">
+        {{ currentErrorMessage }}
+      </div>
+    }
+    @if (required) {
+      <div class="required-indicator" aria-hidden="true">
+        *
+      </div>
+    }
     @if (inputStyle === 'bs') {
       <div>
         <div class="bs_textarea">
@@ -53,6 +67,8 @@
             [rows]="rows"
             class="form__field"
             [placeholder]="placeholder"
+            [attr.aria-required]="required"
+            [attr.aria-invalid]="hasValidationError"
             id="bs_textarea"
             #textareaInput
           ></textarea>
