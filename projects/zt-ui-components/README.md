@@ -10,6 +10,8 @@ ZT-UI Components provides a rich set of components organized into the following 
 - **`<zt-input>`** - Advanced text input with validation, character counting, and multiple visual styles
 - **`<zt-textarea>`** - Multi-line text input with length validation and character counting
 - **`<zt-select>`** - Dropdown select with data binding, search capabilities, and customizable styles
+- **`<zt-checkbox>`** - Customizable checkbox with various styles, themes, and accessibility features
+- **`<zt-radio>`** - Radio button component for single selection with customizable styles and themes
 
 ### Interactive Components
 - **`<zt-button>`** - Versatile button with variants, sizes, states, and interaction handling
@@ -326,6 +328,38 @@ export class MyComponent {
 | `position` | `'top-right' \| 'top-left' \| 'bottom-right' \| 'bottom-left' \| 'top-center' \| 'bottom-center'` | `'top-right'` | Toast container position |
 | `showDemoButtons` | `boolean` | `false` | Show demo buttons for testing |
 
+### Checkbox Component
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `checked` | `boolean` | `false` | Checkbox state |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `label` | `string` | `''` | Label text |
+| `size` | `'zt-sm' \| 'zt-md' \| 'zt-lg'` | `'zt-md'` | Checkbox size |
+| `variant` | `'default' \| 'rounded' \| 'square'` | `'default'` | Visual style |
+| `theme` | `'light' \| 'dark' \| 'bootstrap' \| 'material'` | `'light'` | Theme variant |
+| `showLabel` | `boolean` | `false` | Show label text visually |
+
+**Events:**
+- `(checkboxChange)` - Emitted when checkbox state changes
+
+### Radio Component
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `checked` | `boolean` | `false` | Radio button state |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `value` | `string` | `''` | Value associated with radio button |
+| `name` | `string` | `''` | Name attribute for radio group |
+| `label` | `string` | `''` | Label text |
+| `size` | `'zt-sm' \| 'zt-md' \| 'zt-lg'` | `'zt-md'` | Radio button size |
+| `variant` | `'default' \| 'rounded' \| 'square'` | `'default'` | Visual style |
+| `theme` | `'light' \| 'dark' \| 'bootstrap' \| 'material'` | `'light'` | Theme variant |
+| `showLabel` | `boolean` | `false` | Show label text visually |
+
+**Events:**
+- `(radioChange)` - Emitted when radio button state changes
+
 ### Toggle Component
 
 | Property | Type | Default | Description |
@@ -339,6 +373,89 @@ export class MyComponent {
 
 **Events:**
 - `(checkedChange)` - Emitted when toggle state changes
+
+#### Checkbox Component Usage Examples
+
+```html
+<!-- Basic checkbox -->
+<zt-checkbox [(checked)]="isSelected"></zt-checkbox>
+
+<!-- Checkbox with label -->
+<zt-checkbox
+  label="Accept terms and conditions"
+  [(checked)]="termsAccepted"
+  [showLabel]="true"
+  size="zt-md">
+</zt-checkbox>
+
+<!-- Disabled checkbox -->
+<zt-checkbox
+  label="System setting"
+  [checked]="true"
+  [disabled]="true"
+  [showLabel]="true">
+</zt-checkbox>
+
+<!-- Custom styled checkbox -->
+<zt-checkbox
+  label="Enable feature"
+  [(checked)]="featureEnabled"
+  variant="rounded"
+  size="zt-lg"
+  theme="dark">
+</zt-checkbox>
+```
+
+#### Radio Component Usage Examples
+
+```html
+<!-- Radio button group -->
+<zt-radio
+  [checked]="selectedOption === 'option1'"
+  [value]="'option1'"
+  [name]="'options'"
+  label="Option 1"
+  [showLabel]="true"
+  (radioChange)="selectedOption = $event">
+</zt-radio>
+
+<zt-radio
+  [checked]="selectedOption === 'option2'"
+  [value]="'option2'"
+  [name]="'options'"
+  label="Option 2"
+  [showLabel]="true"
+  (radioChange)="selectedOption = $event">
+</zt-radio>
+
+<zt-radio
+  [checked]="selectedOption === 'option3'"
+  [value]="'option3'"
+  [name]="'options'"
+  label="Option 3"
+  [showLabel]="true"
+  (radioChange)="selectedOption = $event">
+</zt-radio>
+```
+
+```typescript
+export class SettingsComponent {
+  isSelected = false;
+  termsAccepted = false;
+  featureEnabled = false;
+  selectedOption = 'option1';
+
+  constructor(private themeService: ZTThemeService) {}
+
+  onCheckboxChange(value: boolean) {
+    console.log('Checkbox changed:', value);
+  }
+
+  onRadioChange(value: string) {
+    console.log('Radio changed:', value);
+  }
+}
+```
 
 #### Toggle Component Usage Examples
 

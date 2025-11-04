@@ -1,0 +1,17 @@
+<!-- Container for the radio button component with click and keyboard event handlers -->
+<div class="zt-radio-container" (click)="onRadioClick()" (keydown)="onKeyDown($event)" (focus)="onFocus()" (blur)="onBlur()">
+  <!-- Visual radio input element -->
+  <div class="zt-radio-input">
+    <!-- Checkmark container that shows the dot when selected -->
+    <div class="zt-radio-checkmark">
+      @if (checked) {
+        <!-- Inner dot displayed when radio button is selected -->
+        <div class="zt-radio-dot"></div>
+      }
+    </div>
+  </div>
+  <!-- Optional label text displayed next to the radio button -->
+  @if (showLabel && label) {
+    <span class="zt-radio-label">{{ label }}</span>
+  }
+</div>

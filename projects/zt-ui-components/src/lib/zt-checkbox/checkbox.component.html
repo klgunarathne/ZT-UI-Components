@@ -1,0 +1,19 @@
+<!-- Container for the checkbox component with click and keyboard event handlers -->
+<div class="zt-checkbox-container" (click)="onCheckboxClick()" (keydown)="onKeyDown($event)" (focus)="onFocus()" (blur)="onBlur()">
+  <!-- Visual checkbox input element -->
+  <div class="zt-checkbox-input">
+    <!-- Checkmark container that shows the check icon when checked -->
+    <div class="zt-checkbox-checkmark">
+      @if (checked) {
+        <!-- SVG checkmark icon displayed when checkbox is checked -->
+        <svg class="zt-checkbox-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      }
+    </div>
+  </div>
+  <!-- Optional label text displayed next to the checkbox -->
+  @if (showLabel && label) {
+    <span class="zt-checkbox-label">{{ label }}</span>
+  }
+</div>
