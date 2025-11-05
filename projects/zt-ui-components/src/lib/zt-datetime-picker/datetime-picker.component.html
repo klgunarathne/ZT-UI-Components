@@ -1,46 +1,36 @@
 <!-- Main container for the datetime picker component with keyboard and focus event handlers -->
 <div class="zt-datetime-picker-container" (keydown)="onKeyDown($event)" (focus)="onFocus()" (blur)="onBlur()">
-  <!-- Input field container with trigger button -->
-  <div class="zt-datetime-picker-input-container">
-    <!-- Read-only input field displaying the formatted date/time -->
-    <input
-      #dateInput
-      type="text"
-      [value]="formattedDate"
-      [placeholder]="label || 'Select date and time'"
-      [disabled]="disabled"
-      [attr.aria-label]="label"
-      readonly
-      class="zt-datetime-picker-input"
-      (click)="toggleCalendar()"
-    />
-    <!-- Calendar icon button to toggle the dropdown -->
-    <div class="zt-datetime-picker-icon" (click)="toggleCalendar()">
-      <!-- SVG calendar icon -->
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M16 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M8 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M3 10H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-  </div>
-
-  <!-- Optional label text displayed below the input -->
-  @if (showLabel && label) {
-    <span class="zt-datetime-picker-label">{{ label }}</span>
-  }
-
-  <!-- Calendar dropdown -->
-  @if (isOpen) {
-    <div class="zt-datetime-picker-dropdown" role="dialog" aria-modal="true" aria-label="Date and Time Picker">
-      @if (isRangeMode) {
-        <!-- Range mode: Two calendars side by side -->
-        <div class="zt-datetime-picker-range-calendars">
-          <!-- Start Date Calendar -->
-          <div class="zt-datetime-picker-calendar-section">
-            <div class="zt-datetime-picker-calendar-label">{{ getLocalizedLabels().from }}</div>
-            <!-- Calendar header with enhanced navigation -->
+  @if (isRangeMode) {
+    <!-- Range mode: Two separate input fields -->
+    <div class="zt-datetime-picker-range-inputs">
+      <!-- Start Date/Time Input -->
+      <div class="zt-datetime-picker-range-section">
+        <div class="zt-datetime-picker-range-label">{{ getLocalizedLabels().from }}</div>
+        <div class="zt-datetime-picker-input-container">
+          <input
+            #startInput
+            type="text"
+            [value]="formattedStartDate"
+            [placeholder]="startLabel || 'Start date and time'"
+            [disabled]="disabled"
+            [attr.aria-label]="startLabel"
+            readonly
+            class="zt-datetime-picker-input"
+            (click)="toggleStartCalendar()"
+          />
+          <div class="zt-datetime-picker-icon" (click)="toggleStartCalendar()">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3 10H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        <!-- Start Calendar Dropdown -->
+        @if (isStartOpen) {
+          <div class="zt-datetime-picker-dropdown" role="dialog" aria-modal="true" aria-label="Start Date and Time Picker">
+            <!-- Calendar header -->
             <div class="zt-datetime-picker-header">
               <button type="button" class="zt-datetime-picker-nav-btn zt-datetime-picker-nav-btn-left" (click)="previousMonthStart()" aria-label="Previous month">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -71,14 +61,12 @@
                 </svg>
               </button>
             </div>
-
             <!-- Day headers -->
             <div class="zt-datetime-picker-weekdays">
               @for (day of getDayNames(); track day) {
                 <div class="zt-datetime-picker-weekday">{{ day }}</div>
               }
             </div>
-
             <!-- Calendar grid -->
             <div class="zt-datetime-picker-calendar">
               @for (date of getDaysInMonthStart(); track date.getTime()) {
@@ -97,12 +85,111 @@
                 </button>
               }
             </div>
+            <!-- Time picker for start -->
+            @if (showTime) {
+              <div class="zt-datetime-picker-time">
+                <div class="zt-datetime-picker-time-header">{{ getLocalizedLabels().selectTime }}</div>
+                <div class="zt-datetime-picker-time-inputs">
+                  <div class="zt-datetime-picker-time-group">
+                    <label for="start-hour-input" class="zt-datetime-picker-time-label">{{ getLocalizedLabels().hour }}</label>
+                    <div class="zt-datetime-picker-time-controls">
+                      <button type="button" class="zt-datetime-picker-time-btn" (click)="adjustStartHour(-1)" aria-label="Decrease hour">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                      </button>
+                      <input
+                        type="number"
+                        id="start-hour-input"
+                        class="zt-datetime-picker-time-input"
+                        [value]="startDate?.getHours() || 0"
+                        (input)="onStartHourInput($event)"
+                        min="0"
+                        max="23"
+                        aria-label="Hour" />
+                      <button type="button" class="zt-datetime-picker-time-btn" (click)="adjustStartHour(1)" aria-label="Increase hour">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="zt-datetime-picker-time-group">
+                    <label for="start-minute-input" class="zt-datetime-picker-time-label">{{ getLocalizedLabels().minute }}</label>
+                    <div class="zt-datetime-picker-time-controls">
+                      <button type="button" class="zt-datetime-picker-time-btn" (click)="adjustStartMinute(-1)" aria-label="Decrease minute">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                      </button>
+                      <input
+                        type="number"
+                        id="start-minute-input"
+                        class="zt-datetime-picker-time-input"
+                        [value]="startDate?.getMinutes() || 0"
+                        (input)="onStartMinuteInput($event)"
+                        min="0"
+                        max="59"
+                        aria-label="Minute" />
+                      <button type="button" class="zt-datetime-picker-time-btn" (click)="adjustStartMinute(1)" aria-label="Increase minute">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="zt-datetime-picker-time-presets">
+                  <button type="button" class="zt-datetime-picker-preset-btn" (click)="setStartTime(9, 0)">9:00 AM</button>
+                  <button type="button" class="zt-datetime-picker-preset-btn" (click)="setStartTime(12, 0)">12:00 PM</button>
+                  <button type="button" class="zt-datetime-picker-preset-btn" (click)="setStartTime(15, 0)">3:00 PM</button>
+                  <button type="button" class="zt-datetime-picker-preset-btn" (click)="setStartTime(18, 0)">6:00 PM</button>
+                </div>
+              </div>
+            }
+            <!-- Action buttons for start -->
+            <div class="zt-datetime-picker-actions">
+              <button type="button" class="zt-datetime-picker-btn zt-datetime-picker-btn-secondary" (click)="closeStartCalendar()">
+                {{ getLocalizedLabels().cancel }}
+              </button>
+              <button type="button" class="zt-datetime-picker-btn zt-datetime-picker-btn-primary" (click)="closeStartCalendar()">
+                {{ getLocalizedLabels().ok }}
+              </button>
+            </div>
           </div>
+        }
+      </div>
 
-          <!-- End Date Calendar -->
-          <div class="zt-datetime-picker-calendar-section">
-            <div class="zt-datetime-picker-calendar-label">{{ getLocalizedLabels().to }}</div>
-            <!-- Calendar header with enhanced navigation -->
+      <!-- End Date/Time Input -->
+      <div class="zt-datetime-picker-range-section">
+        <div class="zt-datetime-picker-range-label">{{ getLocalizedLabels().to }}</div>
+        <div class="zt-datetime-picker-input-container">
+          <input
+            #endInput
+            type="text"
+            [value]="formattedEndDate"
+            [placeholder]="endLabel || 'End date and time'"
+            [disabled]="disabled"
+            [attr.aria-label]="endLabel"
+            readonly
+            class="zt-datetime-picker-input"
+            (click)="toggleEndCalendar()"
+          />
+          <div class="zt-datetime-picker-icon" (click)="toggleEndCalendar()">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3 10H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        <!-- End Calendar Dropdown -->
+        @if (isEndOpen) {
+          <div class="zt-datetime-picker-dropdown" role="dialog" aria-modal="true" aria-label="End Date and Time Picker">
+            <!-- Calendar header -->
             <div class="zt-datetime-picker-header">
               <button type="button" class="zt-datetime-picker-nav-btn zt-datetime-picker-nav-btn-left" (click)="previousMonthEnd()" aria-label="Previous month">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -133,14 +220,12 @@
                 </svg>
               </button>
             </div>
-
             <!-- Day headers -->
             <div class="zt-datetime-picker-weekdays">
               @for (day of getDayNames(); track day) {
                 <div class="zt-datetime-picker-weekday">{{ day }}</div>
               }
             </div>
-
             <!-- Calendar grid -->
             <div class="zt-datetime-picker-calendar">
               @for (date of getDaysInMonthEnd(); track date.getTime()) {
@@ -159,11 +244,116 @@
                 </button>
               }
             </div>
+            <!-- Time picker for end -->
+            @if (showTime) {
+              <div class="zt-datetime-picker-time">
+                <div class="zt-datetime-picker-time-header">{{ getLocalizedLabels().selectTime }}</div>
+                <div class="zt-datetime-picker-time-inputs">
+                  <div class="zt-datetime-picker-time-group">
+                    <label for="end-hour-input" class="zt-datetime-picker-time-label">{{ getLocalizedLabels().hour }}</label>
+                    <div class="zt-datetime-picker-time-controls">
+                      <button type="button" class="zt-datetime-picker-time-btn" (click)="adjustEndHour(-1)" aria-label="Decrease hour">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                      </button>
+                      <input
+                        type="number"
+                        id="end-hour-input"
+                        class="zt-datetime-picker-time-input"
+                        [value]="endDate?.getHours() || 0"
+                        (input)="onEndHourInput($event)"
+                        min="0"
+                        max="23"
+                        aria-label="Hour" />
+                      <button type="button" class="zt-datetime-picker-time-btn" (click)="adjustEndHour(1)" aria-label="Increase hour">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="zt-datetime-picker-time-group">
+                    <label for="end-minute-input" class="zt-datetime-picker-time-label">{{ getLocalizedLabels().minute }}</label>
+                    <div class="zt-datetime-picker-time-controls">
+                      <button type="button" class="zt-datetime-picker-time-btn" (click)="adjustEndMinute(-1)" aria-label="Decrease minute">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                      </button>
+                      <input
+                        type="number"
+                        id="end-minute-input"
+                        class="zt-datetime-picker-time-input"
+                        [value]="endDate?.getMinutes() || 0"
+                        (input)="onEndMinuteInput($event)"
+                        min="0"
+                        max="59"
+                        aria-label="Minute" />
+                      <button type="button" class="zt-datetime-picker-time-btn" (click)="adjustEndMinute(1)" aria-label="Increase minute">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="zt-datetime-picker-time-presets">
+                  <button type="button" class="zt-datetime-picker-preset-btn" (click)="setEndTime(9, 0)">9:00 AM</button>
+                  <button type="button" class="zt-datetime-picker-preset-btn" (click)="setEndTime(12, 0)">12:00 PM</button>
+                  <button type="button" class="zt-datetime-picker-preset-btn" (click)="setEndTime(15, 0)">3:00 PM</button>
+                  <button type="button" class="zt-datetime-picker-preset-btn" (click)="setEndTime(18, 0)">6:00 PM</button>
+                </div>
+              </div>
+            }
+            <!-- Action buttons for end -->
+            <div class="zt-datetime-picker-actions">
+              <button type="button" class="zt-datetime-picker-btn zt-datetime-picker-btn-secondary" (click)="closeEndCalendar()">
+                {{ getLocalizedLabels().cancel }}
+              </button>
+              <button type="button" class="zt-datetime-picker-btn zt-datetime-picker-btn-primary" (click)="closeEndCalendar()">
+                {{ getLocalizedLabels().ok }}
+              </button>
+            </div>
           </div>
-        </div>
-      } @else {
-        <!-- Single date mode: One calendar -->
-        <!-- Calendar header with enhanced navigation -->
+        }
+      </div>
+    </div>
+  } @else {
+    <!-- Single date mode: One input field -->
+    <div class="zt-datetime-picker-input-container">
+      <input
+        #dateInput
+        type="text"
+        [value]="formattedDate"
+        [placeholder]="label || 'Select date and time'"
+        [disabled]="disabled"
+        [attr.aria-label]="label"
+        readonly
+        class="zt-datetime-picker-input"
+        (click)="toggleCalendar()"
+      />
+      <div class="zt-datetime-picker-icon" (click)="toggleCalendar()">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M16 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M8 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3 10H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Optional label text displayed below the input -->
+    @if (showLabel && label) {
+      <span class="zt-datetime-picker-label">{{ label }}</span>
+    }
+
+    <!-- Calendar dropdown for single mode -->
+    @if (isOpen) {
+      <div class="zt-datetime-picker-dropdown" role="dialog" aria-modal="true" aria-label="Date and Time Picker">
+        <!-- Calendar header -->
         <div class="zt-datetime-picker-header">
           <button type="button" class="zt-datetime-picker-nav-btn zt-datetime-picker-nav-btn-left" (click)="previousMonth()" aria-label="Previous month">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -210,9 +400,6 @@
               class="zt-datetime-picker-day"
               [class.today]="isToday(date)"
               [class.selected]="isSelected(date)"
-              [class.range-start]="isRangeMode && startDate && date.toDateString() === startDate.toDateString()"
-              [class.range-end]="isRangeMode && endDate && date.toDateString() === endDate.toDateString()"
-              [class.in-range]="isRangeMode && isDateInRange(date) && !isSelected(date)"
               [class.current-month]="isCurrentMonth(date)"
               [class.disabled]="isDisabled(date)"
               [disabled]="isDisabled(date)"
@@ -223,83 +410,82 @@
             </button>
           }
         </div>
-      }
 
-      <!-- Time picker (if enabled) with enhanced UI -->
-      @if (showTime) {
-        <div class="zt-datetime-picker-time">
-          <div class="zt-datetime-picker-time-header">{{ getLocalizedLabels().selectTime }}</div>
-          <div class="zt-datetime-picker-time-inputs">
-            <div class="zt-datetime-picker-time-group">
-              <label for="hour-select" class="zt-datetime-picker-time-label">{{ getLocalizedLabels().hour }}</label>
-              <div class="zt-datetime-picker-time-controls">
-                <button type="button" class="zt-datetime-picker-time-btn" (click)="adjustHour(-1)" aria-label="Decrease hour">
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  </svg>
-                </button>
-                <input
-                  type="number"
-                  id="hour-input"
-                  class="zt-datetime-picker-time-input"
-                  [value]="selectedDate?.getHours() || 0"
-                  (input)="onHourInput($event)"
-                  min="0"
-                  max="23"
-                  aria-label="Hour" />
-                <button type="button" class="zt-datetime-picker-time-btn" (click)="adjustHour(1)" aria-label="Increase hour">
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  </svg>
-                </button>
+        <!-- Time picker -->
+        @if (showTime) {
+          <div class="zt-datetime-picker-time">
+            <div class="zt-datetime-picker-time-header">{{ getLocalizedLabels().selectTime }}</div>
+            <div class="zt-datetime-picker-time-inputs">
+              <div class="zt-datetime-picker-time-group">
+                <label for="hour-input" class="zt-datetime-picker-time-label">{{ getLocalizedLabels().hour }}</label>
+                <div class="zt-datetime-picker-time-controls">
+                  <button type="button" class="zt-datetime-picker-time-btn" (click)="adjustHour(-1)" aria-label="Decrease hour">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </button>
+                  <input
+                    type="number"
+                    id="hour-input"
+                    class="zt-datetime-picker-time-input"
+                    [value]="selectedDate?.getHours() || 0"
+                    (input)="onHourInput($event)"
+                    min="0"
+                    max="23"
+                    aria-label="Hour" />
+                  <button type="button" class="zt-datetime-picker-time-btn" (click)="adjustHour(1)" aria-label="Increase hour">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="zt-datetime-picker-time-group">
+                <label for="minute-input" class="zt-datetime-picker-time-label">{{ getLocalizedLabels().minute }}</label>
+                <div class="zt-datetime-picker-time-controls">
+                  <button type="button" class="zt-datetime-picker-time-btn" (click)="adjustMinute(-1)" aria-label="Decrease minute">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </button>
+                  <input
+                    type="number"
+                    id="minute-input"
+                    class="zt-datetime-picker-time-input"
+                    [value]="selectedDate?.getMinutes() || 0"
+                    (input)="onMinuteInput($event)"
+                    min="0"
+                    max="59"
+                    aria-label="Minute" />
+                  <button type="button" class="zt-datetime-picker-time-btn" (click)="adjustMinute(1)" aria-label="Increase minute">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </button>
+                </div>
               </div>
             </div>
-            <div class="zt-datetime-picker-time-group">
-              <label for="minute-select" class="zt-datetime-picker-time-label">{{ getLocalizedLabels().minute }}</label>
-              <div class="zt-datetime-picker-time-controls">
-                <button type="button" class="zt-datetime-picker-time-btn" (click)="adjustMinute(-1)" aria-label="Decrease minute">
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  </svg>
-                </button>
-                <input
-                  type="number"
-                  id="minute-input"
-                  class="zt-datetime-picker-time-input"
-                  [value]="selectedDate?.getMinutes() || 0"
-                  (input)="onMinuteInput($event)"
-                  min="0"
-                  max="59"
-                  aria-label="Minute" />
-                <button type="button" class="zt-datetime-picker-time-btn" (click)="adjustMinute(1)" aria-label="Increase minute">
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  </svg>
-                </button>
-              </div>
+            <div class="zt-datetime-picker-time-presets">
+              <button type="button" class="zt-datetime-picker-preset-btn" (click)="setTime(9, 0)">9:00 AM</button>
+              <button type="button" class="zt-datetime-picker-preset-btn" (click)="setTime(12, 0)">12:00 PM</button>
+              <button type="button" class="zt-datetime-picker-preset-btn" (click)="setTime(15, 0)">3:00 PM</button>
+              <button type="button" class="zt-datetime-picker-preset-btn" (click)="setTime(18, 0)">6:00 PM</button>
             </div>
           </div>
-          <!-- Quick time presets -->
-          <div class="zt-datetime-picker-time-presets">
-            <button type="button" class="zt-datetime-picker-preset-btn" (click)="setTime(9, 0)">9:00 AM</button>
-            <button type="button" class="zt-datetime-picker-preset-btn" (click)="setTime(12, 0)">12:00 PM</button>
-            <button type="button" class="zt-datetime-picker-preset-btn" (click)="setTime(15, 0)">3:00 PM</button>
-            <button type="button" class="zt-datetime-picker-preset-btn" (click)="setTime(18, 0)">6:00 PM</button>
-          </div>
+        }
+
+        <!-- Action buttons -->
+        <div class="zt-datetime-picker-actions">
+          <button type="button" class="zt-datetime-picker-btn zt-datetime-picker-btn-secondary" (click)="closeCalendar()">
+            {{ getLocalizedLabels().cancel }}
+          </button>
+          <button type="button" class="zt-datetime-picker-btn zt-datetime-picker-btn-primary" (click)="closeCalendar()">
+            {{ getLocalizedLabels().ok }}
+          </button>
         </div>
-      }
-
-      <!-- Action buttons -->
-      <div class="zt-datetime-picker-actions">
-        <button type="button" class="zt-datetime-picker-btn zt-datetime-picker-btn-secondary" (click)="closeCalendar()">
-          {{ getLocalizedLabels().cancel }}
-        </button>
-        <button type="button" class="zt-datetime-picker-btn zt-datetime-picker-btn-primary" (click)="closeCalendar()">
-          {{ getLocalizedLabels().ok }}
-        </button>
       </div>
-    </div>
+    }
   }
 </div>

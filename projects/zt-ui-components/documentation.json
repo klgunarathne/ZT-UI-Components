@@ -847,6 +847,16 @@
                 "defaultValue": "{\r\n  title: 'UI Components/ZT-Toast-X',\r\n  component: ZtToastXComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ZtToastXModule],\r\n      providers: [ZtToastXService],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        component: `\r\n# ZT-Toast-X Component\r\n\r\nA comprehensive, standalone toast notification component for Angular applications. This component provides a complete toast notification system built from scratch without external dependencies, offering full customization and accessibility features.\r\n\r\n## Key Features\r\n\r\n🎨 **Multiple Toast Types**: Four distinct visual styles (success, error, info, warning) with appropriate color coding and icons for immediate recognition\r\n\r\n📍 **Flexible Positioning**: Six strategic screen positions for optimal UX\r\n\r\n⏱️ **Smart Auto-dismiss**: Configurable duration with automatic cleanup\r\n\r\n❌ **Manual Dismissal**: Optional close buttons with hover states\r\n\r\n📊 **Progress Indicators**: Visual progress bars showing remaining time\r\n\r\n📱 **Responsive Design**: Adaptive layouts for mobile and desktop\r\n\r\n🎭 **Smooth Animations**: CSS-based slide-in animations for professional feel\r\n\r\n♿ **Accessibility**: ARIA labels, keyboard navigation, and screen reader support\r\n\r\n🧪 **Development Tools**: Built-in demo buttons for testing and Storybook integration\r\n\r\n🔧 **Zero Dependencies**: Pure Angular implementation, no external libraries required\r\n\r\n## Usage\r\n\r\n### Standalone Component Setup\r\n\r\n\\`\\`\\`typescript\r\nimport { Component } from '@angular/core';\r\nimport { ZtToastXComponent, ZtToastXService } from 'zt-toast-x';\r\n\r\n@Component({\r\n  selector: 'app-root',\r\n  standalone: true,\r\n  imports: [ZtToastXComponent],\r\n  template: \\`\r\n    <button (click)=\"showToast()\">Show Toast</button>\r\n    <zt-toast-x position=\"top-right\"></zt-toast-x>\r\n  \\`,\r\n  providers: [ZtToastXService]\r\n})\r\nexport class AppComponent {\r\n  constructor(private toastService: ZtToastXService) {}\r\n\r\n  showToast() {\r\n    this.toastService.success('Hello from ZT-Toast-X!');\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n### Module-based Application Setup\r\n\r\n\\`\\`\\`typescript\r\nimport { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { ZtToastXModule } from 'zt-toast-x';\r\n\r\n@NgModule({\r\n  declarations: [AppComponent],\r\n  imports: [BrowserModule, ZtToastXModule],\r\n  bootstrap: [AppComponent]\r\n})\r\nexport class AppModule { }\r\n\\`\\`\\`\r\n\r\n### Service Integration\r\n\r\n\\`\\`\\`typescript\r\nimport { Component } from '@angular/core';\r\nimport { ZtToastXService } from 'zt-toast-x';\r\n\r\n@Component({...})\r\nexport class MyComponent {\r\n  constructor(private toastService: ZtToastXService) {}\r\n\r\n  showSuccess() {\r\n    this.toastService.success('Data saved successfully!', 'Save Complete');\r\n  }\r\n\r\n  showCustomToast() {\r\n    this.toastService.show({\r\n      type: 'info',\r\n      message: 'Custom notification with options',\r\n      title: 'Custom Toast',\r\n      duration: 10000,\r\n      position: 'top-center',\r\n      dismissible: true,\r\n      showProgress: true\r\n    });\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Props\r\n\r\n| Prop | Type | Default | Description |\r\n|------|------|---------|-------------|\r\n| \\`position\\` | \\`'top-right' \\| 'top-left' \\| 'bottom-right' \\| 'bottom-left' \\| 'top-center' \\| 'bottom-center'\\` | \\`'top-right'\\` | Position of the toast container on the screen |\r\n| \\`showDemoButtons\\` | \\`boolean\\` | \\`false\\` | Show demo buttons to trigger different toast types |\r\n\r\n## Toast Configuration Options\r\n\r\n| Option | Type | Default | Description |\r\n|--------|------|---------|-------------|\r\n| \\`type\\` | \\`'success' \\| 'error' \\| 'info' \\| 'warning'\\` | - | Type of toast that determines styling and icon |\r\n| \\`title\\` | \\`string\\` | - | Optional title for the toast |\r\n| \\`message\\` | \\`string\\` | - | Main message content (required) |\r\n| \\`duration\\` | \\`number\\` | \\`5000\\` | Auto-dismiss duration in milliseconds (0 = never auto-dismiss) |\r\n| \\`position\\` | \\`string\\` | \\`'top-right'\\` | Position on screen where toast appears |\r\n| \\`dismissible\\` | \\`boolean\\` | \\`true\\` | Whether the toast can be manually dismissed by clicking |\r\n| \\`showProgress\\` | \\`boolean\\` | \\`true\\` | Whether to show a progress bar indicating time remaining |\r\n\r\n\r\n## Guidelines\r\n\r\n### Positioning\r\n- Use \\`top-right\\` for most applications (standard UX pattern)\r\n- Reserve \\`top-center\\` for important system-wide notifications\r\n- Use bottom positions for less intrusive notifications\r\n- Consider mobile responsiveness when choosing positions\r\n\r\n### Duration\r\n- Keep durations between 3-7 seconds for optimal UX\r\n- Use longer durations (8-15 seconds) for critical information\r\n- Set duration to 0 for notifications that require user action\r\n- Always provide manual dismissal for long-duration toasts\r\n\r\n### Accessibility\r\n- All toasts include proper ARIA labels and roles\r\n- Close buttons have descriptive labels\r\n- Color combinations meet WCAG contrast requirements\r\n- Keyboard navigation is supported\r\n\r\n### Performance\r\n- Component uses efficient change detection strategies\r\n- Automatic cleanup prevents memory leaks\r\n- RxJS observables ensure reactive updates\r\n- CSS animations are hardware-accelerated\r\n\r\n### Best Practices\r\n- Limit simultaneous toasts to 3-5 maximum\r\n- Use appropriate toast types for semantic meaning\r\n- Provide clear, concise messages\r\n- Test on mobile devices for responsive behavior\r\n- Consider user preferences for positioning and duration\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    position: {\r\n      options: ['top-right', 'top-left', 'bottom-right', 'bottom-left', 'top-center', 'bottom-center'],\r\n      control: { type: 'select' },\r\n      description: 'Position of the toast container on the screen',\r\n      table: {\r\n        type: { summary: \"'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'top-center' | 'bottom-center'\" },\r\n        defaultValue: { summary: \"'top-right'\" },\r\n      },\r\n    },\r\n    showDemoButtons: {\r\n      control: { type: 'boolean' },\r\n      description: 'Show demo buttons to trigger different toast types (useful for development and testing)',\r\n      table: {\r\n        type: { summary: 'boolean' },\r\n        defaultValue: { summary: 'false' },\r\n      },\r\n    },\r\n  },\r\n}"
             },
             {
+                "name": "MultiLanguage",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/datetime-picker.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    locale: 'es',\r\n    label: 'Seleccionar fecha y hora',\r\n    showLabel: true,\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <div>\r\n        <div style=\"margin-bottom: 10px;\">\r\n          <label>Language: </label>\r\n          <select [(ngModel)]=\"locale\" (ngModelChange)=\"updateLocale($event)\">\r\n            <option value=\"en\">English</option>\r\n            <option value=\"es\">Español</option>\r\n            <option value=\"fr\">Français</option>\r\n          </select>\r\n        </div>\r\n        <zt-datetime-picker\r\n          [selectedDate]=\"selectedDate\"\r\n          [disabled]=\"disabled\"\r\n          [variant]=\"variant\"\r\n          [size]=\"size\"\r\n          [theme]=\"theme\"\r\n          [label]=\"label\"\r\n          [showLabel]=\"showLabel\"\r\n          [showTime]=\"showTime\"\r\n          [minDate]=\"minDate\"\r\n          [maxDate]=\"maxDate\"\r\n          [dateFormat]=\"dateFormat\"\r\n          [locale]=\"locale\"\r\n          (dateChange)=\"selectedDate = $event\">\r\n        </zt-datetime-picker>\r\n        <p style=\"margin-top: 10px;\">Selected: {{ selectedDate ? selectedDate.toLocaleString() : 'None' }}</p>\r\n      </div>\r\n    `,\r\n  }),\r\n}"
+            },
+            {
                 "name": "MultipleToasts",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -975,6 +985,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    label: 'Option 1',\r\n    showLabel: true,\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args, selectedValue: 'option1' },\r\n    template: `\r\n      <div>\r\n        <zt-radio\r\n          [checked]=\"selectedValue === 'option1'\"\r\n          [value]=\"'option1'\"\r\n          [name]=\"'demo-group'\"\r\n          [variant]=\"variant\"\r\n          [size]=\"size\"\r\n          [theme]=\"theme\"\r\n          [disabled]=\"disabled\"\r\n          [showLabel]=\"showLabel\"\r\n          label=\"Option 1\"\r\n          (radioChange)=\"selectedValue = $event\">\r\n        </zt-radio>\r\n        <br><br>\r\n        <zt-radio\r\n          [checked]=\"selectedValue === 'option2'\"\r\n          [value]=\"'option2'\"\r\n          [name]=\"'demo-group'\"\r\n          [variant]=\"variant\"\r\n          [size]=\"size\"\r\n          [theme]=\"theme\"\r\n          [disabled]=\"disabled\"\r\n          [showLabel]=\"showLabel\"\r\n          label=\"Option 2\"\r\n          (radioChange)=\"selectedValue = $event\">\r\n        </zt-radio>\r\n        <br><br>\r\n        <zt-radio\r\n          [checked]=\"selectedValue === 'option3'\"\r\n          [value]=\"'option3'\"\r\n          [name]=\"'demo-group'\"\r\n          [variant]=\"variant\"\r\n          [size]=\"size\"\r\n          [theme]=\"theme\"\r\n          [disabled]=\"disabled\"\r\n          [showLabel]=\"showLabel\"\r\n          label=\"Option 3\"\r\n          (radioChange)=\"selectedValue = $event\">\r\n        </zt-radio>\r\n        <p style=\"margin-top: 10px;\">Selected: {{ selectedValue }}</p>\r\n      </div>\r\n    `,\r\n  }),\r\n}"
+            },
+            {
+                "name": "RangeSelection",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/zt-ui-components/src/stories/datetime-picker.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    isRangeMode: true,\r\n    startDate: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000), // 3 days ago\r\n    endDate: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000), // 3 days from now\r\n    label: 'Select date range',\r\n    showLabel: true,\r\n    showTime: false,\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <div>\r\n        <zt-datetime-picker\r\n          [isRangeMode]=\"isRangeMode\"\r\n          [startDate]=\"startDate\"\r\n          [endDate]=\"endDate\"\r\n          [disabled]=\"disabled\"\r\n          [variant]=\"variant\"\r\n          [size]=\"size\"\r\n          [theme]=\"theme\"\r\n          [label]=\"label\"\r\n          [showLabel]=\"showLabel\"\r\n          [showTime]=\"showTime\"\r\n          [minDate]=\"minDate\"\r\n          [maxDate]=\"maxDate\"\r\n          [dateFormat]=\"dateFormat\"\r\n          [locale]=\"locale\"\r\n          (rangeChange)=\"onRangeChange($event)\">\r\n        </zt-datetime-picker>\r\n        <p style=\"margin-top: 10px;\">Range: {{ startDate ? startDate.toLocaleDateString() : 'None' }} - {{ endDate ? endDate.toLocaleDateString() : 'None' }}</p>\r\n      </div>\r\n    `,\r\n  }),\r\n}"
             },
             {
                 "name": "Required_Field",
@@ -2136,6 +2156,26 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    theme: 'material',\r\n    label: 'Material theme picker',\r\n    showLabel: true,\r\n  },\r\n}"
+                },
+                {
+                    "name": "MultiLanguage",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/datetime-picker.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    locale: 'es',\r\n    label: 'Seleccionar fecha y hora',\r\n    showLabel: true,\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <div>\r\n        <div style=\"margin-bottom: 10px;\">\r\n          <label>Language: </label>\r\n          <select [(ngModel)]=\"locale\" (ngModelChange)=\"updateLocale($event)\">\r\n            <option value=\"en\">English</option>\r\n            <option value=\"es\">Español</option>\r\n            <option value=\"fr\">Français</option>\r\n          </select>\r\n        </div>\r\n        <zt-datetime-picker\r\n          [selectedDate]=\"selectedDate\"\r\n          [disabled]=\"disabled\"\r\n          [variant]=\"variant\"\r\n          [size]=\"size\"\r\n          [theme]=\"theme\"\r\n          [label]=\"label\"\r\n          [showLabel]=\"showLabel\"\r\n          [showTime]=\"showTime\"\r\n          [minDate]=\"minDate\"\r\n          [maxDate]=\"maxDate\"\r\n          [dateFormat]=\"dateFormat\"\r\n          [locale]=\"locale\"\r\n          (dateChange)=\"selectedDate = $event\">\r\n        </zt-datetime-picker>\r\n        <p style=\"margin-top: 10px;\">Selected: {{ selectedDate ? selectedDate.toLocaleString() : 'None' }}</p>\r\n      </div>\r\n    `,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "RangeSelection",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/zt-ui-components/src/stories/datetime-picker.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    isRangeMode: true,\r\n    startDate: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000), // 3 days ago\r\n    endDate: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000), // 3 days from now\r\n    label: 'Select date range',\r\n    showLabel: true,\r\n    showTime: false,\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <div>\r\n        <zt-datetime-picker\r\n          [isRangeMode]=\"isRangeMode\"\r\n          [startDate]=\"startDate\"\r\n          [endDate]=\"endDate\"\r\n          [disabled]=\"disabled\"\r\n          [variant]=\"variant\"\r\n          [size]=\"size\"\r\n          [theme]=\"theme\"\r\n          [label]=\"label\"\r\n          [showLabel]=\"showLabel\"\r\n          [showTime]=\"showTime\"\r\n          [minDate]=\"minDate\"\r\n          [maxDate]=\"maxDate\"\r\n          [dateFormat]=\"dateFormat\"\r\n          [locale]=\"locale\"\r\n          (rangeChange)=\"onRangeChange($event)\">\r\n        </zt-datetime-picker>\r\n        <p style=\"margin-top: 10px;\">Range: {{ startDate ? startDate.toLocaleDateString() : 'None' }} - {{ endDate ? endDate.toLocaleDateString() : 'None' }}</p>\r\n      </div>\r\n    `,\r\n  }),\r\n}"
                 },
                 {
                     "name": "Rounded",
@@ -3647,6 +3687,26 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "MaterialTheme",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/datetime-picker.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "MultiLanguage",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/zt-ui-components/src/stories/datetime-picker.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "RangeSelection",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

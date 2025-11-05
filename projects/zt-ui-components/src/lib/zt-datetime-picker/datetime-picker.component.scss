@@ -468,25 +468,22 @@
     }
   }
 
-  .zt-datetime-picker-range-calendars {
+  .zt-datetime-picker-range-inputs {
     display: flex;
     gap: 16px;
-    min-width: 520px;
+    align-items: flex-start;
 
-    .zt-datetime-picker-calendar-section {
+    .zt-datetime-picker-range-section {
       flex: 1;
+      position: relative;
 
-      .zt-datetime-picker-calendar-label {
-        text-align: center;
+      .zt-datetime-picker-range-label {
+        display: block;
+        font-size: 12px;
         font-weight: 600;
         color: var(--zt-datetime-picker-text);
-        margin-bottom: 8px;
-        font-size: 14px;
+        margin-bottom: 4px;
       }
-    }
-
-    .zt-datetime-picker-calendar-section:last-child {
-      max-width: calc(50% - 8px);
     }
   }
 

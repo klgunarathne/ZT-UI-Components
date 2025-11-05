@@ -102,40 +102,30 @@ export const Disabled: Story = {
   },
 };
 
-export const WithDateRange: Story = {
-  args: {
-    ...Default.args,
-    minDate: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000), // 30 days ago
-    maxDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days from now
-    label: 'Select within range',
-    showLabel: true,
-  },
-};
-
 export const RangeSelection: Story = {
   args: {
     ...Default.args,
     isRangeMode: true,
     startDate: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000), // 3 days ago
     endDate: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000), // 3 days from now
-    label: 'Select date range',
-    showLabel: true,
-    showTime: false,
+    startLabel: 'Start Date',
+    endLabel: 'End Date',
+    showTime: true,
   },
   render: (args) => ({
-    props: { ...args },
+    props: { ...args, startDate: args.startDate, endDate: args.endDate },
     template: `
       <div>
         <zt-datetime-picker
           [isRangeMode]="isRangeMode"
-          [startDate]="startDate"
-          [endDate]="endDate"
+          [(startDate)]="startDate"
+          [(endDate)]="endDate"
+          [startLabel]="startLabel"
+          [endLabel]="endLabel"
           [disabled]="disabled"
           [variant]="variant"
           [size]="size"
           [theme]="theme"
-          [label]="label"
-          [showLabel]="showLabel"
           [showTime]="showTime"
           [minDate]="minDate"
           [maxDate]="maxDate"
@@ -143,47 +133,7 @@ export const RangeSelection: Story = {
           [locale]="locale"
           (rangeChange)="onRangeChange($event)">
         </zt-datetime-picker>
-        <p style="margin-top: 10px;">Range: {{ startDate ? startDate.toLocaleDateString() : 'None' }} - {{ endDate ? endDate.toLocaleDateString() : 'None' }}</p>
-      </div>
-    `,
-  }),
-};
-
-export const MultiLanguage: Story = {
-  args: {
-    ...Default.args,
-    locale: 'es',
-    label: 'Seleccionar fecha y hora',
-    showLabel: true,
-  },
-  render: (args) => ({
-    props: { ...args },
-    template: `
-      <div>
-        <div style="margin-bottom: 10px;">
-          <label>Language: </label>
-          <select [(ngModel)]="locale" (ngModelChange)="updateLocale($event)">
-            <option value="en">English</option>
-            <option value="es">Español</option>
-            <option value="fr">Français</option>
-          </select>
-        </div>
-        <zt-datetime-picker
-          [selectedDate]="selectedDate"
-          [disabled]="disabled"
-          [variant]="variant"
-          [size]="size"
-          [theme]="theme"
-          [label]="label"
-          [showLabel]="showLabel"
-          [showTime]="showTime"
-          [minDate]="minDate"
-          [maxDate]="maxDate"
-          [dateFormat]="dateFormat"
-          [locale]="locale"
-          (dateChange)="selectedDate = $event">
-        </zt-datetime-picker>
-        <p style="margin-top: 10px;">Selected: {{ selectedDate ? selectedDate.toLocaleString() : 'None' }}</p>
+        <p style="margin-top: 10px;">Range: {{ startDate ? startDate.toLocaleString() : 'None' }} - {{ endDate ? endDate.toLocaleString() : 'None' }}</p>
       </div>
     `,
   }),

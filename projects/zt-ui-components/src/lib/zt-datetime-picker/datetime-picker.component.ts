@@ -81,6 +81,18 @@ export class DatetimePickerComponent implements OnInit, OnDestroy {
   @Input() endDate: Date | null = null;
 
   /**
+   * Label for the start date input in range mode.
+   * @default 'Start Date'
+   */
+  @Input() startLabel = 'Start Date';
+
+  /**
+   * Label for the end date input in range mode.
+   * @default 'End Date'
+   */
+  @Input() endLabel = 'End Date';
+
+  /**
    * Whether the datetime picker is disabled.
    * When disabled, the picker cannot be interacted with and appears visually muted.
    * @default false
@@ -182,6 +194,18 @@ export class DatetimePickerComponent implements OnInit, OnDestroy {
   @Output() rangeChange = new EventEmitter<{ startDate: Date | null; endDate: Date | null }>();
 
   /**
+   * Emitted when the start date changes.
+   * Supports two-way data binding with [(startDate)].
+   */
+  @Output() startDateChange = new EventEmitter<Date | null>();
+
+  /**
+   * Emitted when the end date changes.
+   * Supports two-way data binding with [(endDate)].
+   */
+  @Output() endDateChange = new EventEmitter<Date | null>();
+
+  /**
    * Emitted when the datetime picker receives focus.
    * Useful for tracking user interaction and implementing custom focus behaviors.
    */
@@ -197,6 +221,16 @@ export class DatetimePickerComponent implements OnInit, OnDestroy {
    * Whether the calendar dropdown is currently open.
    */
   isOpen = false;
+
+  /**
+   * Whether the start calendar dropdown is currently open in range mode.
+   */
+  isStartOpen = false;
+
+  /**
+   * Whether the end calendar dropdown is currently open in range mode.
+   */
+  isEndOpen = false;
 
   /**
    * The current view date for calendar navigation.
@@ -224,6 +258,22 @@ export class DatetimePickerComponent implements OnInit, OnDestroy {
   get formattedDate(): string {
     if (!this.selectedDate) return '';
     return this.formatDate(this.selectedDate);
+  }
+
+  /**
+   * The start date formatted for display in range mode.
+   */
+  get formattedStartDate(): string {
+    if (!this.startDate) return '';
+    return this.formatDate(this.startDate);
+  }
+
+  /**
+   * The end date formatted for display in range mode.
+   */
+  get formattedEndDate(): string {
+    if (!this.endDate) return '';
+    return this.formatDate(this.endDate);
   }
 
   /**
@@ -306,6 +356,24 @@ export class DatetimePickerComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Toggles the start calendar dropdown in range mode
+   */
+  toggleStartCalendar(): void {
+    if (this.disabled) return;
+    this.isStartOpen = !this.isStartOpen;
+    this.isEndOpen = false; // Close end calendar if open
+  }
+
+  /**
+   * Toggles the end calendar dropdown in range mode
+   */
+  toggleEndCalendar(): void {
+    if (this.disabled) return;
+    this.isEndOpen = !this.isEndOpen;
+    this.isStartOpen = false; // Close start calendar if open
+  }
+
+  /**
    * Opens the calendar dropdown
    */
   openCalendar(): void {
@@ -318,6 +386,20 @@ export class DatetimePickerComponent implements OnInit, OnDestroy {
    */
   closeCalendar(): void {
     this.isOpen = false;
+  }
+
+  /**
+   * Closes the start calendar dropdown
+   */
+  closeStartCalendar(): void {
+    this.isStartOpen = false;
+  }
+
+  /**
+   * Closes the end calendar dropdown
+   */
+  closeEndCalendar(): void {
+    this.isEndOpen = false;
   }
 
   /**
@@ -337,6 +419,7 @@ export class DatetimePickerComponent implements OnInit, OnDestroy {
   selectStartDate(date: Date): void {
     this.startDate = new Date(date);
     this.currentViewDateStart = new Date(date);
+    this.startDateChange.emit(this.startDate);
     this.rangeChange.emit({ startDate: this.startDate, endDate: this.endDate });
   }
 
@@ -346,6 +429,7 @@ export class DatetimePickerComponent implements OnInit, OnDestroy {
   selectEndDate(date: Date): void {
     this.endDate = new Date(date);
     this.currentViewDateEnd = new Date(date);
+    this.endDateChange.emit(this.endDate);
     this.rangeChange.emit({ startDate: this.startDate, endDate: this.endDate });
   }
 
@@ -408,6 +492,30 @@ export class DatetimePickerComponent implements OnInit, OnDestroy {
     }
     this.selectedDate.setHours(hours, minutes);
     this.dateChange.emit(this.selectedDate);
+  }
+
+  /**
+   * Updates the start time in range mode
+   */
+  selectStartTime(hours: number, minutes: number): void {
+    if (!this.startDate) {
+      this.startDate = new Date();
+    }
+    this.startDate.setHours(hours, minutes);
+    this.startDateChange.emit(this.startDate);
+    this.rangeChange.emit({ startDate: this.startDate, endDate: this.endDate });
+  }
+
+  /**
+   * Updates the end time in range mode
+   */
+  selectEndTime(hours: number, minutes: number): void {
+    if (!this.endDate) {
+      this.endDate = new Date();
+    }
+    this.endDate.setHours(hours, minutes);
+    this.endDateChange.emit(this.endDate);
+    this.rangeChange.emit({ startDate: this.startDate, endDate: this.endDate });
   }
 
   /**
@@ -664,6 +772,12 @@ export class DatetimePickerComponent implements OnInit, OnDestroy {
     if (this.isOpen && !this.elementRef.nativeElement.contains(event.target as Node)) {
       this.closeCalendar();
     }
+    if (this.isStartOpen && !this.elementRef.nativeElement.contains(event.target as Node)) {
+      this.closeStartCalendar();
+    }
+    if (this.isEndOpen && !this.elementRef.nativeElement.contains(event.target as Node)) {
+      this.closeEndCalendar();
+    }
   }
 
   /**
@@ -809,6 +923,28 @@ export class DatetimePickerComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Adjusts start hour by the specified amount
+   */
+  adjustStartHour(delta: number): void {
+    if (!this.startDate) {
+      this.startDate = new Date();
+    }
+    const newHour = (this.startDate.getHours() + delta + 24) % 24;
+    this.selectStartTime(newHour, this.startDate.getMinutes());
+  }
+
+  /**
+   * Adjusts end hour by the specified amount
+   */
+  adjustEndHour(delta: number): void {
+    if (!this.endDate) {
+      this.endDate = new Date();
+    }
+    const newHour = (this.endDate.getHours() + delta + 24) % 24;
+    this.selectEndTime(newHour, this.endDate.getMinutes());
+  }
+
+  /**
    * Adjusts minute by the specified amount
    */
   adjustMinute(delta: number): void {
@@ -817,6 +953,28 @@ export class DatetimePickerComponent implements OnInit, OnDestroy {
     }
     const newMinute = (this.selectedDate.getMinutes() + delta + 60) % 60;
     this.selectTime(this.selectedDate.getHours(), newMinute);
+  }
+
+  /**
+   * Adjusts start minute by the specified amount
+   */
+  adjustStartMinute(delta: number): void {
+    if (!this.startDate) {
+      this.startDate = new Date();
+    }
+    const newMinute = (this.startDate.getMinutes() + delta + 60) % 60;
+    this.selectStartTime(this.startDate.getHours(), newMinute);
+  }
+
+  /**
+   * Adjusts end minute by the specified amount
+   */
+  adjustEndMinute(delta: number): void {
+    if (!this.endDate) {
+      this.endDate = new Date();
+    }
+    const newMinute = (this.endDate.getMinutes() + delta + 60) % 60;
+    this.selectEndTime(this.endDate.getHours(), newMinute);
   }
 
   /**
@@ -829,6 +987,24 @@ export class DatetimePickerComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Handles start hour input change
+   */
+  onStartHourInput(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    const hour = Math.max(0, Math.min(23, +target.value || 0));
+    this.selectStartTime(hour, this.startDate?.getMinutes() || 0);
+  }
+
+  /**
+   * Handles end hour input change
+   */
+  onEndHourInput(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    const hour = Math.max(0, Math.min(23, +target.value || 0));
+    this.selectEndTime(hour, this.endDate?.getMinutes() || 0);
+  }
+
+  /**
    * Handles minute input change
    */
   onMinuteInput(event: Event): void {
@@ -838,10 +1014,42 @@ export class DatetimePickerComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Handles start minute input change
+   */
+  onStartMinuteInput(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    const minute = Math.max(0, Math.min(59, +target.value || 0));
+    this.selectStartTime(this.startDate?.getHours() || 0, minute);
+  }
+
+  /**
+   * Handles end minute input change
+   */
+  onEndMinuteInput(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    const minute = Math.max(0, Math.min(59, +target.value || 0));
+    this.selectEndTime(this.endDate?.getHours() || 0, minute);
+  }
+
+  /**
    * Sets time to a specific hour and minute
    */
   setTime(hour: number, minute: number): void {
     this.selectTime(hour, minute);
+  }
+
+  /**
+   * Sets start time to a specific hour and minute
+   */
+  setStartTime(hour: number, minute: number): void {
+    this.selectStartTime(hour, minute);
+  }
+
+  /**
+   * Sets end time to a specific hour and minute
+   */
+  setEndTime(hour: number, minute: number): void {
+    this.selectEndTime(hour, minute);
   }
 
   /**
