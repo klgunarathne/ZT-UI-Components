@@ -1,0 +1,606 @@
+// Light theme (default)
+:host(.theme-light) {
+  --zt-datetime-picker-border-color: #d2d2d2;
+  --zt-datetime-picker-bg: #ffffff;
+  --zt-datetime-picker-text: #212121;
+  --zt-datetime-picker-border-focus: #007bff;
+  --zt-datetime-picker-hover-bg: #f8f9fa;
+  --zt-datetime-picker-selected-bg: #007bff;
+  --zt-datetime-picker-selected-text: #ffffff;
+  --zt-datetime-picker-today-bg: #e3f2fd;
+  --zt-datetime-picker-disabled-bg: #f5f5f5;
+  --zt-datetime-picker-disabled-text: #9e9e9e;
+  --zt-datetime-picker-dropdown-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --zt-datetime-picker-border-radius: 4px;
+}
+
+// Dark theme
+:host(.theme-dark) {
+  --zt-datetime-picker-border-color: #495057;
+  --zt-datetime-picker-bg: #2d3748;
+  --zt-datetime-picker-text: #ffffff;
+  --zt-datetime-picker-border-focus: #4dabf7;
+  --zt-datetime-picker-hover-bg: #4a5568;
+  --zt-datetime-picker-selected-bg: #4dabf7;
+  --zt-datetime-picker-selected-text: #ffffff;
+  --zt-datetime-picker-today-bg: #1e3a5f;
+  --zt-datetime-picker-disabled-bg: #495057;
+  --zt-datetime-picker-disabled-text: #718096;
+  --zt-datetime-picker-dropdown-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --zt-datetime-picker-border-radius: 4px;
+}
+
+// Bootstrap theme
+:host(.theme-bootstrap) {
+  --zt-datetime-picker-border-color: #d2d2d2;
+  --zt-datetime-picker-bg: #ffffff;
+  --zt-datetime-picker-text: #212121;
+  --zt-datetime-picker-border-focus: #007bff;
+  --zt-datetime-picker-hover-bg: #f8f9fa;
+  --zt-datetime-picker-selected-bg: #007bff;
+  --zt-datetime-picker-selected-text: #ffffff;
+  --zt-datetime-picker-today-bg: #e3f2fd;
+  --zt-datetime-picker-disabled-bg: #e9ecef;
+  --zt-datetime-picker-disabled-text: #6c757d;
+  --zt-datetime-picker-dropdown-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --zt-datetime-picker-border-radius: 4px;
+}
+
+// Material theme
+:host(.theme-material) {
+  --zt-datetime-picker-border-color: #e0e0e0;
+  --zt-datetime-picker-bg: #ffffff;
+  --zt-datetime-picker-text: #212121;
+  --zt-datetime-picker-border-focus: #6200ee;
+  --zt-datetime-picker-hover-bg: #f5f5f5;
+  --zt-datetime-picker-selected-bg: #6200ee;
+  --zt-datetime-picker-selected-text: #ffffff;
+  --zt-datetime-picker-today-bg: #f3e5f5;
+  --zt-datetime-picker-disabled-bg: #fafafa;
+  --zt-datetime-picker-disabled-text: #bdbdbd;
+  --zt-datetime-picker-dropdown-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  --zt-datetime-picker-border-radius: 4px;
+}
+
+:host {
+  display: inline-block;
+  position: relative;
+  font-family: inherit;
+
+  .zt-datetime-picker-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+
+  .zt-datetime-picker-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .zt-datetime-picker-input {
+      width: 100%;
+      padding: 8px 40px 8px 12px;
+      border: 1px solid var(--zt-datetime-picker-border-color);
+      border-radius: var(--zt-datetime-picker-border-radius);
+      background-color: var(--zt-datetime-picker-bg);
+      color: var(--zt-datetime-picker-text);
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:focus {
+        outline: none;
+        border-color: var(--zt-datetime-picker-border-focus);
+        box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+      }
+
+      &:disabled {
+        background-color: var(--zt-datetime-picker-disabled-bg);
+        color: var(--zt-datetime-picker-disabled-text);
+        cursor: not-allowed;
+      }
+
+      &::placeholder {
+        color: var(--zt-datetime-picker-disabled-text);
+      }
+    }
+
+    .zt-datetime-picker-icon {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: var(--zt-datetime-picker-text);
+      padding: 4px;
+      border-radius: 2px;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: var(--zt-datetime-picker-hover-bg);
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  .zt-datetime-picker-label {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--zt-datetime-picker-text);
+  }
+
+  .zt-datetime-picker-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: var(--zt-datetime-picker-bg);
+    border: 1px solid var(--zt-datetime-picker-border-color);
+    border-radius: var(--zt-datetime-picker-border-radius);
+    box-shadow: var(--zt-datetime-picker-dropdown-shadow);
+    margin-top: 2px;
+    width: 100%;
+    min-width: 320px;
+    overflow: visible;
+  }
+
+  .zt-datetime-picker-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 6px;
+    border-bottom: 1px solid var(--zt-datetime-picker-border-color);
+    gap: 2px;
+
+    .zt-datetime-picker-nav-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 4px;
+      color: var(--zt-datetime-picker-text);
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      position: relative;
+      z-index: 1;
+      flex-shrink: 0;
+
+      &:hover {
+        background-color: var(--zt-datetime-picker-hover-bg);
+        transform: scale(1.05);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    .zt-datetime-picker-month-year {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-weight: 600;
+      color: var(--zt-datetime-picker-text);
+      flex: 1;
+      min-width: 0;
+
+      .zt-datetime-picker-month-select,
+      .zt-datetime-picker-year-select {
+        background: var(--zt-datetime-picker-bg);
+        border: 1px solid var(--zt-datetime-picker-border-color);
+        border-radius: var(--zt-datetime-picker-border-radius);
+        color: var(--zt-datetime-picker-text);
+        padding: 4px 6px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        text-align: center;
+
+        &:focus {
+          outline: none;
+          border-color: var(--zt-datetime-picker-border-focus);
+          box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        }
+
+        &:hover {
+          border-color: var(--zt-datetime-picker-border-focus);
+        }
+      }
+
+      .zt-datetime-picker-month-select {
+        min-width: 80px;
+      }
+
+      .zt-datetime-picker-year-select {
+        min-width: 60px;
+      }
+    }
+  }
+
+  .zt-datetime-picker-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 6px 12px;
+    border-bottom: 1px solid var(--zt-datetime-picker-border-color);
+
+    .zt-datetime-picker-weekday {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--zt-datetime-picker-disabled-text);
+      padding: 2px 0;
+    }
+  }
+
+  .zt-datetime-picker-calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 6px;
+
+    .zt-datetime-picker-day {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      border-radius: 50%;
+      font-size: 13px;
+      color: var(--zt-datetime-picker-text);
+      transition: all 0.2s ease;
+      position: relative;
+      z-index: 1;
+
+      &:hover:not(.disabled) {
+        background-color: var(--zt-datetime-picker-hover-bg);
+      }
+
+      &.today {
+        background-color: var(--zt-datetime-picker-today-bg);
+        font-weight: 600;
+      }
+
+      &.selected {
+        background-color: var(--zt-datetime-picker-selected-bg);
+        color: var(--zt-datetime-picker-selected-text);
+      }
+
+      &.range-start,
+      &.range-end {
+        background-color: var(--zt-datetime-picker-selected-bg);
+        color: var(--zt-datetime-picker-selected-text);
+        position: relative;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background-color: var(--zt-datetime-picker-selected-bg);
+          border-radius: 50%;
+          z-index: -1;
+        }
+      }
+
+      &.in-range {
+        background-color: rgba(0, 123, 255, 0.1);
+        color: var(--zt-datetime-picker-text);
+
+        &:hover:not(.disabled) {
+          background-color: rgba(0, 123, 255, 0.2);
+        }
+      }
+
+      &.current-month:not(.selected):not(.today) {
+        color: var(--zt-datetime-picker-text);
+      }
+
+      &:not(.current-month) {
+        color: var(--zt-datetime-picker-disabled-text);
+      }
+
+      &.disabled {
+        color: var(--zt-datetime-picker-disabled-text);
+        cursor: not-allowed;
+
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+
+  .zt-datetime-picker-time {
+    border-top: 1px solid var(--zt-datetime-picker-border-color);
+    padding: 12px;
+
+    .zt-datetime-picker-time-header {
+      font-weight: 600;
+      color: var(--zt-datetime-picker-text);
+      margin-bottom: 8px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .zt-datetime-picker-time-inputs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+
+    .zt-datetime-picker-time-group {
+      flex: 1;
+
+      .zt-datetime-picker-time-label {
+        display: block;
+        font-size: 12px;
+        color: var(--zt-datetime-picker-text);
+        margin-bottom: 8px;
+        text-align: center;
+        font-weight: 500;
+      }
+
+      .zt-datetime-picker-time-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        position: relative;
+
+        .zt-datetime-picker-time-btn {
+          background: var(--zt-datetime-picker-bg);
+          border: 1px solid var(--zt-datetime-picker-border-color);
+          border-radius: var(--zt-datetime-picker-border-radius);
+          color: var(--zt-datetime-picker-text);
+          cursor: pointer;
+          padding: 4px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 24px;
+          min-height: 24px;
+          transition: all 0.2s ease;
+          position: relative;
+          z-index: 1;
+
+          &:hover {
+            background-color: var(--zt-datetime-picker-hover-bg);
+            border-color: var(--zt-datetime-picker-border-focus);
+            transform: scale(1.05);
+          }
+
+          &:active {
+            transform: scale(0.95);
+          }
+
+          svg {
+            width: 12px;
+            height: 12px;
+          }
+        }
+
+        .zt-datetime-picker-time-input {
+          flex: 1;
+          text-align: center;
+          padding: 4px 6px;
+          border: 1px solid var(--zt-datetime-picker-border-color);
+          border-radius: var(--zt-datetime-picker-border-radius);
+          background-color: var(--zt-datetime-picker-bg);
+          color: var(--zt-datetime-picker-text);
+          font-size: 13px;
+          font-weight: 600;
+          min-width: 40px;
+          max-width: 60px;
+
+          &:focus {
+            outline: none;
+            border-color: var(--zt-datetime-picker-border-focus);
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+          }
+
+          &::-webkit-outer-spin-button,
+          &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+
+          &[type=number] {
+            -moz-appearance: textfield;
+          }
+        }
+      }
+    }
+
+    .zt-datetime-picker-time-presets {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      justify-items: center;
+
+      .zt-datetime-picker-preset-btn {
+        padding: 6px 12px;
+        border: 1px solid var(--zt-datetime-picker-border-color);
+        border-radius: var(--zt-datetime-picker-border-radius);
+        background-color: var(--zt-datetime-picker-bg);
+        color: var(--zt-datetime-picker-text);
+        cursor: pointer;
+        font-size: 11px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        min-width: 60px;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+
+        &:hover {
+          background-color: var(--zt-datetime-picker-hover-bg);
+          border-color: var(--zt-datetime-picker-border-focus);
+          transform: translateY(-1px);
+        }
+
+        &:active {
+          background-color: var(--zt-datetime-picker-selected-bg);
+          color: var(--zt-datetime-picker-selected-text);
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+
+  .zt-datetime-picker-range-calendars {
+    display: flex;
+    gap: 16px;
+    min-width: 520px;
+
+    .zt-datetime-picker-calendar-section {
+      flex: 1;
+
+      .zt-datetime-picker-calendar-label {
+        text-align: center;
+        font-weight: 600;
+        color: var(--zt-datetime-picker-text);
+        margin-bottom: 8px;
+        font-size: 14px;
+      }
+    }
+
+    .zt-datetime-picker-calendar-section:last-child {
+      max-width: calc(50% - 8px);
+    }
+  }
+
+  .zt-datetime-picker-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    padding: 8px 12px;
+    border-top: 1px solid var(--zt-datetime-picker-border-color);
+    position: relative;
+
+    .zt-datetime-picker-btn {
+      padding: 4px 8px;
+      border: 1px solid var(--zt-datetime-picker-border-color);
+      border-radius: var(--zt-datetime-picker-border-radius);
+      background-color: var(--zt-datetime-picker-bg);
+      color: var(--zt-datetime-picker-text);
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.2s ease;
+      position: relative;
+      z-index: 1;
+
+      &:hover {
+        background-color: var(--zt-datetime-picker-hover-bg);
+      }
+
+      &.zt-datetime-picker-btn-primary {
+        background-color: var(--zt-datetime-picker-selected-bg);
+        color: var(--zt-datetime-picker-selected-text);
+        border-color: var(--zt-datetime-picker-selected-bg);
+
+        &:hover {
+          opacity: 0.9;
+        }
+      }
+    }
+  }
+
+  // Size variants
+  &.zt-sm {
+    .zt-datetime-picker-input {
+      font-size: 12px;
+      padding: 6px 32px 6px 10px;
+    }
+
+    .zt-datetime-picker-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &.zt-md {
+    .zt-datetime-picker-input {
+      font-size: 14px;
+      padding: 8px 40px 8px 12px;
+    }
+
+    .zt-datetime-picker-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &.zt-lg {
+    .zt-datetime-picker-input {
+      font-size: 16px;
+      padding: 10px 44px 10px 14px;
+    }
+
+    .zt-datetime-picker-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  // Variant styles
+  &.zt-datetime-picker-rounded {
+    .zt-datetime-picker-input {
+      border-radius: 20px;
+    }
+
+    .zt-datetime-picker-dropdown {
+      border-radius: 8px;
+    }
+  }
+
+  &.zt-datetime-picker-square {
+    .zt-datetime-picker-input {
+      border-radius: 0;
+    }
+
+    .zt-datetime-picker-dropdown {
+      border-radius: 0;
+    }
+  }
+
+  // Disabled state
+  &.zt-datetime-picker-disabled {
+    .zt-datetime-picker-input-container {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .zt-datetime-picker-icon {
+      cursor: not-allowed;
+    }
+  }
+
+  // Open state
+  &.zt-datetime-picker-open {
+    .zt-datetime-picker-input {
+      border-color: var(--zt-datetime-picker-border-focus);
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    }
+  }
+}

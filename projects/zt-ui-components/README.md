@@ -12,6 +12,7 @@ ZT-UI Components provides a rich set of components organized into the following 
 - **`<zt-select>`** - Dropdown select with data binding, search capabilities, and customizable styles
 - **`<zt-checkbox>`** - Customizable checkbox with various styles, themes, and accessibility features
 - **`<zt-radio>`** - Radio button component for single selection with customizable styles and themes
+- **`<zt-datetime-picker>`** - Date and time picker with calendar interface, time selection, and customizable options
 
 ### Interactive Components
 - **`<zt-button>`** - Versatile button with variants, sizes, states, and interaction handling
@@ -360,6 +361,25 @@ export class MyComponent {
 **Events:**
 - `(radioChange)` - Emitted when radio button state changes
 
+### Datetime Picker Component
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `selectedDate` | `Date \| null` | `null` | Currently selected date and time |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `label` | `string` | `''` | Label text |
+| `size` | `'zt-sm' \| 'zt-md' \| 'zt-lg'` | `'zt-md'` | Component size |
+| `variant` | `'default' \| 'rounded' \| 'square'` | `'default'` | Visual style |
+| `theme` | `'light' \| 'dark' \| 'bootstrap' \| 'material'` | `'light'` | Theme variant |
+| `showLabel` | `boolean` | `false` | Show label text visually |
+| `showTime` | `boolean` | `true` | Show time selection |
+| `minDate` | `Date \| null` | `null` | Minimum selectable date |
+| `maxDate` | `Date \| null` | `null` | Maximum selectable date |
+| `dateFormat` | `string` | `'medium'` | Date format string |
+
+**Events:**
+- `(dateChange)` - Emitted when selected date changes
+
 ### Toggle Component
 
 | Property | Type | Default | Description |
@@ -453,6 +473,58 @@ export class SettingsComponent {
 
   onRadioChange(value: string) {
     console.log('Radio changed:', value);
+  }
+}
+```
+
+#### Datetime Picker Component Usage Examples
+
+```html
+<!-- Basic datetime picker -->
+<zt-datetime-picker [(selectedDate)]="appointmentDate" label="Appointment Date & Time"></zt-datetime-picker>
+
+<!-- Date only picker -->
+<zt-datetime-picker
+  [(selectedDate)]="birthDate"
+  [showTime]="false"
+  label="Birth Date"
+  [showLabel]="true">
+</zt-datetime-picker>
+
+<!-- With date range constraints -->
+<zt-datetime-picker
+  [(selectedDate)]="meetingDate"
+  [minDate]="minDate"
+  [maxDate]="maxDate"
+  label="Meeting Date & Time"
+  [showLabel]="true"
+  (dateChange)="onDateChange($event)">
+</zt-datetime-picker>
+
+<!-- Custom styled picker -->
+<zt-datetime-picker
+  [(selectedDate)]="eventDate"
+  variant="rounded"
+  size="zt-lg"
+  theme="dark"
+  label="Event Date & Time"
+  [showLabel]="true">
+</zt-datetime-picker>
+```
+
+```typescript
+export class ScheduleComponent {
+  appointmentDate: Date | null = null;
+  birthDate: Date | null = null;
+  meetingDate: Date | null = null;
+  eventDate: Date | null = new Date();
+
+  minDate = new Date(); // Today
+  maxDate = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000); // 90 days from now
+
+  onDateChange(selectedDate: Date | null) {
+    console.log('Selected date:', selectedDate);
+    // Handle date change logic
   }
 }
 ```

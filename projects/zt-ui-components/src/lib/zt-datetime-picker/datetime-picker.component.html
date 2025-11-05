@@ -1,0 +1,305 @@
+<!-- Main container for the datetime picker component with keyboard and focus event handlers -->
+<div class="zt-datetime-picker-container" (keydown)="onKeyDown($event)" (focus)="onFocus()" (blur)="onBlur()">
+  <!-- Input field container with trigger button -->
+  <div class="zt-datetime-picker-input-container">
+    <!-- Read-only input field displaying the formatted date/time -->
+    <input
+      #dateInput
+      type="text"
+      [value]="formattedDate"
+      [placeholder]="label || 'Select date and time'"
+      [disabled]="disabled"
+      [attr.aria-label]="label"
+      readonly
+      class="zt-datetime-picker-input"
+      (click)="toggleCalendar()"
+    />
+    <!-- Calendar icon button to toggle the dropdown -->
+    <div class="zt-datetime-picker-icon" (click)="toggleCalendar()">
+      <!-- SVG calendar icon -->
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M16 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M8 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M3 10H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Optional label text displayed below the input -->
+  @if (showLabel && label) {
+    <span class="zt-datetime-picker-label">{{ label }}</span>
+  }
+
+  <!-- Calendar dropdown -->
+  @if (isOpen) {
+    <div class="zt-datetime-picker-dropdown" role="dialog" aria-modal="true" aria-label="Date and Time Picker">
+      @if (isRangeMode) {
+        <!-- Range mode: Two calendars side by side -->
+        <div class="zt-datetime-picker-range-calendars">
+          <!-- Start Date Calendar -->
+          <div class="zt-datetime-picker-calendar-section">
+            <div class="zt-datetime-picker-calendar-label">{{ getLocalizedLabels().from }}</div>
+            <!-- Calendar header with enhanced navigation -->
+            <div class="zt-datetime-picker-header">
+              <button type="button" class="zt-datetime-picker-nav-btn zt-datetime-picker-nav-btn-left" (click)="previousMonthStart()" aria-label="Previous month">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <div class="zt-datetime-picker-month-year">
+                <select
+                  class="zt-datetime-picker-month-select"
+                  [value]="currentViewDateStart.getMonth()"
+                  (change)="onMonthChangeStart($event)">
+                  @for (month of getMonthNames(); track $index) {
+                    <option [value]="$index">{{ month }}</option>
+                  }
+                </select>
+                <select
+                  class="zt-datetime-picker-year-select"
+                  [value]="currentViewDateStart.getFullYear()"
+                  (change)="onYearChangeStart($event)">
+                  @for (year of getYearRange(); track year) {
+                    <option [value]="year">{{ year }}</option>
+                  }
+                </select>
+              </div>
+              <button type="button" class="zt-datetime-picker-nav-btn zt-datetime-picker-nav-btn-right" (click)="nextMonthStart()" aria-label="Next month">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Day headers -->
+            <div class="zt-datetime-picker-weekdays">
+              @for (day of getDayNames(); track day) {
+                <div class="zt-datetime-picker-weekday">{{ day }}</div>
+              }
+            </div>
+
+            <!-- Calendar grid -->
+            <div class="zt-datetime-picker-calendar">
+              @for (date of getDaysInMonthStart(); track date.getTime()) {
+                <button
+                  type="button"
+                  class="zt-datetime-picker-day"
+                  [class.today]="isToday(date)"
+                  [class.selected]="startDate && date.toDateString() === startDate.toDateString()"
+                  [class.current-month]="isCurrentMonthStart(date)"
+                  [class.disabled]="isDisabled(date)"
+                  [disabled]="isDisabled(date)"
+                  (click)="selectStartDate(date)"
+                  [attr.aria-label]="date | date:'fullDate'"
+                  [attr.aria-selected]="startDate && date.toDateString() === startDate.toDateString()">
+                  {{ date.getDate() }}
+                </button>
+              }
+            </div>
+          </div>
+
+          <!-- End Date Calendar -->
+          <div class="zt-datetime-picker-calendar-section">
+            <div class="zt-datetime-picker-calendar-label">{{ getLocalizedLabels().to }}</div>
+            <!-- Calendar header with enhanced navigation -->
+            <div class="zt-datetime-picker-header">
+              <button type="button" class="zt-datetime-picker-nav-btn zt-datetime-picker-nav-btn-left" (click)="previousMonthEnd()" aria-label="Previous month">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <div class="zt-datetime-picker-month-year">
+                <select
+                  class="zt-datetime-picker-month-select"
+                  [value]="currentViewDateEnd.getMonth()"
+                  (change)="onMonthChangeEnd($event)">
+                  @for (month of getMonthNames(); track $index) {
+                    <option [value]="$index">{{ month }}</option>
+                  }
+                </select>
+                <select
+                  class="zt-datetime-picker-year-select"
+                  [value]="currentViewDateEnd.getFullYear()"
+                  (change)="onYearChangeEnd($event)">
+                  @for (year of getYearRange(); track year) {
+                    <option [value]="year">{{ year }}</option>
+                  }
+                </select>
+              </div>
+              <button type="button" class="zt-datetime-picker-nav-btn zt-datetime-picker-nav-btn-right" (click)="nextMonthEnd()" aria-label="Next month">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Day headers -->
+            <div class="zt-datetime-picker-weekdays">
+              @for (day of getDayNames(); track day) {
+                <div class="zt-datetime-picker-weekday">{{ day }}</div>
+              }
+            </div>
+
+            <!-- Calendar grid -->
+            <div class="zt-datetime-picker-calendar">
+              @for (date of getDaysInMonthEnd(); track date.getTime()) {
+                <button
+                  type="button"
+                  class="zt-datetime-picker-day"
+                  [class.today]="isToday(date)"
+                  [class.selected]="endDate && date.toDateString() === endDate.toDateString()"
+                  [class.current-month]="isCurrentMonthEnd(date)"
+                  [class.disabled]="isDisabled(date)"
+                  [disabled]="isDisabled(date)"
+                  (click)="selectEndDate(date)"
+                  [attr.aria-label]="date | date:'fullDate'"
+                  [attr.aria-selected]="endDate && date.toDateString() === endDate.toDateString()">
+                  {{ date.getDate() }}
+                </button>
+              }
+            </div>
+          </div>
+        </div>
+      } @else {
+        <!-- Single date mode: One calendar -->
+        <!-- Calendar header with enhanced navigation -->
+        <div class="zt-datetime-picker-header">
+          <button type="button" class="zt-datetime-picker-nav-btn zt-datetime-picker-nav-btn-left" (click)="previousMonth()" aria-label="Previous month">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="zt-datetime-picker-month-year">
+            <select
+              class="zt-datetime-picker-month-select"
+              [value]="currentViewDate.getMonth()"
+              (change)="onMonthChange($event)">
+              @for (month of getMonthNames(); track $index) {
+                <option [value]="$index">{{ month }}</option>
+              }
+            </select>
+            <select
+              class="zt-datetime-picker-year-select"
+              [value]="currentViewDate.getFullYear()"
+              (change)="onYearChange($event)">
+              @for (year of getYearRange(); track year) {
+                <option [value]="year">{{ year }}</option>
+              }
+            </select>
+          </div>
+          <button type="button" class="zt-datetime-picker-nav-btn zt-datetime-picker-nav-btn-right" (click)="nextMonth()" aria-label="Next month">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Day headers -->
+        <div class="zt-datetime-picker-weekdays">
+          @for (day of getDayNames(); track day) {
+            <div class="zt-datetime-picker-weekday">{{ day }}</div>
+          }
+        </div>
+
+        <!-- Calendar grid -->
+        <div class="zt-datetime-picker-calendar">
+          @for (date of getDaysInMonth(); track date.getTime()) {
+            <button
+              type="button"
+              class="zt-datetime-picker-day"
+              [class.today]="isToday(date)"
+              [class.selected]="isSelected(date)"
+              [class.range-start]="isRangeMode && startDate && date.toDateString() === startDate.toDateString()"
+              [class.range-end]="isRangeMode && endDate && date.toDateString() === endDate.toDateString()"
+              [class.in-range]="isRangeMode && isDateInRange(date) && !isSelected(date)"
+              [class.current-month]="isCurrentMonth(date)"
+              [class.disabled]="isDisabled(date)"
+              [disabled]="isDisabled(date)"
+              (click)="selectDate(date)"
+              [attr.aria-label]="date | date:'fullDate'"
+              [attr.aria-selected]="isSelected(date)">
+              {{ date.getDate() }}
+            </button>
+          }
+        </div>
+      }
+
+      <!-- Time picker (if enabled) with enhanced UI -->
+      @if (showTime) {
+        <div class="zt-datetime-picker-time">
+          <div class="zt-datetime-picker-time-header">{{ getLocalizedLabels().selectTime }}</div>
+          <div class="zt-datetime-picker-time-inputs">
+            <div class="zt-datetime-picker-time-group">
+              <label for="hour-select" class="zt-datetime-picker-time-label">{{ getLocalizedLabels().hour }}</label>
+              <div class="zt-datetime-picker-time-controls">
+                <button type="button" class="zt-datetime-picker-time-btn" (click)="adjustHour(-1)" aria-label="Decrease hour">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <input
+                  type="number"
+                  id="hour-input"
+                  class="zt-datetime-picker-time-input"
+                  [value]="selectedDate?.getHours() || 0"
+                  (input)="onHourInput($event)"
+                  min="0"
+                  max="23"
+                  aria-label="Hour" />
+                <button type="button" class="zt-datetime-picker-time-btn" (click)="adjustHour(1)" aria-label="Increase hour">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="zt-datetime-picker-time-group">
+              <label for="minute-select" class="zt-datetime-picker-time-label">{{ getLocalizedLabels().minute }}</label>
+              <div class="zt-datetime-picker-time-controls">
+                <button type="button" class="zt-datetime-picker-time-btn" (click)="adjustMinute(-1)" aria-label="Decrease minute">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <input
+                  type="number"
+                  id="minute-input"
+                  class="zt-datetime-picker-time-input"
+                  [value]="selectedDate?.getMinutes() || 0"
+                  (input)="onMinuteInput($event)"
+                  min="0"
+                  max="59"
+                  aria-label="Minute" />
+                <button type="button" class="zt-datetime-picker-time-btn" (click)="adjustMinute(1)" aria-label="Increase minute">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Quick time presets -->
+          <div class="zt-datetime-picker-time-presets">
+            <button type="button" class="zt-datetime-picker-preset-btn" (click)="setTime(9, 0)">9:00 AM</button>
+            <button type="button" class="zt-datetime-picker-preset-btn" (click)="setTime(12, 0)">12:00 PM</button>
+            <button type="button" class="zt-datetime-picker-preset-btn" (click)="setTime(15, 0)">3:00 PM</button>
+            <button type="button" class="zt-datetime-picker-preset-btn" (click)="setTime(18, 0)">6:00 PM</button>
+          </div>
+        </div>
+      }
+
+      <!-- Action buttons -->
+      <div class="zt-datetime-picker-actions">
+        <button type="button" class="zt-datetime-picker-btn zt-datetime-picker-btn-secondary" (click)="closeCalendar()">
+          {{ getLocalizedLabels().cancel }}
+        </button>
+        <button type="button" class="zt-datetime-picker-btn zt-datetime-picker-btn-primary" (click)="closeCalendar()">
+          {{ getLocalizedLabels().ok }}
+        </button>
+      </div>
+    </div>
+  }
+</div>
