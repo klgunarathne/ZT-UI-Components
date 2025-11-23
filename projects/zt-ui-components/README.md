@@ -18,7 +18,6 @@ ZT-UI Components provides a rich set of components organized into the following 
 - **`<zt-button>`** - Versatile button with variants, sizes, states, and interaction handling
 - **`<zt-modal>`** - Flexible modal dialogs with theming, accessibility, and customizable content
 - **`<zt-paginator>`** - Pagination component for navigating data tables and lists
-- **`<zt-toast>`** - Toast notification system with multiple types, positions, and customizable options
 - **`<zt-toggle>`** - Toggle switch component with customizable styles, labels, and states
 
 ### Layout Components
@@ -46,12 +45,12 @@ For standalone Angular applications:
 
 ```typescript
 import { Component } from '@angular/core';
-import { ZtButton, ZtInput, ZtCard, ZtToast, ZTThemeService } from 'zt-ui-components';
+import { ZtButton, ZtInput, ZtCard, ZTThemeService } from 'zt-ui-components';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ZtButton, ZtInput, ZtCard, ZtToast],
+  imports: [ZtButton, ZtInput, ZtCard],
   template: `
     <zt-card cardStyle="elevated" size="md">
       <div class="card-header">
@@ -59,10 +58,9 @@ import { ZtButton, ZtInput, ZtCard, ZtToast, ZTThemeService } from 'zt-ui-compon
       </div>
       <div class="card-body">
         <zt-input placeholder="Enter your name" size="zt-md"></zt-input>
-        <zt-button variant="primary" size="zt-md" (click)="showToast()">Get Started</zt-button>
+        <zt-button variant="primary" size="zt-md" (click)="handleSubmit()">Get Started</zt-button>
       </div>
     </zt-card>
-    <zt-toast position="top-right"></zt-toast>
   `,
 })
 export class AppComponent {
@@ -70,8 +68,9 @@ export class AppComponent {
     this.themeService.setThemeByName('light');
   }
 
-  showToast() {
-    // Toast will be shown via service - see usage examples below
+  handleSubmit() {
+    // Handle form submission
+    console.log('Form submitted!');
   }
 }
 ```
@@ -80,10 +79,10 @@ For module-based applications:
 
 ```typescript
 // app.module.ts
-import { ZtButtonModule, ZtInputModule, ZtCardModule, ZtToastModule } from 'zt-ui-components';
+import { ZtButtonModule, ZtInputModule, ZtCardModule } from 'zt-ui-components';
 
 @NgModule({
-  imports: [ZtButtonModule, ZtInputModule, ZtCardModule, ZtToastModule],
+  imports: [ZtButtonModule, ZtInputModule, ZtCardModule],
 })
 export class AppModule {}
 ```
@@ -201,41 +200,6 @@ export class UserListComponent {
 </zt-modal>
 ```
 
-### Toast Notifications
-
-```html
-<!-- Basic toast component -->
-<zt-toast position="top-right"></zt-toast>
-```
-
-```typescript
-import { ZtToastService } from 'zt-ui-components';
-
-export class MyComponent {
-  constructor(private toastService: ZtToastService) {}
-
-  showSuccessToast() {
-    this.toastService.success('Operation completed successfully!', 'Success');
-  }
-
-  showErrorToast() {
-    this.toastService.error('An error occurred!', 'Error', {
-      duration: 5000,
-      dismissible: true,
-      showProgress: true
-    });
-  }
-
-  showInfoToast() {
-    this.toastService.info('Here is some information.', 'Info');
-  }
-
-  showWarningToast() {
-    this.toastService.warning('Please be cautious!', 'Warning');
-  }
-}
-```
-
 ## API Reference
 
 ### Button Component
@@ -322,12 +286,6 @@ export class MyComponent {
 - `(onClose)` - Emitted when modal closes
 - `(onOpen)` - Emitted when modal opens
 
-### Toast Component
-
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `position` | `'top-right' \| 'top-left' \| 'bottom-right' \| 'bottom-left' \| 'top-center' \| 'bottom-center'` | `'top-right'` | Toast container position |
-| `showDemoButtons` | `boolean` | `false` | Show demo buttons for testing |
 
 ### Checkbox Component
 
@@ -577,20 +535,6 @@ export class SettingsComponent {
 }
 ```
 
-**Toast Service Methods:**
-- `success(message, title?, options?)` - Show success toast
-- `error(message, title?, options?)` - Show error toast
-- `info(message, title?, options?)` - Show info toast
-- `warning(message, title?, options?)` - Show warning toast
-- `show(toast)` - Show custom toast
-- `remove(id)` - Remove specific toast
-- `clear()` - Remove all toasts
-
-**Toast Options:**
-- `duration` - Auto-hide duration in milliseconds (default: 5000)
-- `dismissible` - Allow manual dismissal (default: true)
-- `showProgress` - Show progress bar (default: false)
-- `position` - Toast position
 
 ## Customization
 
