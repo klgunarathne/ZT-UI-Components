@@ -1,3 +1,4 @@
+import { ZTButtonModule } from '../lib/ui/button';
 import { ButtonComponent } from '../lib/zt-button/button.component';
 import type { Meta, StoryObj } from '@storybook/angular';
 

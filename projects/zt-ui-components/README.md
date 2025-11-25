@@ -75,14 +75,18 @@ export class AppComponent {
 }
 ```
 
-For module-based applications:
+For module-based applications (legacy support):
 
 ```typescript
-// app.module.ts
-import { ZtButtonModule, ZtInputModule, ZtCardModule } from 'zt-ui-components';
+// Note: ZT UI Components are primarily designed for standalone usage.
+// For module-based applications, import individual component modules from specific paths:
+
+import { ZTButtonModule } from 'zt-ui-components/ui/button';
+import { ZTInputModule } from 'zt-ui-components/ui/input';
+import { ZTCardModule } from 'zt-ui-components/ui/card';
 
 @NgModule({
-  imports: [ZtButtonModule, ZtInputModule, ZtCardModule],
+  imports: [ZTButtonModule, ZTInputModule, ZTCardModule],
 })
 export class AppModule {}
 ```
