@@ -5,6 +5,20 @@ All notable changes to ZT-UI Components will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.1] - 2025-11-25
+
+### 🐛 **Bug Fixes**
+- **Fixed subpath imports**: Resolved issue where `zt-ui-components/ui/button` and other specific module paths weren't resolving
+- **Added package exports**: Configured proper `exports` field in package.json for all subpath imports
+- **Module resolution**: All barrel exports now work correctly for both standalone and module usage
+
+### 📦 **Technical Details**
+- Added comprehensive `exports` mapping in package.json for all component subpaths
+- Maintained backward compatibility while fixing import resolution
+- No breaking changes - all existing functionality preserved
+
+---
+
 ## [2.0.0] - 2025-11-25
 
 ### 🚀 **Major Changes - Breaking Changes**

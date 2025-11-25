@@ -1,6 +1,6 @@
 {
   "name": "zt-ui-components",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Enterprise-grade Angular UI component library with advanced theming, accessibility compliance, and modern design patterns. Features reactive forms support, two-way data binding, comprehensive customization options, and toast notifications.",
   "author": "ZT-UI Team",
   "license": "MIT",
@@ -58,6 +58,67 @@
     "tslib": "^2.3.0"
   },
   "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./fesm2022/zt-ui-components.mjs"
+    },
+    "./ui/button": {
+      "types": "./index.d.ts",
+      "default": "./fesm2022/zt-ui-components.mjs"
+    },
+    "./ui/input": {
+      "types": "./index.d.ts",
+      "default": "./fesm2022/zt-ui-components.mjs"
+    },
+    "./ui/card": {
+      "types": "./index.d.ts",
+      "default": "./fesm2022/zt-ui-components.mjs"
+    },
+    "./ui/select": {
+      "types": "./index.d.ts",
+      "default": "./fesm2022/zt-ui-components.mjs"
+    },
+    "./ui/textarea": {
+      "types": "./index.d.ts",
+      "default": "./fesm2022/zt-ui-components.mjs"
+    },
+    "./ui/toggle": {
+      "types": "./index.d.ts",
+      "default": "./fesm2022/zt-ui-components.mjs"
+    },
+    "./ui/modal": {
+      "types": "./index.d.ts",
+      "default": "./fesm2022/zt-ui-components.mjs"
+    },
+    "./ui/data-grid": {
+      "types": "./index.d.ts",
+      "default": "./fesm2022/zt-ui-components.mjs"
+    },
+    "./ui/datetime-picker": {
+      "types": "./index.d.ts",
+      "default": "./fesm2022/zt-ui-components.mjs"
+    },
+    "./ui/checkbox": {
+      "types": "./index.d.ts",
+      "default": "./fesm2022/zt-ui-components.mjs"
+    },
+    "./ui/radio": {
+      "types": "./index.d.ts",
+      "default": "./fesm2022/zt-ui-components.mjs"
+    },
+    "./ui/paginator": {
+      "types": "./index.d.ts",
+      "default": "./fesm2022/zt-ui-components.mjs"
+    },
+    "./ui/toast": {
+      "types": "./index.d.ts",
+      "default": "./fesm2022/zt-ui-components.mjs"
+    },
+    "./package.json": {
+      "default": "./package.json"
+    }
+  },
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=9.0.0"
