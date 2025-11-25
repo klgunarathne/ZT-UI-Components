@@ -149,6 +149,20 @@ Pagination components for data navigation.
 npm install zt-ui-components
 ```
 
+## Version Compatibility
+
+| Angular Version | ZT-UI Components | Status |
+|----------------|------------------|--------|
+| Angular 14     | ❌ Not supported | - |
+| Angular 15     | ❌ Not supported | - |
+| Angular 16     | ✅ v2.0.0+       | Recommended |
+| Angular 17     | ✅ v2.0.0+       | Recommended |
+| Angular 18     | ✅ v2.0.0+       | Recommended |
+| Angular 19     | ✅ v2.0.0+       | Recommended |
+| Angular 20+    | ✅ v2.0.0+       | Latest |
+
+**Note:** ZT-UI Components v2.0.0 requires Angular 16+. For older Angular versions, use v1.x.x (deprecated).
+
 ## Usage
 
 Import the components you need in your Angular module or standalone component:
