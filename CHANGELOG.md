@@ -5,12 +5,27 @@ All notable changes to ZT-UI Components will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.0.1] - 2025-11-25
+## [2.0.3] - 2025-11-25
 
-### 🐛 **Bug Fixes**
-- **Fixed subpath imports**: Resolved issue where `zt-ui-components/ui/button` and other specific module paths weren't resolving
-- **Added package exports**: Configured proper `exports` field in package.json for all subpath imports
-- **Module resolution**: All barrel exports now work correctly for both standalone and module usage
+### 📦 **Dependencies**
+- **Added @angular/cdk as peer dependency**: Required for virtual scrolling in data grid component
+- **Updated documentation**: Clear peer dependency requirements in README.md
+- **Enhanced installation guide**: Instructions for optional CDK installation
+
+### 🔧 **Technical Improvements**
+- **Proper dependency management**: CDK now properly declared as peer dependency
+- **Better error messages**: Users get clear guidance when CDK features are needed
+- **Performance optimization**: Virtual scrolling available when CDK is installed
+
+---
+
+## [2.0.2] - 2025-11-25
+
+### 🔄 **API Changes**
+- **Removed deprecation warnings**: All `ZT*Module` classes no longer show console warnings
+- **Dual API support**: Both standalone components and module imports are now fully supported without warnings
+- **Backward compatibility**: Existing module-based applications continue to work seamlessly
+- **No breaking changes**: All import patterns remain functional
 
 ### 📦 **Technical Details**
 - Added comprehensive `exports` mapping in package.json for all component subpaths

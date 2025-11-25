@@ -149,6 +149,22 @@ Pagination components for data navigation.
 npm install zt-ui-components
 ```
 
+## Peer Dependencies
+
+This library requires the following peer dependencies:
+
+- `@angular/common`, `@angular/core`, `@angular/forms` (required)
+- `@angular/cdk` (optional, for virtual scrolling in data grids)
+- `rxjs` (required)
+
+For enhanced performance with large datasets in data grids:
+
+```bash
+npm install @angular/cdk
+```
+
+**Note:** The data grid component uses `@angular/cdk/scrolling` for virtual scrolling when available. Install CDK to enable this feature for better performance with thousands of rows.
+
 ## Version Compatibility
 
 | Angular Version | ZT-UI Components | Status |
