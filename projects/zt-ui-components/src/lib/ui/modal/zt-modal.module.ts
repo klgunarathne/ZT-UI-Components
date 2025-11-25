@@ -2,6 +2,11 @@ import { NgModule } from '@angular/core';
 import { ZtModalComponent } from '../../zt-modal/zt-modal.component';
 
 /**
+ * @deprecated ZTModalModule is deprecated. Use standalone ZtModalComponent import instead:
+ * ```typescript
+ * import { ZtModalComponent } from 'zt-ui-components';
+ * ```
+ *
  * ZT Modal Module
  *
  * This module provides modal dialog functionality for the ZT UI Components library.
@@ -29,4 +34,8 @@ import { ZtModalComponent } from '../../zt-modal/zt-modal.component';
   imports: [ZtModalComponent],
   exports: [ZtModalComponent],
 })
-export class ZTModalModule {}
+export class ZTModalModule {
+  constructor() {
+    console.warn('ZTModalModule is deprecated. Use standalone ZtModalComponent import instead: import { ZtModalComponent } from \'zt-ui-components\';');
+  }
+}

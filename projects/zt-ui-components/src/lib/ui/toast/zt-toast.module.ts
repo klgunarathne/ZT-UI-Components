@@ -1,4 +1,9 @@
 /**
+ * @deprecated ZTToastModule is deprecated. Use standalone ZtToastComponent import instead:
+ * ```typescript
+ * import { ZtToastComponent } from 'zt-ui-components';
+ * ```
+ *
  * ZT-UI Components Toast Module
  *
  * Module that provides the toast notification functionality for Angular applications.
@@ -48,4 +53,8 @@ import { ZtToastComponent } from '../../zt-toast/zt-toast.component';
   ],
   exports: [ZtToastComponent]
 })
-export class ZTToastModule { }
+export class ZTToastModule {
+  constructor() {
+    console.warn('ZTToastModule is deprecated. Use standalone ZtToastComponent import instead: import { ZtToastComponent } from \'zt-ui-components\';');
+  }
+}
