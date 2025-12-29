@@ -1,0 +1,77 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import * as ButtonStories from "./button.stories";
+
+<Meta title="Components/Button" />
+
+# Button Component
+
+The Button component is a versatile interactive element that supports various styles, sizes, and states for different use cases.
+
+## Basic Usage
+
+```html
+<!-- Basic buttons -->
+<zt-button variant="primary">Primary Button</zt-button>
+<zt-button variant="secondary">Secondary Button</zt-button>
+<zt-button variant="success">Success Button</zt-button>
+<zt-button variant="danger">Danger Button</zt-button>
+
+<!-- Button with click handler -->
+<zt-button variant="primary" (click)="handleSubmit()">
+  Submit Form
+</zt-button>
+
+<!-- Disabled button -->
+<zt-button variant="primary" [disabled]="isLoading">
+  {{ isLoading ? 'Loading...' : 'Submit' }}
+</zt-button>
+
+<!-- Outline style -->
+<zt-button variant="primary" [outline]="true">
+  Outline Button
+</zt-button>
+```
+
+```typescript
+export class MyComponent {
+  isLoading = false;
+
+  handleSubmit() {
+    this.isLoading = true;
+    // Handle form submission
+    setTimeout(() => this.isLoading = false, 2000);
+  }
+}
+```
+
+## Stories
+
+<Canvas>
+  <Story story={ButtonStories.Button} />
+</Canvas>
+
+<Canvas>
+  <Story story={ButtonStories.Outline_Button} />
+</Canvas>
+
+<Canvas>
+  <Story story={ButtonStories.Round_Button} />
+</Canvas>
+
+<Canvas>
+  <Story story={ButtonStories.Floating_Button} />
+</Canvas>
+
+## API Reference
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | HTML button type |
+| `disabled` | `boolean` | `false` | Whether the button is disabled |
+| `variant` | `'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info' \| 'dark'` | `'primary'` | Visual style variant |
+| `outline` | `boolean` | `false` | Display as outline style |
+| `size` | `'zt-sm' \| 'zt-md' \| 'zt-lg'` | `'zt-md'` | Button size |
+| `ztTheme` | `Partial<ThemeConfig>` | - | Local theme override |
+
+**Events:**
+- `(click)` - Emitted when button is clicked

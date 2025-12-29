@@ -1,0 +1,65 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import * as DatetimePickerStories from "./datetime-picker.stories";
+
+<Meta title="Components/DatetimePicker" />
+
+# Datetime Picker Component
+
+The Datetime Picker component provides date and time selection functionality with customizable formats and validation.
+
+## Basic Usage
+
+```html
+<!-- Date picker -->
+<zt-datetime-picker
+  [(value)]="selectedDate"
+  [type]="'date'"
+  placeholder="Select date">
+</zt-datetime-picker>
+
+<!-- DateTime picker -->
+<zt-datetime-picker
+  [(value)]="selectedDateTime"
+  [type]="'datetime-local'"
+  placeholder="Select date and time">
+</zt-datetime-picker>
+
+<!-- Time picker -->
+<zt-datetime-picker
+  [(value)]="selectedTime"
+  [type]="'time'"
+  placeholder="Select time">
+</zt-datetime-picker>
+```
+
+```typescript
+export class MyComponent {
+  selectedDate: string;
+  selectedDateTime: string;
+  selectedTime: string;
+}
+```
+
+## Stories
+
+<Canvas>
+  <Story story={DatetimePickerStories.DatetimePicker} />
+</Canvas>
+
+## API Reference
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `value` | `string` | - | Selected date/time value (two-way binding) |
+| `type` | `'date' \| 'datetime-local' \| 'time'` | `'date'` | Input type |
+| `placeholder` | `string` | `'Select date'` | Placeholder text |
+| `min` | `string` | - | Minimum date/time |
+| `max` | `string` | - | Maximum date/time |
+| `disabled` | `boolean` | `false` | Whether picker is disabled |
+| `required` | `boolean` | `false` | Whether picker is required |
+| `ztTheme` | `Partial<ThemeConfig>` | - | Local theme override |
+
+**Events:**
+- `(valueChange)` - Emitted when value changes
+- `(focus)` - Emitted when picker gains focus
+- `(blur)` - Emitted when picker loses focus

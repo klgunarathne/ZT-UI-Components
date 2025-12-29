@@ -1,0 +1,77 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import * as ToggleStories from "./toggle.stories";
+
+<Meta title="Components/Toggle" />
+
+# Toggle Component
+
+The Toggle component provides a switch interface with customizable styles, labels, and states for boolean value selection.
+
+## Basic Usage
+
+```html
+<!-- Basic toggle -->
+<zt-toggle [(checked)]="isEnabled"></zt-toggle>
+
+<!-- Toggle with label -->
+<zt-toggle
+  label="Enable notifications"
+  [(checked)]="notificationsEnabled"
+  size="md">
+</zt-toggle>
+
+<!-- Disabled toggle -->
+<zt-toggle
+  label="System setting"
+  [checked]="true"
+  [disabled]="true">
+</zt-toggle>
+
+<!-- Custom styled toggle -->
+<zt-toggle
+  label="Dark mode"
+  [(checked)]="darkMode"
+  variant="rounded"
+  size="lg">
+</zt-toggle>
+```
+
+```typescript
+export class SettingsComponent {
+  isEnabled = false;
+  notificationsEnabled = true;
+  darkMode = false;
+
+  constructor(private themeService: ZTThemeService) {}
+
+  ngOnInit() {
+    // Sync toggle with theme
+    this.darkMode = this.themeService.getCurrentTheme()?.name === 'dark';
+  }
+
+  onToggleChange(value: boolean) {
+    console.log('Toggle changed:', value);
+  }
+}
+```
+
+## Stories
+
+<Canvas>
+  <Story story={ToggleStories.Toggle} />
+</Canvas>
+
+## API Reference
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `checked` | `boolean` | `false` | Toggle state (two-way binding) |
+| `disabled` | `boolean` | `false` | Whether toggle is disabled |
+| `label` | `string` | `''` | Label text displayed next to toggle |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Toggle size |
+| `variant` | `'default' \| 'rounded' \| 'square'` | `'default'` | Visual style variant |
+| `theme` | `string` | `'light'` | Theme variant |
+| `ztTheme` | `Partial<ThemeConfig>` | - | Local theme override |
+
+**Events:**
+- `(checkedChange)` - Emitted when toggle state changes

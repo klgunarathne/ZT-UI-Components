@@ -1,0 +1,54 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import * as TextareaStories from "./textarea.stories";
+
+<Meta title="Components/Textarea" />
+
+# Textarea Component
+
+The Textarea component provides multi-line text input with length validation and character counting features.
+
+## Basic Usage
+
+```html
+<!-- Basic textarea -->
+<zt-textarea
+  placeholder="Enter your message"
+  [textlength]="500"
+  [showCharCount]="true"
+  [rows]="4">
+</zt-textarea>
+
+<!-- Textarea with validation -->
+<zt-textarea
+  placeholder="Describe your issue"
+  [textlength]="1000"
+  [showCharCount]="true"
+  [required]="true"
+  [rows]="6">
+</zt-textarea>
+```
+
+## Stories
+
+<Canvas>
+  <Story story={TextareaStories.Textarea} />
+</Canvas>
+
+## API Reference
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `value` | `string` | `''` | Textarea value (two-way binding) |
+| `placeholder` | `string` | `'Enter text'` | Placeholder text |
+| `textlength` | `number` | `1000` | Maximum character length |
+| `rows` | `number` | `3` | Number of visible rows |
+| `cols` | `number` | - | Number of visible columns |
+| `disabled` | `boolean` | `false` | Whether textarea is disabled |
+| `required` | `boolean` | `false` | Whether textarea is required |
+| `showCharCount` | `boolean` | `false` | Show character counter |
+| `ztTheme` | `Partial<ThemeConfig>` | - | Local theme override |
+
+**Events:**
+- `(valueChange)` - Emitted when value changes
+- `(focus)` - Emitted when textarea gains focus
+- `(blur)` - Emitted when textarea loses focus

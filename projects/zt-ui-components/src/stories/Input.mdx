@@ -1,0 +1,83 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import * as InputStories from "./input.stories";
+
+<Meta title="Components/Input" />
+
+# Input Component
+
+The Input component provides advanced text input functionality with validation, character counting, and multiple visual styles.
+
+## Basic Usage
+
+```html
+<!-- Basic text input -->
+<zt-input
+  placeholder="Enter your name"
+  size="zt-md">
+</zt-input>
+
+<!-- Email input with validation -->
+<zt-input
+  placeholder="Email address"
+  inputType="email"
+  [textlength]="100"
+  [showCharCounter]="true">
+</zt-input>
+
+<!-- Password input -->
+<zt-input
+  placeholder="Password"
+  inputType="password"
+  [textlength]="50">
+</zt-input>
+
+<!-- Two-way binding -->
+<zt-input
+  placeholder="Username"
+  [(ngModel)]="username"
+  [textlength]="30"
+  [showCharCounter]="true">
+</zt-input>
+
+<p>Username: {{ username }}</p>
+```
+
+```typescript
+export class MyComponent {
+  username = '';
+}
+```
+
+## Stories
+
+<Canvas>
+  <Story story={InputStories.Input} />
+</Canvas>
+
+<Canvas>
+  <Story story={InputStories.EmailInput} />
+</Canvas>
+
+<Canvas>
+  <Story story={InputStories.PasswordInput} />
+</Canvas>
+
+## API Reference
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `value` | `string` | `''` | Input value (supports two-way binding) |
+| `placeholder` | `string` | `'Enter text'` | Placeholder text |
+| `textlength` | `number` | `255` | Maximum character length |
+| `inputType` | `'text' \| 'number' \| 'email' \| 'password'` | `'text'` | HTML input type |
+| `inputStyle` | `'zt' \| 'material' \| 'bs'` | `'zt'` | Visual style |
+| `size` | `'zt-sm' \| 'zt-md' \| 'zt-lg'` | `'zt-md'` | Component size |
+| `disabled` | `boolean` | `false` | Whether input is disabled |
+| `showCharCounter` | `boolean` | `false` | Show character counter |
+| `errorMessage` | `string` | - | Error message to display |
+| `ztTheme` | `Partial<ThemeConfig>` | - | Local theme override |
+
+**Events:**
+- `(valueChange)` - Emitted when value changes
+- `(focus)` - Emitted when input gains focus
+- `(blur)` - Emitted when input loses focus

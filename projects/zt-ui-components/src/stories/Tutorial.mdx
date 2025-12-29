@@ -4,6 +4,10 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 # ZT-UI Components Tutorial
 
+{/* This tutorial provides an overview of the ZT-UI Components library */}
+{/* It covers installation, basic usage, and advanced features */}
+{/* For detailed documentation on specific components, see the individual component pages */}
+
 Welcome to the comprehensive tutorial for ZT-UI Components! This guide will walk you through everything you need to know to effectively use this powerful Angular component library, from basic setup to advanced customization.
 
 ## Introduction
@@ -11,7 +15,7 @@ Welcome to the comprehensive tutorial for ZT-UI Components! This guide will walk
 ZT-UI Components is a comprehensive collection of reusable UI components for Angular applications. Built with modern Angular patterns, it features:
 
 - 🎨 **Robust Theming System** - Global themes with local overrides and dynamic switching
-- ♿ **Accessibility First** - WCAG 2.1 AA compliant components
+- ♿ **Accessibility First** - WCAG 2.1 AA compliant components with full keyboard navigation and screen reader support
 - 🔧 **Developer Experience** - TypeScript support, comprehensive documentation, and Storybook integration
 - 📱 **Responsive Design** - Mobile-first approach with flexible layouts
 - ⚡ **Performance Optimized** - OnPush change detection and efficient rendering
@@ -19,27 +23,73 @@ ZT-UI Components is a comprehensive collection of reusable UI components for Ang
 
 The library includes form components, interactive elements, layout components, and data display widgets, all designed to work seamlessly together.
 
+## Quick Start (5 minutes)
+
+Want to see ZT-UI Components in action immediately? Here's the fastest way to get started:
+
+```bash
+npm install zt-ui-components
+```
+
+```typescript
+// app.component.ts
+import { Component } from '@angular/core';
+import { ZtButton, ZtInput, ZtCard } from 'zt-ui-components';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [ZtButton, ZtInput, ZtCard],
+  template: `
+    <zt-card cardStyle="elevated" size="md">
+      <div class="card-header">
+        <h3>Welcome to ZT-UI!</h3>
+      </div>
+      <div class="card-body">
+        <zt-input
+          placeholder="Enter your name"
+          size="zt-md"
+          [textlength]="50">
+        </zt-input>
+        <br><br>
+        <zt-button variant="primary" size="zt-md">
+          Get Started
+        </zt-button>
+      </div>
+    </zt-card>
+  `,
+})
+export class AppComponent {}
+```
+
+That's it! You now have a fully functional UI with theming, accessibility, and responsive design built-in.
+
 ## UI Components
+
+{/* Component categories overview */}
+{/* Each component has its own detailed documentation page */}
 
 ZT-UI Components provides a rich set of components organized into the following categories:
 
 ### Form Components
-- **`<zt-input>`** - Advanced text input with validation, character counting, and multiple visual styles
-- **`<zt-textarea>`** - Multi-line text input with length validation and character counting
-- **`<zt-select>`** - Dropdown select with data binding, search capabilities, and customizable styles
+- **[`<zt-input>`](?path=/docs/components-input--docs)** - Advanced text input with validation, character counting, and multiple visual styles
+- **[`<zt-textarea>`](?path=/docs/components-textarea--docs)** - Multi-line text input with length validation and character counting
+- **[`<zt-select>`](?path=/docs/components-select--docs)** - Dropdown select with data binding, search capabilities, and customizable styles
+- **[`<zt-checkbox>`](?path=/docs/components-checkbox--docs)** - Checkbox input for boolean selection
+- **[`<zt-radio>`](?path=/docs/components-radio--docs)** - Radio button for single selection
+- **[`<zt-datetime-picker>`](?path=/docs/components-datetimepicker--docs)** - Date and time picker component
 
 ### Interactive Components
-- **`<zt-button>`** - Versatile button with variants, sizes, states, and interaction handling
-- **`<zt-modal>`** - Flexible modal dialogs with theming, accessibility, and customizable content
-- **`<zt-paginator>`** - Pagination component for navigating data tables and lists
-- **`<zt-toast>`** - Toast notification system with multiple types, positions, and customizable options
-- **`<zt-toggle>`** - Toggle switch component with customizable styles, labels, and states
+- **[`<zt-button>`](?path=/docs/components-button--docs)** - Versatile button with variants, sizes, states, and interaction handling
+- **[`<zt-modal>`](?path=/docs/components-modal--docs)** - Flexible modal dialogs with theming, accessibility, and customizable content
+- **[`<zt-paginator>`](?path=/docs/components-paginator--docs)** - Pagination component for navigating data tables and lists
+- **[`<zt-toggle>`](?path=/docs/components-toggle--docs)** - Toggle switch component with customizable styles, labels, and states
 
 ### Layout Components
-- **`<zt-card>`** - Flexible container with headers, bodies, footers, variants, and hover effects
+- **[`<zt-card>`](?path=/docs/components-card--docs)** - Flexible container with headers, bodies, footers, variants, and hover effects
 
 ### Data Display Components
-- **`<zt-data-grid>`** - Advanced data table with sorting, filtering, pagination, and row selection
+- **[`<zt-data-grid>`](?path=/docs/components-datagrid--docs)** - Advanced data table with sorting, filtering, pagination, and row selection
 
 ## Installation
 
@@ -61,74 +111,8 @@ npm install zt-ui-components
 
 After installation, you should see `zt-ui-components` in your `package.json` dependencies.
 
-## Available Components
-
-ZT-UI Components provides a rich set of components organized into categories:
-
-### Form Components
-- **`<zt-input>`** - Advanced text input with validation and character counting
-- **`<zt-textarea>`** - Multi-line text input with length validation
-- **`<zt-select>`** - Dropdown select with data binding and search
-
-### Interactive Components
-- **`<zt-button>`** - Versatile button with variants and states
-- **`<zt-modal>`** - Accessible modal dialogs with theming
-- **`<zt-paginator>`** - Pagination for data tables and lists
-- **`<zt-toggle>`** - Toggle switch component with customizable styles and states
-
-### Toggle Component Usage
-
-```html
-<!-- Basic toggle -->
-<zt-toggle [(checked)]="isEnabled"></zt-toggle>
-
-<!-- Toggle with label -->
-<zt-toggle
-  label="Enable notifications"
-  [(checked)]="notificationsEnabled"
-  size="md">
-</zt-toggle>
-
-<!-- Disabled toggle -->
-<zt-toggle
-  label="System setting"
-  [checked]="true"
-  [disabled]="true">
-</zt-toggle>
-
-<!-- Custom styled toggle -->
-<zt-toggle
-  label="Dark mode"
-  [(checked)]="darkMode"
-  variant="rounded"
-  size="lg">
-</zt-toggle>
-```
-
-```typescript
-export class SettingsComponent {
-  isEnabled = false;
-  notificationsEnabled = true;
-  darkMode = false;
-
-  constructor(private themeService: ZTThemeService) {}
-
-  ngOnInit() {
-    // Sync toggle with theme
-    this.darkMode = this.themeService.getCurrentTheme()?.name === 'dark';
-  }
-
-  onToggleChange(value: boolean) {
-    console.log('Toggle changed:', value);
-  }
-}
-```
-
-### Layout Components
-- **`<zt-card>`** - Flexible container with headers, bodies, and variants
-
-### Data Display Components
-- **`<zt-data-grid>`** - Advanced data table with sorting, filtering, and pagination
+{/* Duplicate section removed - consolidated with UI Components section above */}
+{/* This section was redundant and has been merged for better organization */}
 
 ## Quick Start
 
@@ -628,6 +612,83 @@ this.toastService.show({
   position: 'top-center',
   dismissible: true,
   showProgress: true
+});
+```
+
+## Accessibility Features
+
+ZT-UI Components are built with accessibility as a core principle, following WCAG 2.1 AA guidelines. Here's what you get out of the box:
+
+### Keyboard Navigation
+
+All interactive components support full keyboard navigation:
+
+```html
+<!-- Focus management is automatic -->
+<zt-button variant="primary" tabindex="0">Focusable Button</zt-button>
+<zt-input placeholder="Type here" aria-label="Search input"></zt-input>
+```
+
+**Keyboard shortcuts:**
+- `Tab` - Move focus between components
+- `Enter/Space` - Activate buttons and toggles
+- `Arrow keys` - Navigate dropdown options, grid cells
+- `Escape` - Close modals, dropdowns
+
+### Screen Reader Support
+
+Components include comprehensive ARIA attributes:
+
+```html
+<!-- Automatic ARIA labels -->
+<zt-toggle
+  label="Enable notifications"
+  [(checked)]="notificationsEnabled"
+  aria-describedby="toggle-description">
+</zt-toggle>
+<div id="toggle-description">
+  Controls whether you receive push notifications
+</div>
+```
+
+### Focus Management
+
+Components handle focus automatically in complex interactions:
+
+```html
+<!-- Modal with focus trapping -->
+<zt-modal
+  [isOpen]="showModal"
+  title="Edit Profile"
+  (onClose)="closeModal()">
+  <div modal-body>
+    <zt-input placeholder="First name" autofocus></zt-input>
+    <zt-input placeholder="Last name"></zt-input>
+  </div>
+  <div modal-footer>
+    <zt-button variant="secondary" (click)="closeModal()">Cancel</zt-button>
+    <zt-button variant="primary" (click)="saveProfile()">Save</zt-button>
+  </div>
+</zt-modal>
+```
+
+### High Contrast Support
+
+All themes include high contrast variants that work with Windows High Contrast mode and other assistive technologies.
+
+### Testing Accessibility
+
+```typescript
+// Use axe-core for automated accessibility testing
+import axe from 'axe-core';
+
+// In your component tests
+it('should be accessible', async () => {
+  const fixture = TestBed.createComponent(MyComponent);
+  fixture.detectChanges();
+
+  const results = await axe.run(fixture.nativeElement);
+  expect(results.violations.length).toBe(0);
 });
 ```
 

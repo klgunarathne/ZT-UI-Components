@@ -1,0 +1,55 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import * as CheckboxStories from "./checkbox.stories";
+
+<Meta title="Components/Checkbox" />
+
+# Checkbox Component
+
+The Checkbox component provides a checkbox input for boolean value selection with customizable styles and labels.
+
+## Basic Usage
+
+```html
+<!-- Basic checkbox -->
+<zt-checkbox [(checked)]="isChecked"></zt-checkbox>
+
+<!-- Checkbox with label -->
+<zt-checkbox
+  label="Accept terms and conditions"
+  [(checked)]="acceptTerms"
+  [required]="true">
+</zt-checkbox>
+
+<!-- Disabled checkbox -->
+<zt-checkbox
+  label="System setting"
+  [checked]="true"
+  [disabled]="true">
+</zt-checkbox>
+```
+
+```typescript
+export class MyComponent {
+  isChecked = false;
+  acceptTerms = false;
+}
+```
+
+## Stories
+
+<Canvas>
+  <Story story={CheckboxStories.Checkbox} />
+</Canvas>
+
+## API Reference
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `checked` | `boolean` | `false` | Checkbox state (two-way binding) |
+| `disabled` | `boolean` | `false` | Whether checkbox is disabled |
+| `label` | `string` | `''` | Label text displayed next to checkbox |
+| `required` | `boolean` | `false` | Whether checkbox is required |
+| `ztTheme` | `Partial<ThemeConfig>` | - | Local theme override |
+
+**Events:**
+- `(checkedChange)` - Emitted when checkbox state changes

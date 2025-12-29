@@ -1,0 +1,59 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import * as PaginatorStories from "./paginator.stories";
+
+<Meta title="Components/Paginator" />
+
+# Paginator Component
+
+The Paginator component provides navigation controls for paginated data tables and lists.
+
+## Basic Usage
+
+```html
+<zt-paginator
+  [totalItems]="100"
+  [itemsPerPage]="10"
+  [currentPage]="1"
+  [showPageSizeSelector]="true"
+  [pageSizeOptions]="[5, 10, 20, 50]"
+  (pageChange)="onPageChange($event)">
+</zt-paginator>
+```
+
+```typescript
+export class DataTableComponent {
+  totalItems = 100;
+  itemsPerPage = 10;
+  currentPage = 1;
+
+  onPageChange(event: any) {
+    console.log('Page changed:', event);
+    this.currentPage = event.page;
+    this.itemsPerPage = event.itemsPerPage;
+    // Load data for new page
+  }
+}
+```
+
+## Stories
+
+<Canvas>
+  <Story story={PaginatorStories.Paginator} />
+</Canvas>
+
+## API Reference
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `totalItems` | `number` | `0` | Total number of items |
+| `itemsPerPage` | `number` | `10` | Items per page |
+| `currentPage` | `number` | `1` | Current page number |
+| `showPageSizeSelector` | `boolean` | `false` | Show page size dropdown |
+| `pageSizeOptions` | `number[]` | `[10, 25, 50, 100]` | Available page sizes |
+| `showFirstLastButtons` | `boolean` | `true` | Show first/last buttons |
+| `showPrevNextButtons` | `boolean` | `true` | Show previous/next buttons |
+| `maxVisiblePages` | `number` | `5` | Maximum visible page numbers |
+| `ztTheme` | `Partial<ThemeConfig>` | - | Local theme override |
+
+**Events:**
+- `(pageChange)` - Emitted when page or page size changes

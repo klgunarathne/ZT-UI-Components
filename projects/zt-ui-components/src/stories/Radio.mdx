@@ -1,0 +1,61 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import * as RadioStories from "./radio.stories";
+
+<Meta title="Components/Radio" />
+
+# Radio Component
+
+The Radio component provides radio button inputs for single selection from multiple options.
+
+## Basic Usage
+
+```html
+<!-- Radio group -->
+<zt-radio
+  name="gender"
+  value="male"
+  label="Male"
+  [(ngModel)]="selectedGender">
+</zt-radio>
+
+<zt-radio
+  name="gender"
+  value="female"
+  label="Female"
+  [(ngModel)]="selectedGender">
+</zt-radio>
+
+<zt-radio
+  name="gender"
+  value="other"
+  label="Other"
+  [(ngModel)]="selectedGender">
+</zt-radio>
+```
+
+```typescript
+export class MyComponent {
+  selectedGender = 'male';
+}
+```
+
+## Stories
+
+<Canvas>
+  <Story story={RadioStories.Radio} />
+</Canvas>
+
+## API Reference
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `name` | `string` | - | Radio group name |
+| `value` | `any` | - | Radio button value |
+| `checked` | `boolean` | `false` | Whether radio is checked (two-way binding) |
+| `disabled` | `boolean` | `false` | Whether radio is disabled |
+| `label` | `string` | `''` | Label text displayed next to radio |
+| `required` | `boolean` | `false` | Whether radio is required |
+| `ztTheme` | `Partial<ThemeConfig>` | - | Local theme override |
+
+**Events:**
+- `(checkedChange)` - Emitted when radio state changes

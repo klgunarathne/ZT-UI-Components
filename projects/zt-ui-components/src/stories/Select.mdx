@@ -1,0 +1,77 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import * as SelectStories from "./select.stories";
+
+<Meta title="Components/Select" />
+
+# Select Component
+
+The Select component provides a dropdown interface for selecting options from a data source, with support for data binding, search, and customizable styles.
+
+## Basic Usage
+
+```html
+<!-- Basic select -->
+<zt-select
+  inputStyle="zt"
+  [dataSource]="countries"
+  [key]="'code'"
+  [displayValue]="'name'"
+  placeholder="Select country">
+</zt-select>
+
+<!-- With two-way binding -->
+<zt-select
+  inputStyle="bs"
+  [dataSource]="options"
+  [key]="'id'"
+  [displayValue]="'name'"
+  [(value)]="selectedValue"
+  placeholder="Choose option"
+  (valueChange)="onSelectionChange($event)">
+</zt-select>
+```
+
+```typescript
+export class MyComponent {
+  countries = [
+    { code: 'US', name: 'United States' },
+    { code: 'CA', name: 'Canada' },
+    { code: 'UK', name: 'United Kingdom' }
+  ];
+
+  options = [
+    { id: 1, name: 'Option 1' },
+    { id: 2, name: 'Option 2' },
+    { id: 3, name: 'Option 3' }
+  ];
+
+  selectedValue: any;
+
+  onSelectionChange(value: any) {
+    console.log('Selected value:', value);
+  }
+}
+```
+
+## Stories
+
+<Canvas>
+  <Story story={SelectStories.Select} />
+</Canvas>
+
+## API Reference
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `dataSource` | `any[]` | `[]` | Array of options |
+| `key` | `string` | - | Property name for option value |
+| `displayValue` | `string` | `''` | Property name for display text |
+| `value` | `any` | - | Selected value (two-way binding) |
+| `placeholder` | `string` | `'Choose an option'` | Placeholder text |
+| `inputStyle` | `'zt' \| 'material' \| 'bs'` | `'zt'` | Visual style |
+| `size` | `'zt-sm' \| 'zt-md' \| 'zt-lg'` | `'zt-md'` | Component size |
+| `showClearButton` | `boolean` | `true` | Show clear/reset button |
+| `ztTheme` | `Partial<ThemeConfig>` | - | Local theme override |
+
+**Events:**
+- `(valueChange)` - Emitted when selection changes

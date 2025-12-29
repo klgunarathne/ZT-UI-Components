@@ -1,0 +1,82 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import * as ModalStories from "./modal.stories";
+
+<Meta title="Components/Modal" />
+
+# Modal Component
+
+The Modal component provides flexible modal dialogs with theming, accessibility, and customizable content areas.
+
+## Basic Usage
+
+```html
+<!-- Trigger button -->
+<zt-button variant="primary" (click)="openModal()">
+  Open Modal
+</zt-button>
+
+<!-- Modal -->
+<zt-modal
+  [isOpen]="showModal"
+  [title]="'Confirm Action'"
+  [size]="'md'"
+  [closable]="true"
+  [backdropClosable]="true"
+  (onClose)="closeModal()">
+
+  <div modal-body>
+    <p>Are you sure you want to perform this action? This cannot be undone.</p>
+  </div>
+
+  <div modal-footer>
+    <zt-button variant="secondary" (click)="closeModal()">
+      Cancel
+    </zt-button>
+    <zt-button variant="danger" (click)="confirmAction()">
+      Confirm
+    </zt-button>
+  </div>
+
+</zt-modal>
+```
+
+```typescript
+export class MyComponent {
+  showModal = false;
+
+  openModal() {
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
+  }
+
+  confirmAction() {
+    // Perform action
+    console.log('Action confirmed');
+    this.closeModal();
+  }
+}
+```
+
+## Stories
+
+<Canvas>
+  <Story story={ModalStories.Modal} />
+</Canvas>
+
+## API Reference
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `isOpen` | `boolean` | `false` | Controls modal visibility |
+| `title` | `string` | `''` | Modal title text |
+| `size` | `'sm' \| 'md' \| 'lg' \| 'xl' \| 'fullscreen'` | `'md'` | Modal size |
+| `closable` | `boolean` | `true` | Allow modal to be closed |
+| `backdropClosable` | `boolean` | `true` | Close on backdrop click |
+| `ztTheme` | `Partial<ThemeConfig>` | - | Local theme override |
+
+**Events:**
+- `(onClose)` - Emitted when modal closes
+- `(onOpen)` - Emitted when modal opens

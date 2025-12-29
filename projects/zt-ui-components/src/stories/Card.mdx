@@ -1,0 +1,49 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import * as CardStories from "./card.stories";
+
+<Meta title="Components/Card" />
+
+# Card Component
+
+The Card component is a flexible container that supports headers, bodies, footers, variants, and hover effects for organizing content.
+
+## Basic Usage
+
+```html
+<!-- Basic card -->
+<zt-card cardStyle="elevated" size="md">
+  <div class="card-header">
+    <h3>Card Title</h3>
+  </div>
+  <div class="card-body">
+    <p>Card content goes here. You can put any content inside the card body.</p>
+  </div>
+  <div class="card-footer">
+    <zt-button variant="primary">Action</zt-button>
+  </div>
+</zt-card>
+
+<!-- Outlined card -->
+<zt-card cardStyle="outlined" variant="primary">
+  <div class="card-body">
+    <h4>Primary Outlined Card</h4>
+    <p>This card has an outlined style with primary color variant.</p>
+  </div>
+</zt-card>
+```
+
+## Stories
+
+<Canvas>
+  <Story story={CardStories.Card} />
+</Canvas>
+
+## API Reference
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `cardStyle` | `'elevated' \| 'outlined' \| 'flat'` | `'elevated'` | Card visual style |
+| `variant` | `'default' \| 'primary' \| 'info' \| 'danger' \| 'warning' \| 'dark'` | `'default'` | Color variant |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Card size/padding |
+| `hoverable` | `boolean` | `false` | Enable hover effects |
+| `ztTheme` | `Partial<ThemeConfig>` | - | Local theme override |
